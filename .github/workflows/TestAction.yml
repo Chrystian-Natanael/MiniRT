@@ -21,7 +21,7 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
+        run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev libgl1-mesa-dev xorg-dev
 
       # Setup SSH key
       - name: Setup SSH

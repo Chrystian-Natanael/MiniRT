@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/04 17:32:06 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:35:54 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ double	*sum(double *tpl1, double *tpl2)
 {
 	int		idx;
 	double	*res;
-
 
 	if (tpl1[3] == 1 && tpl2[3] == 1)
 		return (NULL);

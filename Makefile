@@ -36,12 +36,13 @@ RESET = \033[0m
 #* ******************************************************************************#
 
 SRCS_PATH = src/
-INCS_PATH = includes/ libs/MLX42/include
+INCS_PATH = includes/ libs/MLX42/include/ libs/garbage-collector/include/
 BUILD_DIR := build/
 TARGET_DIR = bin/
 LIBFT_DIR := libs/libft/
 GTEST_DIR = tests/googletest
 CODAM_DIR := libs/MLX42/
+GARB_DIR := libs/garbage-collector/
 
 #* ******************************************************************************#
 #                                   FILES                                        #
@@ -49,8 +50,10 @@ CODAM_DIR := libs/MLX42/
 
 GTEST_REPO = git@github.com:google/googletest.git
 CODAM_REPO = git@github.com:codam-coding-college/MLX42.git
-LIBS := $(LIBFT_DIR)libft.a $(CODAM_DIR)build/libmlx42.a
-SRCS = $(wildcard $(SRCS_PATH)*$(FILE_EXTENSION))
+GARB_REPO = git@github.com:Chrystian-Natanael/garbage-collector.git
+LIBS := $(LIBFT_DIR)libft.a $(CODAM_DIR)build/libmlx42.a $(GARB_DIR)garbage_collector.a
+GARB = $(addprefix $(GARB_DIR), garbage_collector.a)
+SRCS = $(shell find $(SRCS_PATH) -type f -name "*$(FILE_EXTENSION)")
 OBJS = $(SRCS:%$(FILE_EXTENSION)=$(BUILD_DIR)%.o)
 DEPS = $(OBJS:.o=.d)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
@@ -72,10 +75,10 @@ SHELL := /bin/bash
 CFLAGS = -Wall -Wextra -Werror
 DFLAGS = -Wall -Wextra -Werror -g3
 LDLIBS = -ldl -lglfw -pthread
-LDFLAGS = $(addprefix -L,$(dir $(LIBS)))
+LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP
 COMP_OBJ = $(COMP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-COMP_EXE = $(COMP) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(TARGET_DIR)$(NAME)
+COMP_EXE = $(COMP) $(CPPFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(TARGET_DIR)$(NAME)
 
 #* ******************************************************************************#
 #                                  FUNCTIONS                                     #
@@ -90,17 +93,28 @@ define create_dir
 	$(MKDIR) $(dir $@)
 endef
 
+define comp_garb
+	printf "$(YELLOW)Building garb files\n$(RESET)"
+	$(MAKE) -C $(GARB_DIR)
+endef
+
 define comp_objs
 	$(eval COUNT=$(shell expr $(COUNT) + 1))
+	@if [ $(COUNT) -eq 1 ]; then \
+		printf "$(YELLOW)Building miniRT files\n$(RESET)"; \
+	fi
 	$(COMP_OBJ)
 	$(SLEEP)
 	printf "Compiling $(NAME) $(YELLOW) %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT) * 100 / $(words $(SRCS)))))
+	@if [ $(COUNT) -eq $(words $(SRCS)) ]; then \
+		printf " Compiled $(NAME)$(DARK_GREEN) 100%%$(FCOLOR) ✅"; \
+	fi
 endef
 
 define comp_exe
 	$(MKDIR) $(TARGET_DIR)
 	$(COMP_EXE)
-	printf "\n"
+	printf "\n\n"
 	printf "$(GREEN)$(NAME) ->$(RESET)$(PURPLE) Is Ready in directory '$(TARGET_DIR)'\n$(RESET)"
 endef
 
@@ -127,7 +141,7 @@ endef
 #                                   TARGETS                                      #
 #* ******************************************************************************#
 
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(GARB) $(NAME)
 
 $(BUILD_DIR)%.o: %$(FILE_EXTENSION)
 	$(call create_dir)
@@ -143,6 +157,7 @@ $(LIBFT): $(CODAM_DIR)
 clean:
 	$(RM) $(BUILD_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(GARB_DIR) clean
 
 fclean: clean
 	$(RM) $(TARGET_DIR)
@@ -150,6 +165,7 @@ fclean: clean
 	$(RM) libs/MLX42/build
 	$(RM) $(GTEST_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(GARB_DIR) fclean
 
 re: fclean all
 
@@ -158,6 +174,12 @@ $(GTEST_DIR):
 
 $(CODAM_DIR):
 	git clone $(CODAM_REPO) $(CODAM_DIR)
+
+$(GARB_DIR):
+	git clone $(GARB_REPO) $(GARB_DIR)
+
+$(GARB): $(GARB_DIR)
+	$(call comp_garb)
 
 tests: $(GTEST_DIR)
 	cd tests && cmake -B build && $(MAKE) -C build && ./build/run_tests

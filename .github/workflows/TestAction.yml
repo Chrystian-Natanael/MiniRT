@@ -19,7 +19,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-       # Install dependencies
+      # Install dependencies
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -37,7 +37,7 @@ jobs:
           pip install norminette==3.3.51
 
       # Validate files with norminette
-     - name: Validate code with norminette
+      - name: Validate code with norminette
         run: norminette -Ra src
 
       # Runs a set of commands using the runners shell

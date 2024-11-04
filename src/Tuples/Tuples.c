@@ -23,3 +23,10 @@ double	*vector(double x, double y, double z)
 	vector[3] = VECTOR;
 	return (vector);
 }
+
+bool	equal(double nbr1, double nbr2)
+{
+	if (fabs(nbr1 - nbr2) < MAX_DIFF)
+		return (true);
+	return (false);
+}

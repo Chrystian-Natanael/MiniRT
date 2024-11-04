@@ -3,3 +3,4 @@ bin/
 tests/googletest
 libs/MLX42
 libs/garbage-collector
+.vscode/

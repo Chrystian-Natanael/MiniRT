@@ -1,5 +1,5 @@
-#ifndef COLORS_HPP
-# define COLORS_HPP
+#ifndef COLORS_H
+# define COLORS_H
 
 // Cores
 # define RST	"\033[0m"					/* Reset to default color */

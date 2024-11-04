@@ -181,7 +181,7 @@ $(GARB_DIR):
 $(GARB): $(GARB_DIR)
 	$(call comp_garb)
 
-tests: $(GTEST_DIR)
+tests: $(GTEST_DIR) $(LIBFT) $(GARB)
 	cd tests && cmake -B build && $(MAKE) -C build && ./build/run_tests
 
 run:

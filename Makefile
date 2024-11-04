@@ -48,6 +48,7 @@ CODAM_DIR := libs/MLX42/
 #* ******************************************************************************#
 
 GTEST_REPO = git@github.com:google/googletest.git
+CODAM_REPO = git@github.com:codam-coding-college/MLX42.git
 LIBS := $(LIBFT_DIR)libft.a $(CODAM_DIR)build/libmlx42.a
 SRCS = $(wildcard $(SRCS_PATH)*$(FILE_EXTENSION))
 OBJS = $(SRCS:%$(FILE_EXTENSION)=$(BUILD_DIR)%.o)
@@ -135,7 +136,7 @@ $(BUILD_DIR)%.o: %$(FILE_EXTENSION)
 $(NAME): $(OBJS)
 	$(call comp_exe)
 
-$(LIBFT):
+$(LIBFT): $(CODAM_DIR)
 	$(call comp_libft)
 	$(call comp_codam)
 
@@ -154,6 +155,9 @@ re: fclean all
 
 $(GTEST_DIR):
 	git clone $(GTEST_REPO) $(GTEST_DIR)
+
+$(CODAM_DIR):
+	git clone $(CODAM_REPO) $(CODAM_DIR)
 
 tests: $(GTEST_DIR)
 	cd tests && cmake -B build && $(MAKE) -C build && ./build/run_tests

@@ -1,12 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/04 16:45:39 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/11/04 16:46:19 by cnatanae         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "Tuples.h"
 
-int main(void)
+int	main(void)
 {
-	double *p = point(4, -4, 3);
-	double *v = vector(4, -4, 3);
-
-	printf("X=%f, Y=%f, Z=%f, W=%f\n", p[0], p[1], p[2], p[3]);
-	printf("X=%f, Y=%f, Z=%f, W=%f\n", v[0], v[1], v[2], v[3]);
+	printf("Hello World!");
 	quit(0);
 }

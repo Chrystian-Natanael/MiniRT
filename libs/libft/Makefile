@@ -133,7 +133,7 @@ RM := rm -rf
 #                                   FLAGS E VARIABLES                            #
 #! ******************************************************************************#
 
-CFLAGS := -Wall -Wextra -Werror -g3 make
+CFLAGS := -Wall -Wextra -Werror -g3
 COUNT_LIB ?= 0
 COUNT_GNL ?= 0
 COUNT_PRINTF ?= 0

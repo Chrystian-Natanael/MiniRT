@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Addition.c                                         :+:      :+:    :+:   */
+/*   Negating.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:23 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/11/06 13:36:47 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/11/06 14:59:50 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
-double	*sum(double *tpl1, double *tpl2)
+double	*negate(double x, double y, double z, double w)
 {
 	int		idx;
-	double	*res;
+	double	*neg_tpl;
 
-	if (tpl1[W] == 1 && tpl2[W] == 1)
-		return (NULL);
-	res = allocate(sizeof(double) * 4);
-	idx = -1;
-	while (++idx < 4)
-		res[idx] = tpl1[idx] + tpl2[idx];
-	return (res);
+	neg_tpl = allocate(sizeof(double) * 4);
+		neg_tpl[X] = -x;
+		neg_tpl[Y] = -y;
+		neg_tpl[Z] = -z;
+		neg_tpl[W] = -w;
+	return (neg_tpl);
+}
+
+double	*negate_vector(double *vector)
+{
+	return (negate(vector[X], vector[Y], vector[Z], vector[W]));
 }

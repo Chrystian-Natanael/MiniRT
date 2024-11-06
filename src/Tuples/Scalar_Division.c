@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Addition.c                                         :+:      :+:    :+:   */
+/*   Scalar_Division.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:23 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/11/06 13:57:41 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/11/06 16:42:14 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
-double	*sum(double *tpl1, double *tpl2)
+double	*division(double *vector, double divisor)
 {
 	int		idx;
 	double	*res;
 
-	if (tpl1[W] == 1 && tpl2[W] == 1)
+	if (!vector || !divisor)
 		return (NULL);
 	res = allocate(sizeof(double) * 4);
 	idx = -1;
 	while (++idx < 4)
-		res[idx] = tpl1[idx] + tpl2[idx];
+		res[idx] = vector[idx] / divisor;
 	return (res);
 }

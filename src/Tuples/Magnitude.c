@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Addition.c                                         :+:      :+:    :+:   */
+/*   Magnitude.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:23 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/11/06 14:55:50 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/11/06 15:06:29 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
-double	*sum(double *tpl1, double *tpl2)
+static double	magnitude_aux(double x, double y, double z, double w)
 {
-	int		idx;
-	double	*res;
+	double	nbr_pow;
 
-	if (tpl1[W] == 1 && tpl2[W] == 1)
-		return (NULL);
-	res = allocate(sizeof(double) * 4);
-	idx = -1;
-	while (++idx < 4)
-		res[idx] = tpl1[idx] + tpl2[idx];
-	return (res);
+	nbr_pow = pow(x, 2) + pow(y, 2) + pow(z, 2) + pow(w, 2);
+	return (sqrt(nbr_pow));
+}
+
+double	magnitude(double *vector)
+{
+	return (magnitude_aux(vector[X], vector[Y], vector[Z], vector[W]));
 }

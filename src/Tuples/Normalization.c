@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Addition.c                                         :+:      :+:    :+:   */
+/*   Normalization.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:23 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/11/06 15:17:30 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/11/06 15:24:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
-double	*sum(double *tpl1, double *tpl2)
+static double	*norm_aux(double *vector, double mag)
 {
 	int		idx;
-	double	*res;
+	double	*vector_norm;
 
-	if (tpl1[W] == 1 && tpl2[W] == 1)
-		return (NULL);
-	res = allocate(sizeof(double) * 4);
+	vector_norm = allocate(sizeof(double) * 4);
 	idx = -1;
 	while (++idx < 4)
-		res[idx] = tpl1[idx] + tpl2[idx];
-	return (res);
+		vector_norm[idx] = vector[idx] / mag;
+	return (vector_norm);
+}
+
+double	*norm(double *vector)
+{
+	double	mag;
+
+	if (!vector)
+		return (NULL);
+	mag = magnitude(vector);
+	return (norm_aux(vector, mag));
 }

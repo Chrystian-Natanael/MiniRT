@@ -3,37 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   Tuples.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/04 16:46:32 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:36:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
+double	*tuple(double x, double y, double z, double w)
+{
+	double	*tuple;
+
+	tuple = allocate(sizeof(double) * 4);
+	tuple[0] = x;
+	tuple[1] = y;
+	tuple[2] = z;
+	tuple[3] = w;
+	return (tuple);
+}
+
 double	*point(double x, double y, double z)
 {
-	double	*point;
-
-	point = allocate(sizeof(double) * 4);
-	point[0] = x;
-	point[1] = y;
-	point[2] = z;
-	point[3] = POINT;
-	return (point);
+	return (tuple(x, y, z, POINT));
 }
 
 double	*vector(double x, double y, double z)
 {
-	double	*vector;
-
-	vector = allocate(sizeof(double) * 4);
-	vector[0] = x;
-	vector[1] = y;
-	vector[2] = z;
-	vector[3] = VECTOR;
-	return (vector);
+	return (tuple(x, y, z, VECTOR));
 }
 
 bool	equal(double nbr1, double nbr2)

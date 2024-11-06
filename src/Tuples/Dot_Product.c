@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Addition.c                                         :+:      :+:    :+:   */
+/*   Dot_Product.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:23 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/11/06 15:51:37 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/11/06 16:13:06 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
-double	*sum(double *tpl1, double *tpl2)
+static double	dot_product_aux(double *vector1, double *vector2)
 {
 	int		idx;
-	double	*res;
+	double	dot_prod;
 
-	if (tpl1[W] == 1 && tpl2[W] == 1)
-		return (NULL);
-	res = allocate(sizeof(double) * 4);
 	idx = -1;
+	dot_prod = 0;
 	while (++idx < 4)
-		res[idx] = tpl1[idx] + tpl2[idx];
-	return (res);
+		dot_prod += (vector1[idx] * vector2[idx]);
+	return (dot_prod);
+}
+
+double	dot_product(double *vector1, double *vector2)
+{
+	if (!vector1 || !vector2)
+		quit(1);
+	return (dot_product_aux(vector1, vector2));
 }

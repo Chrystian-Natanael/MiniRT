@@ -89,6 +89,6 @@ TEST(OperationColors, ConvertRGBToHexa) {
 	t_colors *c = create_color(1, 0, 0);
 	uint32_t res = rgb_to_hexa(*c);
 
-	EXPECT_EQ(res, 0xFFFF00F0);
+	EXPECT_EQ(res, 0xFF0000FF);
 	free(c);
 }

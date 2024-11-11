@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   Tuples.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:44:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/06 16:44:49 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:26:30 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TUPLES_H
 # define TUPLES_H
 
-#include "garbage_collector.h"
-#include <stdbool.h>
-#include <math.h>
+# include "garbage_collector.h"
+# include <stdbool.h>
+# include <math.h>
 
-#define MAX_DIFF 0.00001
+# define MAX_DIFF 0.00001
 
 typedef enum e_tuple_type
 {
 	VECTOR,
 	POINT
-} t_tuple_type;
-
+}	t_tuple_type;
 
 typedef enum e_tuple_axis
 {
@@ -32,7 +31,7 @@ typedef enum e_tuple_axis
 	Y,
 	Z,
 	W
-} t_tuple_axis;
+}	t_tuple_axis;
 
 double	*tuple(double x, double y, double z, double w);
 double	*point(double x, double y, double z);
@@ -48,6 +47,6 @@ double	*division(double *vector, double divisor);
 double	magnitude(double *vector);
 double	*norm(double *vector);
 double	dot_product(double *vector1, double *vector2);
-double *cross_product(double *vector1, double *vector2);
+double	*cross_product(double *vector1, double *vector2);
 
 #endif // !TUPLES_H

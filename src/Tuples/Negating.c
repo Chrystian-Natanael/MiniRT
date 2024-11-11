@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Negating.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:36:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:50 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:34:14 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 double	*negate(double x, double y, double z, double w)
 {
-	int		idx;
 	double	*neg_tpl;
 
 	neg_tpl = allocate(sizeof(double) * 4);

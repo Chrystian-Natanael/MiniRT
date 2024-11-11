@@ -5,16 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:45:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/04 16:46:19 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/11/11 14:58:24 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/11/11 16:25:07 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "Tuples.h"
+#include "Canvas.h"
+#include "Colors.h"
+#include "ColorsTerm.h"
 
 int	main(void)
 {
-	printf("Hello World!");
-	quit(0);
+	t_canvas	canva;
+
+	init_window(&canva);
+	mlx_loop(canva.mlx);
 }

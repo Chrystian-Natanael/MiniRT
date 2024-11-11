@@ -74,8 +74,8 @@ SHELL := /bin/bash
 
 CFLAGS = -Wall -Wextra -Werror
 DFLAGS = -Wall -Wextra -Werror -g3
-LDLIBS = -ldl -lglfw -pthread
-LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a
+LDLIBS = -ldl -lglfw -pthread -lm
+LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP
 COMP_OBJ = $(COMP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 COMP_EXE = $(COMP) $(CPPFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(TARGET_DIR)$(NAME)

@@ -36,7 +36,7 @@ RESET = \033[0m
 #* ******************************************************************************#
 
 SRCS_PATH = src/
-INCS_PATH = includes/ libs/MLX42/include/ libs/garbage-collector/include/
+INCS_PATH = includes/ libs/MLX42/include/ libs/garbage-collector/include/ libs/libft/include/
 BUILD_DIR := build/
 TARGET_DIR = bin/
 LIBFT_DIR := libs/libft/

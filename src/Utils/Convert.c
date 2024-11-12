@@ -6,12 +6,13 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:22:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/12 16:22:15 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:25:24 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Convert.h"
 
-int	double_to_int(double value) {
+int	double_to_int(double value)
+{
 	return ((int)round(value));
 }

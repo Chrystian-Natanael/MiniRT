@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:43:44 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/11 16:26:42 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:18:04 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "MLX42/MLX42.h"
 # include "Colors.h"
 
-# define WIDTH 1980
-# define HEIGHT 1080
+# define WIDTH 1366
+# define HEIGHT 720
 
 typedef struct s_canvas
 {

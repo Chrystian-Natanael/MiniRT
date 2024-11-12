@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(../includes)
-include_directories(../libs/libft/includes)
+include_directories(../libs/libft/include)
 include_directories(../libs/MLX42/include)
 include_directories(../libs/garbage-collector/include)
 include_directories(googletest/include)

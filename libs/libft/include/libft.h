@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 15:13:51 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:35:39 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ t_list		*ft_lstnew(void *content);
 /**@brief this function Adds the node ’new’ at the beginning of the list.
  * 
  * @param lst a pointer to the first node of the list
- * @param new a pointer to the new node to add
+ * @param new_e a pointer to the new node to add
  * @return void
 */
-void		ft_lstadd_front(t_list **lst, t_list *new);
+void		ft_lstadd_front(t_list **lst, t_list *new_e);
 
 /**@brief this function Counts the number of nodes in a list.
  * 
@@ -107,10 +107,10 @@ t_list		*ft_lstlast(t_list *lst);
 /**@brief this function Adds the node ’new’ at the end of the list.
  * 
  * @param lst a pointer to the first node of the list
- * @param new a pointer to the new node to add
+ * @param new_e a pointer to the new node to add
  * @return void
 */
-void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstadd_back(t_list **lst, t_list *new_e);
 
 /**@brief this function Takes as a parameter a node and frees the memory of
  * the node’s content using the function ’del’ given
@@ -613,9 +613,9 @@ void		ft_lstadd_before(t_dolist *lst, t_element *ref, t_element *el);
  * 			The size of the list `lst` is incremented by 1.
  *
  * @param lst The linked list to add the element to.
- * @param new The new element to be added.
+ * @param new_e The new element to be added.
  */
-void		ft_dolstadd_back(t_dolist **lst, t_element *new);
+void		ft_dolstadd_back(t_dolist **lst, t_element *new_e);
 
 /**
  * @brief	Adds a new element to the first of the linked list `lst`.
@@ -626,8 +626,8 @@ void		ft_dolstadd_back(t_dolist **lst, t_element *new);
  * 			The size of the list `lst` is incremented by 1.
  *
  * @param lst The linked list to add the element to.
- * @param new The new element to be added.
+ * @param new_e The new element to be added.
  */
-void		ft_dolstadd_front(t_dolist **lst, t_element *new);
+void		ft_dolstadd_front(t_dolist **lst, t_element *new_e);
 
 #endif

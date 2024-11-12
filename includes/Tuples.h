@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:44:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/11 16:26:30 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:27:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define TUPLES_H
 
 # include "garbage_collector.h"
+# include "Error.h"
+# include "libft.h"
 # include <stdbool.h>
 # include <math.h>
 

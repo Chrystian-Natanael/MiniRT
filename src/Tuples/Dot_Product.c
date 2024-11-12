@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dot_Product.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:51:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/06 16:13:06 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:27:40 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static double	dot_product_aux(double *vector1, double *vector2)
 double	dot_product(double *vector1, double *vector2)
 {
 	if (!vector1 || !vector2)
-		quit(1);
+		error("Impossible 'dot product' operation with null vectors", \
+			NULL, NULL, ERROR);
 	return (dot_product_aux(vector1, vector2));
 }

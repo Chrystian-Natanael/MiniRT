@@ -2,7 +2,7 @@
 #                                   NAME                                         #
 #* ******************************************************************************#
 
-NAME = puttingTogether1
+NAME = puttingTogether2
 FILE_EXTENSION = .c
 .DEFAULT_GOAL := all
 .PHONY: all clean fclean re tests help
@@ -37,9 +37,12 @@ RESET = \033[0m
 
 SRCS_PATH = ./
 SRCS2_PATH = ../../src/
-INCS_PATH = ./ ../../includes/ ../../libs/garbage-collector/include/ ../../libs/libft/include
+INCS_PATH = ./ ../../includes/ ../../libs/garbage-collector/include/ ../../libs/MLX42/include/ ../../libs/libft/include/
 BUILD_DIR := build/
 TARGET_DIR = bin/
+LIBFT_DIR := ../../libs/libft/
+CODAM_DIR := ../../libs/MLX42/
+GARB_DIR := ../../libs/garbage-collector/
 
 #* ******************************************************************************#
 #                                   FILES                                        #
@@ -55,6 +58,12 @@ SRCS =	$(SRCS2_PATH)Tuples/Addition.c \
 		$(SRCS2_PATH)Tuples/Scalar_Multiplication.c \
 		$(SRCS2_PATH)Tuples/Subtraction.c \
 		$(SRCS2_PATH)Tuples/Tuples.c \
+		$(SRCS2_PATH)Colors/Addition_Colors.c \
+		$(SRCS2_PATH)Colors/Colors.c \
+		$(SRCS2_PATH)Colors/Hada_Colors.c \
+		$(SRCS2_PATH)Colors/Multiplication_Colors.c \
+		$(SRCS2_PATH)Colors/Subtraction_Colors.c \
+		$(SRCS2_PATH)Utils/Error.c \
         $(wildcard $(SRCS_PATH)*$(FILE_EXTENSION))
 OBJS = $(SRCS:%$(FILE_EXTENSION)=$(BUILD_DIR)%.o)
 DEPS = $(OBJS:.o=.d)
@@ -76,9 +85,10 @@ SHELL := /bin/bash
 CFLAGS = -Wall -Wextra -Werror
 DFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 LDLIBS = -ldl -lglfw -pthread -lm
+LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP
 COMP_OBJ = $(COMP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-COMP_EXE = $(COMP) $(OBJS) ../../libs/garbage-collector/garbage_collector.a $(LDLIBS) -o $(TARGET_DIR)$(NAME)
+COMP_EXE = $(COMP) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(TARGET_DIR)$(NAME)
 
 #* ******************************************************************************#
 #                                  FUNCTIONS                                     #

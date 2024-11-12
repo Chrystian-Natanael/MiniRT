@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   Error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 14:58:24 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/12 14:19:57 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/11/12 14:08:26 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/11/12 14:15:54 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MiniRT.h"
+#include "Error.h"
 
-int	main(void)
+void	warning(char *m1, char *m2, char *m3)
 {
-	t_canvas	canva;
+	ft_putstr_fd(m1, ERROR);
+	ft_putstr_fd(m2, ERROR);
+	ft_putendl_fd(m3, ERROR);
+}
 
-	init_window(&canva);
-	mlx_loop(canva.mlx);
+void	error(char *m1, char *m2, char *m3, int code)
+{
+	ft_putstr_fd(m1, ERROR);
+	ft_putstr_fd(m2, ERROR);
+	ft_putendl_fd(m3, ERROR);
+	quit(code);
 }

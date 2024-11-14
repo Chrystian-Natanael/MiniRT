@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:40:12 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/14 11:04:41 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:19:33 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "Error.h"
 # include "Tuples.h"
 
-typedef struct	s_matrix
+typedef struct s_matrix
 {
 	int		row;
 	int		col;

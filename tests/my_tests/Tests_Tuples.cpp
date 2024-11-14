@@ -145,7 +145,7 @@ TEST(OperationsTest, TestSubFunctionNegatingVector){
 }
 
 TEST(OperationsTest, TestMultFunction){
-	double *v = tuple(1, -2, 3, -4);
+	double *v = create_tuple(1, -2, 3, -4);
 	double *r = multiplication(v, 3.5);
 
 	ASSERT_NE(r, nullptr);
@@ -159,7 +159,7 @@ TEST(OperationsTest, TestMultFunction){
 }
 
 TEST(OperationsTest, TestDivFunctionWithValidDividend){
-	double *v = tuple(1, -2, 3, -4);
+	double *v = create_tuple(1, -2, 3, -4);
 	double *r = division(v, 2);
 
 	ASSERT_NE(r, nullptr);
@@ -173,7 +173,7 @@ TEST(OperationsTest, TestDivFunctionWithValidDividend){
 }
 
 TEST(OperationsTest, TestDivFunctionWithInvalidDividend){
-	double *v = tuple(1, -2, 3, -4);
+	double *v = create_tuple(1, -2, 3, -4);
 	double *r = division(v, 0);
 
 	ASSERT_EQ(r, nullptr);

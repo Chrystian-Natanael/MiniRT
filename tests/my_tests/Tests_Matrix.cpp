@@ -172,3 +172,48 @@ TEST(TesterMatrixMultiplication, MatricesTuplesMultiply) {
 	free(p);
 	free(res);
 }
+
+TEST(TesterMatrixMultiplication, IdentityMatrixByMatrix) {
+
+	double	element1[16] = {0, 1, 2, 4,
+							1, 2, 4, 8,
+							2, 4, 8, 16,
+							4, 8, 16, 32};
+	double	element2[16] = {1, 0, 0, 0,
+							0, 1, 0, 0,
+							0, 0, 1, 0,
+							0, 0, 0, 1};
+
+	t_matrix	matrix = create_matrix(4, 4, element1);
+	t_matrix	identity = create_matrix(4, 4, element2);
+	t_matrix	res = matrix_multiply(matrix, identity);
+
+	int	idx = 0;
+	for (int idx_r = 0; idx_r < 4; idx_r++) {
+		for (int idx_c = 0; idx_c < 4; idx_c++) {
+			EXPECT_TRUE(equal(res.content[idx_r * 4 + idx_c], matrix.content[idx_r * 4 + idx_c]));
+			idx++;
+		}
+	}
+}
+
+TEST(TesterMatrixMultiplication, IdentityMatrixByTuple) {
+
+	double	tuple[4] = {1, 2, 3, 4};
+	double	element[16] = {1, 0, 0, 0,
+							0, 1, 0, 0,
+							0, 0, 1, 0,
+							0, 0, 0, 1};
+
+	t_matrix	identity = create_matrix(4, 4, element);
+	double	*res = matrix_tuple_multiply(identity, tuple);
+
+	ASSERT_NE(tuple, nullptr);
+	ASSERT_NE(res, nullptr);
+	EXPECT_DOUBLE_EQ(res[0], 1);
+	EXPECT_DOUBLE_EQ(res[1], 2);
+	EXPECT_DOUBLE_EQ(res[2], 3);
+	EXPECT_DOUBLE_EQ((res[3]), 4);
+
+	free(res);
+}

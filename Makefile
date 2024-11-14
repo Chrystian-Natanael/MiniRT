@@ -72,7 +72,7 @@ SHELL := /bin/bash
 #                                 FLAGS E COMP                                   #
 #* ******************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 DFLAGS = -Wall -Wextra -Werror -g3
 LDLIBS = -ldl -lglfw -pthread -lm
 LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a

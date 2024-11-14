@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   Addition.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:23 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:04:01 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
+/**
+ * @brief Adds two tuples
+ *
+ * This function adds the components of two tuples and returns the
+ * resulting tuple. If both tuples are points, the function returns NULL.
+ *
+ * @param tpl1 The first tuple
+ * @param tpl2 The second tuple
+ * @return A pointer to the resulting tuple after addition, or NULL
+ * if both tuples are points
+ */
 double	*sum(double *tpl1, double *tpl2)
 {
 	int		idx;

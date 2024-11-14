@@ -6,12 +6,22 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:14:55 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/11 14:16:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:05:24 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Colors.h"
 
+/**
+ * @brief Subtracts the components of two colors
+ *
+ * This function subtracts the red, green, and blue components of the
+ * second color from the first color and returns the resulting color.
+ *
+ * @param color1 The first color
+ * @param color2 The second color to subtract from the first
+ * @return A pointer to the resulting color after subtraction
+ */
 t_colors	*sub_colors(t_colors *color1, t_colors *color2)
 {
 	t_colors	*res;

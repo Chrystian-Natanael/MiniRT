@@ -6,12 +6,22 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:17:30 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/12 14:27:29 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:04:11 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
+/**
+ * @brief Helper function for vector normalization
+ *
+ * This static function assists in normalizing a vector by dividing each
+ * component by the given magnitude.
+ *
+ * @param vector The vector to be normalized
+ * @param mag The magnitude of the vector
+ * @return A pointer to the normalized vector
+ */
 static double	*norm_aux(double *vector, double mag)
 {
 	int		idx;
@@ -24,13 +34,24 @@ static double	*norm_aux(double *vector, double mag)
 	return (vector_norm);
 }
 
+/**
+ * @brief Normalizes a vector
+ *
+ * This function normalizes the given vector by dividing each of its
+ * components by its magnitude.
+ * If the input is a null vector or a point, an error message is displayed
+ * and the program is terminated.
+ *
+ * @param vector The vector to be normalized
+ * @return A pointer to the normalized vector
+ */
 double	*norm(double *vector)
 {
 	double	mag;
 
 	if (!vector || vector[W] == POINT)
-		error("Impossible 'normalization' with null vector or point", \
-		NULL, NULL, ERROR);
+		error("Impossible 'normalization' with null vector or point", NULL,
+			NULL, ERROR);
 	mag = magnitude(vector);
 	return (norm_aux(vector, mag));
 }

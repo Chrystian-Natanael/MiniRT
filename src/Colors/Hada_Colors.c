@@ -6,12 +6,23 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:34:23 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/11 14:36:24 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:07:58 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Colors.h"
 
+/**
+ * @brief Multiplies the components of two colors (Hadamard product)
+ *
+ * This function multiplies the red, green, and blue components of the first
+ * color by the corresponding components of the second color and returns the
+ * resulting color.
+ *
+ * @param color1 The first color
+ * @param color2 The second color
+ * @return A pointer to the resulting color after the Hadamard product
+ */
 t_colors	*hada_prd_colors(t_colors *color1, t_colors *color2)
 {
 	t_colors	*res;

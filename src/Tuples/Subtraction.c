@@ -6,12 +6,22 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:20 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/04 16:45:24 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:04:16 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
+/**
+ * @brief Subtracts two tuples
+ *
+ * This function subtracts the components of the second tuple from the
+ * first tuple and returns the result as a new tuple.
+ *
+ * @param tpl1 The first tuple
+ * @param tpl2 The second tuple to subtract from the first
+ * @return A pointer to the resulting tuple after subtraction
+ */
 double	*sub(double *tpl1, double *tpl2)
 {
 	int		idx;

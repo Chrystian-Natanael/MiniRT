@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   Tuples.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/06 14:36:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:04:17 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
+/**
+ * @brief Creates a tuple
+ *
+ * This function allocates memory for a tuple and initializes it
+ * with the provided values.
+ *
+ * @param x The x component of the tuple
+ * @param y The y component of the tuple
+ * @param z The z component of the tuple
+ * @param w The w component of the tuple
+ * @return A pointer to the newly created tuple
+ */
 double	*tuple(double x, double y, double z, double w)
 {
 	double	*tuple;
@@ -24,16 +36,48 @@ double	*tuple(double x, double y, double z, double w)
 	return (tuple);
 }
 
+/**
+ * @brief Creates a point
+ *
+ * This function creates a point by calling the tuple function
+ * with the POINT constant.
+ *
+ * @param x The x coordinate of the point
+ * @param y The y coordinate of the point
+ * @param z The z coordinate of the point
+ * @return A pointer to the newly created point
+ */
 double	*point(double x, double y, double z)
 {
 	return (tuple(x, y, z, POINT));
 }
 
+/**
+ * @brief Creates a vector
+ *
+ * This function creates a vector by calling the tuple function
+ * with the VECTOR constant.
+ *
+ * @param x The x component of the vector
+ * @param y The y component of the vector
+ * @param z The z component of the vector
+ * @return A pointer to the newly created vector
+ */
 double	*vector(double x, double y, double z)
 {
 	return (tuple(x, y, z, VECTOR));
 }
 
+/**
+ * @brief Compares two double values for equality
+ *
+ * This function compares two double values and returns true if they
+ * are approximately equal, considering a maximum difference.
+ *
+ * @param nbr1 The first double value to compare
+ * @param nbr2 The second double value to compare
+ * @return true if the values are approximately equal, false otherwise
+ */
 bool	equal(double nbr1, double nbr2)
 {
 	if (fabs(nbr1 - nbr2) < MAX_DIFF)

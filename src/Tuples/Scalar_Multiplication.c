@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   Scalar_Multiplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:57:21 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/06 16:42:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:04:14 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Tuples.h"
 
+/**
+ * @brief Multiplies a vector by a scalar factor
+ *
+ * This function multiplies each component of the given vector by the
+ * specified scalar factor and returns the resulting vector.
+ *
+ * @param vector The vector to be multiplied
+ * @param factor The scalar factor to multiply each component of the vector
+ * @return A pointer to the resulting vector after multiplication, or NULL
+ * if the input vector is NULL
+ */
 double	*multiplication(double *vector, double factor)
 {
 	int		idx;

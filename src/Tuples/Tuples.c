@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Tuples.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/14 09:04:17 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:03:24 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @param w The w component of the tuple
  * @return A pointer to the newly created tuple
  */
-double	*tuple(double x, double y, double z, double w)
+double	*create_tuple(double x, double y, double z, double w)
 {
 	double	*tuple;
 
@@ -49,7 +49,7 @@ double	*tuple(double x, double y, double z, double w)
  */
 double	*point(double x, double y, double z)
 {
-	return (tuple(x, y, z, POINT));
+	return (create_tuple(x, y, z, POINT));
 }
 
 /**
@@ -65,7 +65,7 @@ double	*point(double x, double y, double z)
  */
 double	*vector(double x, double y, double z)
 {
-	return (tuple(x, y, z, VECTOR));
+	return (create_tuple(x, y, z, VECTOR));
 }
 
 /**

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Tuples.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:44:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/12 14:27:59 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:04:32 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef enum e_tuple_axis
 	W
 }	t_tuple_axis;
 
-double	*tuple(double x, double y, double z, double w);
+double	*create_tuple(double x, double y, double z, double w);
 double	*point(double x, double y, double z);
 double	*vector(double x, double y, double z);
 bool	equal(double nbr1, double nbr2);

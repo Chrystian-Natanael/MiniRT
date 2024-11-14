@@ -149,3 +149,26 @@ TEST(TesterMatrixMultiplication, MatricesMultiply) {
 		}
 	}
 }
+
+TEST(TesterMatrixMultiplication, MatricesTuplesMultiply) {
+
+	double *p = point(1, 2, 3);
+	double	element[16] = {1, 2, 3, 4,
+							2, 4, 4, 2,
+							8, 6, 4, 1,
+							0, 0, 0, 1};
+	t_matrix	matrix;
+
+	matrix = create_matrix(4, 4, element);
+	double	*res = matrix_tuple_multiply(matrix, p);
+
+	ASSERT_NE(p, nullptr);
+	ASSERT_NE(res, nullptr);
+	EXPECT_DOUBLE_EQ(res[0], 18);
+	EXPECT_DOUBLE_EQ(res[1], 24);
+	EXPECT_DOUBLE_EQ(res[2], 33);
+	EXPECT_EQ(static_cast<int>(p[3]), POINT);
+
+	free(p);
+	free(res);
+}

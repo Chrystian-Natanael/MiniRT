@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:23:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/14 16:06:57 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:44:44 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,33 @@ static double	calculate(t_matrix mtx_a, t_matrix mtx_b, int ir, int ic)
 	res = 0;
 	while (++idx < mtx_a.col)
 		res += get_value_pos(ir, idx, mtx_a) * get_value_pos(idx, ic, mtx_b);
+	return (res);
+}
+
+static double	calculate_matrix_tuple(t_matrix matrix, double *tuple, int ir)
+{
+	int		idx;
+	double	res;
+
+	idx = -1;
+	res = 0;
+	while (++idx < matrix.row)
+		res += get_value_pos(ir, idx, matrix) * tuple[idx];
+	return (res);
+}
+
+double	*matrix_tuple_multiply(t_matrix matrix, double *tuple)
+{
+	double	*res;
+	double	axis[4];
+
+	if (matrix.col != 4)
+		error("Not possible to multiply", NULL, NULL, 1);
+	axis[X] = calculate_matrix_tuple(matrix, tuple, 0);
+	axis[Y] = calculate_matrix_tuple(matrix, tuple, 1);
+	axis[Z] = calculate_matrix_tuple(matrix, tuple, 2);
+	axis[W] = calculate_matrix_tuple(matrix, tuple, 3);
+	res = create_tuple(axis[X], axis[Y], axis[Z], axis[W]);
 	return (res);
 }
 

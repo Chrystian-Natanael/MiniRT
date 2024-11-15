@@ -120,7 +120,7 @@ TEST(TesterMatrix, CompareNEMatricesFloatFalse) {
 	EXPECT_FALSE(compare_matrix(matrix1, matrix2));
 }
 
-TEST(TesterMatrixMultiplication, MatricesMultiply) {
+TEST(TesterMatrixMultiplication, MatricesMultiplyEQSizes) {
 
 	double	elements_4x4_a[16] =	{1, 2, 3, 4,
 									5, 6, 7, 8,
@@ -141,9 +141,45 @@ TEST(TesterMatrixMultiplication, MatricesMultiply) {
 	t_matrix	matrix2 = create_matrix(4, 4, elements_4x4_b);
 	t_matrix	res = matrix_multiply(matrix1, matrix2);
 
+	EXPECT_DOUBLE_EQ(res.col, matrix2.col);
+	EXPECT_DOUBLE_EQ(res.row, matrix1.row);
+
 	int	idx = 0;
 	for (int idx_r = 0; idx_r < 4; idx_r++) {
 		for (int idx_c = 0; idx_c < 4; idx_c++) {
+			EXPECT_TRUE(equal(res.content[idx_r * 4 + idx_c], elements_res[idx]));
+			idx++;
+		}
+	}
+}
+
+TEST(TesterMatrixMultiplication, MatricesMultiplyDiffSizes) {
+
+	double	elements_4x4[16] =	{1, 2, 3, 4,
+									5, 6, 7, 8,
+									9, 8, 7, 6,
+									5, 4, 3, 2};
+
+	double	elements_4x3[12] =	{-2, 1, 2,
+									3, 2, 1,
+									4, 3, 6,
+									1, 2, 7};
+
+	double	elements_res[12] = 		{20, 22, 50,
+									44, 54, 114,
+									40, 58, 110,
+									16, 26, 46};
+
+	t_matrix	matrix1 = create_matrix(4, 4, elements_4x4);
+	t_matrix	matrix2 = create_matrix(4, 3, elements_4x3);
+	t_matrix	res = matrix_multiply(matrix1, matrix2);
+
+	EXPECT_DOUBLE_EQ(res.col, matrix2.col);
+	EXPECT_DOUBLE_EQ(res.row, matrix1.row);
+
+	int	idx = 0;
+	for (int idx_r = 0; idx_r < 4; idx_r++) {
+		for (int idx_c = 0; idx_c < 3; idx_c++) {
 			EXPECT_TRUE(equal(res.content[idx_r * 4 + idx_c], elements_res[idx]));
 			idx++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Matrix_Multiplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:23:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/15 11:05:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:27:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,7 @@ t_matrix	matrix_multiply(t_matrix matrix_a, t_matrix matrix_b)
 			set_value_pos(pos, calculate(matrix_a, matrix_b, ir, ic), &res);
 		}
 	}
+	res.col = matrix_b.col;
+	res.row = matrix_a.row;
 	return (res);
 }

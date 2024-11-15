@@ -253,3 +253,54 @@ TEST(TesterMatrixMultiplication, IdentityMatrixByTuple) {
 
 	free(res);
 }
+
+TEST(TesterMatrixTransposition, 4x4MatrixTranspose) {
+
+	double	element[16] = {0, 9, 3, 0,
+							9, 8, 0, 8,
+							1, 8, 5, 3,
+							0, 0, 5, 8};
+	double	elem_transp[16] = {0, 9, 1, 0,
+							9, 8, 8, 0,
+							3, 0, 5, 5,
+							0, 8, 3, 8};
+
+	t_matrix	matrix = create_matrix(4, 4, element);
+	t_matrix	transp = matrix_transpose(matrix);
+
+	EXPECT_EQ(transp.col, matrix.row);
+	EXPECT_EQ(transp.row, matrix.col);
+
+	int	idx = 0;
+	for (int idx_r = 0; idx_r < 4; idx_r++) {
+		for (int idx_c = 0; idx_c < 4; idx_c++) {
+			EXPECT_DOUBLE_EQ(transp.content[idx_r * 4 + idx_c], elem_transp[idx]);
+			idx++;
+		}
+	}
+}
+
+TEST(TesterMatrixTransposition, 4x3MatrixTranspose) {
+
+	double	element[12] = {0, 9, 3,
+							9, 8, 0,
+							1, 8, 5,
+							0, 0, 5};
+	double	elem_transp[12] = {0, 9, 1, 0,
+							9, 8, 8, 0,
+							3, 0, 5, 5};
+
+	t_matrix	matrix = create_matrix(4, 3, element);
+	t_matrix	transp = matrix_transpose(matrix);
+
+	EXPECT_EQ(transp.col, matrix.row);
+	EXPECT_EQ(transp.row, matrix.col);
+
+	int	idx = 0;
+	for (int idx_r = 0; idx_r < 4; idx_r++) {
+		for (int idx_c = 0; idx_c < 3; idx_c++) {
+			EXPECT_DOUBLE_EQ(transp.content[idx_r * 3 + idx_c], elem_transp[idx]);
+			idx++;
+		}
+	}
+}

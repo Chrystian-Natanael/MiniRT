@@ -6,7 +6,7 @@ NAME = miniRT
 FILE_EXTENSION = .c
 .DEFAULT_GOAL := all
 .PHONY: all clean fclean re tests help
-TEST ?= all
+TEST ?= *
 MAP ?= /scenes/basic/1_sphere_pink.rt
 .SILENT:
 

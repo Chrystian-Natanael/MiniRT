@@ -314,3 +314,36 @@ TEST(TesterMatrixDeterminant, Determinant2x2Matrix) {
 
 	EXPECT_DOUBLE_EQ(det, 17);
 }
+
+TEST(TesterMatrixSubmatrix, Submatrix3x3To2x2) {
+	double elements_3x3[9] = {1, 5, 0,
+							-3, 2, 7,
+							0, 6, -3};
+	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+
+	t_matrix submtx = submatrix(matrix, 0, 2);
+
+	double expected_elements[4] = {-3, 2,
+									 0, 6};
+
+	for (int i = 0; i < 2; ++i) {
+		for (int j = 0; j < 2; ++j) {
+			EXPECT_DOUBLE_EQ(submtx.content[i * 2 + j], expected_elements[i * 2 + j]);
+		}
+	}
+}
+
+TEST(TesterMatrixSubmatrix, Submatrix4x4To3x3) {
+	double elements_4x4[16] = {-6, 1, 1, 6, -8, 5, 8, 6, -1, 0, 8, 2, -7, 1, -1, 1};
+	t_matrix matrix = create_matrix(4, 4, elements_4x4);
+
+	t_matrix submtx = submatrix(matrix, 2, 1);
+
+	double expected_elements[9] = {-6, 1, 6, -8, 8, 6, -7, -1, 1};
+
+	for (int i = 0; i < 3; ++i) {
+		for (int j = 0; j < 3; ++j) {
+			EXPECT_DOUBLE_EQ(submtx.content[i * 3 + j], expected_elements[i * 3 + j]);
+		}
+	}
+}

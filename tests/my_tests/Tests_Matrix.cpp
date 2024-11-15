@@ -304,3 +304,13 @@ TEST(TesterMatrixTransposition, 4x3MatrixTranspose) {
 		}
 	}
 }
+
+TEST(TesterMatrixDeterminant, Determinant2x2Matrix) {
+	double elements_2x2[4] = {1, 5,
+							-3, 2};
+	t_matrix matrix = create_matrix(2, 2, elements_2x2);
+
+	double det = determinant(matrix);
+
+	EXPECT_DOUBLE_EQ(det, 17);
+}

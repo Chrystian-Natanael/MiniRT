@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Matrix_Multiplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:23:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/14 16:44:44 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:05:53 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_matrix	matrix_multiply(t_matrix matrix_a, t_matrix matrix_b)
 	t_matrix	res;
 
 	if (matrix_a.col != matrix_b.row)
-		error("Not possible to multiply", NULL, NULL, 1);
+		error("Error\n", "Not possible to multiply", NULL, 1);
 	ft_bzero(&res, sizeof(t_matrix));
 	ir = -1;
 	while (++ir < matrix_a.row)

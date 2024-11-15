@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:17:30 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/14 09:04:11 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:07:16 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ double	*norm(double *vector)
 	double	mag;
 
 	if (!vector || vector[W] == POINT)
-		error("Impossible 'normalization' with null vector or point", NULL,
+		error("Error\n", "Impossible 'normalization' with null vector or point",
 			NULL, ERROR);
 	mag = magnitude(vector);
 	return (norm_aux(vector, mag));

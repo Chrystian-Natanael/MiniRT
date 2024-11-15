@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:58:24 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/12 14:19:57 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/15 09:49:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ int	main(void)
 
 	init_window(&canva);
 	mlx_loop(canva.mlx);
+	quit(0);
 }

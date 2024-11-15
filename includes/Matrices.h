@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:40:12 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/15 14:03:59 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:29:52 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void		set_value_pos(int pos, double value, t_matrix *matrix);
 double		get_value_pos(int x, int y, t_matrix matrix);
 
 double		determinant(t_matrix matrix);
+t_matrix	submatrix(t_matrix matrix, int sub_r, int sub_c);
 
 #endif // ! MATRICES_H

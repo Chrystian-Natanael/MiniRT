@@ -347,3 +347,59 @@ TEST(TesterMatrixSubmatrix, Submatrix4x4To3x3) {
 		}
 	}
 }
+
+TEST(TesterMatrixMinor, Minor3x3) {
+	double elements_3x3[9] = {3, 5, 0,
+							2, -1, -7,
+							6, -1, 5};
+
+	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+
+	double minor_res = minor(matrix, 1, 0);
+
+	EXPECT_DOUBLE_EQ(minor_res, 25);
+}
+
+TEST(TesterMatrixCofactor, Cofactor3x3) {
+	double elements_3x3[9] = {3, 5, 0,
+							2, -1, -7,
+							6, -1, 5};
+
+	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+
+	double cofactor_res[9];
+	int	k = 0;
+
+	for (int i = 0; i < 3; ++i) {
+		for (int j = 0; j < 3; ++j) {
+			cofactor_res[k++] = cofactor(matrix, i, j);
+		}
+	}
+
+	EXPECT_DOUBLE_EQ(cofactor_res[0], -12);
+	EXPECT_DOUBLE_EQ(cofactor_res[1], -52);
+	EXPECT_DOUBLE_EQ(cofactor_res[2], 4);
+	EXPECT_DOUBLE_EQ(cofactor_res[3], -25);
+	EXPECT_DOUBLE_EQ(cofactor_res[4], 15);
+	EXPECT_DOUBLE_EQ(cofactor_res[5], 33);
+	EXPECT_DOUBLE_EQ(cofactor_res[6], -35);
+	EXPECT_DOUBLE_EQ(cofactor_res[7], 21);
+	EXPECT_DOUBLE_EQ(cofactor_res[8], -13);
+}
+
+TEST(TesterMatrixDeterminat_Larger_Than_2x2, Determinant3x3) {
+	double elements_3x3[9] = {1, 2, 6,
+							-5, 8, -4,
+							2, 6, 4};
+
+	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+
+	double cofactor_res[9];
+	int	k = 0;
+
+	for (int i = 0; i < 3; ++i) {
+		for (int j = 0; j < 3; ++j) {
+			cofactor_res[k++] = cofactor(matrix, i, j);
+		}
+	}
+}

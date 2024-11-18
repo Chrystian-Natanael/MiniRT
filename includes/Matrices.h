@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Matrices.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:40:12 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/15 14:29:52 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:43:02 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ double		get_value_pos(int x, int y, t_matrix matrix);
 
 double		determinant(t_matrix matrix);
 t_matrix	submatrix(t_matrix matrix, int sub_r, int sub_c);
+double		minor(t_matrix matrix, int sub_r, int sub_c);
+double		cofactor(t_matrix matrix, int sub_r, int sub_c);
 
 #endif // ! MATRICES_H

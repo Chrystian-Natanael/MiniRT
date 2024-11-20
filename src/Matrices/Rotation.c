@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:39:47 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/20 18:59:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/20 19:05:08 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_matrix	rotation_y(double rad)
 
 t_matrix	rotation_z(double rad)
 {
-	t_matrix rot_mtx;
+	t_matrix	rot_mtx;
 
 	rot_mtx = identity();
 	set_value_pos((get_pos(0, 0, 4)), cos(rad), &rot_mtx);

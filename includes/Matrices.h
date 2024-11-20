@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:40:12 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/20 11:35:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:25:34 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "Error.h"
 # include "Tuples.h"
+# include <math.h>
 # include <stdbool.h>
 
 typedef struct s_matrix
@@ -29,6 +30,7 @@ bool		compare_matrix(t_matrix mtx_a, t_matrix mtx_b);
 t_matrix	matrix_multiply(t_matrix matrix_a, t_matrix matrix_b);
 double		*matrix_tuple_multiply(t_matrix matrix, double *tuple);
 t_matrix	matrix_transpose(t_matrix matrix);
+t_matrix	identity(void);
 
 int			get_pos(int x, int y, int col);
 void		set_value_pos(int pos, double value, t_matrix *matrix);
@@ -39,5 +41,8 @@ t_matrix	submatrix(t_matrix matrix, int sub_r, int sub_c);
 double		minor(t_matrix matrix, int sub_r, int sub_c);
 double		cofactor(t_matrix matrix, int sub_r, int sub_c);
 t_matrix	inverse(t_matrix matrix);
+t_matrix	translation(double x, double y, double z);
+t_matrix	scaling(double x, double y, double z);
+t_matrix	rotation_x(double rad);
 
 #endif // ! MATRICES_H

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:40:12 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/20 16:25:34 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:55:48 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ t_matrix	inverse(t_matrix matrix);
 t_matrix	translation(double x, double y, double z);
 t_matrix	scaling(double x, double y, double z);
 t_matrix	rotation_x(double rad);
+t_matrix	rotation_y(double rad);
+t_matrix	rotation_z(double rad);
 
 #endif // ! MATRICES_H

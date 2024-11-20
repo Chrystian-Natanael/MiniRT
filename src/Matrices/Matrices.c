@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:43:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/20 13:00:41 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:34:47 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,8 @@ bool	compare_matrix(t_matrix mtx_a, t_matrix mtx_b)
 
 t_matrix	identity(void)
 {
-	static double	elements [16] = {1, 0, 0, 0,
-									0, 1, 0, 0,
-									0, 0, 1, 0,
-									0, 0, 0, 1};
+	static double	elements[16] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+		1};
 
 	return (create_matrix(4, 4, elements));
 }

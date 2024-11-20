@@ -661,6 +661,95 @@ TEST(TesterMatrixScaling, ReflectionIsScalingByNegativeValue) {
     free(result);
 }
 
+TEST(TesterMatrixRotation, RotatingPointAroundZAxis) {
+    double pi = M_PI;
+    double sqrt2_over_2 = sqrt(2) / 2;
+
+    double *p = point(0, 1, 0);
+    t_matrix half_quarter = rotation_z(pi / 4);
+    t_matrix full_quarter = rotation_z(pi / 2);
+
+    double *expected_half_quarter = point(-sqrt2_over_2, sqrt2_over_2, 0);
+    double *expected_full_quarter = point(-1, 0, 0);
+
+    double *result_half_quarter = matrix_tuple_multiply(half_quarter, p);
+    double *result_full_quarter = matrix_tuple_multiply(full_quarter, p);
+
+    ASSERT_NE(result_half_quarter, nullptr);
+    EXPECT_NEAR(result_half_quarter[0], expected_half_quarter[0], 1e-5);
+    EXPECT_NEAR(result_half_quarter[1], expected_half_quarter[1], 1e-5);
+    EXPECT_NEAR(result_half_quarter[2], expected_half_quarter[2], 1e-5);
+    EXPECT_NEAR(result_half_quarter[3], expected_half_quarter[3], 1e-5);
+
+    ASSERT_NE(result_full_quarter, nullptr);
+    EXPECT_NEAR(result_full_quarter[0], expected_full_quarter[0], 1e-5);
+    EXPECT_NEAR(result_full_quarter[1], expected_full_quarter[1], 1e-5);
+    EXPECT_NEAR(result_full_quarter[2], expected_full_quarter[2], 1e-5);
+    EXPECT_NEAR(result_full_quarter[3], expected_full_quarter[3], 1e-5);
+
+    free(p);
+    free(expected_half_quarter);
+    free(expected_full_quarter);
+    free(result_half_quarter);
+    free(result_full_quarter);
+}
+
+TEST(TesterMatrixRotation, RotatingPointAroundYAxis) {
+    double pi = M_PI;
+    double sqrt2_over_2 = sqrt(2) / 2;
+
+    double *p = point(0, 0, 1);
+    t_matrix half_quarter = rotation_y(pi / 4);
+    t_matrix full_quarter = rotation_y(pi / 2);
+
+    double *expected_half_quarter = point(sqrt2_over_2, 0, sqrt2_over_2);
+    double *expected_full_quarter = point(1, 0, 0);
+
+    double *result_half_quarter = matrix_tuple_multiply(half_quarter, p);
+    double *result_full_quarter = matrix_tuple_multiply(full_quarter, p);
+
+    ASSERT_NE(result_half_quarter, nullptr);
+    EXPECT_NEAR(result_half_quarter[0], expected_half_quarter[0], 1e-5);
+    EXPECT_NEAR(result_half_quarter[1], expected_half_quarter[1], 1e-5);
+    EXPECT_NEAR(result_half_quarter[2], expected_half_quarter[2], 1e-5);
+    EXPECT_NEAR(result_half_quarter[3], expected_half_quarter[3], 1e-5);
+
+    ASSERT_NE(result_full_quarter, nullptr);
+    EXPECT_NEAR(result_full_quarter[0], expected_full_quarter[0], 1e-5);
+    EXPECT_NEAR(result_full_quarter[1], expected_full_quarter[1], 1e-5);
+    EXPECT_NEAR(result_full_quarter[2], expected_full_quarter[2], 1e-5);
+    EXPECT_NEAR(result_full_quarter[3], expected_full_quarter[3], 1e-5);
+
+    free(p);
+    free(expected_half_quarter);
+    free(expected_full_quarter);
+    free(result_half_quarter);
+    free(result_full_quarter);
+}
+
+TEST(TesterMatrixRotation, InverseOfXRotationRotatesOppositeDirection) {
+    double pi = M_PI;
+    double sqrt2_over_2 = sqrt(2) / 2;
+
+    double *p = point(0, 1, 0);
+    t_matrix half_quarter = rotation_x(pi / 4);
+    t_matrix inv = inverse(half_quarter);
+
+    double *expected_point = point(0, sqrt2_over_2, -sqrt2_over_2);
+
+    double *result = matrix_tuple_multiply(inv, p);
+
+    ASSERT_NE(result, nullptr);
+    EXPECT_NEAR(result[0], expected_point[0], 1e-5);
+    EXPECT_NEAR(result[1], expected_point[1], 1e-5);
+    EXPECT_NEAR(result[2], expected_point[2], 1e-5);
+    EXPECT_NEAR(result[3], expected_point[3], 1e-5);
+
+    free(p);
+    free(expected_point);
+    free(result);
+}
+
 TEST(TesterMatrixRotation, RotatingPointAroundXAxis) {
     double pi = M_PI;
     double sqrt2_over_2 = sqrt(2) / 2;

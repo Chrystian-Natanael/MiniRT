@@ -402,4 +402,49 @@ TEST(TesterMatrixDeterminat_Larger_Than_2x2, Determinant3x3) {
 			cofactor_res[k++] = cofactor(matrix, i, j);
 		}
 	}
+	EXPECT_DOUBLE_EQ(cofactor_res[0], 56);
+    EXPECT_DOUBLE_EQ(cofactor_res[1], 12);
+    EXPECT_DOUBLE_EQ(cofactor_res[2], -46);
+}
+
+
+TEST(TesterMatrixDeterminant, Determinant3x3Matrix) {
+    double elements_3x3[9] = {1, 2, 6,
+                            -5, 8, -4,
+                            2, 6, 4};
+    t_matrix matrix = create_matrix(3, 3, elements_3x3);
+
+    double cofactor_res[3];
+    cofactor_res[0] = cofactor(matrix, 0, 0);
+    cofactor_res[1] = cofactor(matrix, 0, 1);
+    cofactor_res[2] = cofactor(matrix, 0, 2);
+
+    EXPECT_DOUBLE_EQ(cofactor_res[0], 56);
+    EXPECT_DOUBLE_EQ(cofactor_res[1], 12);
+    EXPECT_DOUBLE_EQ(cofactor_res[2], -46);
+
+    double det = determinant(matrix);
+    EXPECT_DOUBLE_EQ(det, -196);
+}
+
+TEST(TesterMatrixDeterminant, Determinant4x4Matrix) {
+    double elements_4x4[16] = {-2, -8, 3, 5,
+                            -3, 1, 7, 3,
+                            1, 2, -9, 6,
+                            -6, 7, 7, -9};
+    t_matrix matrix = create_matrix(4, 4, elements_4x4);
+
+    double cofactor_res[4];
+    cofactor_res[0] = cofactor(matrix, 0, 0);
+    cofactor_res[1] = cofactor(matrix, 0, 1);
+    cofactor_res[2] = cofactor(matrix, 0, 2);
+    cofactor_res[3] = cofactor(matrix, 0, 3);
+
+    EXPECT_DOUBLE_EQ(cofactor_res[0], 690);
+    EXPECT_DOUBLE_EQ(cofactor_res[1], 447);
+    EXPECT_DOUBLE_EQ(cofactor_res[2], 210);
+    EXPECT_DOUBLE_EQ(cofactor_res[3], 51);
+
+    double det = determinant(matrix);
+    EXPECT_DOUBLE_EQ(det, -4071);
 }

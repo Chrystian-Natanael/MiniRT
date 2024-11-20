@@ -75,16 +75,16 @@ DEPS = $(OBJS:.o=.d)
 MKDIR := mkdir -p
 RM := rm -rf
 SLEEP = sleep 0.1
-COMP = cc
+COMP = gcc
 SHELL := /bin/bash
 
 #* ******************************************************************************#
 #                                 FLAGS E COMP                                   #
 #* ******************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O2 -pg
 DFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
-LDLIBS = -ldl -lglfw -pthread -lm
+LDLIBS = -ldl -lglfw -pthread -lm -pg
 LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP
 COMP_OBJ = $(COMP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -149,7 +149,11 @@ re: fclean all
 
 run:
 	./bin/$(NAME)
+
 help:
 	$(call help)
+prof:
+	gprof ./bin/$(NAME) gmon.out > prof
+	< prof gprof2dot | dot -Tpng -o output.png
 
 -include $(DEPS)

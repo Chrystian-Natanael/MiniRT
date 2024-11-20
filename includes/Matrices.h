@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Matrices.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:40:12 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/18 11:43:02 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:35:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ double		determinant(t_matrix matrix);
 t_matrix	submatrix(t_matrix matrix, int sub_r, int sub_c);
 double		minor(t_matrix matrix, int sub_r, int sub_c);
 double		cofactor(t_matrix matrix, int sub_r, int sub_c);
+t_matrix	inverse(t_matrix matrix);
 
 #endif // ! MATRICES_H

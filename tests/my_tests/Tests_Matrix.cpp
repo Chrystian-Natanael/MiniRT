@@ -513,3 +513,24 @@ TEST(TesterMatrixInverse, InverseMatrixScenario3) {
 		EXPECT_TRUE(equal(inverse_matrix.content[i], expected_inverse[i]));
 	}
 }
+
+TEST(TesterMatrixInverse, MultiplyingProductByItsInverse) {
+	double elementsA[16] = {3, -9, 7, 3,
+							3, -8, 2, -9,
+							-4, 4, 4, 1,
+							-6, 5, -1, 1};
+	double elementsB[16] = {8, 2, 2, 2,
+							3, -1, 7, 0,
+							7, 0, 5, 4,
+							6, -2, 0, 5};
+
+	t_matrix matrixA = create_matrix(4, 4, elementsA);
+	t_matrix matrixB = create_matrix(4, 4, elementsB);
+	t_matrix matrixC = matrix_multiply(matrixA, matrixB);
+	t_matrix inverseB = inverse(matrixB);
+	t_matrix result = matrix_multiply(matrixC, inverseB);
+
+	for (int i = 0; i < 16; ++i) {
+		EXPECT_NEAR(result.content[i], matrixA.content[i], 1e-5);
+	}
+}

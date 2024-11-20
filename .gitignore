@@ -5,3 +5,7 @@ libs/MLX42
 libs/libft/libft.a
 libs/garbage-collector
 .vscode/
+*.o
+*.d
+gmon.out
+prof

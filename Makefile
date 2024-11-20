@@ -74,9 +74,9 @@ SHELL := /bin/bash
 #                                 FLAGS E COMP                                   #
 #* ******************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -pg -O2
 DFLAGS = -Wall -Wextra -Werror -g3
-LDLIBS = -ldl -lglfw -pthread -lm
+LDLIBS = -ldl -lglfw -pthread -lm -pg -O2
 LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP
 COMP_OBJ = $(COMP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -196,5 +196,10 @@ val: re
 
 help:
 	$(call help)
+
+ifeq ($(PROF), 1)
+	@gprof pit gmon.out > prof
+	@< prof gprof2dot | dot -Tpng -o output.png
+endif
 
 -include $(DEPS)

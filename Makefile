@@ -76,7 +76,7 @@ SHELL := /bin/bash
 
 CFLAGS = -Wall -Wextra -Werror -g3
 DFLAGS = -Wall -Wextra -Werror -g3 -O2 -pg
-LDLIBS = -ldl -lglfw -pthread -lm -O2
+LDLIBS = -ldl -lglfw -pthread -lm
 LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP
 
@@ -87,7 +87,7 @@ else
 endif
 
 ifeq ($(D),1)
-	COMP_EXE = $(COMP) $(CPPFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -pg -o $(TARGET_DIR)$(NAME)
+	COMP_EXE = $(COMP) $(CPPFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -O2 -pg -o $(TARGET_DIR)$(NAME)
 else
 	COMP_EXE = $(COMP) $(CPPFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(TARGET_DIR)$(NAME)
 endif

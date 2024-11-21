@@ -6,17 +6,15 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:40:12 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/20 18:55:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:43:21 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATRICES_H
 # define MATRICES_H
 
-# include "Error.h"
+# include "Utils.h"
 # include "Tuples.h"
-# include <math.h>
-# include <stdbool.h>
 
 typedef struct s_matrix
 {

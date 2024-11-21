@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:31:54 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/21 13:35:35 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:44:21 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <math.h>
 # include "libft.h"
 # include "garbage_collector.h"
+# include <stdbool.h>
+
+# define MAX_DIFF 0.00001
 
 // ! Convert
 int		double_to_int(double value);

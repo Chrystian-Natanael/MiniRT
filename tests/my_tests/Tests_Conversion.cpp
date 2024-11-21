@@ -2,7 +2,7 @@
 #include <cmath>
 
 extern "C" {
-	#include "Convert.h"
+	#include "Utils.h"
 }
 
 TEST(DoubleToIntTest, PositiveValues) {

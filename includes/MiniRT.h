@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MiniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:13:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/14 10:34:55 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:42:58 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 # include "Canvas.h"
 # include "Colors.h"
 # include "ColorsTerm.h"
-# include "Error.h"
+# include "Utils.h"
 # include "Matrices.h"
 # include "Tuples.h"
 # include "MLX42/MLX42.h"
-# include "garbage_collector.h"
-# include "libft.h"
 
 #endif // ! MINIRT_H

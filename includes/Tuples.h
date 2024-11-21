@@ -3,23 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Tuples.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:44:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/14 10:04:32 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:44:17 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TUPLES_H
 # define TUPLES_H
 
-# include "garbage_collector.h"
-# include "Error.h"
-# include "libft.h"
-# include <stdbool.h>
-# include <math.h>
-
-# define MAX_DIFF 0.00001
+# include "Utils.h"
 
 typedef enum e_tuple_type
 {

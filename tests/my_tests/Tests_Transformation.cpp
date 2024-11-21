@@ -3,7 +3,7 @@
 
 extern "C" {
 	#include "Matrices.h"
-	#include "Error.h"
+	#include "Utils.h"
 	#include "Tuples.h"
 	#include <stdbool.h>
 }

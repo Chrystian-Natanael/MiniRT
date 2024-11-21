@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Tuples.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/14 10:03:24 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:31:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,4 @@ double	*point(double x, double y, double z)
 double	*vector(double x, double y, double z)
 {
 	return (create_tuple(x, y, z, VECTOR));
-}
-
-/**
- * @brief Compares two double values for equality
- *
- * This function compares two double values and returns true if they
- * are approximately equal, considering a maximum difference.
- *
- * @param nbr1 The first double value to compare
- * @param nbr2 The second double value to compare
- * @return true if the values are approximately equal, false otherwise
- */
-bool	equal(double nbr1, double nbr2)
-{
-	if (fabs(nbr1 - nbr2) < MAX_DIFF)
-		return (true);
-	return (false);
 }

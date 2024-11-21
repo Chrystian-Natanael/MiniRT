@@ -178,6 +178,8 @@ fclean: clean
 	$(RM) $(GTEST_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(GARB_DIR) fclean
+	$(RM) prof
+	$(RM) gmon.out
 
 re: fclean all
 

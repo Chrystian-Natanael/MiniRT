@@ -4,12 +4,13 @@
 extern "C" {
 	#include "Utils.h"
 	#include "Intersections.h"
+	#include "Tuples.h"
 }
 
 TEST(TesterRay, CreateAndQueryRay) {
 	double *origin = point(1, 2, 3);
 	double *direction = vector(4, 5, 6);
-	t_ray r = ray(origin, direction);
+	t_ray r = create_ray(origin, direction);
 
 	ASSERT_NE(r.origin, nullptr);
 	ASSERT_NE(r.direction, nullptr);

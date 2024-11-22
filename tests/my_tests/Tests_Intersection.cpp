@@ -28,3 +28,26 @@ TEST(TesterRay, CreateAndQueryRay) {
 	free(origin);
 	free(direction);
 }
+
+TEST(TesterRay, ComputePointFromDistance) {
+	double *origin = point(2, 3, 4);
+	double *direction = vector(1, 0, 0);
+	t_ray r = create_ray(origin, direction);
+
+	double *pos0 = position(r, 0);
+	double *pos1 = position(r, 1);
+	double *posNeg1 = position(r, -1);
+	double *pos2_5 = position(r, 2.5);
+
+	EXPECT_TRUE(equal(pos0[0], 2) && equal(pos0[1], 3) && equal(pos0[2], 4) && equal(pos0[3], 1));
+	EXPECT_TRUE(equal(pos1[0], 3) && equal(pos1[1], 3) && equal(pos1[2], 4) && equal(pos1[3], 1));
+	EXPECT_TRUE(equal(posNeg1[0], 1) && equal(posNeg1[1], 3) && equal(posNeg1[2], 4) && equal(posNeg1[3], 1));
+	EXPECT_TRUE(equal(pos2_5[0], 4.5) && equal(pos2_5[1], 3) && equal(pos2_5[2], 4) && equal(pos2_5[3], 1));
+
+	free(origin);
+	free(direction);
+	free(pos0);
+	free(pos1);
+	free(posNeg1);
+	free(pos2_5);
+}

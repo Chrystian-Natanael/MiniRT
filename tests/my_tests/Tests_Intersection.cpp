@@ -51,3 +51,95 @@ TEST(TesterRay, ComputePointFromDistance) {
 	free(posNeg1);
 	free(pos2_5);
 }
+
+TEST(TesterRay, RayIntersectsSphereAtTwoPoints) {
+	double *origin = point(0, 0, -5);
+	double *direction = vector(0, 0, 1);
+	t_ray r = create_ray(origin, direction);
+	t_sphere *s = create_sphere();
+
+	t_intersec *xs = intersect(s, r);
+
+	EXPECT_EQ(xs->count, 2);
+	EXPECT_TRUE(equal(xs->intersections[0], 4.0));
+	EXPECT_TRUE(equal(xs->intersections[1], 6.0));
+
+	free(origin);
+	free(direction);
+	free(s);
+	free(xs->intersections);
+	free(xs);
+}
+
+TEST(TesterRay, RayIntersectsSphereAtTangent) {
+	double *origin = point(0, 1, -5);
+	double *direction = vector(0, 0, 1);
+	t_ray r = create_ray(origin, direction);
+	t_sphere *s = create_sphere();
+
+	t_intersec *xs = intersect(s, r);
+
+	EXPECT_EQ(xs->count, 2);
+	EXPECT_TRUE(equal(xs->intersections[0], 5.0));
+	EXPECT_TRUE(equal(xs->intersections[1], 5.0));
+
+	free(origin);
+	free(direction);
+	free(s);
+	free(xs->intersections);
+	free(xs);
+}
+
+TEST(TesterRay, RayMissesSphere) {
+	double *origin = point(0, 2, -5);
+	double *direction = vector(0, 0, 1);
+	t_ray r = create_ray(origin, direction);
+	t_sphere *s = create_sphere();
+
+	t_intersec *xs = intersect(s, r);
+
+	EXPECT_EQ(xs->count, 0);
+
+	free(origin);
+	free(direction);
+	free(s);
+	free(xs);
+}
+
+TEST(TesterRay, RayOriginatesInsideSphere) {
+	double *origin = point(0, 0, 0);
+	double *direction = vector(0, 0, 1);
+	t_ray r = create_ray(origin, direction);
+	t_sphere *s = create_sphere();
+
+	t_intersec *xs = intersect(s, r);
+
+	EXPECT_EQ(xs->count, 2);
+	EXPECT_TRUE(equal(xs->intersections[0], -1.0));
+	EXPECT_TRUE(equal(xs->intersections[1], 1.0));
+
+	free(origin);
+	free(direction);
+	free(s);
+	free(xs->intersections);
+	free(xs);
+}
+
+TEST(TesterRay, SphereIsBehindRay) {
+	double *origin = point(0, 0, 5);
+	double *direction = vector(0, 0, 1);
+	t_ray r = create_ray(origin, direction);
+	t_sphere *s = create_sphere();
+
+	t_intersec *xs = intersect(s, r);
+
+	EXPECT_EQ(xs->count, 2);
+	EXPECT_TRUE(equal(xs->intersections[0], -6.0));
+	EXPECT_TRUE(equal(xs->intersections[1], -4.0));
+
+	free(origin);
+	free(direction);
+	free(s);
+	free(xs->intersections);
+	free(xs);
+}

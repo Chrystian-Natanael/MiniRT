@@ -6,12 +6,25 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:43:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:29:15 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:55:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
+/**
+ * @brief Create a matrix with specified rows, columns, and elements
+ *
+ * This function initializes a matrix with the given number of rows and columns,
+ * and fills it with the provided elements. If the elements pointer is NULL or
+ * the number of rows or columns is less than one, an error message is displayed
+ * and the program is terminated.
+ *
+ * @param row The number of rows in the matrix
+ * @param col The number of columns in the matrix
+ * @param elements A pointer to the elements to fill the matrix
+ * @return The created matrix
+ */
 t_matrix	create_mtx(int row, int col, double *elements)
 {
 	int			ir;
@@ -38,6 +51,18 @@ t_matrix	create_mtx(int row, int col, double *elements)
 	return (matrix);
 }
 
+/**
+ * @brief Compare two matrices for equality
+ *
+ * This function compares two matrices to check if they are equal. If the number
+ * of rows or columns in the matrices are different, or if any corresponding
+ * elements are not equal, the function returns false.
+ * Otherwise, it returns true.
+ *
+ * @param mtx_a The first matrix
+ * @param mtx_b The second matrix
+ * @return true if the matrices are equal, false otherwise
+ */
 bool	comp_mtx(t_matrix mtx_a, t_matrix mtx_b)
 {
 	int	ir;
@@ -60,6 +85,14 @@ bool	comp_mtx(t_matrix mtx_a, t_matrix mtx_b)
 	return (true);
 }
 
+/**
+ * @brief Create an identity matrix
+ *
+ * This function creates a 4x4 identity matrix, which is a square matrix with
+ * ones on the main diagonal and zeros elsewhere.
+ *
+ * @return The created identity matrix
+ */
 t_matrix	id_mtx(void)
 {
 	static double	elements[16] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0,

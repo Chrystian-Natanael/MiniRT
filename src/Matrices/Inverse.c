@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:20:00 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:24:29 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:48:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 static t_matrix	inv_aux(t_matrix matrix);
 
+/**
+ * @brief Auxiliary function to calculate the inverse of a matrix
+ *
+ * This function calculates the inverse of a matrix using cofactors and the
+ * determinant of the matrix.
+ *
+ * @param matrix The matrix to be inverted
+ * @return A matrix that is the inverse of the input matrix
+ */
 static t_matrix	inv_aux(t_matrix matrix)
 {
 	double		det_mtx;
@@ -39,6 +48,15 @@ static t_matrix	inv_aux(t_matrix matrix)
 	return (inv);
 }
 
+/**
+ * @brief Calculate the inverse of a matrix
+ *
+ * This function calculates the inverse of a matrix. If the determinant of the
+ * matrix is zero, an error message is displayed and the program is terminated.
+ *
+ * @param matrix The matrix to be inverted
+ * @return A matrix that is the inverse of the input matrix
+ */
 t_matrix	inv(t_matrix matrix)
 {
 	if (det(matrix) == 0)

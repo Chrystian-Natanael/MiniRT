@@ -6,12 +6,23 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:14:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:37:33 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:54:43 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
+/**
+ * @brief Create a scaling matrix
+ *
+ * This function creates a 4x4 scaling matrix for scaling points by the specified
+ * factors along the X, Y, and Z axes.
+ *
+ * @param x The scaling factor for the X-axis
+ * @param y The scaling factor for the Y-axis
+ * @param z The scaling factor for the Z-axis
+ * @return The scaling matrix
+ */
 t_matrix	scale(double x, double y, double z)
 {
 	t_matrix	scl_mtx;

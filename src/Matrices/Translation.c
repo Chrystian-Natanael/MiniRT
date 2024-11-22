@@ -6,12 +6,23 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 12:54:32 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:40:54 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:55:38 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
+/**
+ * @brief Create a translation matrix
+ *
+ * This function creates a 4x4 translation matrix for translating points by the
+ * specified distances along the X, Y, and Z axes.
+ *
+ * @param x The translation distance for the X-axis
+ * @param y The translation distance for the Y-axis
+ * @param z The translation distance for the Z-axis
+ * @return The translation matrix
+ */
 t_matrix	translate(double x, double y, double z)
 {
 	t_matrix	trnsl_mtx;

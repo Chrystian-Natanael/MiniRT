@@ -6,13 +6,27 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:23:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:33:29 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:56:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 #include "libft.h"
 
+/**
+ * @brief Calculate the value of a specific position in the resulting matrix
+ *        from the multiplication of two matrices.
+ *
+ * This function calculates the value of the element at the specified row and
+ * column in the resulting matrix by performing the dot product of the row from
+ * the first matrix and the column from the second matrix.
+ *
+ * @param mtx_a The first matrix
+ * @param mtx_b The second matrix
+ * @param ir The row index in the resulting matrix
+ * @param ic The column index in the resulting matrix
+ * @return The calculated value for the specified position
+ */
 static double	calculate(t_matrix mtx_a, t_matrix mtx_b, int ir, int ic)
 {
 	int		idx;
@@ -25,6 +39,18 @@ static double	calculate(t_matrix mtx_a, t_matrix mtx_b, int ir, int ic)
 	return (res);
 }
 
+/**
+ * @brief Multiply two matrices
+ *
+ * This function multiplies two matrices. If the number of columns in the first
+ * matrix is not equal to the number of rows in the second matrix, an error
+ * message is displayed and the program is terminated.
+ *
+ * @param matrix1 The first matrix
+ * @param matrix2 The second matrix
+ * @return A matrix that is the result of the multiplication of the two
+ * input matrices
+ */
 static double	calculate_matrix_tuple(t_matrix matrix, double *tuple, int ir)
 {
 	int		idx;
@@ -37,6 +63,18 @@ static double	calculate_matrix_tuple(t_matrix matrix, double *tuple, int ir)
 	return (res);
 }
 
+/**
+ * @brief Multiply a matrix by a tuple
+ *
+ * This function multiplies a matrix by a tuple. If the number of columns in the
+ * matrix is not equal to 4, an error message is displayed and the program is
+ * terminated.
+ *
+ * @param matrix The matrix
+ * @param tuple The tuple
+ * @return A tuple that is the result of the multiplication of the
+ * matrix and the tuple
+ */
 double	*multiply_mtx_tp(t_matrix matrix, double *tuple)
 {
 	double	*res;
@@ -52,6 +90,18 @@ double	*multiply_mtx_tp(t_matrix matrix, double *tuple)
 	return (res);
 }
 
+/**
+ * @brief Multiply two matrices
+ *
+ * This function multiplies two matrices. If the number of columns in the first
+ * matrix is not equal to the number of rows in the second matrix, an error
+ * message is displayed and the program is terminated.
+ *
+ * @param matrix1 The first matrix
+ * @param matrix2 The second matrix
+ * @return A matrix that is the result of the multiplication of
+ * the two input matrices
+ */
 t_matrix	multiply_mtx(t_matrix matrix_a, t_matrix matrix_b)
 {
 	int			ir;

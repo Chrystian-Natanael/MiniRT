@@ -6,12 +6,21 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:40:58 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:35:52 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:53:21 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
+/**
+ * @brief Transpose a matrix
+ *
+ * This function transposes the given matrix, which means it flips the matrix
+ * over its diagonal, switching the row and column indices of the matrix.
+ *
+ * @param matrix The matrix to be transposed
+ * @return The transposed matrix
+ */
 t_matrix	transp_mtx(t_matrix matrix)
 {
 	int			ir;

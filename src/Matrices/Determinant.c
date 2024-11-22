@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:00:27 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:23:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:47:28 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 static double	det_2x2(t_matrix matrix);
 static double	det_aux(t_matrix matrix);
 
+/**
+ * @brief Calculate the determinant of a 2x2 matrix
+ *
+ * This function calculates the determinant of a 2x2 matrix using the formula:
+ * det(A) = ad - bc
+ *
+ * @param matrix The 2x2 matrix
+ * @return The determinant of the matrix
+ */
 static double	det_2x2(t_matrix matrix)
 {
 	double	el_a;
@@ -29,6 +38,14 @@ static double	det_2x2(t_matrix matrix)
 	return ((el_a * el_d) - (el_b * el_c));
 }
 
+/**
+ * @brief Auxiliary function to calculate the determinant of a matrix
+ *
+ * This function calculates the determinant of a matrix using cofactors.
+ *
+ * @param matrix The matrix
+ * @return The determinant of the matrix
+ */
 static double	det_aux(t_matrix matrix)
 {
 	double	res[4];
@@ -43,6 +60,16 @@ static double	det_aux(t_matrix matrix)
 	return (res[0] + res[1] + res[2] + res[3]);
 }
 
+/**
+ * @brief Calculate the determinant of a matrix
+ *
+ * This function calculates the determinant of a matrix. It handles
+ * both 2x2 matrices
+ * and larger matrices, ensuring the matrix is square.
+ *
+ * @param matrix The matrix
+ * @return The determinant of the matrix
+ */
 double	det(t_matrix matrix)
 {
 	if (matrix.col == 2 && matrix.row == 2)

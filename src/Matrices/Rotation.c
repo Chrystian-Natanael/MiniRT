@@ -6,12 +6,21 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:39:47 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:36:45 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:54:21 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
+/**
+ * @brief Create a rotation matrix for rotation around the X-axis
+ *
+ * This function creates a 4x4 rotation matrix for rotating points around the
+ * X-axis by the specified angle in radians.
+ *
+ * @param rad The angle in radians
+ * @return The rotation matrix for the X-axis
+ */
 t_matrix	rotate_x(double rad)
 {
 	t_matrix	rot_mtx;
@@ -26,6 +35,15 @@ t_matrix	rotate_x(double rad)
 	return (rot_mtx);
 }
 
+/**
+ * @brief Create a rotation matrix for rotation around the Y-axis
+ *
+ * This function creates a 4x4 rotation matrix for rotating points around the
+ * Y-axis by the specified angle in radians.
+ *
+ * @param rad The angle in radians
+ * @return The rotation matrix for the Y-axis
+ */
 t_matrix	rotate_y(double rad)
 {
 	t_matrix	rot_mtx;
@@ -40,6 +58,15 @@ t_matrix	rotate_y(double rad)
 	return (rot_mtx);
 }
 
+/**
+ * @brief Create a rotation matrix for rotation around the Z-axis
+ *
+ * This function creates a 4x4 rotation matrix for rotating points around the
+ * Z-axis by the specified angle in radians.
+ *
+ * @param rad The angle in radians
+ * @return The rotation matrix for the Z-axis
+ */
 t_matrix	rotate_z(double rad)
 {
 	t_matrix	rot_mtx;

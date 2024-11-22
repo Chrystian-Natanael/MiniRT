@@ -34,10 +34,10 @@ TEST(TesterRay, ComputePointFromDistance) {
 	double *direction = vector(1, 0, 0);
 	t_ray r = create_ray(origin, direction);
 
-	double *pos0 = position(r, 0);
-	double *pos1 = position(r, 1);
-	double *posNeg1 = position(r, -1);
-	double *pos2_5 = position(r, 2.5);
+	double *pos0 = pos_ray(r, 0);
+	double *pos1 = pos_ray(r, 1);
+	double *posNeg1 = pos_ray(r, -1);
+	double *pos2_5 = pos_ray(r, 2.5);
 
 	EXPECT_TRUE(equal(pos0[0], 2) && equal(pos0[1], 3) && equal(pos0[2], 4) && equal(pos0[3], 1));
 	EXPECT_TRUE(equal(pos1[0], 3) && equal(pos1[1], 3) && equal(pos1[2], 4) && equal(pos1[3], 1));

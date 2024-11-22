@@ -22,9 +22,9 @@ TEST(TesterMatrix, CreateMatrix) {
 	double	elements_2x2[16] = {-3, 5,
 								1, -2};
 
-	t_matrix	matrix1 = create_matrix(4, 4, elements_4x4);
-	t_matrix	matrix2 = create_matrix(3, 3, elements_3x3);
-	t_matrix	matrix3 = create_matrix(2, 2, elements_2x2);
+	t_matrix	matrix1 = create_mtx(4, 4, elements_4x4);
+	t_matrix	matrix2 = create_mtx(3, 3, elements_3x3);
+	t_matrix	matrix3 = create_mtx(2, 2, elements_2x2);
 
 	ASSERT_NE(matrix1.content, nullptr);
 	ASSERT_NE(matrix2.content, nullptr);
@@ -62,8 +62,8 @@ TEST(TesterMatrix, CompareEQMatrices) {
 								5, 6, 7, 8,
 								9, 8, 7, 6,
 								5, 4, 3, 2};
-	t_matrix	matrix1 = create_matrix(4, 4, elements_4x4);
-	EXPECT_TRUE(compare_matrix(matrix1, matrix1));
+	t_matrix	matrix1 = create_mtx(4, 4, elements_4x4);
+	EXPECT_TRUE(comp_mtx(matrix1, matrix1));
 }
 
 TEST(TesterMatrix, CompareNEMatrices) {
@@ -78,10 +78,10 @@ TEST(TesterMatrix, CompareNEMatrices) {
 									8, 7, 6, 5,
 									4, 3, 2, 1};
 
-	t_matrix	matrix1 = create_matrix(4, 4, elements_4x4_a);
-	t_matrix	matrix2 = create_matrix(4, 4, elements_4x4_b);
+	t_matrix	matrix1 = create_mtx(4, 4, elements_4x4_a);
+	t_matrix	matrix2 = create_mtx(4, 4, elements_4x4_b);
 
-	EXPECT_FALSE(compare_matrix(matrix1, matrix2));
+	EXPECT_FALSE(comp_mtx(matrix1, matrix2));
 }
 
 TEST(TesterMatrix, CompareNEMatricesFloatTrue) {
@@ -96,10 +96,10 @@ TEST(TesterMatrix, CompareNEMatricesFloatTrue) {
 									9, 8, 7, 6,
 									5, 4, 3, 2};
 
-	t_matrix	matrix1 = create_matrix(4, 4, elements_4x4_a);
-	t_matrix	matrix2 = create_matrix(4, 4, elements_4x4_b);
+	t_matrix	matrix1 = create_mtx(4, 4, elements_4x4_a);
+	t_matrix	matrix2 = create_mtx(4, 4, elements_4x4_b);
 
-	EXPECT_TRUE(compare_matrix(matrix1, matrix2));
+	EXPECT_TRUE(comp_mtx(matrix1, matrix2));
 }
 
 TEST(TesterMatrix, CompareNEMatricesFloatFalse) {
@@ -114,10 +114,10 @@ TEST(TesterMatrix, CompareNEMatricesFloatFalse) {
 									9, 8, 7, 6,
 									5, 4, 3, 2};
 
-	t_matrix	matrix1 = create_matrix(4, 4, elements_4x4_a);
-	t_matrix	matrix2 = create_matrix(4, 4, elements_4x4_b);
+	t_matrix	matrix1 = create_mtx(4, 4, elements_4x4_a);
+	t_matrix	matrix2 = create_mtx(4, 4, elements_4x4_b);
 
-	EXPECT_FALSE(compare_matrix(matrix1, matrix2));
+	EXPECT_FALSE(comp_mtx(matrix1, matrix2));
 }
 
 TEST(TesterMatrixMultiplication, MatricesMultiplyEQSizes) {
@@ -137,9 +137,9 @@ TEST(TesterMatrixMultiplication, MatricesMultiplyEQSizes) {
 									40, 58, 110, 102,
 									16, 26, 46, 42};
 
-	t_matrix	matrix1 = create_matrix(4, 4, elements_4x4_a);
-	t_matrix	matrix2 = create_matrix(4, 4, elements_4x4_b);
-	t_matrix	res = matrix_multiply(matrix1, matrix2);
+	t_matrix	matrix1 = create_mtx(4, 4, elements_4x4_a);
+	t_matrix	matrix2 = create_mtx(4, 4, elements_4x4_b);
+	t_matrix	res = multiply_mtx(matrix1, matrix2);
 
 	EXPECT_DOUBLE_EQ(res.col, matrix2.col);
 	EXPECT_DOUBLE_EQ(res.row, matrix1.row);
@@ -170,9 +170,9 @@ TEST(TesterMatrixMultiplication, MatricesMultiplyDiffSizes) {
 									40, 58, 110,
 									16, 26, 46};
 
-	t_matrix	matrix1 = create_matrix(4, 4, elements_4x4);
-	t_matrix	matrix2 = create_matrix(4, 3, elements_4x3);
-	t_matrix	res = matrix_multiply(matrix1, matrix2);
+	t_matrix	matrix1 = create_mtx(4, 4, elements_4x4);
+	t_matrix	matrix2 = create_mtx(4, 3, elements_4x3);
+	t_matrix	res = multiply_mtx(matrix1, matrix2);
 
 	EXPECT_DOUBLE_EQ(res.col, matrix2.col);
 	EXPECT_DOUBLE_EQ(res.row, matrix1.row);
@@ -195,8 +195,8 @@ TEST(TesterMatrixMultiplication, MatricesTuplesMultiply) {
 							0, 0, 0, 1};
 	t_matrix	matrix;
 
-	matrix = create_matrix(4, 4, element);
-	double	*res = matrix_tuple_multiply(matrix, p);
+	matrix = create_mtx(4, 4, element);
+	double	*res = multiply_mtx_tp(matrix, p);
 
 	ASSERT_NE(p, nullptr);
 	ASSERT_NE(res, nullptr);
@@ -209,7 +209,7 @@ TEST(TesterMatrixMultiplication, MatricesTuplesMultiply) {
 	free(res);
 }
 
-TEST(TesterMatrixMultiplication, IdentityMatrixByMatrix) {
+TEST(TesterMatrixMultiplication, id_mtxMatrixByMatrix) {
 
 	double	element1[16] = {0, 1, 2, 4,
 							1, 2, 4, 8,
@@ -220,9 +220,9 @@ TEST(TesterMatrixMultiplication, IdentityMatrixByMatrix) {
 							0, 0, 1, 0,
 							0, 0, 0, 1};
 
-	t_matrix	matrix = create_matrix(4, 4, element1);
-	t_matrix	identity = create_matrix(4, 4, element2);
-	t_matrix	res = matrix_multiply(matrix, identity);
+	t_matrix	matrix = create_mtx(4, 4, element1);
+	t_matrix	id_mtx = create_mtx(4, 4, element2);
+	t_matrix	res = multiply_mtx(matrix, id_mtx);
 
 	int	idx = 0;
 	for (int idx_r = 0; idx_r < 4; idx_r++) {
@@ -233,7 +233,7 @@ TEST(TesterMatrixMultiplication, IdentityMatrixByMatrix) {
 	}
 }
 
-TEST(TesterMatrixMultiplication, IdentityMatrixByTuple) {
+TEST(TesterMatrixMultiplication, id_mtxMatrixByTuple) {
 
 	double	tuple[4] = {1, 2, 3, 4};
 	double	element[16] = {1, 0, 0, 0,
@@ -241,8 +241,8 @@ TEST(TesterMatrixMultiplication, IdentityMatrixByTuple) {
 							0, 0, 1, 0,
 							0, 0, 0, 1};
 
-	t_matrix	identity = create_matrix(4, 4, element);
-	double	*res = matrix_tuple_multiply(identity, tuple);
+	t_matrix	id_mtx = create_mtx(4, 4, element);
+	double	*res = multiply_mtx_tp(id_mtx, tuple);
 
 	ASSERT_NE(tuple, nullptr);
 	ASSERT_NE(res, nullptr);
@@ -265,8 +265,8 @@ TEST(TesterMatrixTransposition, 4x4MatrixTranspose) {
 							3, 0, 5, 5,
 							0, 8, 3, 8};
 
-	t_matrix	matrix = create_matrix(4, 4, element);
-	t_matrix	transp = matrix_transpose(matrix);
+	t_matrix	matrix = create_mtx(4, 4, element);
+	t_matrix	transp = transp_mtx(matrix);
 
 	EXPECT_EQ(transp.col, matrix.row);
 	EXPECT_EQ(transp.row, matrix.col);
@@ -290,8 +290,8 @@ TEST(TesterMatrixTransposition, 4x3MatrixTranspose) {
 							9, 8, 8, 0,
 							3, 0, 5, 5};
 
-	t_matrix	matrix = create_matrix(4, 3, element);
-	t_matrix	transp = matrix_transpose(matrix);
+	t_matrix	matrix = create_mtx(4, 3, element);
+	t_matrix	transp = transp_mtx(matrix);
 
 	EXPECT_EQ(transp.col, matrix.row);
 	EXPECT_EQ(transp.row, matrix.col);
@@ -305,45 +305,45 @@ TEST(TesterMatrixTransposition, 4x3MatrixTranspose) {
 	}
 }
 
-TEST(TesterMatrixDeterminant, Determinant2x2Matrix) {
+TEST(TesterMatrixdet, det2x2Matrix) {
 	double elements_2x2[4] = {1, 5,
 							-3, 2};
-	t_matrix matrix = create_matrix(2, 2, elements_2x2);
+	t_matrix matrix = create_mtx(2, 2, elements_2x2);
 
-	double det = determinant(matrix);
+	double determinant = det(matrix);
 
-	EXPECT_DOUBLE_EQ(det, 17);
+	EXPECT_DOUBLE_EQ(determinant, 17);
 }
 
-TEST(TesterMatrixSubmatrix, Submatrix3x3To2x2) {
+TEST(TesterMatrixsubmtx, submtx3x3To2x2) {
 	double elements_3x3[9] = {1, 5, 0,
 							-3, 2, 7,
 							0, 6, -3};
-	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+	t_matrix matrix = create_mtx(3, 3, elements_3x3);
 
-	t_matrix submtx = submatrix(matrix, 0, 2);
+	t_matrix submatrix = submtx(matrix, 0, 2);
 
 	double expected_elements[4] = {-3, 2,
 									 0, 6};
 
 	for (int i = 0; i < 2; ++i) {
 		for (int j = 0; j < 2; ++j) {
-			EXPECT_DOUBLE_EQ(submtx.content[i * 2 + j], expected_elements[i * 2 + j]);
+			EXPECT_DOUBLE_EQ(submatrix.content[i * 2 + j], expected_elements[i * 2 + j]);
 		}
 	}
 }
 
-TEST(TesterMatrixSubmatrix, Submatrix4x4To3x3) {
+TEST(TesterMatrixsubmtx, submtx4x4To3x3) {
 	double elements_4x4[16] = {-6, 1, 1, 6, -8, 5, 8, 6, -1, 0, 8, 2, -7, 1, -1, 1};
-	t_matrix matrix = create_matrix(4, 4, elements_4x4);
+	t_matrix matrix = create_mtx(4, 4, elements_4x4);
 
-	t_matrix submtx = submatrix(matrix, 2, 1);
+	t_matrix submatrix = submtx(matrix, 2, 1);
 
 	double expected_elements[9] = {-6, 1, 6, -8, 8, 6, -7, -1, 1};
 
 	for (int i = 0; i < 3; ++i) {
 		for (int j = 0; j < 3; ++j) {
-			EXPECT_DOUBLE_EQ(submtx.content[i * 3 + j], expected_elements[i * 3 + j]);
+			EXPECT_DOUBLE_EQ(submatrix.content[i * 3 + j], expected_elements[i * 3 + j]);
 		}
 	}
 }
@@ -353,7 +353,7 @@ TEST(TesterMatrixMinor, Minor3x3) {
 							2, -1, -7,
 							6, -1, 5};
 
-	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+	t_matrix matrix = create_mtx(3, 3, elements_3x3);
 
 	double minor_res = minor(matrix, 1, 0);
 
@@ -365,7 +365,7 @@ TEST(TesterMatrixCofactor, Cofactor3x3) {
 							2, -1, -7,
 							6, -1, 5};
 
-	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+	t_matrix matrix = create_mtx(3, 3, elements_3x3);
 
 	double cofactor_res[9];
 	int	k = 0;
@@ -387,12 +387,12 @@ TEST(TesterMatrixCofactor, Cofactor3x3) {
 	EXPECT_DOUBLE_EQ(cofactor_res[8], -13);
 }
 
-TEST(TesterMatrixDeterminat_Larger_Than_2x2, Determinant3x3) {
+TEST(TesterMatrixDeterminat_Larger_Than_2x2, det3x3) {
 	double elements_3x3[9] = {1, 2, 6,
 							-5, 8, -4,
 							2, 6, 4};
 
-	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+	t_matrix matrix = create_mtx(3, 3, elements_3x3);
 
 	double cofactor_res[9];
 	int	k = 0;
@@ -408,11 +408,11 @@ TEST(TesterMatrixDeterminat_Larger_Than_2x2, Determinant3x3) {
 }
 
 
-TEST(TesterMatrixDeterminant, Determinant3x3Matrix) {
+TEST(TesterMatrixdet, det3x3Matrix) {
 	double elements_3x3[9] = {1, 2, 6,
 							-5, 8, -4,
 							2, 6, 4};
-	t_matrix matrix = create_matrix(3, 3, elements_3x3);
+	t_matrix matrix = create_mtx(3, 3, elements_3x3);
 
 	double cofactor_res[3];
 	cofactor_res[0] = cofactor(matrix, 0, 0);
@@ -423,16 +423,16 @@ TEST(TesterMatrixDeterminant, Determinant3x3Matrix) {
 	EXPECT_DOUBLE_EQ(cofactor_res[1], 12);
 	EXPECT_DOUBLE_EQ(cofactor_res[2], -46);
 
-	double det = determinant(matrix);
-	EXPECT_DOUBLE_EQ(det, -196);
+	double determinant = det(matrix);
+	EXPECT_DOUBLE_EQ(determinant, -196);
 }
 
-TEST(TesterMatrixDeterminant, Determinant4x4Matrix) {
+TEST(TesterMatrixdet, det4x4Matrix) {
 	double elements_4x4[16] = {-2, -8, 3, 5,
 							-3, 1, 7, 3,
 							1, 2, -9, 6,
 							-6, 7, 7, -9};
-	t_matrix matrix = create_matrix(4, 4, elements_4x4);
+	t_matrix matrix = create_mtx(4, 4, elements_4x4);
 
 	double cofactor_res[4];
 	cofactor_res[0] = cofactor(matrix, 0, 0);
@@ -445,76 +445,76 @@ TEST(TesterMatrixDeterminant, Determinant4x4Matrix) {
 	EXPECT_DOUBLE_EQ(cofactor_res[2], 210);
 	EXPECT_DOUBLE_EQ(cofactor_res[3], 51);
 
-	double det = determinant(matrix);
-	EXPECT_DOUBLE_EQ(det, -4071);
+	double determinant = det(matrix);
+	EXPECT_DOUBLE_EQ(determinant, -4071);
 }
 
-TEST(TesterMatrixInverse, InverseMatrixScenario1) {
+TEST(TesterMatrixinv, invMatrixScenario1) {
 	double elements[16] = {-5, 2, 6, -8,
 							1, -5, 1, 8,
 							7, 7, -6, -7,
 							1, -3, 7, 4};
-	t_matrix matrix = create_matrix(4, 4, elements);
-	t_matrix inverse_matrix = inverse(matrix);
+	t_matrix matrix = create_mtx(4, 4, elements);
+	t_matrix inv_matrix = inv(matrix);
 
-	double expected_inverse[16] = {0.21805, 0.45113, 0.24060, -0.04511,
+	double expected_inv[16] = {0.21805, 0.45113, 0.24060, -0.04511,
 									-0.80827, -1.45677, -0.44361, 0.52068,
 									-0.07895, -0.22368, -0.05263, 0.19737,
 									-0.52256, -0.81391, -0.30075, 0.30639};
 
-	double det = determinant(matrix);
-	EXPECT_DOUBLE_EQ(det, 532);
+	double determinant = det(matrix);
+	EXPECT_DOUBLE_EQ(determinant, 532);
 
 	double cofactor_2_3 = cofactor(matrix, 2, 3);
 	EXPECT_DOUBLE_EQ(cofactor_2_3, -160);
-	EXPECT_TRUE(equal(inverse_matrix.content[3 * 4 + 2], (-160.0 / 532.0)));
+	EXPECT_TRUE(equal(inv_matrix.content[3 * 4 + 2], (-160.0 / 532.0)));
 
 	double cofactor_3_2 = cofactor(matrix, 3, 2);
 	EXPECT_DOUBLE_EQ(cofactor_3_2, 105);
-	EXPECT_DOUBLE_EQ(inverse_matrix.content[2 * 4 + 3], 105.0 / 532.0);
+	EXPECT_DOUBLE_EQ(inv_matrix.content[2 * 4 + 3], 105.0 / 532.0);
 
 	for (int i = 0; i < 16; ++i) {
-		EXPECT_TRUE(equal(inverse_matrix.content[i], expected_inverse[i]));
+		EXPECT_TRUE(equal(inv_matrix.content[i], expected_inv[i]));
 	}
 }
 
-TEST(TesterMatrixInverse, InverseMatrixScenario2) {
+TEST(TesterMatrixinv, invMatrixScenario2) {
 	double elements[16] = {8, -5, 9, 2,
 							7, 5, 6, 1,
 							-6, 0, 9, 6,
 							-3, 0, -9, -4};
-	t_matrix matrix = create_matrix(4, 4, elements);
-	t_matrix inverse_matrix = inverse(matrix);
+	t_matrix matrix = create_mtx(4, 4, elements);
+	t_matrix inv_matrix = inv(matrix);
 
-	double expected_inverse[16] = {-0.15385, -0.15385, -0.28205, -0.53846,
+	double expected_inv[16] = {-0.15385, -0.15385, -0.28205, -0.53846,
 									-0.07692, 0.12308, 0.02564, 0.03077,
 									0.35897, 0.35897, 0.43590, 0.92308,
 									-0.69231, -0.69231, -0.76923, -1.92308};
 
 	for (int i = 0; i < 16; ++i) {
-		EXPECT_TRUE(equal(inverse_matrix.content[i], expected_inverse[i]));
+		EXPECT_TRUE(equal(inv_matrix.content[i], expected_inv[i]));
 	}
 }
 
-TEST(TesterMatrixInverse, InverseMatrixScenario3) {
+TEST(TesterMatrixinv, invMatrixScenario3) {
 	double elements[16] = {9, 3, 0, 9,
 							-5, -2, -6, -3,
 							-4, 9, 6, 4,
 							-7, 6, 6, 2};
-	t_matrix matrix = create_matrix(4, 4, elements);
-	t_matrix inverse_matrix = inverse(matrix);
+	t_matrix matrix = create_mtx(4, 4, elements);
+	t_matrix inv_matrix = inv(matrix);
 
-	double expected_inverse[16] = {-0.04074, -0.07778, 0.14444, -0.22222,
+	double expected_inv[16] = {-0.04074, -0.07778, 0.14444, -0.22222,
 									-0.07778, 0.03333, 0.36667, -0.33333,
 									-0.02901, -0.14630, -0.10926, 0.12963,
 									0.17778, 0.06667, -0.26667, 0.33333};
 
 	for (int i = 0; i < 16; ++i) {
-		EXPECT_TRUE(equal(inverse_matrix.content[i], expected_inverse[i]));
+		EXPECT_TRUE(equal(inv_matrix.content[i], expected_inv[i]));
 	}
 }
 
-TEST(TesterMatrixInverse, MultiplyingProductByItsInverse) {
+TEST(TesterMatrixinv, MultiplyingProductByItsinv) {
 	double elementsA[16] = {3, -9, 7, 3,
 							3, -8, 2, -9,
 							-4, 4, 4, 1,
@@ -524,11 +524,11 @@ TEST(TesterMatrixInverse, MultiplyingProductByItsInverse) {
 							7, 0, 5, 4,
 							6, -2, 0, 5};
 
-	t_matrix matrixA = create_matrix(4, 4, elementsA);
-	t_matrix matrixB = create_matrix(4, 4, elementsB);
-	t_matrix matrixC = matrix_multiply(matrixA, matrixB);
-	t_matrix inverseB = inverse(matrixB);
-	t_matrix result = matrix_multiply(matrixC, inverseB);
+	t_matrix matrixA = create_mtx(4, 4, elementsA);
+	t_matrix matrixB = create_mtx(4, 4, elementsB);
+	t_matrix matrixC = multiply_mtx(matrixA, matrixB);
+	t_matrix invB = inv(matrixB);
+	t_matrix result = multiply_mtx(matrixC, invB);
 
 	for (int i = 0; i < 16; ++i) {
 		EXPECT_NEAR(result.content[i], matrixA.content[i], 1e-5);

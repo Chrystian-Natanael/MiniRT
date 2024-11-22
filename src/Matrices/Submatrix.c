@@ -6,13 +6,13 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:18:06 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/15 14:59:24 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:38:18 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
-static void	submatrix_aux(t_matrix *res, t_matrix mtx, int sub_r, int sub_c)
+static void	submtx_aux(t_matrix *res, t_matrix mtx, int sub_r, int sub_c)
 {
 	int		ir_m;
 	int		ic_m;
@@ -32,15 +32,15 @@ static void	submatrix_aux(t_matrix *res, t_matrix mtx, int sub_r, int sub_c)
 		{
 			if (ic_m == sub_c)
 				continue ;
-			vl_pos_m = get_value_pos(ir_m, ic_m, mtx);
-			set_value_pos(get_pos(ir_r, ic_r, res->col), vl_pos_m, res);
+			vl_pos_m = get_val_pos(ir_m, ic_m, mtx);
+			set_val(get_pos(ir_r, ic_r, res->col), vl_pos_m, res);
 			ic_r++;
 		}
 		ir_r++;
 	}
 }
 
-t_matrix	submatrix(t_matrix matrix, int sub_r, int sub_c)
+t_matrix	submtx(t_matrix matrix, int sub_r, int sub_c)
 {
 	t_matrix	res;
 
@@ -49,6 +49,6 @@ t_matrix	submatrix(t_matrix matrix, int sub_r, int sub_c)
 	ft_bzero(&res, sizeof(t_matrix));
 	res.row = matrix.row - 1;
 	res.col = matrix.col - 1;
-	submatrix_aux(&res, matrix, sub_r, sub_c);
+	submtx_aux(&res, matrix, sub_r, sub_c);
 	return (res);
 }

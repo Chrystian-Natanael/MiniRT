@@ -6,15 +6,15 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:20:00 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/20 12:13:19 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:24:29 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
-static t_matrix	inverse_aux(t_matrix matrix);
+static t_matrix	inv_aux(t_matrix matrix);
 
-static t_matrix	inverse_aux(t_matrix matrix)
+static t_matrix	inv_aux(t_matrix matrix)
 {
 	double		det_mtx;
 	int			ir;
@@ -23,7 +23,7 @@ static t_matrix	inverse_aux(t_matrix matrix)
 	t_matrix	inv;
 
 	ft_bzero(&inv, sizeof(t_matrix));
-	det_mtx = determinant(matrix);
+	det_mtx = det(matrix);
 	ir = -1;
 	inv.col = matrix.col;
 	inv.row = matrix.row;
@@ -33,15 +33,15 @@ static t_matrix	inverse_aux(t_matrix matrix)
 		while (++ic < matrix.col)
 		{
 			value = cofactor(matrix, ir, ic) / det_mtx;
-			set_value_pos(get_pos(ic, ir, inv.col), value, &inv);
+			set_val(get_pos(ic, ir, inv.col), value, &inv);
 		}
 	}
 	return (inv);
 }
 
-t_matrix	inverse(t_matrix matrix)
+t_matrix	inv(t_matrix matrix)
 {
-	if (determinant(matrix) == 0)
+	if (det(matrix) == 0)
 		error("Error\n", "msn", NULL, 1);
-	return (inverse_aux(matrix));
+	return (inv_aux(matrix));
 }

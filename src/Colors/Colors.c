@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:56:54 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/14 09:07:18 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:15:43 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static uint32_t	convert(double color_value)
 	if (color_value > 1)
 		color_value = 1;
 	color_value *= 255;
-	return ((uint32_t) color_value & 0xFF);
+	return ((uint32_t)color_value & 0xFF);
 }
 
 /**
@@ -63,13 +63,11 @@ static uint32_t	convert(double color_value)
  * components
  * @return The 32-bit hexadecimal value representing the color
  */
-uint32_t	rgb_to_hexa(t_colors color)
+uint32_t	rgb2hex(t_colors color)
 {
 	uint32_t	convert_color;
 
-	convert_color = convert(color.red) << 24 | \
-		convert(color.green) << 16 | \
-		convert(color.blue) << 8 | \
-		0xFF;
+	convert_color = convert(color.red) << 24 | convert(color.green) << 16
+		| convert(color.blue) << 8 | 0xFF;
 	return (convert_color);
 }

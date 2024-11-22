@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/21 13:31:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:55:29 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @param w The w component of the tuple
  * @return A pointer to the newly created tuple
  */
-double	*create_tuple(double x, double y, double z, double w)
+double	*create_tp(double x, double y, double z, double w)
 {
 	double	*tuple;
 
@@ -49,7 +49,7 @@ double	*create_tuple(double x, double y, double z, double w)
  */
 double	*point(double x, double y, double z)
 {
-	return (create_tuple(x, y, z, POINT));
+	return (create_tp(x, y, z, POINT));
 }
 
 /**
@@ -65,5 +65,5 @@ double	*point(double x, double y, double z)
  */
 double	*vector(double x, double y, double z)
 {
-	return (create_tuple(x, y, z, VECTOR));
+	return (create_tp(x, y, z, VECTOR));
 }

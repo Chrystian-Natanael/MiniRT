@@ -6,13 +6,13 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:43:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/20 16:34:47 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:29:15 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
-t_matrix	create_matrix(int row, int col, double *elements)
+t_matrix	create_mtx(int row, int col, double *elements)
 {
 	int			ir;
 	int			ic;
@@ -38,7 +38,7 @@ t_matrix	create_matrix(int row, int col, double *elements)
 	return (matrix);
 }
 
-bool	compare_matrix(t_matrix mtx_a, t_matrix mtx_b)
+bool	comp_mtx(t_matrix mtx_a, t_matrix mtx_b)
 {
 	int	ir;
 	int	ic;
@@ -60,10 +60,10 @@ bool	compare_matrix(t_matrix mtx_a, t_matrix mtx_b)
 	return (true);
 }
 
-t_matrix	identity(void)
+t_matrix	id_mtx(void)
 {
 	static double	elements[16] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0,
 		1};
 
-	return (create_matrix(4, 4, elements));
+	return (create_mtx(4, 4, elements));
 }

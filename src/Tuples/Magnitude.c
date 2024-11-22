@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:55:50 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/14 09:04:04 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:02:12 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param vector The vector to be negated
  * @return A pointer to the resulting vector after negation
  */
-static double	magnitude_aux(double x, double y, double z, double w)
+static double	mag_aux(double x, double y, double z, double w)
 {
 	double	nbr_pow;
 
@@ -41,7 +41,7 @@ static double	magnitude_aux(double x, double y, double z, double w)
  * @param w The w component of the vector
  * @return The magnitude of the vector
  */
-double	magnitude(double *vector)
+double	mag(double *vector)
 {
-	return (magnitude_aux(vector[X], vector[Y], vector[Z], vector[W]));
+	return (mag_aux(vector[X], vector[Y], vector[Z], vector[W]));
 }

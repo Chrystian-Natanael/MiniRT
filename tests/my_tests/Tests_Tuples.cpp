@@ -145,8 +145,8 @@ TEST(OperationsTest, TestSubFunctionNegatingVector){
 }
 
 TEST(OperationsTest, TestMultFunction){
-	double *v = create_tuple(1, -2, 3, -4);
-	double *r = multiplication(v, 3.5);
+	double *v = create_tp(1, -2, 3, -4);
+	double *r = multiply(v, 3.5);
 
 	ASSERT_NE(r, nullptr);
 	EXPECT_DOUBLE_EQ(r[0], 3.5);
@@ -159,7 +159,7 @@ TEST(OperationsTest, TestMultFunction){
 }
 
 TEST(OperationsTest, TestDivFunctionWithValidDividend){
-	double *v = create_tuple(1, -2, 3, -4);
+	double *v = create_tp(1, -2, 3, -4);
 	double *r = division(v, 2);
 
 	ASSERT_NE(r, nullptr);
@@ -173,7 +173,7 @@ TEST(OperationsTest, TestDivFunctionWithValidDividend){
 }
 
 TEST(OperationsTest, TestDivFunctionWithInvalidDividend){
-	double *v = create_tuple(1, -2, 3, -4);
+	double *v = create_tp(1, -2, 3, -4);
 	double *r = division(v, 0);
 
 	ASSERT_EQ(r, nullptr);
@@ -185,9 +185,9 @@ TEST(OperationsTest, TestMagFunctionWithResOne){
 	double *v1 = vector(1, 0, 0);
 	double *v2 = vector(0, 1, 0);
 	double *v3 = vector(0, 0, 1);
-	double r1 = magnitude(v1);
-	double r2 = magnitude(v2);
-	double r3 = magnitude(v3);
+	double r1 = mag(v1);
+	double r2 = mag(v2);
+	double r3 = mag(v3);
 
 	EXPECT_DOUBLE_EQ(r1, 1);
 	EXPECT_DOUBLE_EQ(r2, 1);
@@ -201,8 +201,8 @@ TEST(OperationsTest, TestMagFunctionWithResOne){
 TEST(OperationsTest, TestMagFunctionWithResDifThanOne){
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(-1, -2, -3);
-	double r1 = magnitude(v1);
-	double r2 = magnitude(v2);
+	double r1 = mag(v1);
+	double r2 = mag(v2);
 
 	EXPECT_DOUBLE_EQ(r1, sqrt(14));
 	EXPECT_DOUBLE_EQ(r2, sqrt(14));
@@ -235,7 +235,7 @@ TEST(OperationsTest, TestNormFunction){
 TEST(OperationsTest, TestDotProductFunction){
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(2, 3, 4);
-	double r = dot_product(v1, v2);
+	double r = dot_prod(v1, v2);
 
 	EXPECT_DOUBLE_EQ(r, 20);
 
@@ -246,8 +246,8 @@ TEST(OperationsTest, TestDotProductFunction){
 TEST(OperationsTest, TestCrossProductFunction){
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(2, 3, 4);
-	double *r1 = cross_product(v1, v2);
-	double *r2 = cross_product(v2, v1);
+	double *r1 = cross_prod(v1, v2);
+	double *r2 = cross_prod(v2, v1);
 
 	ASSERT_NE(r1, nullptr);
 	ASSERT_NE(r2, nullptr);

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:22:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/21 13:34:09 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:08:07 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param value The double value to be converted
  * @return The rounded integer value
  */
-int	double_to_int(double value)
+int	dtoi(double value)
 {
 	return ((int)round(value));
 }

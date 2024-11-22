@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:31:54 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/21 13:44:21 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:08:06 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define MAX_DIFF 0.00001
 
 // ! Convert
-int		double_to_int(double value);
+int		dtoi(double value);
 
 // ! Error
 void	warning(char *m1, char *m2, char *m3);

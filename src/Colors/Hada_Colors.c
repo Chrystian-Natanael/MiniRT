@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:34:23 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/14 09:07:58 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:11:31 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @param color2 The second color
  * @return A pointer to the resulting color after the Hadamard product
  */
-t_colors	*hada_prd_colors(t_colors *color1, t_colors *color2)
+t_colors	*hada_colors(t_colors *color1, t_colors *color2)
 {
 	t_colors	*res;
 

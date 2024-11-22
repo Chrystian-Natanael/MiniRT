@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:44:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/21 13:44:17 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:06:01 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef enum e_tuple_axis
 	W
 }	t_tuple_axis;
 
-double	*create_tuple(double x, double y, double z, double w);
+double	*create_tp(double x, double y, double z, double w);
 double	*point(double x, double y, double z);
 double	*vector(double x, double y, double z);
 bool	equal(double nbr1, double nbr2);
@@ -38,11 +38,11 @@ double	*sum(double *tpl1, double *tpl2);
 double	*sub(double *tpl1, double *tpl2);
 double	*negate(double x, double y, double z, double w);
 double	*negate_vector(double *vector);
-double	*multiplication(double *vector, double factor);
+double	*multiply(double *vector, double factor);
 double	*division(double *vector, double divisor);
-double	magnitude(double *vector);
+double	mag(double *vector);
 double	*norm(double *vector);
-double	dot_product(double *vector1, double *vector2);
-double	*cross_product(double *vector1, double *vector2);
+double	dot_prod(double *vector1, double *vector2);
+double	*cross_prod(double *vector1, double *vector2);
 
 #endif // !TUPLES_H

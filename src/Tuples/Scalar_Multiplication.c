@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:57:21 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/14 09:04:14 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:06:01 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @return A pointer to the resulting vector after multiplication, or NULL
  * if the input vector is NULL
  */
-double	*multiplication(double *vector, double factor)
+double	*multiply(double *vector, double factor)
 {
 	int		idx;
 	double	*res;

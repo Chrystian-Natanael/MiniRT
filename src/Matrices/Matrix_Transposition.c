@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Matrix_Transposition.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:40:58 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/15 13:40:47 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:35:52 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Matrices.h"
 
-t_matrix	matrix_transpose(t_matrix matrix)
+t_matrix	transp_mtx(t_matrix matrix)
 {
 	int			ir;
 	int			ic;
@@ -29,9 +29,9 @@ t_matrix	matrix_transpose(t_matrix matrix)
 		ic = -1;
 		while (++ic < matrix.col)
 		{
-			vl_pos_m = get_value_pos(ir, ic, matrix);
+			vl_pos_m = get_val_pos(ir, ic, matrix);
 			pos_t = get_pos(ic, ir, matrix.row);
-			set_value_pos(pos_t, vl_pos_m, &transp);
+			set_val(pos_t, vl_pos_m, &transp);
 		}
 	}
 	return (transp);

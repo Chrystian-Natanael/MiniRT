@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minor.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 09:34:30 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/18 11:42:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:38:57 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 double	minor(t_matrix matrix, int sub_r, int sub_c)
 {
-	t_matrix	submtx;
+	t_matrix	submatrix;
 
-	submtx = submatrix(matrix, sub_r, sub_c);
-	return (determinant(submtx));
+	submatrix = submtx(matrix, sub_r, sub_c);
+	return (det(submatrix));
 }

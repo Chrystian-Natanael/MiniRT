@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Matrix_Multiplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:23:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/15 11:27:40 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:33:29 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static double	calculate(t_matrix mtx_a, t_matrix mtx_b, int ir, int ic)
 	idx = -1;
 	res = 0;
 	while (++idx < mtx_a.col)
-		res += get_value_pos(ir, idx, mtx_a) * get_value_pos(idx, ic, mtx_b);
+		res += get_val_pos(ir, idx, mtx_a) * get_val_pos(idx, ic, mtx_b);
 	return (res);
 }
 
@@ -33,11 +33,11 @@ static double	calculate_matrix_tuple(t_matrix matrix, double *tuple, int ir)
 	idx = -1;
 	res = 0;
 	while (++idx < matrix.row)
-		res += get_value_pos(ir, idx, matrix) * tuple[idx];
+		res += get_val_pos(ir, idx, matrix) * tuple[idx];
 	return (res);
 }
 
-double	*matrix_tuple_multiply(t_matrix matrix, double *tuple)
+double	*multiply_mtx_tp(t_matrix matrix, double *tuple)
 {
 	double	*res;
 	double	axis[4];
@@ -48,11 +48,11 @@ double	*matrix_tuple_multiply(t_matrix matrix, double *tuple)
 	axis[Y] = calculate_matrix_tuple(matrix, tuple, 1);
 	axis[Z] = calculate_matrix_tuple(matrix, tuple, 2);
 	axis[W] = calculate_matrix_tuple(matrix, tuple, 3);
-	res = create_tuple(axis[X], axis[Y], axis[Z], axis[W]);
+	res = create_tp(axis[X], axis[Y], axis[Z], axis[W]);
 	return (res);
 }
 
-t_matrix	matrix_multiply(t_matrix matrix_a, t_matrix matrix_b)
+t_matrix	multiply_mtx(t_matrix matrix_a, t_matrix matrix_b)
 {
 	int			ir;
 	int			ic;
@@ -69,7 +69,7 @@ t_matrix	matrix_multiply(t_matrix matrix_a, t_matrix matrix_b)
 		while (++ic < matrix_b.col)
 		{
 			pos = get_pos(ir, ic, matrix_a.col);
-			set_value_pos(pos, calculate(matrix_a, matrix_b, ir, ic), &res);
+			set_val(pos, calculate(matrix_a, matrix_b, ir, ic), &res);
 		}
 	}
 	res.col = matrix_b.col;

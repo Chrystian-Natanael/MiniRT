@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:51:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/15 11:06:50 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:59:36 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param vector2 The second vector
  * @return The dot product of the two vectors
  */
-static double	dot_product_aux(double *vector1, double *vector2)
+static double	dot_prod_aux(double *vector1, double *vector2)
 {
 	int		idx;
 	double	dot_prod;
@@ -44,10 +44,10 @@ static double	dot_product_aux(double *vector1, double *vector2)
  * @param vector2 The second vector
  * @return The dot product of the two vectors
  */
-double	dot_product(double *vector1, double *vector2)
+double	dot_prod(double *vector1, double *vector2)
 {
 	if (!vector1 || !vector2)
 		error("Error\n", "Impossible 'dot product' operation with null vectors",
 			NULL, ERROR);
-	return (dot_product_aux(vector1, vector2));
+	return (dot_prod_aux(vector1, vector2));
 }

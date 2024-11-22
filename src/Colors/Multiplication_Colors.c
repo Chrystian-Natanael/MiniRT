@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:25:36 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/14 09:05:54 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:14:06 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param factor The scalar factor to multiply each component of the color
  * @return A pointer to the resulting color after multiplication
  */
-t_colors	*multiplication_colors(t_colors *color, double factor)
+t_colors	*multiply_colors(t_colors *color, double factor)
 {
 	t_colors	*res;
 

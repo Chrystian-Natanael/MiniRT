@@ -47,7 +47,7 @@ TEST(OperationColors, SubtractionColors) {
 
 TEST(OperationColors, MultiplicationColors) {
 	t_colors *c = create_color(0.2, 0.3, 0.4);
-	t_colors *res = multiplication_colors(c, 2);
+	t_colors *res = multiply_colors(c, 2);
 
 	ASSERT_NE(res, nullptr);
 	EXPECT_EQ(res->red, 0.4);
@@ -60,7 +60,7 @@ TEST(OperationColors, MultiplicationColors) {
 TEST(OperationColors, HadaColors) {
 	t_colors *c1 = create_color(1, 0.2, 0.4);
 	t_colors *c2 = create_color(0.9, 1, 0.1);
-	t_colors *res = hada_prd_colors(c1, c2);
+	t_colors *res = hada_colors(c1, c2);
 
 	ASSERT_NE(res, nullptr);
 	EXPECT_EQ(res->red, 0.9);
@@ -74,7 +74,7 @@ TEST(OperationColors, HadaColors) {
 TEST(OperationColors, HadaColorsOtherValues) {
 	t_colors *c1 = create_color(2, 0.2, 0.4);
 	t_colors *c2 = create_color(0.9, 2, 0.2);
-	t_colors *res = hada_prd_colors(c1, c2);
+	t_colors *res = hada_colors(c1, c2);
 
 	ASSERT_NE(res, nullptr);
 	EXPECT_EQ(res->red, 1.8);
@@ -87,7 +87,7 @@ TEST(OperationColors, HadaColorsOtherValues) {
 
 TEST(OperationColors, ConvertRGBToHexa) {
 	t_colors *c = create_color(1, 0, 0);
-	uint32_t res = rgb_to_hexa(*c);
+	uint32_t res = rgb2hex(*c);
 
 	EXPECT_EQ(res, 0xFF0000FF);
 	free(c);

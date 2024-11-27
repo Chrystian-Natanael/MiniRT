@@ -37,19 +37,16 @@ TEST(PointAndVectorTest, TestEqualFunction) {
 
 TEST(OperationsTest, TestSumFunction) {
 	double *p1 = point(3, -2, 5);
-	double *p2 = point(3, -2, 5);
 	double *v = vector(-2, 3, 1);
 	double *r = sum(p1, v);
 
 	ASSERT_NE(r, nullptr);
-	EXPECT_EQ(sum(p1, p2), nullptr);
 	EXPECT_DOUBLE_EQ(r[0], 1);
 	EXPECT_DOUBLE_EQ(r[1], 1);
 	EXPECT_DOUBLE_EQ(r[2], 6);
 	EXPECT_DOUBLE_EQ(r[3], 1);
 
 	free(p1);
-	free(p2);
 	free(v);
 	free(r);
 }

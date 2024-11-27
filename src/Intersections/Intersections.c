@@ -6,25 +6,22 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 13:09:30 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:27:53 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intersections.h"
 
-static t_intersec	*calc_intersection(t_coef coef)
+static t_intersect	calc_intersection(t_coef coef)
 {
-	t_intersec	*list;
+	t_intersect	list;
 
-	list = allocate(sizeof(t_intersec));
+	ft_bzero(&list, sizeof(t_intersect));
 	if (coef.discrim < 0)
 		return (list);
-	list->intersections = allocate(sizeof(double) * 2);
-	list->count = 2;
-	list->intersections[0] = ((coef.b * -1) - sqrt(coef.discrim)) / (2
-			* coef.a);
-	list->intersections[1] = ((coef.b * -1) + sqrt(coef.discrim)) / (2
-			* coef.a);
+	list.count = 2;
+	list.t1 = ((coef.b * -1) - sqrt(coef.discrim)) / (2 * coef.a);
+	list.t2 = ((coef.b * -1) + sqrt(coef.discrim)) / (2 * coef.a);
 	return (list);
 }
 
@@ -41,12 +38,45 @@ static t_coef	calc_coef(t_sphere *sphere, t_ray ray)
 	return (coef);
 }
 
-t_intersec	*intersect(t_sphere *sphere, t_ray ray)
+void	add2list(t_lst_inter **head, t_intersect value, t_sphere *s)
 {
-	t_coef	coef;
+	t_lst_inter	*new1;
+	t_lst_inter	*new2;
+	t_lst_inter	*current;
+	t_lst_inter	*prev;
+
+	prev = NULL;
+	current = *head;
+	if (!(*head))
+	{
+		initialize_head(head, value, s);
+		return ;
+	}
+	new1 = allocate(sizeof(t_lst_inter));
+	new2 = allocate(sizeof(t_lst_inter));
+	new1->pos = value.t1;
+	new2->pos = value.t2;
+	insert_into_list(head, new1, new2);
+	while (current)
+	{
+		current->prev = prev;
+		prev = current;
+		current = current->next;
+	}
+}
+
+t_lst_inter	*intersect(t_sphere *sphere, t_ray ray)
+{
+	t_coef		coef;
+	t_intersect	value;
+	t_lst_inter	**list;
 
 	if (!sphere)
 		error("Error\n", "Sphere doesn't exist", NULL, ERROR);
 	coef = calc_coef(sphere, ray);
-	return (calc_intersection(coef));
+	value = calc_intersection(coef);
+	list = allocate(sizeof(t_lst_inter *));
+	if (value.count != 0)
+		add2list(list, value, sphere);
+	return (*list);
 }

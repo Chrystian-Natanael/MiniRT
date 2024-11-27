@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:23:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:56:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/27 12:08:36 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /**
  * @brief Calculate the value of a specific position in the resulting matrix
- *        from the multiplication of two matrices.
+ *	from the multiplication of two matrices.
  *
  * This function calculates the value of the element at the specified row and
  * column in the resulting matrix by performing the dot product of the row from

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:20:00 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:48:59 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:30:48 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static t_matrix	inv_aux(t_matrix matrix)
 /**
  * @brief Calculate the inverse of a matrix
  *
+ * (OBS: return identity matrix in det = 0)
  * This function calculates the inverse of a matrix. If the determinant of the
  * matrix is zero, an error message is displayed and the program is terminated.
  *

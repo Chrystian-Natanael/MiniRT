@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/14 09:04:01 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/11/27 12:22:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ double	*sum(double *tpl1, double *tpl2)
 	double	*res;
 
 	if (tpl1[W] == 1 && tpl2[W] == 1)
-		return (NULL);
+		error("Error\n", "Impossible make addition with two points", NULL,
+			ERROR);
 	res = allocate(sizeof(double) * 4);
 	idx = -1;
 	while (++idx < 4)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/02 15:04:42 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:08:22 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void					insert_into_list(t_lst_inter **head, t_lst_inter *n1);
 							// t_sphere *s);
 int						lst_count(t_lst_inter *lst);
 
-t_lst_inter				hit(t_lst_inter *list);
+t_lst_inter				*hit(t_lst_inter *list);
 
 #endif

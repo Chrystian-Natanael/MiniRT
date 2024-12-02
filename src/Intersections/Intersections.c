@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/02 13:50:20 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:23:40 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,25 @@ static t_coef	calc_coef(t_sphere *sphere, t_ray ray)
 // 	}
 // }
 
-void	intersections(double pos, t_sphere *s, t_lst_inter *dest)
+void	intersections(double pos, t_sphere *s, t_lst_inter **dest)
 {
 	t_lst_inter *node;
 
 	if (!s)
 		error("Error\n", "Sphere doesn't exist", NULL, ERROR);
-	if (!dest->sphere)
+	if (!(*dest))
 	{
-		dest->pos = pos;
-		dest->sphere = s;
+		(*dest) = allocate(sizeof(t_lst_inter));
+		(*dest)->pos = pos;
+		(*dest)->sphere = s;
 		return ;
 	}
 	node = allocate(sizeof(t_lst_inter));
 	node->sphere = s;
 	node->pos = pos;
-	insert_into_list(&dest, node);
+	insert_into_list(dest, node);
+	while((*dest)->prev)
+		*dest = (*dest)->prev;
 }
 
 t_intersect	*intersect(t_sphere *sphere, t_ray ray)

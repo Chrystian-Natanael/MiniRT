@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/02 13:35:41 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:23:12 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_intersect	*intersect(t_sphere *sphere, t_ray ray);
 // void					add2list(t_lst_inter **head, t_intersect value,
 // 							t_sphere *s);
 
-void	intersections(double pos, t_sphere *s, t_lst_inter *dest);
+void	intersections(double pos, t_sphere *s, t_lst_inter **dest);
 
 
 void					append_to_end(t_lst_inter *tmp, t_lst_inter *new1);

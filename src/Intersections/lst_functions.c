@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:49:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/12/02 13:34:43 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:28:27 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ void	insert_into_list(t_lst_inter **head, t_lst_inter *n1)
 	while (tmp)
 	{
 		if (tmp->pos >= n1->pos)
+		{
 			insert_before(tmp, n1);
-		if (!tmp->next)
+			break ;
+		}
+		else if (!tmp->next)
 		{
 			append_to_end(tmp, n1);
 			break ;

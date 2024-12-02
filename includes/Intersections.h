@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/02 14:49:07 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:04:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ void					insert_into_list(t_lst_inter **head, t_lst_inter *n1);
 // void					initialize_head(t_lst_inter **head, t_intersect value,
 							// t_sphere *s);
 int						lst_count(t_lst_inter *lst);
+
+t_lst_inter				hit(t_lst_inter *list);
 
 #endif

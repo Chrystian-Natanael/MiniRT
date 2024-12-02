@@ -58,15 +58,15 @@ TEST(TesterRay, RayIntersectsSphereAtTwoPoints) {
 	t_ray r = create_ray(origin, direction);
 	t_sphere *s = create_sphere();
 
-	t_lst_inter *lst = intersect(s, r);
+	t_intersect *lst = intersect(s, r);
 
-	EXPECT_TRUE(equal(lst->pos, 4.0));
-	EXPECT_TRUE(equal(lst->next->pos, 6.0));
+	EXPECT_TRUE(equal(lst->t1, 4.0));
+	EXPECT_TRUE(equal(lst->t2, 6.0));
+	EXPECT_TRUE(equal(lst->count, 2));
 
 	free(origin);
 	free(direction);
 	free(s);
-	free(lst->next);
 	free(lst);
 }
 
@@ -76,15 +76,15 @@ TEST(TesterRay, RayIntersectsSphereAtTangent) {
 	t_ray r = create_ray(origin, direction);
 	t_sphere *s = create_sphere();
 
-	t_lst_inter *lst = intersect(s, r);
+	t_intersect *lst = intersect(s, r);
 
-	EXPECT_TRUE(equal(lst->pos, 5.0));
-	EXPECT_TRUE(equal(lst->next->pos, 5.0));
+	EXPECT_TRUE(equal(lst->t1, 5.0));
+	EXPECT_TRUE(equal(lst->t2, 5.0));
+	EXPECT_TRUE(equal(lst->count, 2));
 
 	free(origin);
 	free(direction);
 	free(s);
-	free(lst->next);
 	free(lst);
 }
 
@@ -94,9 +94,9 @@ TEST(TesterRay, RayMissesSphere) {
 	t_ray r = create_ray(origin, direction);
 	t_sphere *s = create_sphere();
 
-	t_lst_inter *lst = intersect(s, r);
+	t_intersect *lst = intersect(s, r);
 
-	EXPECT_EQ(lst, nullptr);
+	EXPECT_EQ(lst->count, 0);
 
 	free(origin);
 	free(direction);
@@ -110,15 +110,16 @@ TEST(TesterRay, RayOriginatesInsideSphere) {
 	t_ray r = create_ray(origin, direction);
 	t_sphere *s = create_sphere();
 
-	t_lst_inter *lst = intersect(s, r);
+	t_intersect *lst = intersect(s, r);
 
-	EXPECT_TRUE(equal(lst->pos, -1.0));
-	EXPECT_TRUE(equal(lst->next->pos, 1.0));
+	EXPECT_TRUE(equal(lst->t1, -1.0));
+	EXPECT_TRUE(equal(lst->t2, 1.0));
+	EXPECT_EQ(lst->count, 2);
+
 
 	free(origin);
 	free(direction);
 	free(s);
-	free(lst->next);
 	free(lst);
 }
 
@@ -128,14 +129,75 @@ TEST(TesterRay, SphereIsBehindRay) {
 	t_ray r = create_ray(origin, direction);
 	t_sphere *s = create_sphere();
 
-	t_lst_inter *lst = intersect(s, r);
+	t_intersect *lst = intersect(s, r);
 
-	EXPECT_TRUE(equal(lst->pos, -6.0));
-	EXPECT_TRUE(equal(lst->next->pos, -4.0));
+	EXPECT_TRUE(equal(lst->t1, -6.0));
+	EXPECT_TRUE(equal(lst->t2, -4.0));
+	EXPECT_EQ(lst->count, 2);
+
 
 	free(origin);
 	free(direction);
 	free(s);
-	free(lst->next);
 	free(lst);
+}
+
+TEST(TesterRay, IntersectionEncapsulatesTAndObject) {
+	t_sphere *s = create_sphere();
+	t_lst_inter dest;
+
+	ft_bzero(&dest, sizeof(t_lst_inter));
+	intersections(3.5, s, &dest);
+
+	EXPECT_TRUE(equal(dest.pos, 3.5));
+	EXPECT_EQ(dest.sphere->origin, s->origin);
+	EXPECT_EQ(dest.sphere->radius, s->radius);
+
+	free(s);
+}
+
+TEST(TesterRay, AggregatingIntersections) {
+	t_sphere *s = create_sphere();
+	t_lst_inter dest;
+
+	ft_bzero(&dest, sizeof(t_lst_inter));
+	intersections(1, s, &dest);
+	intersections(2, s, &dest);
+
+	EXPECT_EQ(lst_count(&dest), 2);
+	EXPECT_TRUE(equal(dest.pos, 1));
+	EXPECT_TRUE(equal(dest.next->pos, 2));
+
+	free(s);
+	free(dest.next);
+}
+
+TEST(TesterRay, IntersectSetsObjectOnIntersection) {
+	double *origin = point(0, 0, -5);
+	double *direction = vector(0, 0, 1);
+	t_ray r = create_ray(origin, direction);
+	t_sphere *s = create_sphere();
+	t_lst_inter dest;
+
+	ft_bzero(&dest, sizeof(t_lst_inter));
+	t_intersect *xs = intersect(s, r);
+	intersections(xs->t1, s, &dest);
+	intersections(xs->t2, s, &dest);
+
+
+	EXPECT_EQ(xs->count, 2);
+	EXPECT_EQ(lst_count(&dest), 2);
+	EXPECT_EQ(xs->sphere, s);
+	EXPECT_EQ(dest.sphere, s);
+	EXPECT_EQ(dest.next->sphere, s);
+
+	EXPECT_TRUE(equal(dest.pos, xs->t1));
+	EXPECT_TRUE(equal(dest.next->pos, xs->t2));
+
+
+	free(origin);
+	free(direction);
+	free(s);
+	free(dest.next);
+	free(xs);
 }

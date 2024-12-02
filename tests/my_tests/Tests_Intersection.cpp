@@ -5,6 +5,7 @@ extern "C" {
 	#include "Utils.h"
 	#include "Intersections.h"
 	#include "Tuples.h"
+	#include "Matrices.h"
 }
 
 TEST(TesterRay, CreateAndQueryRay) {
@@ -298,4 +299,111 @@ TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection) {
 	free(dest->next->next);
 	free(dest->next);
 	free(dest);
+}
+
+TEST(TesterRay, TranslatingARay) {
+	double *origin = point(1, 2, 3);
+	double *direction = vector(0, 1, 0);
+	t_ray r = create_ray(origin, direction);
+	t_matrix m = translate(3, 4, 5);
+
+	t_ray r2 = transform(r, m);
+
+	double *expected_origin = point(4, 6, 8);
+	double *expected_direction = vector(0, 1, 0);
+
+	EXPECT_TRUE(equal(r2.origin[X], expected_origin[X]));
+	EXPECT_TRUE(equal(r2.origin[Y], expected_origin[Y]));
+	EXPECT_TRUE(equal(r2.origin[Z], expected_origin[Z]));
+	EXPECT_TRUE(equal(r2.direction[X], expected_direction[X]));
+	EXPECT_TRUE(equal(r2.direction[Y], expected_direction[Y]));
+	EXPECT_TRUE(equal(r2.direction[Z], expected_direction[Z]));
+
+	free(origin);
+	free(direction);
+	free(expected_origin);
+	free(expected_direction);
+}
+
+TEST(TesterRay, ScalingARay) {
+	double *origin = point(1, 2, 3);
+	double *direction = vector(0, 1, 0);
+	t_ray r = create_ray(origin, direction);
+	t_matrix m = scale(2, 3, 4);
+
+	t_ray r2 = transform(r, m);
+
+	double *expected_origin = point(2, 6, 12);
+	double *expected_direction = vector(0, 3, 0);
+
+	EXPECT_EQ(r2.origin[X], expected_origin[X]);
+	EXPECT_EQ(r2.origin[Y], expected_origin[Y]);
+	EXPECT_EQ(r2.origin[Z], expected_origin[Z]);
+	EXPECT_EQ(r2.direction[X], expected_direction[X]);
+	EXPECT_EQ(r2.direction[Y], expected_direction[Y]);
+	EXPECT_EQ(r2.direction[Z], expected_direction[Z]);
+
+	free(origin);
+	free(direction);
+	free(expected_origin);
+	free(expected_direction);
+}
+
+TEST(TesterSphere, DefaultTransformation) {
+	t_sphere *s = create_sphere();
+	t_matrix identity = id_mtx();
+
+	EXPECT_TRUE(comp_mtx(s->transform, identity));
+
+	free(s);
+}
+
+TEST(TesterSphere, ChangingTransformation) {
+	t_sphere *s = create_sphere();
+	t_matrix t = translate(2, 3, 4);
+
+	set_transform(s, t);
+
+	EXPECT_TRUE(comp_mtx(s->transform, t));
+
+	free(s);
+}
+
+TEST(TesterSphere, IntersectingScaledSphereWithRay) {
+	double *origin = point(0, 0, -5);
+	double *direction = vector(0, 0, 1);
+	t_ray r = create_ray(origin, direction);
+	t_sphere *s = create_sphere();
+	t_matrix scaling = scale(2, 2, 2);
+
+	set_transform(s, scaling);
+
+	t_intersect *xs = intersect(s, r);
+
+	EXPECT_EQ(xs->count, 2);
+	EXPECT_EQ(xs->t1, 3);
+	EXPECT_EQ(xs->t2, 7);
+
+	free(origin);
+	free(direction);
+	free(s);
+	free(xs);
+}
+
+TEST(TesterSphere, IntersectingTranslatedSphereWithRay) {
+	double *origin = point(0, 0, -5);
+	double *direction = vector(0, 0, 1);
+	t_ray r = create_ray(origin, direction);
+	t_sphere *s = create_sphere();
+	t_matrix translation = translate(5, 0, 0);
+
+	set_transform(s, translation);
+	t_intersect *xs = intersect(s, r);
+
+	EXPECT_EQ(xs->count, 0);
+
+	free(origin);
+	free(direction);
+	free(s);
+	free(xs);
 }

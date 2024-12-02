@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/02 14:23:12 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:49:07 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,13 @@ typedef struct s_coef
 t_ray					create_ray(double *origin, double *direction);
 double					*pos_ray(t_ray ray, double time);
 
-t_intersect	*intersect(t_sphere *sphere, t_ray ray);
-
+t_intersect				*intersect(t_sphere *sphere, t_ray ray);
 
 // void					add2list(t_lst_inter **head, t_intersect value,
 // 							t_sphere *s);
 
-void	intersections(double pos, t_sphere *s, t_lst_inter **dest);
-
+void					intersections(double pos, t_sphere *s,
+							t_lst_inter **dest);
 
 void					append_to_end(t_lst_inter *tmp, t_lst_inter *new1);
 void					insert_before(t_lst_inter *tmp, t_lst_inter *new_node);

@@ -225,3 +225,77 @@ TEST(TesterRay, OrdenadedNumbers) {
 	free(dest->next);
 	free(dest);
 }
+
+TEST(TesterRay, HitWhenAllIntersectionsHavePositiveT) {
+	t_sphere *s = create_sphere();
+	t_lst_inter *dest;
+
+	dest = NULL;
+	intersections(1, s, &dest);
+	intersections(2, s, &dest);
+
+	t_lst_inter *i = hit(dest);
+
+	EXPECT_EQ(i->pos, 1);
+
+	free(s);
+	free(dest->next);
+	free(dest);
+}
+
+TEST(TesterRay, HitWhenSomeIntersectionsHaveNegativeT) {
+	t_sphere *s = create_sphere();
+	t_lst_inter *dest;
+
+	dest = NULL;
+	intersections(-1, s, &dest);
+	intersections(1, s, &dest);
+
+	t_lst_inter *i = hit(dest);
+
+	EXPECT_EQ(i->pos, 1);
+
+	free(s);
+	free(dest->next);
+	free(dest);
+}
+
+TEST(TesterRay, HitWhenAllIntersectionsHaveNegativeT) {
+	t_sphere *s = create_sphere();
+	t_lst_inter *dest;
+
+	dest = NULL;
+	intersections(-1, s, &dest);
+	intersections(-2, s, &dest);
+
+	t_lst_inter *i = hit(dest);
+
+	EXPECT_EQ(i, nullptr);
+
+	free(s);
+	free(dest->next);
+	free(dest);
+}
+
+TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection) {
+	t_sphere *s = create_sphere();
+	t_lst_inter *dest;
+
+	dest = NULL;
+	intersections(5, s, &dest);
+	intersections(7, s, &dest);
+	intersections(-3, s, &dest);
+	intersections(2, s, &dest);
+
+	t_lst_inter *i = hit(dest);
+
+	EXPECT_EQ(i->pos, 2);
+	EXPECT_EQ(i->next->pos, 5);
+	EXPECT_EQ(i->next->next->pos, 7);
+
+	free(s);
+	free(dest->next->next->next);
+	free(dest->next->next);
+	free(dest->next);
+	free(dest);
+}

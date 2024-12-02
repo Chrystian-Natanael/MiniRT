@@ -6,22 +6,22 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/27 15:27:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:50:20 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intersections.h"
 
-static t_intersect	calc_intersection(t_coef coef)
+static t_intersect	*calc_intersection(t_coef coef)
 {
-	t_intersect	list;
+	t_intersect	*list;
 
-	ft_bzero(&list, sizeof(t_intersect));
+	list = allocate(sizeof(t_intersect));
 	if (coef.discrim < 0)
 		return (list);
-	list.count = 2;
-	list.t1 = ((coef.b * -1) - sqrt(coef.discrim)) / (2 * coef.a);
-	list.t2 = ((coef.b * -1) + sqrt(coef.discrim)) / (2 * coef.a);
+	list->count = 2;
+	list->t1 = ((coef.b * -1) - sqrt(coef.discrim)) / (2 * coef.a);
+	list->t2 = ((coef.b * -1) + sqrt(coef.discrim)) / (2 * coef.a);
 	return (list);
 }
 
@@ -38,45 +38,60 @@ static t_coef	calc_coef(t_sphere *sphere, t_ray ray)
 	return (coef);
 }
 
-void	add2list(t_lst_inter **head, t_intersect value, t_sphere *s)
-{
-	t_lst_inter	*new1;
-	t_lst_inter	*new2;
-	t_lst_inter	*current;
-	t_lst_inter	*prev;
+// void	add2list(t_lst_inter **head, t_intersect value, t_sphere *s)
+// {
+// 	t_lst_inter	*new1;
+// 	t_lst_inter	*new2;
+// 	t_lst_inter	*current;
+// 	t_lst_inter	*prev;
 
-	prev = NULL;
-	current = *head;
-	if (!(*head))
+// 	prev = NULL;
+// 	current = *head;
+// 	if (!(*head))
+// 	{
+// 		initialize_head(head, value, s);
+// 		return ;
+// 	}
+// 	new1 = allocate(sizeof(t_lst_inter));
+// 	new2 = allocate(sizeof(t_lst_inter));
+// 	new1->pos = value.t1;
+// 	new2->pos = value.t2;
+// 	insert_into_list(head, new1, new2);
+// 	while (current)
+// 	{
+// 		current->prev = prev;
+// 		prev = current;
+// 		current = current->next;
+// 	}
+// }
+
+void	intersections(double pos, t_sphere *s, t_lst_inter *dest)
+{
+	t_lst_inter *node;
+
+	if (!s)
+		error("Error\n", "Sphere doesn't exist", NULL, ERROR);
+	if (!dest->sphere)
 	{
-		initialize_head(head, value, s);
+		dest->pos = pos;
+		dest->sphere = s;
 		return ;
 	}
-	new1 = allocate(sizeof(t_lst_inter));
-	new2 = allocate(sizeof(t_lst_inter));
-	new1->pos = value.t1;
-	new2->pos = value.t2;
-	insert_into_list(head, new1, new2);
-	while (current)
-	{
-		current->prev = prev;
-		prev = current;
-		current = current->next;
-	}
+	node = allocate(sizeof(t_lst_inter));
+	node->sphere = s;
+	node->pos = pos;
+	insert_into_list(&dest, node);
 }
 
-t_lst_inter	*intersect(t_sphere *sphere, t_ray ray)
+t_intersect	*intersect(t_sphere *sphere, t_ray ray)
 {
 	t_coef		coef;
-	t_intersect	value;
-	t_lst_inter	**list;
+	t_intersect	*value;
 
 	if (!sphere)
 		error("Error\n", "Sphere doesn't exist", NULL, ERROR);
 	coef = calc_coef(sphere, ray);
 	value = calc_intersection(coef);
-	list = allocate(sizeof(t_lst_inter *));
-	if (value.count != 0)
-		add2list(list, value, sphere);
-	return (*list);
+	value->sphere = sphere;
+	return (value);
 }

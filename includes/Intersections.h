@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/02 15:08:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:44:43 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define INTERSECTIONS_H
 
 # include "Sphere.h"
+# include "Matrices.h"
 
 typedef struct s_ray
 {
@@ -64,5 +65,8 @@ void					insert_into_list(t_lst_inter **head, t_lst_inter *n1);
 int						lst_count(t_lst_inter *lst);
 
 t_lst_inter				*hit(t_lst_inter *list);
+
+t_ray	transform(t_ray ray, t_matrix action);
+
 
 #endif

@@ -144,32 +144,34 @@ TEST(TesterRay, SphereIsBehindRay) {
 
 TEST(TesterRay, IntersectionEncapsulatesTAndObject) {
 	t_sphere *s = create_sphere();
-	t_lst_inter dest;
+	t_lst_inter *dest;
 
-	ft_bzero(&dest, sizeof(t_lst_inter));
+	dest = NULL;
 	intersections(3.5, s, &dest);
 
-	EXPECT_TRUE(equal(dest.pos, 3.5));
-	EXPECT_EQ(dest.sphere->origin, s->origin);
-	EXPECT_EQ(dest.sphere->radius, s->radius);
+	EXPECT_TRUE(equal(dest->pos, 3.5));
+	EXPECT_EQ(dest->sphere->origin, s->origin);
+	EXPECT_EQ(dest->sphere->radius, s->radius);
 
 	free(s);
+	free(dest);
 }
 
 TEST(TesterRay, AggregatingIntersections) {
 	t_sphere *s = create_sphere();
-	t_lst_inter dest;
+	t_lst_inter *dest;
 
-	ft_bzero(&dest, sizeof(t_lst_inter));
+	dest = NULL;
 	intersections(1, s, &dest);
 	intersections(2, s, &dest);
 
-	EXPECT_EQ(lst_count(&dest), 2);
-	EXPECT_TRUE(equal(dest.pos, 1));
-	EXPECT_TRUE(equal(dest.next->pos, 2));
+	EXPECT_EQ(lst_count(dest), 2);
+	EXPECT_TRUE(equal(dest->pos, 1));
+	EXPECT_TRUE(equal(dest->next->pos, 2));
 
 	free(s);
-	free(dest.next);
+	free(dest->next);
+	free(dest);
 }
 
 TEST(TesterRay, IntersectSetsObjectOnIntersection) {
@@ -177,27 +179,49 @@ TEST(TesterRay, IntersectSetsObjectOnIntersection) {
 	double *direction = vector(0, 0, 1);
 	t_ray r = create_ray(origin, direction);
 	t_sphere *s = create_sphere();
-	t_lst_inter dest;
+	t_lst_inter *dest;
 
-	ft_bzero(&dest, sizeof(t_lst_inter));
+	dest = NULL;
 	t_intersect *xs = intersect(s, r);
 	intersections(xs->t1, s, &dest);
 	intersections(xs->t2, s, &dest);
 
 
 	EXPECT_EQ(xs->count, 2);
-	EXPECT_EQ(lst_count(&dest), 2);
+	EXPECT_EQ(lst_count(dest), 2);
 	EXPECT_EQ(xs->sphere, s);
-	EXPECT_EQ(dest.sphere, s);
-	EXPECT_EQ(dest.next->sphere, s);
+	EXPECT_EQ(dest->sphere, s);
+	EXPECT_EQ(dest->next->sphere, s);
 
-	EXPECT_TRUE(equal(dest.pos, xs->t1));
-	EXPECT_TRUE(equal(dest.next->pos, xs->t2));
+	EXPECT_TRUE(equal(dest->pos, xs->t1));
+	EXPECT_TRUE(equal(dest->next->pos, xs->t2));
 
 
 	free(origin);
 	free(direction);
 	free(s);
-	free(dest.next);
+	free(dest->next);
+	free(dest);
 	free(xs);
+}
+
+
+TEST(TesterRay, OrdenadedNumbers) {
+	t_sphere *s = create_sphere();
+	t_lst_inter *dest;
+
+	dest = NULL;
+	intersections(3, s, &dest);
+	intersections(2, s, &dest);
+	intersections(1, s, &dest);
+
+	EXPECT_EQ(lst_count(dest), 3);
+	EXPECT_TRUE(equal(dest->pos, 1));
+	EXPECT_TRUE(equal(dest->next->pos, 2));
+	EXPECT_TRUE(equal(dest->next->next->pos, 3));
+
+	free(s);
+	free(dest->next->next);
+	free(dest->next);
+	free(dest);
 }

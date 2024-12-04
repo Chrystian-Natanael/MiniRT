@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/02 16:30:59 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:04:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_intersect	*intersect(t_sphere *sphere, t_ray ray)
 	if (!sphere)
 		error("Error\n", "Sphere doesn't exist", NULL, ERROR);
 	new_ray = create_ray(multiply_mtx_tp(inv(sphere->transform), ray.origin),
-		multiply_mtx_tp(inv(sphere->transform), ray.direction));
+			multiply_mtx_tp(inv(sphere->transform), ray.direction));
 	coef = calc_coef(sphere, new_ray);
 	value = calc_intersection(coef);
 	value->sphere = sphere;

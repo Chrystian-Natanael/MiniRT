@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/02 15:44:43 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:05:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int						lst_count(t_lst_inter *lst);
 
 t_lst_inter				*hit(t_lst_inter *list);
 
-t_ray	transform(t_ray ray, t_matrix action);
-
+t_ray					transform(t_ray ray, t_matrix action);
 
 #endif

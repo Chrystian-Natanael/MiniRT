@@ -24,7 +24,7 @@ int	main(void)
 
 	p_ray_origin = point(0, 0, -5);
 	v_ray_origin = vector(0, 0, -5);
-	wall_z = 5;
+	wall_z = -1;
 	wall_size = 10.0;
 	canvas_pixels = 1000;
 	pixel_size = wall_size / (double)canvas_pixels;
@@ -32,8 +32,9 @@ int	main(void)
 	mlx = mlx_init(canvas_pixels, canvas_pixels, "Puttingtogether5", true);
 	image = mlx_new_image(mlx, canvas_pixels, canvas_pixels);
 	mlx_image_to_window(mlx, image, 0, 0);
-	color = create_color(1, 0, 0);
+	color = create_color(0, 0, 1);
 	sphere = create_sphere();
+	set_transform(sphere, scale(2, 2, 2));
 	y = -1;
 	while (++y < canvas_pixels)
 	{
@@ -54,4 +55,6 @@ int	main(void)
 
 	}
 	mlx_loop(mlx);
+	mlx_terminate(mlx);
+	quit(0);
 }

@@ -6,20 +6,21 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:44:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:06:01 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:02:34 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TUPLES_H
 # define TUPLES_H
 
+# include "Mem_pool.h"
 # include "Utils.h"
 
 typedef enum e_tuple_type
 {
 	VECTOR,
 	POINT
-}	t_tuple_type;
+}		t_tuple_type;
 
 typedef enum e_tuple_axis
 {
@@ -27,7 +28,7 @@ typedef enum e_tuple_axis
 	Y,
 	Z,
 	W
-}	t_tuple_axis;
+}		t_tuple_axis;
 
 double	*create_tp(double x, double y, double z, double w);
 double	*point(double x, double y, double z);

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 10:17:29 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:06:29 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 t_sp	*create_sp(void)
 {
-	t_sp	*sp;
+	t_sp		*sp;
+	t_pool_set	*set;
 
-	sp = allocate(sizeof(t_sp));
+	set = get_pools();
+	sp = (t_sp *)alloc_pool(sizeof(t_sp), set->objects);
 	sp->src = point(0, 0, 0);
 	sp->radius = 1;
 	sp->transf = id_mtx();

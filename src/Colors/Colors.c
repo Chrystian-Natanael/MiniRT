@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:56:54 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:15:43 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:05:14 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static uint32_t	convert(double color_value);
 t_colors	*create_color(double red, double green, double blue)
 {
 	t_colors	*color;
+	t_pool_set	*set;
 
-	color = allocate(sizeof(t_colors));
+	set = get_pools();
+	color = (t_colors *)alloc_pool(sizeof(t_colors), set->colors);
 	color->red = red;
 	color->green = green;
 	color->blue = blue;

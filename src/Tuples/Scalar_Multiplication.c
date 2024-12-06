@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:57:21 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/27 12:53:41 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:07:07 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@
  */
 double	*multiply(double *tuple, double factor)
 {
-	int		idx;
-	double	*res;
+	int			idx;
+	double		*res;
+	t_pool_set	*set;
 
+	set = get_pools();
 	if (!tuple)
 	{
 		warning("Not possible to multiply a null tuple", NULL, NULL);
 		return (NULL);
 	}
-	res = allocate(sizeof(double) * 4);
+	res = (double *)alloc_pool(sizeof(double) * 4, set->matrices);
 	idx = -1;
 	while (++idx < 4)
 		res[idx] = factor * tuple[idx];

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:20 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/27 12:36:21 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:07:09 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@
  */
 double	*sub(double *tpl1, double *tpl2)
 {
-	int		idx;
-	double	*res;
+	int			idx;
+	double		*res;
+	t_pool_set	*set;
 
+	set = get_pools();
 	if (tpl1[W] == 0 && tpl2[W] == 1)
 		error("Error\n",
-			"In this case, it's impossivel to subtract vector by point",
-			NULL, ERROR);
-	res = allocate(sizeof(double) * 4);
+			"impossibel to subtract vector by point", NULL, ERROR);
+	res = (double *)alloc_pool(sizeof(double) * 4, set->matrices);
 	idx = -1;
 	while (++idx < 4)
 		res[idx] = tpl1[idx] - tpl2[idx];

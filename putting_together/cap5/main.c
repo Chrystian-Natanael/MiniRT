@@ -22,6 +22,7 @@ int	main(void)
 	t_sp_inter	*val;
 	t_inter		*lst;
 
+	init_pools();
 	p_ray_src = point(0, 0, -5);
 	v_ray_src = vector(0, 0, -5);
 	wall_z = -1;

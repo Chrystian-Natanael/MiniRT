@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 10:22:04 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:06:13 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static t_sp_inter	*calc_intersection(t_coef coef)
 {
 	t_sp_inter	*list;
+	t_pool_set	*set;
 
-	list = allocate(sizeof(t_sp_inter));
+	set = get_pools();
+	list = (t_sp_inter *)alloc_pool(sizeof(t_sp_inter), set->objects);
 	if (coef.discrim < 0)
 		return (list);
 	list->count = 2;
@@ -40,18 +42,20 @@ static t_coef	calc_coef(t_sp *sp, t_ray ray)
 
 void	intersections(double pos, t_sp *s, t_inter **dest)
 {
-	t_inter	*node;
+	t_inter		*node;
+	t_pool_set	*set;
 
+	set = get_pools();
 	if (!s)
 		error("Error\n", "Sphere doesn't exist", NULL, ERROR);
 	if (!(*dest))
 	{
-		(*dest) = allocate(sizeof(t_inter));
+		(*dest) = (t_inter *)alloc_pool(sizeof(t_inter), set->objects);
 		(*dest)->pos = pos;
 		(*dest)->sp = s;
 		return ;
 	}
-	node = allocate(sizeof(t_inter));
+	node = (t_inter *)alloc_pool(sizeof(t_inter), set->objects);
 	node->sp = s;
 	node->pos = pos;
 	insert_into_list(dest, node);

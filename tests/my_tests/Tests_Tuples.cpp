@@ -6,6 +6,7 @@ extern "C" {
 }
 
 TEST(PointAndVectorTest, TestPointFunction) {
+	init_pools();
 	double *p = point(1.0, 2.0, 3.0);
 
 	ASSERT_NE(p, nullptr);
@@ -14,10 +15,10 @@ TEST(PointAndVectorTest, TestPointFunction) {
 	EXPECT_DOUBLE_EQ(p[2], 3.0);
 	EXPECT_EQ(static_cast<int>(p[3]), POINT);
 
-	free(p);
 }
 
 TEST(PointAndVectorTest, TestVectorFunction) {
+	init_pools();
 	double *v = vector(4.0, 5.0, 6.0);
 
 	ASSERT_NE(v, nullptr);
@@ -26,16 +27,17 @@ TEST(PointAndVectorTest, TestVectorFunction) {
 	EXPECT_DOUBLE_EQ(v[2], 6.0);
 	EXPECT_EQ(static_cast<int>(v[3]), VECTOR);
 
-	free(v);
 }
 
 TEST(PointAndVectorTest, TestEqualFunction) {
+	init_pools();
 	double x = (1.100);
 	EXPECT_TRUE(equal(x, 1.100005));
 	EXPECT_FALSE(equal(x, 1.105));
 }
 
 TEST(OperationsTest, TestSumFunction) {
+	init_pools();
 	double *p1 = point(3, -2, 5);
 	double *v = vector(-2, 3, 1);
 	double *r = sum(p1, v);
@@ -46,12 +48,10 @@ TEST(OperationsTest, TestSumFunction) {
 	EXPECT_DOUBLE_EQ(r[2], 6);
 	EXPECT_DOUBLE_EQ(r[3], 1);
 
-	free(p1);
-	free(v);
-	free(r);
 }
 
 TEST(OperationsTest, TestSubFunctionWith2Pts) {
+	init_pools();
 	double *p1 = point(3, 2, 1);
 	double *p2 = point(5, 6, 7);
 	double *r = sub(p1, p2);
@@ -62,12 +62,10 @@ TEST(OperationsTest, TestSubFunctionWith2Pts) {
 	EXPECT_DOUBLE_EQ(r[2], -6);
 	EXPECT_DOUBLE_EQ(r[3], 0);
 
-	free(p1);
-	free(p2);
-	free(r);
 }
 
 TEST(OperationsTest, TestSubFunctionWithPtAndVec) {
+	init_pools();
 	double *p = point(3, 2, 1);
 	double *v = vector(5, 6, 7);
 	double *r = sub(p, v);
@@ -78,12 +76,10 @@ TEST(OperationsTest, TestSubFunctionWithPtAndVec) {
 	EXPECT_DOUBLE_EQ(r[2], -6);
 	EXPECT_DOUBLE_EQ(r[3], 1);
 
-	free(p);
-	free(v);
-	free(r);
 }
 
 TEST(OperationsTest, TestSubFunctionWith2Vec) {
+	init_pools();
 	double *v1 = vector(3, 2, 1);
 	double *v2 = vector(5, 6, 7);
 	double *r = sub(v1, v2);
@@ -94,12 +90,10 @@ TEST(OperationsTest, TestSubFunctionWith2Vec) {
 	EXPECT_DOUBLE_EQ(r[2], -6);
 	EXPECT_DOUBLE_EQ(r[3], 0);
 
-	free(v1);
-	free(v2);
-	free(r);
 }
 
 TEST(OperationsTest, TestSubFunctionFromZeroVector){
+	init_pools();
 	double *v1 = vector(0,0,0);
 	double *v2 = vector(1, -2, 3);
 	double *r = sub(v1, v2);
@@ -110,12 +104,10 @@ TEST(OperationsTest, TestSubFunctionFromZeroVector){
 	EXPECT_DOUBLE_EQ(r[2], -3);
 	EXPECT_DOUBLE_EQ(r[3], 0);
 
-	free(v1);
-	free(v2);
-	free(r);
 }
 
 TEST(OperationsTest, TestSubFunctionNegating){
+	init_pools();
 	double *tp = negate(1, -2, 3, -4);
 
 	ASSERT_NE(tp, nullptr);
@@ -124,10 +116,10 @@ TEST(OperationsTest, TestSubFunctionNegating){
 	EXPECT_DOUBLE_EQ(tp[2], -3);
 	EXPECT_DOUBLE_EQ(tp[3], 4);
 
-	free(tp);
 }
 
 TEST(OperationsTest, TestSubFunctionNegatingVector){
+	init_pools();
 	double *v = vector(1, -2, 3);
 	double *nv = negate_vector(v);
 
@@ -137,11 +129,10 @@ TEST(OperationsTest, TestSubFunctionNegatingVector){
 	EXPECT_DOUBLE_EQ(nv[2], -3);
 	EXPECT_DOUBLE_EQ(nv[3], 0);
 
-	free(v);
-	free(nv);
 }
 
 TEST(OperationsTest, TestMultFunction){
+	init_pools();
 	double *v = create_tp(1, -2, 3, -4);
 	double *r = multiply(v, 3.5);
 
@@ -151,11 +142,10 @@ TEST(OperationsTest, TestMultFunction){
 	EXPECT_DOUBLE_EQ(r[2], 10.5);
 	EXPECT_DOUBLE_EQ(r[3], -14);
 
-	free(v);
-	free(r);
 }
 
 TEST(OperationsTest, TestDivFunctionWithValidDividend){
+	init_pools();
 	double *v = create_tp(1, -2, 3, -4);
 	double *r = division(v, 2);
 
@@ -165,20 +155,19 @@ TEST(OperationsTest, TestDivFunctionWithValidDividend){
 	EXPECT_DOUBLE_EQ(r[2], 1.5);
 	EXPECT_DOUBLE_EQ(r[3], -2);
 
-	free(v);
-	free(r);
 }
 
 TEST(OperationsTest, TestDivFunctionWithInvalidDividend){
+	init_pools();
 	double *v = create_tp(1, -2, 3, -4);
 	double *r = division(v, 0);
 
 	ASSERT_EQ(r, nullptr);
 
-	free(v);
 }
 
 TEST(OperationsTest, TestMagFunctionWithResOne){
+	init_pools();
 	double *v1 = vector(1, 0, 0);
 	double *v2 = vector(0, 1, 0);
 	double *v3 = vector(0, 0, 1);
@@ -190,12 +179,10 @@ TEST(OperationsTest, TestMagFunctionWithResOne){
 	EXPECT_DOUBLE_EQ(r2, 1);
 	EXPECT_DOUBLE_EQ(r3, 1);
 
-	free(v1);
-	free(v2);
-	free(v3);
 }
 
 TEST(OperationsTest, TestMagFunctionWithResDifThanOne){
+	init_pools();
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(-1, -2, -3);
 	double r1 = mag(v1);
@@ -204,11 +191,10 @@ TEST(OperationsTest, TestMagFunctionWithResDifThanOne){
 	EXPECT_DOUBLE_EQ(r1, sqrt(14));
 	EXPECT_DOUBLE_EQ(r2, sqrt(14));
 
-	free(v1);
-	free(v2);
 }
 
 TEST(OperationsTest, TestNormFunction){
+	init_pools();
 	double *v1 = vector(4, 0, 0);
 	double *v2 = vector(1, 2, 3);
 	double *r1 = norm(v1);
@@ -223,24 +209,20 @@ TEST(OperationsTest, TestNormFunction){
 	EXPECT_DOUBLE_EQ(r2[1], (2 / sqrt(14)));
 	EXPECT_DOUBLE_EQ(r2[2], (3 / sqrt(14)));
 
-	free(v1);
-	free(r1);
-	free(v2);
-	free(r2);
 }
 
 TEST(OperationsTest, TestDotProductFunction){
+	init_pools();
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(2, 3, 4);
 	double r = dot_prod(v1, v2);
 
 	EXPECT_DOUBLE_EQ(r, 20);
 
-	free(v1);
-	free(v2);
 }
 
 TEST(OperationsTest, TestCrossProductFunction){
+	init_pools();
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(2, 3, 4);
 	double *r1 = cross_prod(v1, v2);
@@ -257,8 +239,4 @@ TEST(OperationsTest, TestCrossProductFunction){
 	EXPECT_DOUBLE_EQ(r2[1], -2);
 	EXPECT_DOUBLE_EQ(r2[2], 1);
 
-	free(v1);
-	free(v2);
-	free(r1);
-	free(r2);
 }

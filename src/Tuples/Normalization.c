@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:17:30 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:03:00 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:06:58 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
  */
 static double	*norm_aux(double *vector, double mag)
 {
-	int		idx;
-	double	*vector_norm;
+	int			idx;
+	double		*vector_norm;
+	t_pool_set	*set;
 
-	vector_norm = allocate(sizeof(double) * 4);
+	set = get_pools();
+	vector_norm = (double *)alloc_pool(sizeof(double) * 4, set->matrices);
 	idx = -1;
 	while (++idx < 4)
 		vector_norm[idx] = vector[idx] / mag;

@@ -48,7 +48,8 @@ GARB_DIR := ../../libs/garbage-collector/
 #                                   FILES                                        #
 #* ******************************************************************************#
 
-SRCS =	$(SRCS2_PATH)Tuples/Addition.c \
+SRCS =	$(SRCS2_PATH)mem_pool/Mem_pool.c \
+		$(SRCS2_PATH)Tuples/Addition.c \
 		$(SRCS2_PATH)Tuples/Cross_Product.c \
 		$(SRCS2_PATH)Tuples/Dot_Product.c \
 		$(SRCS2_PATH)Tuples/Magnitude.c \
@@ -101,8 +102,8 @@ SHELL := /bin/bash
 #                                 FLAGS E COMP                                   #
 #* ******************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror -O2 -pg
-DFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -pg
+DFLAGS = -Wall -Wextra -Werror -pg
 LDLIBS = -ldl -lglfw -pthread -lm -pg
 LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP

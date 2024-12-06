@@ -11,6 +11,7 @@ extern "C"
 
 TEST(TesterRay, CreateAndQueryRay)
 {
+	init_pools();
 	double *src = point(1, 2, 3);
 	double *dir = vector(4, 5, 6);
 	t_ray r = create_ray(src, dir);
@@ -28,12 +29,11 @@ TEST(TesterRay, CreateAndQueryRay)
 	EXPECT_TRUE(equal(r.dir[2], dir[2]));
 	EXPECT_TRUE(equal(r.dir[3], dir[3]));
 
-	free(src);
-	free(dir);
 }
 
 TEST(TesterRay, ComputePointFromDistance)
 {
+	init_pools();
 	double *src = point(2, 3, 4);
 	double *dir = vector(1, 0, 0);
 	t_ray r = create_ray(src, dir);
@@ -48,16 +48,11 @@ TEST(TesterRay, ComputePointFromDistance)
 	EXPECT_TRUE(equal(posNeg1[0], 1) && equal(posNeg1[1], 3) && equal(posNeg1[2], 4) && equal(posNeg1[3], 1));
 	EXPECT_TRUE(equal(pos2_5[0], 4.5) && equal(pos2_5[1], 3) && equal(pos2_5[2], 4) && equal(pos2_5[3], 1));
 
-	free(src);
-	free(dir);
-	free(pos0);
-	free(pos1);
-	free(posNeg1);
-	free(pos2_5);
 }
 
 TEST(TesterRay, RayIntersectsSphereAtTwoPoints)
 {
+	init_pools();
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -69,14 +64,11 @@ TEST(TesterRay, RayIntersectsSphereAtTwoPoints)
 	EXPECT_TRUE(equal(lst->t2, 6.0));
 	EXPECT_TRUE(equal(lst->count, 2));
 
-	free(src);
-	free(dir);
-	free(s);
-	free(lst);
 }
 
 TEST(TesterRay, RayIntersectsSphereAtTangent)
 {
+	init_pools();
 	double *src = point(0, 1, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -88,14 +80,11 @@ TEST(TesterRay, RayIntersectsSphereAtTangent)
 	EXPECT_TRUE(equal(lst->t2, 5.0));
 	EXPECT_TRUE(equal(lst->count, 2));
 
-	free(src);
-	free(dir);
-	free(s);
-	free(lst);
 }
 
 TEST(TesterRay, RayMissesSphere)
 {
+	init_pools();
 	double *src = point(0, 2, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -105,14 +94,11 @@ TEST(TesterRay, RayMissesSphere)
 
 	EXPECT_EQ(lst->count, 0);
 
-	free(src);
-	free(dir);
-	free(s);
-	free(lst);
 }
 
 TEST(TesterRay, RaysrcatesInsideSphere)
 {
+	init_pools();
 	double *src = point(0, 0, 0);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -124,14 +110,11 @@ TEST(TesterRay, RaysrcatesInsideSphere)
 	EXPECT_TRUE(equal(lst->t2, 1.0));
 	EXPECT_EQ(lst->count, 2);
 
-	free(src);
-	free(dir);
-	free(s);
-	free(lst);
 }
 
 TEST(TesterRay, SphereIsBehindRay)
 {
+	init_pools();
 	double *src = point(0, 0, 5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -143,14 +126,11 @@ TEST(TesterRay, SphereIsBehindRay)
 	EXPECT_TRUE(equal(lst->t2, -4.0));
 	EXPECT_EQ(lst->count, 2);
 
-	free(src);
-	free(dir);
-	free(s);
-	free(lst);
 }
 
 TEST(TesterRay, IntersectionEncapsulatesTAndObject)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -161,12 +141,11 @@ TEST(TesterRay, IntersectionEncapsulatesTAndObject)
 	EXPECT_EQ(dest->sp->src, s->src);
 	EXPECT_EQ(dest->sp->radius, s->radius);
 
-	free(s);
-	free(dest);
 }
 
 TEST(TesterRay, AggregatingIntersections)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -178,13 +157,11 @@ TEST(TesterRay, AggregatingIntersections)
 	EXPECT_TRUE(equal(dest->pos, 1));
 	EXPECT_TRUE(equal(dest->next->pos, 2));
 
-	free(s);
-	free(dest->next);
-	free(dest);
 }
 
 TEST(TesterRay, IntersectSetsObjectOnIntersection)
 {
+	init_pools();
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -205,16 +182,11 @@ TEST(TesterRay, IntersectSetsObjectOnIntersection)
 	EXPECT_TRUE(equal(dest->pos, xs->t1));
 	EXPECT_TRUE(equal(dest->next->pos, xs->t2));
 
-	free(src);
-	free(dir);
-	free(s);
-	free(dest->next);
-	free(dest);
-	free(xs);
 }
 
 TEST(TesterRay, OrdenadedNumbers)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -228,14 +200,11 @@ TEST(TesterRay, OrdenadedNumbers)
 	EXPECT_TRUE(equal(dest->next->pos, 2));
 	EXPECT_TRUE(equal(dest->next->next->pos, 3));
 
-	free(s);
-	free(dest->next->next);
-	free(dest->next);
-	free(dest);
 }
 
 TEST(TesterRay, HitWhenAllIntersectionsHavePositiveT)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -247,13 +216,11 @@ TEST(TesterRay, HitWhenAllIntersectionsHavePositiveT)
 
 	EXPECT_EQ(i->pos, 1);
 
-	free(s);
-	free(dest->next);
-	free(dest);
 }
 
 TEST(TesterRay, HitWhenSomeIntersectionsHaveNegativeT)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -265,13 +232,11 @@ TEST(TesterRay, HitWhenSomeIntersectionsHaveNegativeT)
 
 	EXPECT_EQ(i->pos, 1);
 
-	free(s);
-	free(dest->next);
-	free(dest);
 }
 
 TEST(TesterRay, HitWhenAllIntersectionsHaveNegativeT)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -283,13 +248,11 @@ TEST(TesterRay, HitWhenAllIntersectionsHaveNegativeT)
 
 	EXPECT_EQ(i, nullptr);
 
-	free(s);
-	free(dest->next);
-	free(dest);
 }
 
 TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -305,15 +268,11 @@ TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection)
 	EXPECT_EQ(i->next->pos, 5);
 	EXPECT_EQ(i->next->next->pos, 7);
 
-	free(s);
-	free(dest->next->next->next);
-	free(dest->next->next);
-	free(dest->next);
-	free(dest);
 }
 
 TEST(TesterRay, TranslatingARay)
 {
+	init_pools();
 	double *src = point(1, 2, 3);
 	double *dir = vector(0, 1, 0);
 	t_ray r = create_ray(src, dir);
@@ -331,14 +290,11 @@ TEST(TesterRay, TranslatingARay)
 	EXPECT_TRUE(equal(r2.dir[Y], expected_dir[Y]));
 	EXPECT_TRUE(equal(r2.dir[Z], expected_dir[Z]));
 
-	free(src);
-	free(dir);
-	free(expected_src);
-	free(expected_dir);
 }
 
 TEST(TesterRay, ScalingARay)
 {
+	init_pools();
 	double *src = point(1, 2, 3);
 	double *dir = vector(0, 1, 0);
 	t_ray r = create_ray(src, dir);
@@ -356,24 +312,21 @@ TEST(TesterRay, ScalingARay)
 	EXPECT_EQ(r2.dir[Y], expected_dir[Y]);
 	EXPECT_EQ(r2.dir[Z], expected_dir[Z]);
 
-	free(src);
-	free(dir);
-	free(expected_src);
-	free(expected_dir);
 }
 
 TEST(TesterSphere, DefaultTransformation)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_matrix identity = id_mtx();
 
 	EXPECT_TRUE(comp_mtx(s->transf, identity));
 
-	free(s);
 }
 
 TEST(TesterSphere, ChangingTransformation)
 {
+	init_pools();
 	t_sp *s = create_sp();
 	t_matrix t = translate(2, 3, 4);
 
@@ -381,11 +334,11 @@ TEST(TesterSphere, ChangingTransformation)
 
 	EXPECT_TRUE(comp_mtx(s->transf, t));
 
-	free(s);
 }
 
 TEST(TesterSphere, IntersectingScaledSphereWithRay)
 {
+	init_pools();
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -400,14 +353,11 @@ TEST(TesterSphere, IntersectingScaledSphereWithRay)
 	EXPECT_EQ(xs->t1, 3);
 	EXPECT_EQ(xs->t2, 7);
 
-	free(src);
-	free(dir);
-	free(s);
-	free(xs);
 }
 
 TEST(TesterSphere, IntersectingTranslatedSphereWithRay)
 {
+	init_pools();
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -419,8 +369,4 @@ TEST(TesterSphere, IntersectingTranslatedSphereWithRay)
 
 	EXPECT_EQ(xs->count, 0);
 
-	free(src);
-	free(dir);
-	free(s);
-	free(xs);
 }

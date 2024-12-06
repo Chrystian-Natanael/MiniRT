@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 14:20:10 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:02:26 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_sp	*create_sp(void)
 	sp->transf = id_mtx();
 	sp->inv = inv(sp->transf);
 	sp->transp = transp_mtx(sp->inv);
+	sp->material = material();
 	return (sp);
 }
 
@@ -33,4 +34,16 @@ void	set_transf(t_sp *s, t_matrix t)
 	s->inv = inv(s->transf);
 	s->transp = transp_mtx(s->inv);
 	return ;
+}
+
+t_material	material(void)
+{
+	t_material	material;
+
+	material.color = create_color(1, 1, 1);
+	material.ambient = create_color(0.1, 0.1, 0.1);
+	material.diffuse = 0.9;
+	material.specular = 0.9;
+	material.shininess = 200;
+	return (material);
 }

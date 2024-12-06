@@ -15,13 +15,11 @@ enable_testing()
 
 set(TESTS_FOLDER my_tests)
 file(GLOB_RECURSE TESTS_FILES "${TESTS_FOLDER}/*.cpp")
-message(STATUS "Tests files: ${TESTS_FILES}")
 
 set(PROJECT_SRC_FOLDER "../src")
 file(GLOB_RECURSE PROJECT_SRC_FILES "${PROJECT_SRC_FOLDER}/**/*.c")
 list(FILTER PROJECT_SRC_FILES EXCLUDE REGEX ".*main.c$")
 list(FILTER PROJECT_SRC_FILES EXCLUDE REGEX ".*Initialization.c$")
-message(STATUS "project files: ${PROJECT_SRC_FILES}")
 
 add_executable(run_tests ${PROJECT_SRC_FILES} ${TESTS_FILES})
 

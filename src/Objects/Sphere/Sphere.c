@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/04 10:04:50 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/12/06 09:43:44 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ t_sphere	*create_sphere(void)
 	sphere->origin = point(0, 0, 0);
 	sphere->radius = 1;
 	sphere->transform = id_mtx();
+	sphere->inv = inv(sphere->transform);
 	return (sphere);
 }
 
 void	set_transform(t_sphere *s, t_matrix t)
 {
 	s->transform = t;
+	s->inv = inv(s->transform);
 	return ;
 }

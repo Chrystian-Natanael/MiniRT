@@ -80,11 +80,9 @@ SRCS =	$(SRCS2_PATH)Tuples/Addition.c \
 		$(SRCS2_PATH)Matrices/Submatrix.c \
 		$(SRCS2_PATH)Matrices/Translation.c \
 		$(SRCS2_PATH)Objects/Sphere/Sphere.c \
-		$(SRCS2_PATH)Intersections/Hit.c \
 		$(SRCS2_PATH)Intersections/Intersections.c \
 		$(SRCS2_PATH)Intersections/lst_functions.c \
 		$(SRCS2_PATH)Intersections/Ray.c \
-		$(SRCS2_PATH)Intersections/Transformation.c \
         $(wildcard $(SRCS_PATH)*$(FILE_EXTENSION))
 OBJS = $(SRCS:%$(FILE_EXTENSION)=$(BUILD_DIR)%.o)
 DEPS = $(OBJS:.o=.d)

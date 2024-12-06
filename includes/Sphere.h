@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 10:17:44 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:17:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_sp
 	double		radius;
 	t_matrix	transf;
 	t_matrix	inv;
+	t_matrix	transp;
 }				t_sp;
 
 t_sp			*create_sp(void);

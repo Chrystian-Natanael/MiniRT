@@ -11,6 +11,7 @@ extern "C"
 
 TEST(TesterMatrixtranslate, MultiplyingBytranslateMatrix)
 {
+	init_pools();
 	t_matrix transform = translate(5, -3, 2);
 	double *p = point(-3, 4, 5);
 	double *expected_point = point(2, 1, 7);
@@ -23,13 +24,11 @@ TEST(TesterMatrixtranslate, MultiplyingBytranslateMatrix)
 	EXPECT_DOUBLE_EQ(result[2], expected_point[2]);
 	EXPECT_DOUBLE_EQ(result[3], expected_point[3]);
 
-	free(p);
-	free(expected_point);
-	free(result);
 }
 
 TEST(TesterMatrixtranslate, MultiplyingByinvOftranslateMatrix)
 {
+	init_pools();
 	t_matrix transform = translate(5, -3, 2);
 	t_matrix inverse = inv(transform);
 	double *p = point(-3, 4, 5);
@@ -43,13 +42,11 @@ TEST(TesterMatrixtranslate, MultiplyingByinvOftranslateMatrix)
 	EXPECT_DOUBLE_EQ(result[2], expected_point[2]);
 	EXPECT_DOUBLE_EQ(result[3], expected_point[3]);
 
-	free(p);
-	free(expected_point);
-	free(result);
 }
 
 TEST(TesterMatrixtranslate, translateDoesNotAffectVectors)
 {
+	init_pools();
 	t_matrix transform = translate(5, -3, 2);
 	double *v = vector(-3, 4, 5);
 
@@ -61,12 +58,11 @@ TEST(TesterMatrixtranslate, translateDoesNotAffectVectors)
 	EXPECT_DOUBLE_EQ(result[2], v[2]);
 	EXPECT_DOUBLE_EQ(result[3], v[3]);
 
-	free(v);
-	free(result);
 }
 
 TEST(TesterMatrixscale, scaleMatrixAppliedToPoint)
 {
+	init_pools();
 	t_matrix transform = scale(2, 3, 4);
 	double *p = point(-4, 6, 8);
 	double *expected_point = point(-8, 18, 32);
@@ -79,13 +75,11 @@ TEST(TesterMatrixscale, scaleMatrixAppliedToPoint)
 	EXPECT_DOUBLE_EQ(result[2], expected_point[2]);
 	EXPECT_DOUBLE_EQ(result[3], expected_point[3]);
 
-	free(p);
-	free(expected_point);
-	free(result);
 }
 
 TEST(TesterMatrixscale, scaleMatrixAppliedToVector)
 {
+	init_pools();
 	t_matrix transform = scale(2, 3, 4);
 	double *v = vector(-4, 6, 8);
 	double *expected_vector = vector(-8, 18, 32);
@@ -98,13 +92,11 @@ TEST(TesterMatrixscale, scaleMatrixAppliedToVector)
 	EXPECT_DOUBLE_EQ(result[2], expected_vector[2]);
 	EXPECT_DOUBLE_EQ(result[3], expected_vector[3]);
 
-	free(v);
-	free(expected_vector);
-	free(result);
 }
 
 TEST(TesterMatrixscale, MultiplyingByinvOfscaleMatrix)
 {
+	init_pools();
 	t_matrix transform = scale(2, 3, 4);
 	t_matrix inverse = inv(transform);
 	double *v = vector(-4, 6, 8);
@@ -118,13 +110,11 @@ TEST(TesterMatrixscale, MultiplyingByinvOfscaleMatrix)
 	EXPECT_DOUBLE_EQ(result[2], expected_vector[2]);
 	EXPECT_DOUBLE_EQ(result[3], expected_vector[3]);
 
-	free(v);
-	free(expected_vector);
-	free(result);
 }
 
 TEST(TesterMatrixscale, ReflectionIsscaleByNegativeValue)
 {
+	init_pools();
 	t_matrix transform = scale(-1, 1, 1);
 	double *p = point(2, 3, 4);
 	double *expected_point = point(-2, 3, 4);
@@ -137,13 +127,11 @@ TEST(TesterMatrixscale, ReflectionIsscaleByNegativeValue)
 	EXPECT_DOUBLE_EQ(result[2], expected_point[2]);
 	EXPECT_DOUBLE_EQ(result[3], expected_point[3]);
 
-	free(p);
-	free(expected_point);
-	free(result);
 }
 
 TEST(TesterMatrixRotation, RotatingPointAroundZAxis)
 {
+	init_pools();
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -169,15 +157,11 @@ TEST(TesterMatrixRotation, RotatingPointAroundZAxis)
 	EXPECT_NEAR(result_full_quarter[2], expected_full_quarter[2], 1e-5);
 	EXPECT_NEAR(result_full_quarter[3], expected_full_quarter[3], 1e-5);
 
-	free(p);
-	free(expected_half_quarter);
-	free(expected_full_quarter);
-	free(result_half_quarter);
-	free(result_full_quarter);
 }
 
 TEST(TesterMatrixRotation, RotatingPointAroundYAxis)
 {
+	init_pools();
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -203,15 +187,11 @@ TEST(TesterMatrixRotation, RotatingPointAroundYAxis)
 	EXPECT_NEAR(result_full_quarter[2], expected_full_quarter[2], 1e-5);
 	EXPECT_NEAR(result_full_quarter[3], expected_full_quarter[3], 1e-5);
 
-	free(p);
-	free(expected_half_quarter);
-	free(expected_full_quarter);
-	free(result_half_quarter);
-	free(result_full_quarter);
 }
 
 TEST(TesterMatrixRotation, invOfXRotationRotatesOppositedir)
 {
+	init_pools();
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -229,13 +209,11 @@ TEST(TesterMatrixRotation, invOfXRotationRotatesOppositedir)
 	EXPECT_NEAR(result[2], expected_point[2], 1e-5);
 	EXPECT_NEAR(result[3], expected_point[3], 1e-5);
 
-	free(p);
-	free(expected_point);
-	free(result);
 }
 
 TEST(TesterMatrixRotation, RotatingPointAroundXAxis)
 {
+	init_pools();
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -261,15 +239,11 @@ TEST(TesterMatrixRotation, RotatingPointAroundXAxis)
 	EXPECT_NEAR(result_full_quarter[2], expected_full_quarter[2], 1e-5);
 	EXPECT_NEAR(result_full_quarter[3], expected_full_quarter[3], 1e-5);
 
-	free(p);
-	free(expected_half_quarter);
-	free(expected_full_quarter);
-	free(result_half_quarter);
-	free(result_full_quarter);
 }
 
 TEST(Transformations, IndividualTransformationsSequence)
 {
+	init_pools();
 	double *p = point(1, 0, 1);
 	t_matrix A = rotate_x(M_PI / 2);
 	t_matrix B = scale(5, 5, 5);
@@ -296,14 +270,11 @@ TEST(Transformations, IndividualTransformationsSequence)
 	EXPECT_TRUE(equal(p4[1], 0));
 	EXPECT_TRUE(equal(p4[2], 7));
 
-	free(p);
-	free(p2);
-	free(p3);
-	free(p4);
 }
 
 TEST(Transformations, ChainedTransformationsReverseOrder)
 {
+	init_pools();
 	double *p = point(1, 0, 1);
 	t_matrix A = rotate_x(M_PI / 2);
 	t_matrix B = scale(5, 5, 5);
@@ -318,6 +289,4 @@ TEST(Transformations, ChainedTransformationsReverseOrder)
 	EXPECT_DOUBLE_EQ(result[1], 0);
 	EXPECT_DOUBLE_EQ(result[2], 7);
 
-	free(p);
-	free(result);
 }

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:25:36 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:14:06 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:05:27 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 t_colors	*multiply_colors(t_colors *color, double factor)
 {
 	t_colors	*res;
+	t_pool_set	*set;
 
-	res = allocate(sizeof(t_colors));
+	set = get_pools();
+	res = (t_colors *)alloc_pool(sizeof(t_colors), set->colors);
 	res->red = color->red * factor;
 	res->green = color->green * factor;
 	res->blue = color->blue * factor;

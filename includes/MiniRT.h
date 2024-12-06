@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:13:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 13:03:39 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:30:57 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "Utils.h"
 # include "Matrices.h"
 # include "Intersections.h"
+# include "garbage_collector.h"
 # include "Sphere.h"
 # include "Tuples.h"
 # include "MLX42/MLX42.h"

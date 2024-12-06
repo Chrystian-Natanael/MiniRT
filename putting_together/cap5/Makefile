@@ -48,7 +48,8 @@ GARB_DIR := ../../libs/garbage-collector/
 #                                   FILES                                        #
 #* ******************************************************************************#
 
-SRCS =	$(SRCS2_PATH)Tuples/Addition.c \
+SRCS =	$(SRCS2_PATH)mem_pool/Mem_pool.c \
+		$(SRCS2_PATH)Tuples/Addition.c \
 		$(SRCS2_PATH)Tuples/Cross_Product.c \
 		$(SRCS2_PATH)Tuples/Dot_Product.c \
 		$(SRCS2_PATH)Tuples/Magnitude.c \
@@ -80,11 +81,9 @@ SRCS =	$(SRCS2_PATH)Tuples/Addition.c \
 		$(SRCS2_PATH)Matrices/Submatrix.c \
 		$(SRCS2_PATH)Matrices/Translation.c \
 		$(SRCS2_PATH)Objects/Sphere/Sphere.c \
-		$(SRCS2_PATH)Intersections/Hit.c \
 		$(SRCS2_PATH)Intersections/Intersections.c \
 		$(SRCS2_PATH)Intersections/lst_functions.c \
 		$(SRCS2_PATH)Intersections/Ray.c \
-		$(SRCS2_PATH)Intersections/Transformation.c \
         $(wildcard $(SRCS_PATH)*$(FILE_EXTENSION))
 OBJS = $(SRCS:%$(FILE_EXTENSION)=$(BUILD_DIR)%.o)
 DEPS = $(OBJS:.o=.d)
@@ -103,8 +102,8 @@ SHELL := /bin/bash
 #                                 FLAGS E COMP                                   #
 #* ******************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror -O2 -pg
-DFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -pg
+DFLAGS = -Wall -Wextra -Werror -pg
 LDLIBS = -ldl -lglfw -pthread -lm -pg
 LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP

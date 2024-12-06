@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:57:41 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/27 12:53:47 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:07:03 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@
  */
 double	*division(double *tuple, double divisor)
 {
-	int		idx;
-	double	*res;
+	int			idx;
+	double		*res;
+	t_pool_set	*set;
 
+	set = get_pools();
 	if (!tuple || !divisor)
 	{
 		warning("Not possible to divide by zero or null tuple", NULL, NULL);
 		return (NULL);
 	}
-	res = allocate(sizeof(double) * 4);
+	res = (double *)alloc_pool(sizeof(double) * 4, set->matrices);
 	idx = -1;
 	while (++idx < 4)
 		res[idx] = tuple[idx] / divisor;

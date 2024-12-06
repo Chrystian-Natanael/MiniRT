@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:49:37 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:14:52 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:49:31 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "MLX42/MLX42.h"
 # include "garbage_collector.h"
+# include "Mem_pool.h"
 
 typedef struct s_colors
 {

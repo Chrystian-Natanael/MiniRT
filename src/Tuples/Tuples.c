@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 09:55:29 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:07:15 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@
  */
 double	*create_tp(double x, double y, double z, double w)
 {
-	double	*tuple;
+	double		*tuple;
+	t_pool_set	*set;
 
-	tuple = allocate(sizeof(double) * 4);
+	set = get_pools();
+	tuple = (double *)alloc_pool(sizeof(double) * 4, set->matrices);
 	tuple[0] = x;
 	tuple[1] = y;
 	tuple[2] = z;

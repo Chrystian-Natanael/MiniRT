@@ -9,6 +9,7 @@ extern "C" {
 }
 
 TEST(TesterMatrix, CreateMatrix) {
+	init_pools();
 
 	double	elements_4x4[16] = {1, 2, 3, 4,
 								5.5, 6.5, 7.5, 8.5,
@@ -57,6 +58,7 @@ TEST(TesterMatrix, CreateMatrix) {
 }
 
 TEST(TesterMatrix, CompareEQMatrices) {
+	init_pools();
 
 	double	elements_4x4[16] = {1, 2, 3, 4,
 								5, 6, 7, 8,
@@ -67,6 +69,7 @@ TEST(TesterMatrix, CompareEQMatrices) {
 }
 
 TEST(TesterMatrix, CompareNEMatrices) {
+	init_pools();
 
 	double	elements_4x4_a[16] =	{1, 2, 3, 4,
 									5, 6, 7, 8,
@@ -85,6 +88,7 @@ TEST(TesterMatrix, CompareNEMatrices) {
 }
 
 TEST(TesterMatrix, CompareNEMatricesFloatTrue) {
+	init_pools();
 
 	double	elements_4x4_a[16] =	{1.100, 2, 3, 4,
 									5, 6, 7, 8,
@@ -103,6 +107,7 @@ TEST(TesterMatrix, CompareNEMatricesFloatTrue) {
 }
 
 TEST(TesterMatrix, CompareNEMatricesFloatFalse) {
+	init_pools();
 
 	double	elements_4x4_a[16] =	{1.100, 2, 3, 4,
 									5, 6, 7, 8,
@@ -121,6 +126,7 @@ TEST(TesterMatrix, CompareNEMatricesFloatFalse) {
 }
 
 TEST(TesterMatrixMultiplication, MatricesMultiplyEQSizes) {
+	init_pools();
 
 	double	elements_4x4_a[16] =	{1, 2, 3, 4,
 									5, 6, 7, 8,
@@ -154,6 +160,7 @@ TEST(TesterMatrixMultiplication, MatricesMultiplyEQSizes) {
 }
 
 TEST(TesterMatrixMultiplication, MatricesMultiplyDiffSizes) {
+	init_pools();
 
 	double	elements_4x4[16] =	{1, 2, 3, 4,
 									5, 6, 7, 8,
@@ -187,6 +194,7 @@ TEST(TesterMatrixMultiplication, MatricesMultiplyDiffSizes) {
 }
 
 TEST(TesterMatrixMultiplication, MatricesTuplesMultiply) {
+	init_pools();
 
 	double *p = point(1, 2, 3);
 	double	element[16] = {1, 2, 3, 4,
@@ -205,11 +213,10 @@ TEST(TesterMatrixMultiplication, MatricesTuplesMultiply) {
 	EXPECT_DOUBLE_EQ(res[2], 33);
 	EXPECT_EQ(static_cast<int>(p[3]), POINT);
 
-	free(p);
-	free(res);
 }
 
 TEST(TesterMatrixMultiplication, id_mtxMatrixByMatrix) {
+	init_pools();
 
 	double	element1[16] = {0, 1, 2, 4,
 							1, 2, 4, 8,
@@ -234,6 +241,7 @@ TEST(TesterMatrixMultiplication, id_mtxMatrixByMatrix) {
 }
 
 TEST(TesterMatrixMultiplication, id_mtxMatrixByTuple) {
+	init_pools();
 
 	double	tuple[4] = {1, 2, 3, 4};
 	double	element[16] = {1, 0, 0, 0,
@@ -251,10 +259,10 @@ TEST(TesterMatrixMultiplication, id_mtxMatrixByTuple) {
 	EXPECT_DOUBLE_EQ(res[2], 3);
 	EXPECT_DOUBLE_EQ((res[3]), 4);
 
-	free(res);
 }
 
 TEST(TesterMatrixTransposition, 4x4MatrixTranspose) {
+	init_pools();
 
 	double	element[16] = {0, 9, 3, 0,
 							9, 8, 0, 8,
@@ -281,6 +289,7 @@ TEST(TesterMatrixTransposition, 4x4MatrixTranspose) {
 }
 
 TEST(TesterMatrixTransposition, 4x3MatrixTranspose) {
+	init_pools();
 
 	double	element[12] = {0, 9, 3,
 							9, 8, 0,
@@ -306,6 +315,7 @@ TEST(TesterMatrixTransposition, 4x3MatrixTranspose) {
 }
 
 TEST(TesterMatrixdet, det2x2Matrix) {
+	init_pools();
 	double elements_2x2[4] = {1, 5,
 							-3, 2};
 	t_matrix matrix = create_mtx(2, 2, elements_2x2);
@@ -316,6 +326,7 @@ TEST(TesterMatrixdet, det2x2Matrix) {
 }
 
 TEST(TesterMatrixsubmtx, submtx3x3To2x2) {
+	init_pools();
 	double elements_3x3[9] = {1, 5, 0,
 							-3, 2, 7,
 							0, 6, -3};
@@ -334,6 +345,7 @@ TEST(TesterMatrixsubmtx, submtx3x3To2x2) {
 }
 
 TEST(TesterMatrixsubmtx, submtx4x4To3x3) {
+	init_pools();
 	double elements_4x4[16] = {-6, 1, 1, 6, -8, 5, 8, 6, -1, 0, 8, 2, -7, 1, -1, 1};
 	t_matrix matrix = create_mtx(4, 4, elements_4x4);
 
@@ -349,6 +361,7 @@ TEST(TesterMatrixsubmtx, submtx4x4To3x3) {
 }
 
 TEST(TesterMatrixMinor, Minor3x3) {
+	init_pools();
 	double elements_3x3[9] = {3, 5, 0,
 							2, -1, -7,
 							6, -1, 5};
@@ -361,6 +374,7 @@ TEST(TesterMatrixMinor, Minor3x3) {
 }
 
 TEST(TesterMatrixCofactor, Cofactor3x3) {
+	init_pools();
 	double elements_3x3[9] = {3, 5, 0,
 							2, -1, -7,
 							6, -1, 5};
@@ -388,6 +402,7 @@ TEST(TesterMatrixCofactor, Cofactor3x3) {
 }
 
 TEST(TesterMatrixDeterminat_Larger_Than_2x2, det3x3) {
+	init_pools();
 	double elements_3x3[9] = {1, 2, 6,
 							-5, 8, -4,
 							2, 6, 4};
@@ -409,6 +424,7 @@ TEST(TesterMatrixDeterminat_Larger_Than_2x2, det3x3) {
 
 
 TEST(TesterMatrixdet, det3x3Matrix) {
+	init_pools();
 	double elements_3x3[9] = {1, 2, 6,
 							-5, 8, -4,
 							2, 6, 4};
@@ -428,6 +444,7 @@ TEST(TesterMatrixdet, det3x3Matrix) {
 }
 
 TEST(TesterMatrixdet, det4x4Matrix) {
+	init_pools();
 	double elements_4x4[16] = {-2, -8, 3, 5,
 							-3, 1, 7, 3,
 							1, 2, -9, 6,
@@ -450,6 +467,7 @@ TEST(TesterMatrixdet, det4x4Matrix) {
 }
 
 TEST(TesterMatrixinv, invMatrixScenario1) {
+	init_pools();
 	double elements[16] = {-5, 2, 6, -8,
 							1, -5, 1, 8,
 							7, 7, -6, -7,
@@ -479,6 +497,7 @@ TEST(TesterMatrixinv, invMatrixScenario1) {
 }
 
 TEST(TesterMatrixinv, invMatrixScenario2) {
+	init_pools();
 	double elements[16] = {8, -5, 9, 2,
 							7, 5, 6, 1,
 							-6, 0, 9, 6,
@@ -497,6 +516,7 @@ TEST(TesterMatrixinv, invMatrixScenario2) {
 }
 
 TEST(TesterMatrixinv, invMatrixScenario3) {
+	init_pools();
 	double elements[16] = {9, 3, 0, 9,
 							-5, -2, -6, -3,
 							-4, 9, 6, 4,
@@ -515,6 +535,7 @@ TEST(TesterMatrixinv, invMatrixScenario3) {
 }
 
 TEST(TesterMatrixinv, MultiplyingProductByItsinv) {
+	init_pools();
 	double elementsA[16] = {3, -9, 7, 3,
 							3, -8, 2, -9,
 							-4, 4, 4, 1,

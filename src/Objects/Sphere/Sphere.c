@@ -6,27 +6,27 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 09:43:44 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:17:29 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Sphere.h"
 
-t_sphere	*create_sphere(void)
+t_sp	*create_sp(void)
 {
-	t_sphere	*sphere;
+	t_sp	*sp;
 
-	sphere = allocate(sizeof(t_sphere));
-	sphere->origin = point(0, 0, 0);
-	sphere->radius = 1;
-	sphere->transform = id_mtx();
-	sphere->inv = inv(sphere->transform);
-	return (sphere);
+	sp = allocate(sizeof(t_sp));
+	sp->src = point(0, 0, 0);
+	sp->radius = 1;
+	sp->transf = id_mtx();
+	sp->inv = inv(sp->transf);
+	return (sp);
 }
 
-void	set_transform(t_sphere *s, t_matrix t)
+void	set_transf(t_sp *s, t_matrix t)
 {
-	s->transform = t;
-	s->inv = inv(s->transform);
+	s->transf = t;
+	s->inv = inv(s->transf);
 	return ;
 }

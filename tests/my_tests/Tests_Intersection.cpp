@@ -1,39 +1,42 @@
-#include <gtest/gtest.h>
 #include <cmath>
+#include <gtest/gtest.h>
 
-extern "C" {
-	#include "Utils.h"
-	#include "Intersections.h"
-	#include "Tuples.h"
-	#include "Matrices.h"
+extern "C"
+{
+#include "Intersections.h"
+#include "Matrices.h"
+#include "Tuples.h"
+#include "Utils.h"
 }
 
-TEST(TesterRay, CreateAndQueryRay) {
-	double *origin = point(1, 2, 3);
-	double *direction = vector(4, 5, 6);
-	t_ray r = create_ray(origin, direction);
+TEST(TesterRay, CreateAndQueryRay)
+{
+	double *src = point(1, 2, 3);
+	double *dir = vector(4, 5, 6);
+	t_ray r = create_ray(src, dir);
 
-	ASSERT_NE(r.origin, nullptr);
-	ASSERT_NE(r.direction, nullptr);
+	ASSERT_NE(r.src, nullptr);
+	ASSERT_NE(r.dir, nullptr);
 
-	EXPECT_TRUE(equal(r.origin[0], origin[0]));
-	EXPECT_TRUE(equal(r.origin[1], origin[1]));
-	EXPECT_TRUE(equal(r.origin[2], origin[2]));
-	EXPECT_TRUE(equal(r.origin[3], origin[3]));
+	EXPECT_TRUE(equal(r.src[0], src[0]));
+	EXPECT_TRUE(equal(r.src[1], src[1]));
+	EXPECT_TRUE(equal(r.src[2], src[2]));
+	EXPECT_TRUE(equal(r.src[3], src[3]));
 
-	EXPECT_TRUE(equal(r.direction[0], direction[0]));
-	EXPECT_TRUE(equal(r.direction[1], direction[1]));
-	EXPECT_TRUE(equal(r.direction[2], direction[2]));
-	EXPECT_TRUE(equal(r.direction[3], direction[3]));
+	EXPECT_TRUE(equal(r.dir[0], dir[0]));
+	EXPECT_TRUE(equal(r.dir[1], dir[1]));
+	EXPECT_TRUE(equal(r.dir[2], dir[2]));
+	EXPECT_TRUE(equal(r.dir[3], dir[3]));
 
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 }
 
-TEST(TesterRay, ComputePointFromDistance) {
-	double *origin = point(2, 3, 4);
-	double *direction = vector(1, 0, 0);
-	t_ray r = create_ray(origin, direction);
+TEST(TesterRay, ComputePointFromDistance)
+{
+	double *src = point(2, 3, 4);
+	double *dir = vector(1, 0, 0);
+	t_ray r = create_ray(src, dir);
 
 	double *pos0 = pos_ray(r, 0);
 	double *pos1 = pos_ray(r, 1);
@@ -45,122 +48,127 @@ TEST(TesterRay, ComputePointFromDistance) {
 	EXPECT_TRUE(equal(posNeg1[0], 1) && equal(posNeg1[1], 3) && equal(posNeg1[2], 4) && equal(posNeg1[3], 1));
 	EXPECT_TRUE(equal(pos2_5[0], 4.5) && equal(pos2_5[1], 3) && equal(pos2_5[2], 4) && equal(pos2_5[3], 1));
 
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(pos0);
 	free(pos1);
 	free(posNeg1);
 	free(pos2_5);
 }
 
-TEST(TesterRay, RayIntersectsSphereAtTwoPoints) {
-	double *origin = point(0, 0, -5);
-	double *direction = vector(0, 0, 1);
-	t_ray r = create_ray(origin, direction);
-	t_sphere *s = create_sphere();
+TEST(TesterRay, RayIntersectsSphereAtTwoPoints)
+{
+	double *src = point(0, 0, -5);
+	double *dir = vector(0, 0, 1);
+	t_ray r = create_ray(src, dir);
+	t_sp *s = create_sp();
 
-	t_intersect *lst = intersect(s, r);
+	t_sp_inter *lst = intersect(s, r);
 
 	EXPECT_TRUE(equal(lst->t1, 4.0));
 	EXPECT_TRUE(equal(lst->t2, 6.0));
 	EXPECT_TRUE(equal(lst->count, 2));
 
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(s);
 	free(lst);
 }
 
-TEST(TesterRay, RayIntersectsSphereAtTangent) {
-	double *origin = point(0, 1, -5);
-	double *direction = vector(0, 0, 1);
-	t_ray r = create_ray(origin, direction);
-	t_sphere *s = create_sphere();
+TEST(TesterRay, RayIntersectsSphereAtTangent)
+{
+	double *src = point(0, 1, -5);
+	double *dir = vector(0, 0, 1);
+	t_ray r = create_ray(src, dir);
+	t_sp *s = create_sp();
 
-	t_intersect *lst = intersect(s, r);
+	t_sp_inter *lst = intersect(s, r);
 
 	EXPECT_TRUE(equal(lst->t1, 5.0));
 	EXPECT_TRUE(equal(lst->t2, 5.0));
 	EXPECT_TRUE(equal(lst->count, 2));
 
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(s);
 	free(lst);
 }
 
-TEST(TesterRay, RayMissesSphere) {
-	double *origin = point(0, 2, -5);
-	double *direction = vector(0, 0, 1);
-	t_ray r = create_ray(origin, direction);
-	t_sphere *s = create_sphere();
+TEST(TesterRay, RayMissesSphere)
+{
+	double *src = point(0, 2, -5);
+	double *dir = vector(0, 0, 1);
+	t_ray r = create_ray(src, dir);
+	t_sp *s = create_sp();
 
-	t_intersect *lst = intersect(s, r);
+	t_sp_inter *lst = intersect(s, r);
 
 	EXPECT_EQ(lst->count, 0);
 
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(s);
 	free(lst);
 }
 
-TEST(TesterRay, RayOriginatesInsideSphere) {
-	double *origin = point(0, 0, 0);
-	double *direction = vector(0, 0, 1);
-	t_ray r = create_ray(origin, direction);
-	t_sphere *s = create_sphere();
+TEST(TesterRay, RaysrcatesInsideSphere)
+{
+	double *src = point(0, 0, 0);
+	double *dir = vector(0, 0, 1);
+	t_ray r = create_ray(src, dir);
+	t_sp *s = create_sp();
 
-	t_intersect *lst = intersect(s, r);
+	t_sp_inter *lst = intersect(s, r);
 
 	EXPECT_TRUE(equal(lst->t1, -1.0));
 	EXPECT_TRUE(equal(lst->t2, 1.0));
 	EXPECT_EQ(lst->count, 2);
 
-
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(s);
 	free(lst);
 }
 
-TEST(TesterRay, SphereIsBehindRay) {
-	double *origin = point(0, 0, 5);
-	double *direction = vector(0, 0, 1);
-	t_ray r = create_ray(origin, direction);
-	t_sphere *s = create_sphere();
+TEST(TesterRay, SphereIsBehindRay)
+{
+	double *src = point(0, 0, 5);
+	double *dir = vector(0, 0, 1);
+	t_ray r = create_ray(src, dir);
+	t_sp *s = create_sp();
 
-	t_intersect *lst = intersect(s, r);
+	t_sp_inter *lst = intersect(s, r);
 
 	EXPECT_TRUE(equal(lst->t1, -6.0));
 	EXPECT_TRUE(equal(lst->t2, -4.0));
 	EXPECT_EQ(lst->count, 2);
 
-
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(s);
 	free(lst);
 }
 
-TEST(TesterRay, IntersectionEncapsulatesTAndObject) {
-	t_sphere *s = create_sphere();
-	t_lst_inter *dest;
+TEST(TesterRay, IntersectionEncapsulatesTAndObject)
+{
+	t_sp *s = create_sp();
+	t_inter *dest;
 
 	dest = NULL;
 	intersections(3.5, s, &dest);
 
 	EXPECT_TRUE(equal(dest->pos, 3.5));
-	EXPECT_EQ(dest->sphere->origin, s->origin);
-	EXPECT_EQ(dest->sphere->radius, s->radius);
+	EXPECT_EQ(dest->sp->src, s->src);
+	EXPECT_EQ(dest->sp->radius, s->radius);
 
 	free(s);
 	free(dest);
 }
 
-TEST(TesterRay, AggregatingIntersections) {
-	t_sphere *s = create_sphere();
-	t_lst_inter *dest;
+TEST(TesterRay, AggregatingIntersections)
+{
+	t_sp *s = create_sp();
+	t_inter *dest;
 
 	dest = NULL;
 	intersections(1, s, &dest);
@@ -175,41 +183,40 @@ TEST(TesterRay, AggregatingIntersections) {
 	free(dest);
 }
 
-TEST(TesterRay, IntersectSetsObjectOnIntersection) {
-	double *origin = point(0, 0, -5);
-	double *direction = vector(0, 0, 1);
-	t_ray r = create_ray(origin, direction);
-	t_sphere *s = create_sphere();
-	t_lst_inter *dest;
+TEST(TesterRay, IntersectSetsObjectOnIntersection)
+{
+	double *src = point(0, 0, -5);
+	double *dir = vector(0, 0, 1);
+	t_ray r = create_ray(src, dir);
+	t_sp *s = create_sp();
+	t_inter *dest;
 
 	dest = NULL;
-	t_intersect *xs = intersect(s, r);
+	t_sp_inter *xs = intersect(s, r);
 	intersections(xs->t1, s, &dest);
 	intersections(xs->t2, s, &dest);
 
-
 	EXPECT_EQ(xs->count, 2);
 	EXPECT_EQ(lst_count(dest), 2);
-	EXPECT_EQ(xs->sphere, s);
-	EXPECT_EQ(dest->sphere, s);
-	EXPECT_EQ(dest->next->sphere, s);
+	EXPECT_EQ(xs->sp, s);
+	EXPECT_EQ(dest->sp, s);
+	EXPECT_EQ(dest->next->sp, s);
 
 	EXPECT_TRUE(equal(dest->pos, xs->t1));
 	EXPECT_TRUE(equal(dest->next->pos, xs->t2));
 
-
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(s);
 	free(dest->next);
 	free(dest);
 	free(xs);
 }
 
-
-TEST(TesterRay, OrdenadedNumbers) {
-	t_sphere *s = create_sphere();
-	t_lst_inter *dest;
+TEST(TesterRay, OrdenadedNumbers)
+{
+	t_sp *s = create_sp();
+	t_inter *dest;
 
 	dest = NULL;
 	intersections(3, s, &dest);
@@ -227,15 +234,16 @@ TEST(TesterRay, OrdenadedNumbers) {
 	free(dest);
 }
 
-TEST(TesterRay, HitWhenAllIntersectionsHavePositiveT) {
-	t_sphere *s = create_sphere();
-	t_lst_inter *dest;
+TEST(TesterRay, HitWhenAllIntersectionsHavePositiveT)
+{
+	t_sp *s = create_sp();
+	t_inter *dest;
 
 	dest = NULL;
 	intersections(1, s, &dest);
 	intersections(2, s, &dest);
 
-	t_lst_inter *i = hit(dest);
+	t_inter *i = hit(dest);
 
 	EXPECT_EQ(i->pos, 1);
 
@@ -244,15 +252,16 @@ TEST(TesterRay, HitWhenAllIntersectionsHavePositiveT) {
 	free(dest);
 }
 
-TEST(TesterRay, HitWhenSomeIntersectionsHaveNegativeT) {
-	t_sphere *s = create_sphere();
-	t_lst_inter *dest;
+TEST(TesterRay, HitWhenSomeIntersectionsHaveNegativeT)
+{
+	t_sp *s = create_sp();
+	t_inter *dest;
 
 	dest = NULL;
 	intersections(-1, s, &dest);
 	intersections(1, s, &dest);
 
-	t_lst_inter *i = hit(dest);
+	t_inter *i = hit(dest);
 
 	EXPECT_EQ(i->pos, 1);
 
@@ -261,15 +270,16 @@ TEST(TesterRay, HitWhenSomeIntersectionsHaveNegativeT) {
 	free(dest);
 }
 
-TEST(TesterRay, HitWhenAllIntersectionsHaveNegativeT) {
-	t_sphere *s = create_sphere();
-	t_lst_inter *dest;
+TEST(TesterRay, HitWhenAllIntersectionsHaveNegativeT)
+{
+	t_sp *s = create_sp();
+	t_inter *dest;
 
 	dest = NULL;
 	intersections(-1, s, &dest);
 	intersections(-2, s, &dest);
 
-	t_lst_inter *i = hit(dest);
+	t_inter *i = hit(dest);
 
 	EXPECT_EQ(i, nullptr);
 
@@ -278,9 +288,10 @@ TEST(TesterRay, HitWhenAllIntersectionsHaveNegativeT) {
 	free(dest);
 }
 
-TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection) {
-	t_sphere *s = create_sphere();
-	t_lst_inter *dest;
+TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection)
+{
+	t_sp *s = create_sp();
+	t_inter *dest;
 
 	dest = NULL;
 	intersections(5, s, &dest);
@@ -288,7 +299,7 @@ TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection) {
 	intersections(-3, s, &dest);
 	intersections(2, s, &dest);
 
-	t_lst_inter *i = hit(dest);
+	t_inter *i = hit(dest);
 
 	EXPECT_EQ(i->pos, 2);
 	EXPECT_EQ(i->next->pos, 5);
@@ -301,109 +312,115 @@ TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection) {
 	free(dest);
 }
 
-TEST(TesterRay, TranslatingARay) {
-	double *origin = point(1, 2, 3);
-	double *direction = vector(0, 1, 0);
-	t_ray r = create_ray(origin, direction);
+TEST(TesterRay, TranslatingARay)
+{
+	double *src = point(1, 2, 3);
+	double *dir = vector(0, 1, 0);
+	t_ray r = create_ray(src, dir);
 	t_matrix m = translate(3, 4, 5);
 
 	t_ray r2 = transform(r, m);
 
-	double *expected_origin = point(4, 6, 8);
-	double *expected_direction = vector(0, 1, 0);
+	double *expected_src = point(4, 6, 8);
+	double *expected_dir = vector(0, 1, 0);
 
-	EXPECT_TRUE(equal(r2.origin[X], expected_origin[X]));
-	EXPECT_TRUE(equal(r2.origin[Y], expected_origin[Y]));
-	EXPECT_TRUE(equal(r2.origin[Z], expected_origin[Z]));
-	EXPECT_TRUE(equal(r2.direction[X], expected_direction[X]));
-	EXPECT_TRUE(equal(r2.direction[Y], expected_direction[Y]));
-	EXPECT_TRUE(equal(r2.direction[Z], expected_direction[Z]));
+	EXPECT_TRUE(equal(r2.src[X], expected_src[X]));
+	EXPECT_TRUE(equal(r2.src[Y], expected_src[Y]));
+	EXPECT_TRUE(equal(r2.src[Z], expected_src[Z]));
+	EXPECT_TRUE(equal(r2.dir[X], expected_dir[X]));
+	EXPECT_TRUE(equal(r2.dir[Y], expected_dir[Y]));
+	EXPECT_TRUE(equal(r2.dir[Z], expected_dir[Z]));
 
-	free(origin);
-	free(direction);
-	free(expected_origin);
-	free(expected_direction);
+	free(src);
+	free(dir);
+	free(expected_src);
+	free(expected_dir);
 }
 
-TEST(TesterRay, ScalingARay) {
-	double *origin = point(1, 2, 3);
-	double *direction = vector(0, 1, 0);
-	t_ray r = create_ray(origin, direction);
+TEST(TesterRay, ScalingARay)
+{
+	double *src = point(1, 2, 3);
+	double *dir = vector(0, 1, 0);
+	t_ray r = create_ray(src, dir);
 	t_matrix m = scale(2, 3, 4);
 
 	t_ray r2 = transform(r, m);
 
-	double *expected_origin = point(2, 6, 12);
-	double *expected_direction = vector(0, 3, 0);
+	double *expected_src = point(2, 6, 12);
+	double *expected_dir = vector(0, 3, 0);
 
-	EXPECT_EQ(r2.origin[X], expected_origin[X]);
-	EXPECT_EQ(r2.origin[Y], expected_origin[Y]);
-	EXPECT_EQ(r2.origin[Z], expected_origin[Z]);
-	EXPECT_EQ(r2.direction[X], expected_direction[X]);
-	EXPECT_EQ(r2.direction[Y], expected_direction[Y]);
-	EXPECT_EQ(r2.direction[Z], expected_direction[Z]);
+	EXPECT_EQ(r2.src[X], expected_src[X]);
+	EXPECT_EQ(r2.src[Y], expected_src[Y]);
+	EXPECT_EQ(r2.src[Z], expected_src[Z]);
+	EXPECT_EQ(r2.dir[X], expected_dir[X]);
+	EXPECT_EQ(r2.dir[Y], expected_dir[Y]);
+	EXPECT_EQ(r2.dir[Z], expected_dir[Z]);
 
-	free(origin);
-	free(direction);
-	free(expected_origin);
-	free(expected_direction);
+	free(src);
+	free(dir);
+	free(expected_src);
+	free(expected_dir);
 }
 
-TEST(TesterSphere, DefaultTransformation) {
-	t_sphere *s = create_sphere();
+TEST(TesterSphere, DefaultTransformation)
+{
+	t_sp *s = create_sp();
 	t_matrix identity = id_mtx();
 
-	EXPECT_TRUE(comp_mtx(s->transform, identity));
+	EXPECT_TRUE(comp_mtx(s->transf, identity));
 
 	free(s);
 }
 
-TEST(TesterSphere, ChangingTransformation) {
-	t_sphere *s = create_sphere();
+TEST(TesterSphere, ChangingTransformation)
+{
+	t_sp *s = create_sp();
 	t_matrix t = translate(2, 3, 4);
 
-	set_transform(s, t);
+	set_transf(s, t);
 
-	EXPECT_TRUE(comp_mtx(s->transform, t));
+	EXPECT_TRUE(comp_mtx(s->transf, t));
 
 	free(s);
 }
 
-TEST(TesterSphere, IntersectingScaledSphereWithRay) {
-	double *origin = point(0, 0, -5);
-	double *direction = vector(0, 0, 1);
-	t_ray r = create_ray(origin, direction);
-	t_sphere *s = create_sphere();
+TEST(TesterSphere, IntersectingScaledSphereWithRay)
+{
+	double *src = point(0, 0, -5);
+	double *dir = vector(0, 0, 1);
+	t_ray r = create_ray(src, dir);
+	t_sp *s = create_sp();
 	t_matrix scaling = scale(2, 2, 2);
 
-	set_transform(s, scaling);
+	set_transf(s, scaling);
 
-	t_intersect *xs = intersect(s, r);
+	t_sp_inter *xs = intersect(s, r);
 
 	EXPECT_EQ(xs->count, 2);
 	EXPECT_EQ(xs->t1, 3);
 	EXPECT_EQ(xs->t2, 7);
 
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(s);
 	free(xs);
 }
 
-TEST(TesterSphere, IntersectingTranslatedSphereWithRay) {
-	double *origin = point(0, 0, -5);
-	double *direction = vector(0, 0, 1);
-	t_ray r = create_ray(origin, direction);
-	t_sphere *s = create_sphere();
+TEST(TesterSphere, IntersectingTranslatedSphereWithRay)
+{
+	double *src = point(0, 0, -5);
+	double *dir = vector(0, 0, 1);
+	t_ray r = create_ray(src, dir);
+	t_sp *s = create_sp();
 	t_matrix translation = translate(5, 0, 0);
 
-	set_transform(s, translation);
-	t_intersect *xs = intersect(s, r);
+	set_transf(s, translation);
+	t_sp_inter *xs = intersect(s, r);
 
 	EXPECT_EQ(xs->count, 0);
 
-	free(origin);
-	free(direction);
+	free(src);
+	free(dir);
 	free(s);
 	free(xs);
 }

@@ -1,14 +1,16 @@
 #include <gtest/gtest.h>
 #include <cmath>
 
-extern "C" {
-	#include "Matrices.h"
-	#include "Utils.h"
-	#include "Tuples.h"
-	#include <stdbool.h>
+extern "C"
+{
+#include "Matrices.h"
+#include "Utils.h"
+#include "Tuples.h"
+#include <stdbool.h>
 }
 
-TEST(TesterMatrixtranslate, MultiplyingBytranslateMatrix) {
+TEST(TesterMatrixtranslate, MultiplyingBytranslateMatrix)
+{
 	t_matrix transform = translate(5, -3, 2);
 	double *p = point(-3, 4, 5);
 	double *expected_point = point(2, 1, 7);
@@ -26,7 +28,8 @@ TEST(TesterMatrixtranslate, MultiplyingBytranslateMatrix) {
 	free(result);
 }
 
-TEST(TesterMatrixtranslate, MultiplyingByinvOftranslateMatrix) {
+TEST(TesterMatrixtranslate, MultiplyingByinvOftranslateMatrix)
+{
 	t_matrix transform = translate(5, -3, 2);
 	t_matrix inverse = inv(transform);
 	double *p = point(-3, 4, 5);
@@ -45,7 +48,8 @@ TEST(TesterMatrixtranslate, MultiplyingByinvOftranslateMatrix) {
 	free(result);
 }
 
-TEST(TesterMatrixtranslate, translateDoesNotAffectVectors) {
+TEST(TesterMatrixtranslate, translateDoesNotAffectVectors)
+{
 	t_matrix transform = translate(5, -3, 2);
 	double *v = vector(-3, 4, 5);
 
@@ -61,7 +65,8 @@ TEST(TesterMatrixtranslate, translateDoesNotAffectVectors) {
 	free(result);
 }
 
-TEST(TesterMatrixscale, scaleMatrixAppliedToPoint) {
+TEST(TesterMatrixscale, scaleMatrixAppliedToPoint)
+{
 	t_matrix transform = scale(2, 3, 4);
 	double *p = point(-4, 6, 8);
 	double *expected_point = point(-8, 18, 32);
@@ -79,7 +84,8 @@ TEST(TesterMatrixscale, scaleMatrixAppliedToPoint) {
 	free(result);
 }
 
-TEST(TesterMatrixscale, scaleMatrixAppliedToVector) {
+TEST(TesterMatrixscale, scaleMatrixAppliedToVector)
+{
 	t_matrix transform = scale(2, 3, 4);
 	double *v = vector(-4, 6, 8);
 	double *expected_vector = vector(-8, 18, 32);
@@ -97,7 +103,8 @@ TEST(TesterMatrixscale, scaleMatrixAppliedToVector) {
 	free(result);
 }
 
-TEST(TesterMatrixscale, MultiplyingByinvOfscaleMatrix) {
+TEST(TesterMatrixscale, MultiplyingByinvOfscaleMatrix)
+{
 	t_matrix transform = scale(2, 3, 4);
 	t_matrix inverse = inv(transform);
 	double *v = vector(-4, 6, 8);
@@ -116,7 +123,8 @@ TEST(TesterMatrixscale, MultiplyingByinvOfscaleMatrix) {
 	free(result);
 }
 
-TEST(TesterMatrixscale, ReflectionIsscaleByNegativeValue) {
+TEST(TesterMatrixscale, ReflectionIsscaleByNegativeValue)
+{
 	t_matrix transform = scale(-1, 1, 1);
 	double *p = point(2, 3, 4);
 	double *expected_point = point(-2, 3, 4);
@@ -134,7 +142,8 @@ TEST(TesterMatrixscale, ReflectionIsscaleByNegativeValue) {
 	free(result);
 }
 
-TEST(TesterMatrixRotation, RotatingPointAroundZAxis) {
+TEST(TesterMatrixRotation, RotatingPointAroundZAxis)
+{
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -167,7 +176,8 @@ TEST(TesterMatrixRotation, RotatingPointAroundZAxis) {
 	free(result_full_quarter);
 }
 
-TEST(TesterMatrixRotation, RotatingPointAroundYAxis) {
+TEST(TesterMatrixRotation, RotatingPointAroundYAxis)
+{
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -200,7 +210,8 @@ TEST(TesterMatrixRotation, RotatingPointAroundYAxis) {
 	free(result_full_quarter);
 }
 
-TEST(TesterMatrixRotation, invOfXRotationRotatesOppositeDirection) {
+TEST(TesterMatrixRotation, invOfXRotationRotatesOppositedir)
+{
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -223,7 +234,8 @@ TEST(TesterMatrixRotation, invOfXRotationRotatesOppositeDirection) {
 	free(result);
 }
 
-TEST(TesterMatrixRotation, RotatingPointAroundXAxis) {
+TEST(TesterMatrixRotation, RotatingPointAroundXAxis)
+{
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -256,7 +268,8 @@ TEST(TesterMatrixRotation, RotatingPointAroundXAxis) {
 	free(result_full_quarter);
 }
 
-TEST(Transformations, IndividualTransformationsSequence) {
+TEST(Transformations, IndividualTransformationsSequence)
+{
 	double *p = point(1, 0, 1);
 	t_matrix A = rotate_x(M_PI / 2);
 	t_matrix B = scale(5, 5, 5);
@@ -289,7 +302,8 @@ TEST(Transformations, IndividualTransformationsSequence) {
 	free(p4);
 }
 
-TEST(Transformations, ChainedTransformationsReverseOrder) {
+TEST(Transformations, ChainedTransformationsReverseOrder)
+{
 	double *p = point(1, 0, 1);
 	t_matrix A = rotate_x(M_PI / 2);
 	t_matrix B = scale(5, 5, 5);

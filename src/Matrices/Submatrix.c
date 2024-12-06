@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:18:06 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:57:07 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:11:32 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
  * specified row and column
  *
  * This function fills the result matrix with the elements of the
- * original matrix, excluding the specified row and column.
+ * srcal matrix, excluding the specified row and column.
  *
  * @param res The result matrix to be filled
- * @param mtx The original matrix
+ * @param mtx The srcal matrix
  * @param sub_r The row index to be removed
  * @param sub_c The column index to be removed
  */
@@ -56,10 +56,10 @@ static void	submtx_aux(t_matrix *res, t_matrix mtx, int sub_r, int sub_c)
  * @brief Create a submatrix by removing a specified row and column
  *
  * This function creates a submatrix by removing the specified row and column
- * from the original matrix. If the row or column index is negative, an error
+ * from the srcal matrix. If the row or column index is negative, an error
  * message is displayed and the program is terminated.
  *
- * @param matrix The original matrix
+ * @param matrix The srcal matrix
  * @param sub_r The row index to be removed
  * @param sub_c The column index to be removed
  * @return The resulting submatrix

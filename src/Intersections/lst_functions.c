@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   lst_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:49:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/12/02 14:49:32 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:20:37 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intersections.h"
 
-void	append_to_end(t_lst_inter *tmp, t_lst_inter *new1)
+void	append_to_end(t_inter *tmp, t_inter *new1)
 {
 	tmp->next = new1;
 	new1->prev = tmp;
 }
 
-void	insert_before(t_lst_inter *tmp, t_lst_inter *new_node)
+void	insert_before(t_inter *tmp, t_inter *new_node)
 {
 	if (tmp->prev)
 	{
@@ -29,9 +29,9 @@ void	insert_before(t_lst_inter *tmp, t_lst_inter *new_node)
 	new_node->next = tmp;
 }
 
-void	insert_into_list(t_lst_inter **head, t_lst_inter *n1)
+void	insert_into_list(t_inter **head, t_inter *n1)
 {
-	t_lst_inter	*tmp;
+	t_inter	*tmp;
 
 	tmp = *head;
 	while (tmp)
@@ -50,20 +50,10 @@ void	insert_into_list(t_lst_inter **head, t_lst_inter *n1)
 	}
 }
 
-// void	initialize_head(t_lst_inter **head, t_intersect value, t_sphere *s)
-// {
-// 	*head = allocate(sizeof(t_lst_inter));
-// 	(*head)->pos = value.t1;
-// 	(*head)->sphere = s;
-// 	(*head)->next = allocate(sizeof(t_lst_inter));
-// 	(*head)->next->pos = value.t2;
-// 	(*head)->next->sphere = s;
-// }
-
-int	lst_count(t_lst_inter *lst)
+int	lst_count(t_inter *lst)
 {
-	int			idx;
-	t_lst_inter	*tmp;
+	int		idx;
+	t_inter	*tmp;
 
 	tmp = lst;
 	idx = 0;

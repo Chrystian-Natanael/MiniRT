@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:52:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 16:19:45 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/09 11:45:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_light_aux
 	t_colors	*specular;
 	t_colors	*effective_color;
 	double		*lightv;
-	double		*light_dot_normal;
+	double		light_dot_normal;
 	double		*reflectv;
 	double		reflect_dot_eye;
 	double		factor;

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 16:02:26 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/09 11:46:43 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ t_material	material(void)
 	material.ambient = create_color(0.1, 0.1, 0.1);
 	material.diffuse = create_color(0.9, 0.9, 0.9);
 	material.specular = create_color(0.9, 0.9, 0.9);
-	material.shininess = create_color(200, 200, 200);
+	material.shininess = 200;
 	return (material);
 }

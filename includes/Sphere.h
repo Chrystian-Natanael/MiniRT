@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 16:20:05 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/09 11:46:23 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_material
 	t_colors	*ambient;
 	t_colors	*diffuse;
 	t_colors	*specular;
-	t_colors	*shininess;
+	double		shininess;
 }				t_material;
 
 typedef struct s_sp

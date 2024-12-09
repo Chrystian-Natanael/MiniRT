@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/09 11:46:43 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:00:32 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_sp	*create_sp(void)
 	sp->src = point(0, 0, 0);
 	sp->radius = 1;
 	sp->transf = id_mtx();
-	sp->inv = inv(sp->transf);
-	sp->transp = transp_mtx(sp->inv);
+	sp->inv = id_mtx();
+	sp->transp = id_mtx();
 	sp->material = material();
 	return (sp);
 }

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:47:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/12/09 11:58:58 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:51:45 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_colors	*lighting(t_material m, t_pt_light light, double *pos, t_sight sig)
 		data.diffuse = multiply_colors(hada_colors(m.diffuse, data.effective_color), data.light_dot_normal);
 		data.reflectv = reflect(negate_vector(data.lightv), sig.normal);
 		data.reflect_dot_eye = dot_prod(data.reflectv, sig.eye);
-		if (data.reflect_dot_eye < 1)
+		if (data.reflect_dot_eye <= 0)
 			data.specular = create_color(0, 0, 0);
 		else
 		{

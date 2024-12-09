@@ -141,9 +141,15 @@ TEST(TesterMaterial, DefaultMaterial)
 	EXPECT_TRUE(equal(m.ambient->red, 0.1));
 	EXPECT_TRUE(equal(m.ambient->green, 0.1));
 	EXPECT_TRUE(equal(m.ambient->blue, 0.1));
-	EXPECT_TRUE(equal(m.diffuse, 0.9));
-	EXPECT_TRUE(equal(m.specular, 0.9));
-	EXPECT_TRUE(equal(m.shininess, 200.0));
+	EXPECT_TRUE(equal(m.diffuse->red, 0.9));
+	EXPECT_TRUE(equal(m.diffuse->green, 0.9));
+	EXPECT_TRUE(equal(m.diffuse->blue, 0.9));
+	EXPECT_TRUE(equal(m.specular->red, 0.9));
+	EXPECT_TRUE(equal(m.specular->green, 0.9));
+	EXPECT_TRUE(equal(m.specular->blue, 0.9));
+	EXPECT_TRUE(equal(m.shininess->red, 200.0));
+	EXPECT_TRUE(equal(m.shininess->green, 200.0));
+	EXPECT_TRUE(equal(m.shininess->blue, 200.0));
 }
 
 TEST(TesterMaterial, SphereHasDefaultMaterial)
@@ -160,9 +166,15 @@ TEST(TesterMaterial, SphereHasDefaultMaterial)
 	EXPECT_TRUE(equal(s->material.ambient->red, default_material.ambient->red));
 	EXPECT_TRUE(equal(s->material.ambient->green, default_material.ambient->green));
 	EXPECT_TRUE(equal(s->material.ambient->blue, default_material.ambient->blue));
-	EXPECT_TRUE(equal(m.diffuse, default_material.diffuse));
-	EXPECT_TRUE(equal(m.specular, default_material.specular));
-	EXPECT_TRUE(equal(m.shininess, default_material.shininess));
+	EXPECT_TRUE(equal(m.diffuse->red, default_material.diffuse->red));
+	EXPECT_TRUE(equal(m.diffuse->green, default_material.diffuse->green));
+	EXPECT_TRUE(equal(m.diffuse->blue, default_material.diffuse->blue));
+	EXPECT_TRUE(equal(m.specular->red, default_material.specular->red));
+	EXPECT_TRUE(equal(m.specular->green, default_material.specular->green));
+	EXPECT_TRUE(equal(m.specular->blue, default_material.specular->blue));
+	EXPECT_TRUE(equal(m.shininess->red, default_material.shininess->red));
+	EXPECT_TRUE(equal(m.shininess->green, default_material.shininess->green));
+	EXPECT_TRUE(equal(m.shininess->blue, default_material.shininess->blue));
 }
 
 TEST(TesterMaterial, SphereAssignedMaterial)
@@ -176,9 +188,15 @@ TEST(TesterMaterial, SphereAssignedMaterial)
 	EXPECT_TRUE(equal(s->material.ambient->red, m.ambient->red));
 	EXPECT_TRUE(equal(s->material.ambient->green, m.ambient->green));
 	EXPECT_TRUE(equal(s->material.ambient->blue, m.ambient->blue));
-	EXPECT_TRUE(equal(s->material.diffuse, m.diffuse));
-	EXPECT_TRUE(equal(s->material.specular, m.specular));
-	EXPECT_TRUE(equal(s->material.shininess, m.shininess));
+	EXPECT_TRUE(equal(s->material.diffuse, m.diffuse->red));
+	EXPECT_TRUE(equal(s->material.diffuse, m.diffuse->green));
+	EXPECT_TRUE(equal(s->material.diffuse, m.diffuse->blue));
+	EXPECT_TRUE(equal(s->material.specular, m.specular->red));
+	EXPECT_TRUE(equal(s->material.specular, m.specular->green));
+	EXPECT_TRUE(equal(s->material.specular, m.specular->blue));
+	EXPECT_TRUE(equal(s->material.shininess, m.shininess->red));
+	EXPECT_TRUE(equal(s->material.shininess, m.shininess->green));
+	EXPECT_TRUE(equal(s->material.shininess, m.shininess->blue));
 
 	EXPECT_TRUE(equal(s->material.color->red, m.color->red));
 	EXPECT_TRUE(equal(s->material.color->green, m.color->green));

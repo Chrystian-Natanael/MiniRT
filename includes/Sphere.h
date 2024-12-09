@@ -21,9 +21,9 @@ typedef struct s_material
 {
 	t_colors	*color;
 	t_colors	*ambient;
-	double		diffuse;
-	double		specular;
-	double		shininess;
+	t_colors	*diffuse;
+	t_colors	*specular;
+	t_colors	*shininess;
 }				t_material;
 
 typedef struct s_sp

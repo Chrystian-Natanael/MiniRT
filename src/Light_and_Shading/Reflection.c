@@ -32,5 +32,27 @@ t_pt_light	pt_light(double *pos, t_colors *intensity)
 
 t_colors	*lighting(t_material m, t_pt_light light, double *pos, t_sight sig)
 {
-	return (create_color(1, 1, 1));
+	t_light_aux	data;
+
+	data.effective_color = hada_colors(m.color, light.intensity);
+	data.lightv = norm(sub(light.pos, pos));
+	data.ambient = hada_colors(data.effective_color, m.ambient);
+	data.light_dot_normal = dot_prod(data.lightv, sig.normal);
+	if (data.light_dot_normal < 0)
+	{
+		data.diffuse = (0, 0, 0);
+		data.specular = (0, 0, 0);
+	}
+	else
+	{
+		data.diffuse = multiply_colors(hada_colors(data.diffuse, data.effective_color), data.light_dot_normal);
+		data.reflectv = reflect((negate_vector(data.lightv), sig.normal));
+		data.reflect_dot_eye = dot_prod(data.reflectv, sig.eye);
+			if (data.reflect_dot_eye < 1)
+				data.specular = (0, 0, 0);
+			else
+				data.factor = pow(data.reflect_dot_eye, m.shininess);
+				data.specular = multiply_colors(hada_colors(light.intensity, m.specular), data.factor);
+	}
+	return (sum_colors(sum_colors(data.ambient, data.diffuse), data.specular));
 }

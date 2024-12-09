@@ -17,11 +17,24 @@
 # include "Matrices.h"
 # include "Sphere.h"
 
-typedef struct s_point_light
+typedef struct s_pt_light
 {
 	double		*pos;
 	t_colors	*intensity;
 }				t_pt_light;
+
+typedef struct s_light_aux
+{
+	t_colors	*ambient;
+	t_colors	*diffuse;
+	t_colors	*specular;
+	t_colors	*effective_color;
+	double		*lightv;
+	double		*light_dot_normal;
+	double		*reflectv;
+	double		reflect_dot_eye;
+	double		factor;
+}				t_light_aux;
 
 typedef struct s_sight
 {

@@ -5,8 +5,27 @@ extern "C" {
 	#include "Tuples.h"
 }
 
-TEST(PointAndVectorTest, TestPointFunction) {
-	init_pools();
+class FixtureTuple : public ::testing::Test {
+protected:
+	t_pool_set *set;
+
+	void SetUp() override {
+		init_pools();
+		set = get_pools();
+	}
+
+	void TearDown() override {
+		deallocate(set->colors->mem);
+		deallocate(set->colors);
+		deallocate(set->matrices->mem);
+		deallocate(set->matrices);
+		deallocate(set->objects->mem);
+		deallocate(set->objects);
+		deallocate(set);
+	}
+};
+
+TEST_F(FixtureTuple, PtVecTst_TestPointFunction) {
 	double *p = point(1.0, 2.0, 3.0);
 
 	ASSERT_NE(p, nullptr);
@@ -17,8 +36,7 @@ TEST(PointAndVectorTest, TestPointFunction) {
 
 }
 
-TEST(PointAndVectorTest, TestVectorFunction) {
-	init_pools();
+TEST_F(FixtureTuple, PtVecTst_TestVectorFunction) {
 	double *v = vector(4.0, 5.0, 6.0);
 
 	ASSERT_NE(v, nullptr);
@@ -29,15 +47,13 @@ TEST(PointAndVectorTest, TestVectorFunction) {
 
 }
 
-TEST(PointAndVectorTest, TestEqualFunction) {
-	init_pools();
+TEST_F(FixtureTuple, PtVecTst_TestEqualFunction) {
 	double x = (1.100);
 	EXPECT_TRUE(equal(x, 1.100005));
 	EXPECT_FALSE(equal(x, 1.105));
 }
 
-TEST(OperationsTest, TestSumFunction) {
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestSumFunction) {
 	double *p1 = point(3, -2, 5);
 	double *v = vector(-2, 3, 1);
 	double *r = sum(p1, v);
@@ -50,8 +66,7 @@ TEST(OperationsTest, TestSumFunction) {
 
 }
 
-TEST(OperationsTest, TestSubFunctionWith2Pts) {
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestSubFunctionWith2Pts) {
 	double *p1 = point(3, 2, 1);
 	double *p2 = point(5, 6, 7);
 	double *r = sub(p1, p2);
@@ -64,8 +79,7 @@ TEST(OperationsTest, TestSubFunctionWith2Pts) {
 
 }
 
-TEST(OperationsTest, TestSubFunctionWithPtAndVec) {
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestSubFunctionWithPtAndVec) {
 	double *p = point(3, 2, 1);
 	double *v = vector(5, 6, 7);
 	double *r = sub(p, v);
@@ -78,8 +92,7 @@ TEST(OperationsTest, TestSubFunctionWithPtAndVec) {
 
 }
 
-TEST(OperationsTest, TestSubFunctionWith2Vec) {
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestSubFunctionWith2Vec) {
 	double *v1 = vector(3, 2, 1);
 	double *v2 = vector(5, 6, 7);
 	double *r = sub(v1, v2);
@@ -92,8 +105,7 @@ TEST(OperationsTest, TestSubFunctionWith2Vec) {
 
 }
 
-TEST(OperationsTest, TestSubFunctionFromZeroVector){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestSubFunctionFromZeroVector){
 	double *v1 = vector(0,0,0);
 	double *v2 = vector(1, -2, 3);
 	double *r = sub(v1, v2);
@@ -106,8 +118,7 @@ TEST(OperationsTest, TestSubFunctionFromZeroVector){
 
 }
 
-TEST(OperationsTest, TestSubFunctionNegating){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestSubFunctionNegating){
 	double *tp = negate(1, -2, 3, -4);
 
 	ASSERT_NE(tp, nullptr);
@@ -118,8 +129,7 @@ TEST(OperationsTest, TestSubFunctionNegating){
 
 }
 
-TEST(OperationsTest, TestSubFunctionNegatingVector){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestSubFunctionNegatingVector){
 	double *v = vector(1, -2, 3);
 	double *nv = negate_vector(v);
 
@@ -131,8 +141,7 @@ TEST(OperationsTest, TestSubFunctionNegatingVector){
 
 }
 
-TEST(OperationsTest, TestMultFunction){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestMultFunction){
 	double *v = create_tp(1, -2, 3, -4);
 	double *r = multiply(v, 3.5);
 
@@ -144,8 +153,7 @@ TEST(OperationsTest, TestMultFunction){
 
 }
 
-TEST(OperationsTest, TestDivFunctionWithValidDividend){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestDivFunctionWithValidDividend){
 	double *v = create_tp(1, -2, 3, -4);
 	double *r = division(v, 2);
 
@@ -157,8 +165,7 @@ TEST(OperationsTest, TestDivFunctionWithValidDividend){
 
 }
 
-TEST(OperationsTest, TestDivFunctionWithInvalidDividend){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestDivFunctionWithInvalidDividend){
 	double *v = create_tp(1, -2, 3, -4);
 	double *r = division(v, 0);
 
@@ -166,8 +173,7 @@ TEST(OperationsTest, TestDivFunctionWithInvalidDividend){
 
 }
 
-TEST(OperationsTest, TestMagFunctionWithResOne){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestMagFunctionWithResOne){
 	double *v1 = vector(1, 0, 0);
 	double *v2 = vector(0, 1, 0);
 	double *v3 = vector(0, 0, 1);
@@ -181,8 +187,7 @@ TEST(OperationsTest, TestMagFunctionWithResOne){
 
 }
 
-TEST(OperationsTest, TestMagFunctionWithResDifThanOne){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestMagFunctionWithResDifThanOne){
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(-1, -2, -3);
 	double r1 = mag(v1);
@@ -193,8 +198,7 @@ TEST(OperationsTest, TestMagFunctionWithResDifThanOne){
 
 }
 
-TEST(OperationsTest, TestNormFunction){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestNormFunction){
 	double *v1 = vector(4, 0, 0);
 	double *v2 = vector(1, 2, 3);
 	double *r1 = norm(v1);
@@ -211,8 +215,7 @@ TEST(OperationsTest, TestNormFunction){
 
 }
 
-TEST(OperationsTest, TestDotProductFunction){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestDotProductFunction){
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(2, 3, 4);
 	double r = dot_prod(v1, v2);
@@ -221,8 +224,7 @@ TEST(OperationsTest, TestDotProductFunction){
 
 }
 
-TEST(OperationsTest, TestCrossProductFunction){
-	init_pools();
+TEST_F(FixtureTuple, OperTst_TestCrossProductFunction){
 	double *v1 = vector(1, 2, 3);
 	double *v2 = vector(2, 3, 4);
 	double *r1 = cross_prod(v1, v2);

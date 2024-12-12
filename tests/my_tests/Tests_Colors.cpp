@@ -7,8 +7,27 @@ extern "C" {
 	#include <stdint.h>
 }
 
-TEST(OperationColors, CreateColors) {
-	init_pools();
+class FixtureColor : public ::testing::Test {
+protected:
+	t_pool_set *set;
+
+	void SetUp() override {
+		init_pools();
+		set = get_pools();
+	}
+
+	void TearDown() override {
+		deallocate(set->colors->mem);
+		deallocate(set->colors);
+		deallocate(set->matrices->mem);
+		deallocate(set->matrices);
+		deallocate(set->objects->mem);
+		deallocate(set->objects);
+		deallocate(set);
+	}
+};
+
+TEST_F(FixtureColor, OpCol_CreateColors) {
 	t_colors *c1 = create_color(0.9, 0.6, 0.75);
 
 	ASSERT_NE(c1, nullptr);
@@ -17,8 +36,7 @@ TEST(OperationColors, CreateColors) {
 	EXPECT_EQ(c1->blue, 0.75);
 }
 
-TEST(OperationColors, AdditionColors) {
-	init_pools();
+TEST_F(FixtureColor, OpCol_AdditionColors) {
 	t_colors *c1 = create_color(0.9, 0.6, 0.75);
 	t_colors *c2 = create_color(0.7, 0.1, 0.25);
 	t_colors *res = sum_colors(c1, c2);
@@ -29,8 +47,7 @@ TEST(OperationColors, AdditionColors) {
 	EXPECT_EQ(res->blue, 1.0);
 }
 
-TEST(OperationColors, SubtractionColors) {
-	init_pools();
+TEST_F(FixtureColor, OpCol_SubtractionColors) {
 	t_colors *c1 = create_color(0.9, 0.6, 0.75);
 	t_colors *c2 = create_color(0.7, 0.1, 0.25);
 	t_colors *res = sub_colors(c1, c2);
@@ -41,8 +58,7 @@ TEST(OperationColors, SubtractionColors) {
 	EXPECT_EQ(res->blue, 0.5);
 }
 
-TEST(OperationColors, MultiplicationColors) {
-	init_pools();
+TEST_F(FixtureColor, OpCol_MultiplicationColors) {
 	t_colors *c = create_color(0.2, 0.3, 0.4);
 	t_colors *res = multiply_colors(c, 2);
 
@@ -52,8 +68,7 @@ TEST(OperationColors, MultiplicationColors) {
 	EXPECT_EQ(res->blue, 0.8);
 }
 
-TEST(OperationColors, HadaColors) {
-	init_pools();
+TEST_F(FixtureColor, OpCol_HadaColors) {
 	t_colors *c1 = create_color(1, 0.2, 0.4);
 	t_colors *c2 = create_color(0.9, 1, 0.1);
 	t_colors *res = hada_colors(c1, c2);
@@ -64,8 +79,7 @@ TEST(OperationColors, HadaColors) {
 	EXPECT_TRUE(equal(res->blue, 0.04));
 }
 
-TEST(OperationColors, HadaColorsOtherValues) {
-	init_pools();
+TEST_F(FixtureColor, OpCol_HadaColorsOtherValues) {
 	t_colors *c1 = create_color(2, 0.2, 0.4);
 	t_colors *c2 = create_color(0.9, 2, 0.2);
 	t_colors *res = hada_colors(c1, c2);
@@ -76,8 +90,7 @@ TEST(OperationColors, HadaColorsOtherValues) {
 	EXPECT_TRUE(equal(res->blue, 0.08));
 }
 
-TEST(OperationColors, ConvertRGBToHexa) {
-	init_pools();
+TEST_F(FixtureColor, OpCol_ConvertRGBToHexa) {
 	t_colors *c = create_color(1, 0, 0);
 	uint32_t res = rgb2hex(*c);
 

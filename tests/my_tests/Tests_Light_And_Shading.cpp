@@ -8,7 +8,27 @@ extern "C"
 #include "Matrices.h"
 }
 
-TEST(TesterNormalAt, NormalOnSphereAtPointOnXAxis)
+class FixtureLight : public ::testing::Test {
+protected:
+	t_pool_set *set;
+
+	void SetUp() override {
+		init_pools();
+		set = get_pools();
+	}
+
+	void TearDown() override {
+		deallocate(set->colors->mem);
+		deallocate(set->colors);
+		deallocate(set->matrices->mem);
+		deallocate(set->matrices);
+		deallocate(set->objects->mem);
+		deallocate(set->objects);
+		deallocate(set);
+	}
+};
+
+TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnXAxis)
 {
 	t_sp *s = create_sp();
 	double *n = normal_at(s, point(1, 0, 0));
@@ -19,7 +39,7 @@ TEST(TesterNormalAt, NormalOnSphereAtPointOnXAxis)
 	EXPECT_DOUBLE_EQ(n[2], expected[2]);
 }
 
-TEST(TesterNormalAt, NormalOnSphereAtPointOnYAxis)
+TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnYAxis)
 {
 	t_sp *s = create_sp();
 	double *n = normal_at(s, point(0, 1, 0));
@@ -30,7 +50,7 @@ TEST(TesterNormalAt, NormalOnSphereAtPointOnYAxis)
 	EXPECT_DOUBLE_EQ(n[2], expected[2]);
 }
 
-TEST(TesterNormalAt, NormalOnSphereAtPointOnZAxis)
+TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnZAxis)
 {
 	t_sp *s = create_sp();
 	double *n = normal_at(s, point(0, 0, 1));
@@ -41,7 +61,7 @@ TEST(TesterNormalAt, NormalOnSphereAtPointOnZAxis)
 	EXPECT_DOUBLE_EQ(n[2], expected[2]);
 }
 
-TEST(TesterNormalAt, NormalOnSphereAtNonaxialPoint)
+TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtNonaxialPoint)
 {
 	t_sp *s = create_sp();
 	double sqrt3_over_3 = sqrt(3) / 3;
@@ -53,7 +73,7 @@ TEST(TesterNormalAt, NormalOnSphereAtNonaxialPoint)
 	EXPECT_DOUBLE_EQ(n[2], expected[2]);
 }
 
-TEST(TesterNormalAt, NormalIsNormalizedVector)
+TEST_F(FixtureLight, TstNormalAt_NormalIsNormalizedVector)
 {
 	t_sp *s = create_sp();
 	double sqrt3_over_3 = sqrt(3) / 3;
@@ -65,7 +85,7 @@ TEST(TesterNormalAt, NormalIsNormalizedVector)
 	EXPECT_TRUE(equal(n[2], normalized_n[2]));
 }
 
-TEST(TesterNormalAt, NormalOnTranslatedSphere)
+TEST_F(FixtureLight, TstNormalAt_NormalOnTranslatedSphere)
 {
 	t_sp *s = create_sp();
 	set_transf(s, translate(0, 1, 0));
@@ -77,7 +97,7 @@ TEST(TesterNormalAt, NormalOnTranslatedSphere)
 	EXPECT_TRUE(equal(n[2], expected[2]));
 }
 
-TEST(TesterNormalAt, NormalOnTransformedSphere)
+TEST_F(FixtureLight, TstNormalAt_NormalOnTransformedSphere)
 {
 	t_sp *s = create_sp();
 	t_matrix m = multiply_mtx(scale(1, 0.5, 1), rotate_z(M_PI / 5));
@@ -90,7 +110,7 @@ TEST(TesterNormalAt, NormalOnTransformedSphere)
 	EXPECT_TRUE(equal(n[2], expected[2]));
 }
 
-TEST(TesterReflect, ReflectVectorApproachingAt45Degrees)
+TEST_F(FixtureLight, TstRefl_ReflectVectorApproachingAt45Degrees)
 {
 	double *v = vector(1, -1, 0);
 	double *n = vector(0, 1, 0);
@@ -102,7 +122,7 @@ TEST(TesterReflect, ReflectVectorApproachingAt45Degrees)
 	EXPECT_TRUE(equal(r[2], expected[2]));
 }
 
-TEST(TesterReflect, ReflectVectorOffSlantedSurface)
+TEST_F(FixtureLight, TstRefl_ReflectVectorOffSlantedSurface)
 {
 	double *v = vector(0, -1, 0);
 	double sqrt2_over_2 = sqrt(2) / 2;
@@ -115,7 +135,7 @@ TEST(TesterReflect, ReflectVectorOffSlantedSurface)
 	EXPECT_TRUE(equal(r[2], expected[2]));
 }
 
-TEST(TesterPointLight, PointLightHasPositionAndIntensity)
+TEST_F(FixtureLight, TstPtLight_PointLightHasPositionAndIntensity)
 {
 	t_colors *intensity = create_color(1, 1, 1);
 	double *position = point(0, 0, 0);
@@ -130,7 +150,7 @@ TEST(TesterPointLight, PointLightHasPositionAndIntensity)
 	EXPECT_TRUE(equal(light.intensity->blue, intensity->blue));
 }
 
-TEST(TesterMaterial, DefaultMaterial)
+TEST_F(FixtureLight, TstMat_DefaultMaterial)
 {
 	t_material m = material();
 
@@ -150,7 +170,7 @@ TEST(TesterMaterial, DefaultMaterial)
 	EXPECT_TRUE(equal(m.shininess, 200.0));
 }
 
-TEST(TesterMaterial, SphereHasDefaultMaterial)
+TEST_F(FixtureLight, TstMat_SphereHasDefaultMaterial)
 {
 	t_sp *s = create_sp();
 	t_material m = s->material;
@@ -173,7 +193,7 @@ TEST(TesterMaterial, SphereHasDefaultMaterial)
 	EXPECT_TRUE(equal(m.shininess, default_material.shininess));
 }
 
-TEST(TesterMaterial, SphereAssignedMaterial)
+TEST_F(FixtureLight, TstMat_SphereAssignedMaterial)
 {
 	t_sp *s = create_sp();
 	t_material m = material();
@@ -197,8 +217,7 @@ TEST(TesterMaterial, SphereAssignedMaterial)
 	EXPECT_TRUE(equal(s->material.color->blue, m.color->blue));
 }
 
-TEST(TesterLighting, EyeBetweenLightAndSurface) {
-	init_pools();
+TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurface) {
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, 0, -1);
@@ -213,8 +232,7 @@ TEST(TesterLighting, EyeBetweenLightAndSurface) {
 	EXPECT_TRUE(equal(result->blue, 1.9));
 }
 
-TEST(TesterLighting, EyeBetweenLightAndSurfaceOffset45) {
-	init_pools();
+TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurfaceOffset45) {
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
@@ -229,8 +247,7 @@ TEST(TesterLighting, EyeBetweenLightAndSurfaceOffset45) {
 	EXPECT_TRUE(equal(result->blue, 1.0));
 }
 
-TEST(TesterLighting, EyeOppositeSurfaceLightOffset45) {
-	init_pools();
+TEST_F(FixtureLight, TstLighting_EyeOppositeSurfaceLightOffset45) {
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, 0, -1);
@@ -245,8 +262,7 @@ TEST(TesterLighting, EyeOppositeSurfaceLightOffset45) {
 	EXPECT_TRUE(equal(result->blue, 0.7364));
 }
 
-TEST(TesterLighting, EyeInPathOfReflectionVector) {
-	init_pools();
+TEST_F(FixtureLight, TstLighting_EyeInPathOfReflectionVector) {
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
@@ -261,8 +277,7 @@ TEST(TesterLighting, EyeInPathOfReflectionVector) {
 	EXPECT_TRUE(equal(result->blue, 1.6364));
 }
 
-TEST(TesterLighting, LightBehindSurface) {
-	init_pools();
+TEST_F(FixtureLight, TstLighting_LightBehindSurface) {
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, 0, -1);

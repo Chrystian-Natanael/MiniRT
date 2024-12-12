@@ -9,9 +9,28 @@ extern "C"
 #include "Utils.h"
 }
 
-TEST(TesterRay, CreateAndQueryRay)
+class FixtureInter : public ::testing::Test {
+protected:
+	t_pool_set *set;
+
+	void SetUp() override {
+		init_pools();
+		set = get_pools();
+	}
+
+	void TearDown() override {
+		deallocate(set->colors->mem);
+		deallocate(set->colors);
+		deallocate(set->matrices->mem);
+		deallocate(set->matrices);
+		deallocate(set->objects->mem);
+		deallocate(set->objects);
+		deallocate(set);
+	}
+};
+
+TEST_F(FixtureInter, TstRay_CreateAndQueryRay)
 {
-	init_pools();
 	double *src = point(1, 2, 3);
 	double *dir = vector(4, 5, 6);
 	t_ray r = create_ray(src, dir);
@@ -31,9 +50,8 @@ TEST(TesterRay, CreateAndQueryRay)
 
 }
 
-TEST(TesterRay, ComputePointFromDistance)
+TEST_F(FixtureInter, TstRay_ComputePointFromDistance)
 {
-	init_pools();
 	double *src = point(2, 3, 4);
 	double *dir = vector(1, 0, 0);
 	t_ray r = create_ray(src, dir);
@@ -50,9 +68,8 @@ TEST(TesterRay, ComputePointFromDistance)
 
 }
 
-TEST(TesterRay, RayIntersectsSphereAtTwoPoints)
+TEST_F(FixtureInter, TstRay_RayIntersectsSphereAtTwoPoints)
 {
-	init_pools();
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -66,9 +83,8 @@ TEST(TesterRay, RayIntersectsSphereAtTwoPoints)
 
 }
 
-TEST(TesterRay, RayIntersectsSphereAtTangent)
+TEST_F(FixtureInter, TstRay_RayIntersectsSphereAtTangent)
 {
-	init_pools();
 	double *src = point(0, 1, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -82,9 +98,8 @@ TEST(TesterRay, RayIntersectsSphereAtTangent)
 
 }
 
-TEST(TesterRay, RayMissesSphere)
+TEST_F(FixtureInter, TstRay_RayMissesSphere)
 {
-	init_pools();
 	double *src = point(0, 2, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -96,9 +111,8 @@ TEST(TesterRay, RayMissesSphere)
 
 }
 
-TEST(TesterRay, RaysrcatesInsideSphere)
+TEST_F(FixtureInter, TstRay_RaysrcatesInsideSphere)
 {
-	init_pools();
 	double *src = point(0, 0, 0);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -112,9 +126,8 @@ TEST(TesterRay, RaysrcatesInsideSphere)
 
 }
 
-TEST(TesterRay, SphereIsBehindRay)
+TEST_F(FixtureInter, TstRay_SphereIsBehindRay)
 {
-	init_pools();
 	double *src = point(0, 0, 5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -128,9 +141,8 @@ TEST(TesterRay, SphereIsBehindRay)
 
 }
 
-TEST(TesterRay, IntersectionEncapsulatesTAndObject)
+TEST_F(FixtureInter, TstRay_IntersectionEncapsulatesTAndObject)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -143,9 +155,8 @@ TEST(TesterRay, IntersectionEncapsulatesTAndObject)
 
 }
 
-TEST(TesterRay, AggregatingIntersections)
+TEST_F(FixtureInter, TstRay_AggregatingIntersections)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -159,9 +170,8 @@ TEST(TesterRay, AggregatingIntersections)
 
 }
 
-TEST(TesterRay, IntersectSetsObjectOnIntersection)
+TEST_F(FixtureInter, TstRay_IntersectSetsObjectOnIntersection)
 {
-	init_pools();
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -184,9 +194,8 @@ TEST(TesterRay, IntersectSetsObjectOnIntersection)
 
 }
 
-TEST(TesterRay, OrdenadedNumbers)
+TEST_F(FixtureInter, TstRay_OrdenadedNumbers)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -202,9 +211,8 @@ TEST(TesterRay, OrdenadedNumbers)
 
 }
 
-TEST(TesterRay, HitWhenAllIntersectionsHavePositiveT)
+TEST_F(FixtureInter, TstRay_HitWhenAllIntersectionsHavePositiveT)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -218,9 +226,8 @@ TEST(TesterRay, HitWhenAllIntersectionsHavePositiveT)
 
 }
 
-TEST(TesterRay, HitWhenSomeIntersectionsHaveNegativeT)
+TEST_F(FixtureInter, TstRay_HitWhenSomeIntersectionsHaveNegativeT)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -234,9 +241,8 @@ TEST(TesterRay, HitWhenSomeIntersectionsHaveNegativeT)
 
 }
 
-TEST(TesterRay, HitWhenAllIntersectionsHaveNegativeT)
+TEST_F(FixtureInter, TstRay_HitWhenAllIntersectionsHaveNegativeT)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -250,9 +256,8 @@ TEST(TesterRay, HitWhenAllIntersectionsHaveNegativeT)
 
 }
 
-TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection)
+TEST_F(FixtureInter, TstRay_HitIsAlwaysLowestNonnegativeIntersection)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_inter *dest;
 
@@ -270,9 +275,8 @@ TEST(TesterRay, HitIsAlwaysLowestNonnegativeIntersection)
 
 }
 
-TEST(TesterRay, TranslatingARay)
+TEST_F(FixtureInter, TstRay_TranslatingARay)
 {
-	init_pools();
 	double *src = point(1, 2, 3);
 	double *dir = vector(0, 1, 0);
 	t_ray r = create_ray(src, dir);
@@ -292,9 +296,8 @@ TEST(TesterRay, TranslatingARay)
 
 }
 
-TEST(TesterRay, ScalingARay)
+TEST_F(FixtureInter, TstRay_ScalingARay)
 {
-	init_pools();
 	double *src = point(1, 2, 3);
 	double *dir = vector(0, 1, 0);
 	t_ray r = create_ray(src, dir);
@@ -314,9 +317,8 @@ TEST(TesterRay, ScalingARay)
 
 }
 
-TEST(TesterSphere, DefaultTransformation)
+TEST_F(FixtureInter, TstSp_DefaultTransformation)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_matrix identity = id_mtx();
 
@@ -324,9 +326,8 @@ TEST(TesterSphere, DefaultTransformation)
 
 }
 
-TEST(TesterSphere, ChangingTransformation)
+TEST_F(FixtureInter, TstSp_ChangingTransformation)
 {
-	init_pools();
 	t_sp *s = create_sp();
 	t_matrix t = translate(2, 3, 4);
 
@@ -336,9 +337,8 @@ TEST(TesterSphere, ChangingTransformation)
 
 }
 
-TEST(TesterSphere, IntersectingScaledSphereWithRay)
+TEST_F(FixtureInter, TstSp_IntersectingScaledSphereWithRay)
 {
-	init_pools();
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
@@ -355,9 +355,8 @@ TEST(TesterSphere, IntersectingScaledSphereWithRay)
 
 }
 
-TEST(TesterSphere, IntersectingTranslatedSphereWithRay)
+TEST_F(FixtureInter, TstSp_IntersectingTranslatedSphereWithRay)
 {
-	init_pools();
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);

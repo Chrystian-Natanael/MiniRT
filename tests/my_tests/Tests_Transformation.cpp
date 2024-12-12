@@ -9,9 +9,28 @@ extern "C"
 #include <stdbool.h>
 }
 
-TEST(TesterMatrixtranslate, MultiplyingBytranslateMatrix)
+class FixtureTransf : public ::testing::Test {
+protected:
+	t_pool_set *set;
+
+	void SetUp() override {
+		init_pools();
+		set = get_pools();
+	}
+
+	void TearDown() override {
+		deallocate(set->colors->mem);
+		deallocate(set->colors);
+		deallocate(set->matrices->mem);
+		deallocate(set->matrices);
+		deallocate(set->objects->mem);
+		deallocate(set->objects);
+		deallocate(set);
+	}
+};
+
+TEST_F(FixtureTransf, TstMtxtransla_MultiplyingBytranslateMatrix)
 {
-	init_pools();
 	t_matrix transform = translate(5, -3, 2);
 	double *p = point(-3, 4, 5);
 	double *expected_point = point(2, 1, 7);
@@ -26,9 +45,8 @@ TEST(TesterMatrixtranslate, MultiplyingBytranslateMatrix)
 
 }
 
-TEST(TesterMatrixtranslate, MultiplyingByinvOftranslateMatrix)
+TEST_F(FixtureTransf, TstMtxtransla_MultiplyingByinvOftranslateMatrix)
 {
-	init_pools();
 	t_matrix transform = translate(5, -3, 2);
 	t_matrix inverse = inv(transform);
 	double *p = point(-3, 4, 5);
@@ -44,9 +62,8 @@ TEST(TesterMatrixtranslate, MultiplyingByinvOftranslateMatrix)
 
 }
 
-TEST(TesterMatrixtranslate, translateDoesNotAffectVectors)
+TEST_F(FixtureTransf, TstMtxtransla_translateDoesNotAffectVectors)
 {
-	init_pools();
 	t_matrix transform = translate(5, -3, 2);
 	double *v = vector(-3, 4, 5);
 
@@ -60,9 +77,8 @@ TEST(TesterMatrixtranslate, translateDoesNotAffectVectors)
 
 }
 
-TEST(TesterMatrixscale, scaleMatrixAppliedToPoint)
+TEST_F(FixtureTransf, TstMtxscale_scaleMatrixAppliedToPoint)
 {
-	init_pools();
 	t_matrix transform = scale(2, 3, 4);
 	double *p = point(-4, 6, 8);
 	double *expected_point = point(-8, 18, 32);
@@ -77,9 +93,8 @@ TEST(TesterMatrixscale, scaleMatrixAppliedToPoint)
 
 }
 
-TEST(TesterMatrixscale, scaleMatrixAppliedToVector)
+TEST_F(FixtureTransf, TstMtxscale_scaleMatrixAppliedToVector)
 {
-	init_pools();
 	t_matrix transform = scale(2, 3, 4);
 	double *v = vector(-4, 6, 8);
 	double *expected_vector = vector(-8, 18, 32);
@@ -94,9 +109,8 @@ TEST(TesterMatrixscale, scaleMatrixAppliedToVector)
 
 }
 
-TEST(TesterMatrixscale, MultiplyingByinvOfscaleMatrix)
+TEST_F(FixtureTransf, TstMtxscale_MultiplyingByinvOfscaleMatrix)
 {
-	init_pools();
 	t_matrix transform = scale(2, 3, 4);
 	t_matrix inverse = inv(transform);
 	double *v = vector(-4, 6, 8);
@@ -112,9 +126,8 @@ TEST(TesterMatrixscale, MultiplyingByinvOfscaleMatrix)
 
 }
 
-TEST(TesterMatrixscale, ReflectionIsscaleByNegativeValue)
+TEST_F(FixtureTransf, TstMtxscale_ReflectionIsscaleByNegativeValue)
 {
-	init_pools();
 	t_matrix transform = scale(-1, 1, 1);
 	double *p = point(2, 3, 4);
 	double *expected_point = point(-2, 3, 4);
@@ -129,9 +142,8 @@ TEST(TesterMatrixscale, ReflectionIsscaleByNegativeValue)
 
 }
 
-TEST(TesterMatrixRotation, RotatingPointAroundZAxis)
+TEST_F(FixtureTransf, TstMtxRot_RotatingPointAroundZAxis)
 {
-	init_pools();
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -159,9 +171,8 @@ TEST(TesterMatrixRotation, RotatingPointAroundZAxis)
 
 }
 
-TEST(TesterMatrixRotation, RotatingPointAroundYAxis)
+TEST_F(FixtureTransf, TstMtxRot_RotatingPointAroundYAxis)
 {
-	init_pools();
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -189,9 +200,8 @@ TEST(TesterMatrixRotation, RotatingPointAroundYAxis)
 
 }
 
-TEST(TesterMatrixRotation, invOfXRotationRotatesOppositedir)
+TEST_F(FixtureTransf, TstMtxRot_invOfXRotationRotatesOppositedir)
 {
-	init_pools();
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -211,9 +221,8 @@ TEST(TesterMatrixRotation, invOfXRotationRotatesOppositedir)
 
 }
 
-TEST(TesterMatrixRotation, RotatingPointAroundXAxis)
+TEST_F(FixtureTransf, TstMtxRot_RotatingPointAroundXAxis)
 {
-	init_pools();
 	double pi = M_PI;
 	double sqrt2_over_2 = sqrt(2) / 2;
 
@@ -241,9 +250,8 @@ TEST(TesterMatrixRotation, RotatingPointAroundXAxis)
 
 }
 
-TEST(Transformations, IndividualTransformationsSequence)
+TEST_F(FixtureTransf, Transf_IndividualTransformationsSequence)
 {
-	init_pools();
 	double *p = point(1, 0, 1);
 	t_matrix A = rotate_x(M_PI / 2);
 	t_matrix B = scale(5, 5, 5);
@@ -272,9 +280,8 @@ TEST(Transformations, IndividualTransformationsSequence)
 
 }
 
-TEST(Transformations, ChainedTransformationsReverseOrder)
+TEST_F(FixtureTransf, Transf__ChainedTransformationsReverseOrder)
 {
-	init_pools();
 	double *p = point(1, 0, 1);
 	t_matrix A = rotate_x(M_PI / 2);
 	t_matrix B = scale(5, 5, 5);
@@ -288,5 +295,4 @@ TEST(Transformations, ChainedTransformationsReverseOrder)
 	EXPECT_DOUBLE_EQ(result[0], 15);
 	EXPECT_DOUBLE_EQ(result[1], 0);
 	EXPECT_DOUBLE_EQ(result[2], 7);
-
 }

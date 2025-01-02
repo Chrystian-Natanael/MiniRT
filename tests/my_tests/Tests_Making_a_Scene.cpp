@@ -102,13 +102,13 @@ TEST_F(FixtureWorld, PrecomputingStateOfIntersection) {
 	EXPECT_TRUE(equal(comps->point[Y], 0));
 	EXPECT_TRUE(equal(comps->point[Z], -1));
 	
-	EXPECT_TRUE(equal(comps->eyev[X],0));
-	EXPECT_TRUE(equal(comps->eyev[Y], 0));
-	EXPECT_TRUE(equal(comps->eyev[Z], -1));
+	EXPECT_TRUE(equal(comps->sig.eye[X], 0));
+	EXPECT_TRUE(equal(comps->sig.eye[Y], 0));
+	EXPECT_TRUE(equal(comps->sig.eye[Z], -1));
 
-	EXPECT_TRUE(equal(comps->normalv[X], 0));
-	EXPECT_TRUE(equal(comps->normalv[Y], 0));
-	EXPECT_TRUE(equal(comps->normalv[Z], -1));
+	EXPECT_TRUE(equal(comps->sig.normal[X], 0));
+	EXPECT_TRUE(equal(comps->sig.normal[Y], 0));
+	EXPECT_TRUE(equal(comps->sig.normal[Z], -1));
 
 	EXPECT_FALSE(comps->inside);
 }
@@ -124,13 +124,76 @@ TEST_F(FixtureWorld, HitWhenIntersectionOccursOnInside) {
 	EXPECT_TRUE(equal(comps->point[Y], 0));
 	EXPECT_TRUE(equal(comps->point[Z], 1));
 	
-	EXPECT_TRUE(equal(comps->eyev[X],0));
-	EXPECT_TRUE(equal(comps->eyev[Y], 0));
-	EXPECT_TRUE(equal(comps->eyev[Z], -1));
+	EXPECT_TRUE(equal(comps->sig.eye[X],0));
+	EXPECT_TRUE(equal(comps->sig.eye[Y], 0));
+	EXPECT_TRUE(equal(comps->sig.eye[Z], -1));
 
-	EXPECT_TRUE(equal(comps->normalv[X], 0));
-	EXPECT_TRUE(equal(comps->normalv[Y], 0));
-	EXPECT_TRUE(equal(comps->normalv[Z], -1));
+	EXPECT_TRUE(equal(comps->sig.normal[X], 0));
+	EXPECT_TRUE(equal(comps->sig.normal[Y], 0));
+	EXPECT_TRUE(equal(comps->sig.normal[Z], -1));
 
 	EXPECT_TRUE(comps->inside);
+}
+
+TEST_F(FixtureWorld, ShadingAnIntersection) {
+	t_world *w = default_world();
+	t_ray r = create_ray(point(0, 0, -5), vector(0, 0, 1));
+	t_obj *shape = w->obj_lst;
+	t_inter *i = NULL;
+	intersections(4, shape->sp, &i);
+	t_comp *comps = prepare_computations(i, r);
+	t_colors *c = shade_hit(w, *comps);
+
+	EXPECT_TRUE(equal(c->red, 0.38066));
+	EXPECT_TRUE(equal(c->green, 0.47583));
+	EXPECT_TRUE(equal(c->blue, 0.2855));
+}
+
+TEST_F(FixtureWorld, ShadingAnIntersectionFromTheInside) {
+	t_world *w = default_world();
+	w->lights_lst->light_src = pt_light(point(0, 0.25, 0), create_color(1, 1, 1));
+	t_ray r = create_ray(point(0, 0, 0), vector(0, 0, 1));
+	t_obj *shape = w->obj_lst->next;
+	t_inter *i = NULL;
+	intersections(0.5, shape->sp, &i);
+	t_comp *comps = prepare_computations(i, r);
+	t_colors *c = shade_hit(w, *comps);
+
+	EXPECT_TRUE(equal(c->red, 0.90498));
+	EXPECT_TRUE(equal(c->green, 0.90498));
+	EXPECT_TRUE(equal(c->blue, 0.90498));
+}
+
+TEST_F(FixtureWorld, ColorWhenRayMisses) {
+	t_world *w = default_world();
+	t_ray r = create_ray(point(0, 0, -5), vector(0, 1, 0));
+	t_colors *c = color_at(w, r);
+
+	EXPECT_TRUE(equal(c->red, 0));
+	EXPECT_TRUE(equal(c->green, 0));
+	EXPECT_TRUE(equal(c->blue, 0));
+}
+
+TEST_F(FixtureWorld, ColorWhenRayHits) {
+	t_world *w = default_world();
+	t_ray r = create_ray(point(0, 0, -5), vector(0, 0, 1));
+	t_colors *c = color_at(w, r);
+
+	EXPECT_TRUE(equal(c->red, 0.38066));
+	EXPECT_TRUE(equal(c->green, 0.47583));
+	EXPECT_TRUE(equal(c->blue, 0.2855));
+}
+
+TEST_F(FixtureWorld, ColorWithIntersectionBehindRay) {
+	t_world *w = default_world();
+	t_obj *outer = w->obj_lst;
+	outer->sp->material.ambient = create_color(1, 1, 1);
+	t_obj *inner = w->obj_lst->next;
+	inner->sp->material.ambient = create_color(1, 1, 1);
+	t_ray r = create_ray(point(0, 0, 0.75), vector(0, 0, -1));
+	t_colors *c = color_at(w, r);
+
+	EXPECT_TRUE(equal(c->red, inner->sp->material.color->red));
+	EXPECT_TRUE(equal(c->green, inner->sp->material.color->green));
+	EXPECT_TRUE(equal(c->blue, inner->sp->material.color->blue));
 }

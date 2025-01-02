@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:25:51 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/02 11:01:58 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/02 11:06:38 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdio.h>
 
-// # define MAX_MEM 5000000000
-# define MAX_MEM 5000
+// # define MAX_MEM 5000000000 // for grafic
+# define MAX_MEM 5000 // for tests
 
 typedef struct s_pool
 {

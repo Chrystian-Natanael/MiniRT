@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/02 10:51:14 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/02 11:37:44 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 # include "Sphere.h"
 # include "Light_and_Shading.h"
 # include "Intersections.h"
+
+typedef struct s_comp
+{
+	double	pos;
+	t_sp	*sp;
+	double	*point;
+	double	*eyev;
+	double	*normalv;
+	bool	inside;
+}			t_comp;
 
 typedef struct s_obj
 {
@@ -43,5 +53,6 @@ t_world	*world(void);
 void	create_obj_lst(t_world *world);
 t_world	*default_world(void);
 t_inter	*intersect_world(t_world *w, t_ray ray);
+t_comp	*prepare_computations(t_inter *intersec, t_ray ray);
 
 #endif

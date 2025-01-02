@@ -6,6 +6,7 @@ extern "C"
 #include "Matrices.h"
 #include "Sphere.h"
 #include "Light_and_Shading.h"
+#include "Intersections.h"
 #include "Scenes.h"
 }
 
@@ -71,4 +72,17 @@ TEST_F(FixtureWorld, DefaultWorld) {
 	EXPECT_TRUE(equal(w->obj_lst->sp->material.specular->blue, s1->material.specular->blue));
 
 	EXPECT_TRUE(comp_mtx(s2->transf, w->obj_lst->next->sp->transf));
+}
+
+
+TEST_F(FixtureWorld, IntersectWorldWithRay) {
+	t_world *w = default_world();
+	t_ray r = create_ray(point(0, 0, -5), vector(0, 0, 1));
+	t_inter *xs = intersect_world(w, r);
+
+	ASSERT_EQ(lst_count(xs), 4);
+	EXPECT_TRUE(equal(xs->pos, 4));
+	EXPECT_TRUE(equal(xs->next->pos, 4.5));
+	EXPECT_TRUE(equal(xs->next->next->pos, 5.5));
+	EXPECT_TRUE(equal(xs->next->next->next->pos, 6));
 }

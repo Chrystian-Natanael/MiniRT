@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/02 11:37:44 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:04:07 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ typedef struct s_comp
 	double	pos;
 	t_sp	*sp;
 	double	*point;
-	double	*eyev;
-	double	*normalv;
+	t_sight	sig;
 	bool	inside;
 }			t_comp;
 
@@ -48,11 +47,13 @@ typedef struct s_world
 	t_lights	*lights_lst;
 }				t_world;
 
-t_world	*world(void);
+t_world		*world(void);
 
-void	create_obj_lst(t_world *world);
-t_world	*default_world(void);
-t_inter	*intersect_world(t_world *w, t_ray ray);
-t_comp	*prepare_computations(t_inter *intersec, t_ray ray);
+void		create_obj_lst(t_world *world);
+t_world		*default_world(void);
+t_inter		*intersect_world(t_world *w, t_ray ray);
+t_comp		*prepare_computations(t_inter *intersec, t_ray ray);
+t_colors	*shade_hit(t_world *w, t_comp comps);
+t_colors	*color_at(t_world *w, t_ray r);
 
 #endif

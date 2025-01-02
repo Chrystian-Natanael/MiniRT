@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:27:30 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/02 12:00:21 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:06:32 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_comp	*prepare_computations(t_inter *intersec, t_ray ray)
 	comps->pos = intersec->pos;
 	comps->sp = intersec->sp;
 	comps->point = pos_ray(ray, intersec->pos);
-	comps->eyev = multiply(ray.dir, -1);
-	comps->normalv = normal_at(comps->sp, comps->point);
-	if (dot_prod(comps->normalv, comps->eyev) < 0)
+	comps->sig.eye = multiply(ray.dir, -1);
+	comps->sig.normal = normal_at(comps->sp, comps->point);
+	if (dot_prod(comps->sig.normal, comps->sig.eye) < 0)
 	{
 		comps->inside = true;
-		comps->normalv = multiply(comps->normalv, -1);
+		comps->sig.normal = multiply(comps->sig.normal, -1);
 	}
 	else
 		comps->inside = false;

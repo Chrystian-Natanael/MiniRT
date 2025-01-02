@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 09:38:42 by thaismalhei       #+#    #+#             */
-/*   Updated: 2025/01/02 10:00:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:56:33 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,22 @@ t_world	*default_world(void)
 	set_transf(lst_obj->next->sp, scale(0.5, 0.5, 0.5));
 	insert_into_obj_list(&dfl_world->obj_lst, lst_obj);
 	return (dfl_world);
+}
+
+t_inter	*intersect_world(t_world *w, t_ray ray)
+{
+	t_inter		*hit_list;
+	t_sp_inter	*sp_inter;
+	t_obj		*aux;
+
+	hit_list = NULL;
+	aux = w->obj_lst;
+	while (aux)
+	{
+		sp_inter = intersect(aux->sp, ray);
+		intersections(sp_inter->t1, sp_inter->sp, &hit_list);
+		intersections(sp_inter->t2, sp_inter->sp, &hit_list);
+		aux = aux->next;
+	}
+	return (hit_list);
 }

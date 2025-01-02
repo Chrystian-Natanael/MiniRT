@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:47:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/12/09 12:51:45 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:03:19 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ t_colors	*lighting(t_material m, t_pt_light light, double *pos, t_sight sig)
 {
 	t_light_aux	data;
 
-	data.effective_color = hada_colors(m.color, light.intensity);
+	data.eff_col = hada_colors(m.color, light.intensity);
 	data.lightv = norm(sub(light.pos, pos));
-	data.ambient = hada_colors(data.effective_color, m.ambient);
-	data.light_dot_normal = dot_prod(data.lightv, sig.normal);
-	if (data.light_dot_normal < 0)
+	data.ambient = hada_colors(data.eff_col, m.ambient);
+	data.light_dtn = dot_prod(data.lightv, sig.normal);
+	if (data.light_dtn < 0)
 	{
 		data.diffuse = create_color(0, 0, 0);
 		data.specular = create_color(0, 0, 0);
 	}
 	else
 	{
-		data.diffuse = multiply_colors(hada_colors(m.diffuse, data.effective_color), data.light_dot_normal);
+		data.diffuse = multiply_colors(hada_colors(m.diffuse, data.eff_col), data.light_dtn);
 		data.reflectv = reflect(negate_vector(data.lightv), sig.normal);
 		data.reflect_dot_eye = dot_prod(data.reflectv, sig.eye);
 		if (data.reflect_dot_eye <= 0)

@@ -86,3 +86,51 @@ TEST_F(FixtureWorld, IntersectWorldWithRay) {
 	EXPECT_TRUE(equal(xs->next->next->pos, 5.5));
 	EXPECT_TRUE(equal(xs->next->next->next->pos, 6));
 }
+// ------------------
+
+TEST_F(FixtureWorld, PrecomputingStateOfIntersection) {
+	t_ray r = create_ray(point(0, 0, -5), vector(0, 0, 1));
+	t_sp *shape = create_sp();
+	t_inter *i = NULL;
+	intersections(4, shape, &i);
+	t_comp *comps = prepare_computations(i, r);
+
+
+	EXPECT_TRUE(equal(comps->pos, i->pos));
+	EXPECT_EQ(comps->sp, i->sp);
+	EXPECT_TRUE(equal(comps->point[X], 0));
+	EXPECT_TRUE(equal(comps->point[Y], 0));
+	EXPECT_TRUE(equal(comps->point[Z], -1));
+	
+	EXPECT_TRUE(equal(comps->eyev[X],0));
+	EXPECT_TRUE(equal(comps->eyev[Y], 0));
+	EXPECT_TRUE(equal(comps->eyev[Z], -1));
+
+	EXPECT_TRUE(equal(comps->normalv[X], 0));
+	EXPECT_TRUE(equal(comps->normalv[Y], 0));
+	EXPECT_TRUE(equal(comps->normalv[Z], -1));
+
+	EXPECT_FALSE(comps->inside);
+}
+
+TEST_F(FixtureWorld, HitWhenIntersectionOccursOnInside) {
+	t_ray r = create_ray(point(0, 0, 0), vector(0, 0, 1));
+	t_sp *shape = create_sp();
+	t_inter *i = NULL;
+	intersections(1, shape, &i);
+	t_comp *comps = prepare_computations(i, r);
+
+	EXPECT_TRUE(equal(comps->point[X], 0));
+	EXPECT_TRUE(equal(comps->point[Y], 0));
+	EXPECT_TRUE(equal(comps->point[Z], 1));
+	
+	EXPECT_TRUE(equal(comps->eyev[X],0));
+	EXPECT_TRUE(equal(comps->eyev[Y], 0));
+	EXPECT_TRUE(equal(comps->eyev[Z], -1));
+
+	EXPECT_TRUE(equal(comps->normalv[X], 0));
+	EXPECT_TRUE(equal(comps->normalv[Y], 0));
+	EXPECT_TRUE(equal(comps->normalv[Z], -1));
+
+	EXPECT_TRUE(comps->inside);
+}

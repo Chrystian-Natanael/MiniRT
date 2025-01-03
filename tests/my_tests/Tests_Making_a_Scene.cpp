@@ -197,3 +197,51 @@ TEST_F(FixtureWorld, ColorWithIntersectionBehindRay) {
 	EXPECT_TRUE(equal(c->green, inner->sp->material.color->green));
 	EXPECT_TRUE(equal(c->blue, inner->sp->material.color->blue));
 }
+
+// --------------
+
+TEST_F(FixtureWorld, DefaultOrientationTransformationMatrix) {
+	double *from = point(0, 0, 0);
+	double *to = point(0, 0, -1);
+	double *up = vector(0, 1, 0);
+	t_matrix t = view_transform(from, to, up);
+	t_matrix identity = id_mtx();
+
+	EXPECT_TRUE(comp_mtx(t, identity));
+}
+
+TEST_F(FixtureWorld, ViewTransformationLookingPositiveZ) {
+	double *from = point(0, 0, 0);
+	double *to = point(0, 0, 1);
+	double *up = vector(0, 1, 0);
+	t_matrix t = view_transform(from, to, up);
+	t_matrix expected = scale(-1, 1, -1);
+
+	EXPECT_TRUE(comp_mtx(t, expected));
+}
+
+TEST_F(FixtureWorld, ViewTransformationMovesWorld) {
+	double *from = point(0, 0, 8);
+	double *to = point(0, 0, 0);
+	double *up = vector(0, 1, 0);
+	t_matrix t = view_transform(from, to, up);
+	t_matrix expected = translate(0, 0, -8);
+
+	EXPECT_TRUE(comp_mtx(t, expected));
+}
+
+TEST_F(FixtureWorld, ArbitraryViewTransformation) {
+	double *from = point(1, 3, 2);
+	double *to = point(4, -2, 8);
+	double *up = vector(1, 1, 0);
+	t_matrix t = view_transform(from, to, up);
+	double elements[16] = {
+		-0.50709, 0.50709, 0.67612, -2.36643,
+		0.76772, 0.60609, 0.12122, -2.82843,
+		-0.35857, 0.59761, -0.71714, 0.00000,
+		0.00000, 0.00000, 0.00000, 1.00000
+	};
+	t_matrix expected = create_mtx(4, 4, elements);
+
+	EXPECT_TRUE(comp_mtx(t, expected));
+}

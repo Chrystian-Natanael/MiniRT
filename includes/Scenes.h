@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/02 15:04:07 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/03 09:46:32 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ t_inter		*intersect_world(t_world *w, t_ray ray);
 t_comp		*prepare_computations(t_inter *intersec, t_ray ray);
 t_colors	*shade_hit(t_world *w, t_comp comps);
 t_colors	*color_at(t_world *w, t_ray r);
+t_matrix	view_transform(double *from, double *to, double *up);
 
 #endif

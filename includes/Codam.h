@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Initialization.c                                   :+:      :+:    :+:   */
+/*   Codam.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/11 16:24:54 by cnatanae         ###   ########.fr       */
+/*   Created: 2025/01/07 14:28:57 by cnatanae          #+#    #+#             */
+/*   Updated: 2025/01/07 15:35:31 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Canvas.h"
-#include <stdlib.h>
-#include <fcntl.h>
+#ifndef CODAM_H
+# define CODAM_H
 
-void	init_window(t_canvas *canvas)
+# include "MLX42/MLX42.h"
+
+# define WIDTH 1366
+# define HEIGHT 720
+
+typedef struct s_canvas
 {
-	canvas->mlx = mlx_init(WIDTH, HEIGHT, "MiniRT", true);
-	canvas->image = mlx_new_image(canvas->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(canvas->mlx, canvas->image, 0, 0);
-}
+	mlx_t		*mlx;
+	mlx_image_t	*image;
+
+}				t_canvas;
+
+void	init_window(t_canvas *canvas);
+mlx_image_t	*canva2image(t_paint canvas, mlx_t *mlx);
+
+#endif // ! CODAM_H

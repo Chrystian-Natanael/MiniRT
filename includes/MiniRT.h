@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:13:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/02 09:24:13 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:00:52 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 # include "Canvas.h"
 # include "Colors.h"
 # include "ColorsTerm.h"
-# include "Utils.h"
-# include "Matrices.h"
 # include "Intersections.h"
-# include "garbage_collector.h"
+# include "Light_and_Shading.h"
+# include "Matrices.h"
+# include "Mem_pool.h"
+# include "Scenes.h"
 # include "Sphere.h"
 # include "Tuples.h"
-# include "Scenes.h"
-# include "Light_and_Shading.h"
+# include "Utils.h"
+# include "garbage_collector.h"
 # include "MLX42/MLX42.h"
 
 #endif // ! MINIRT_H

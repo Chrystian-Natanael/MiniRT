@@ -6,26 +6,23 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:43:44 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/12 16:18:04 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:52:49 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CANVAS_H
 # define CANVAS_H
 
-# include "MLX42/MLX42.h"
+# include "Scenes.h"
 # include "Colors.h"
 
-# define WIDTH 1366
-# define HEIGHT 720
-
-typedef struct s_canvas
+typedef struct s_paint
 {
-	mlx_t		*mlx;
-	mlx_image_t	*image;
+	int			wid;
+	int			hei;
+	t_colors	**px;
+}				t_paint;
 
-}	t_canvas;
-
-void	init_window(t_canvas *canvas);
+t_paint	render_canva(t_camera cam, t_world *world);
 
 #endif

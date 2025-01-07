@@ -257,3 +257,25 @@ TEST_F(FixtureWorld, ArbitraryViewTransformation)
 
 	EXPECT_TRUE(comp_mtx(t, expected));
 }
+
+TEST_F(FixtureWorld, ConstructingCamera) {
+	int hsize = 160;
+	int vsize = 120;
+	double field_view = M_PI / 2;
+	t_camera c = camera(hsize, vsize, field_view);
+
+	EXPECT_EQ(c.hsize, 160);
+	EXPECT_EQ(c.vsize, 120);
+	EXPECT_TRUE(equal(c.field_view, M_PI / 2));
+	EXPECT_TRUE(comp_mtx(c.transform, id_mtx()));
+}
+
+TEST_F(FixtureWorld, PixelSizeForHorizontalCanvas) {
+	t_camera c = camera(200, 125, M_PI / 2);
+	EXPECT_TRUE(equal(c.pixel_sz, 0.01));
+}
+
+TEST_F(FixtureWorld, PixelSizeForVerticalCanvas) {
+	t_camera c = camera(125, 200, M_PI / 2);
+	EXPECT_DOUBLE_EQ(c.pixel_sz, 0.01);
+}

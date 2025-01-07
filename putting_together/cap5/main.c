@@ -6,7 +6,7 @@ int	main(void)
 	double		*v_ray_src;
 	double		wall_z;
 	double		wall_size;
-	int			canvas_pixels;
+	int			canvas_px;
 	double		pixel_size;
 	double		half;
 	mlx_t		*mlx;
@@ -27,21 +27,21 @@ int	main(void)
 	v_ray_src = vector(0, 0, -5);
 	wall_z = -1;
 	wall_size = 10.0;
-	canvas_pixels = 1000;
-	pixel_size = wall_size / (double)canvas_pixels;
+	canvas_px = 1000;
+	pixel_size = wall_size / (double)canvas_px;
 	half = wall_size / 2;
-	mlx = mlx_init(canvas_pixels, canvas_pixels, "Puttingtogether5", true);
-	image = mlx_new_image(mlx, canvas_pixels, canvas_pixels);
+	mlx = mlx_init(canvas_px, canvas_px, "Puttingtogether5", true);
+	image = mlx_new_image(mlx, canvas_px, canvas_px);
 	mlx_image_to_window(mlx, image, 0, 0);
 	color = create_color(0, 0, 1);
 	sp = create_sp();
 	set_transf(sp, scale(2, 2, 2));
 	y = -1;
-	while (++y < canvas_pixels)
+	while (++y < canvas_px)
 	{
 		world_y = half - (pixel_size * y);
 		x = -1;
-		while (++x < canvas_pixels)
+		while (++x < canvas_px)
 		{
 			world_x = -half + (pixel_size * x);
 			wall_hit = vector(world_x, world_y, wall_z);

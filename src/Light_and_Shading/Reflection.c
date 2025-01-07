@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:47:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/02 10:03:19 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 07:26:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,40 @@ double	*reflect(double *in, double *normal)
 	return (sub(in, reflection));
 }
 
-t_pt_light	pt_light(double *pos, t_colors *intensity)
+t_pt_light	pt_light(double *pos, t_colors *intens)
 {
 	t_pt_light	light;
 
 	light.pos = pos;
-	light.intensity = intensity;
+	light.intens = intens;
 	return (light);
 }
 
 t_colors	*lighting(t_material m, t_pt_light light, double *pos, t_sight sig)
 {
-	t_light_aux	data;
+	t_light_aux	dt;
 
-	data.eff_col = hada_colors(m.color, light.intensity);
-	data.lightv = norm(sub(light.pos, pos));
-	data.ambient = hada_colors(data.eff_col, m.ambient);
-	data.light_dtn = dot_prod(data.lightv, sig.normal);
-	if (data.light_dtn < 0)
+	dt.eff_col = hada_col(m.color, light.intens);
+	dt.lightv = norm(sub(light.pos, pos));
+	dt.ambient = hada_col(dt.eff_col, m.ambient);
+	dt.light_dtn = dot_prod(dt.lightv, sig.normal);
+	if (dt.light_dtn < 0)
 	{
-		data.diffuse = create_color(0, 0, 0);
-		data.specular = create_color(0, 0, 0);
+		dt.diffu = create_color(0, 0, 0);
+		dt.spec = create_color(0, 0, 0);
 	}
 	else
 	{
-		data.diffuse = multiply_colors(hada_colors(m.diffuse, data.eff_col), data.light_dtn);
-		data.reflectv = reflect(negate_vector(data.lightv), sig.normal);
-		data.reflect_dot_eye = dot_prod(data.reflectv, sig.eye);
-		if (data.reflect_dot_eye <= 0)
-			data.specular = create_color(0, 0, 0);
+		dt.diffu = multiply_col(hada_col(m.diffu, dt.eff_col), dt.light_dtn);
+		dt.reflectv = reflect(negate_vector(dt.lightv), sig.normal);
+		dt.reflect_dot_eye = dot_prod(dt.reflectv, sig.eye);
+		if (dt.reflect_dot_eye <= 0)
+			dt.spec = create_color(0, 0, 0);
 		else
 		{
-			data.factor = pow(data.reflect_dot_eye, m.shininess);
-			data.specular = multiply_colors(hada_colors(light.intensity, m.specular), data.factor);
+			dt.factor = pow(dt.reflect_dot_eye, m.shininess);
+			dt.spec = multiply_col(hada_col(light.intens, m.spec), dt.factor);
 		}
 	}
-	return (sum_colors(sum_colors(data.ambient, data.diffuse), data.specular));
+	return (sum_colors(sum_colors(dt.ambient, dt.diffu), dt.spec));
 }

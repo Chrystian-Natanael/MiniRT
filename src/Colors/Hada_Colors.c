@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Hada_Colors.c                                      :+:      :+:    :+:   */
+/*   hada_col.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -23,7 +23,7 @@
  * @param color2 The second color
  * @return A pointer to the resulting color after the Hadamard product
  */
-t_colors	*hada_colors(t_colors *color1, t_colors *color2)
+t_colors	*hada_col(t_colors *color1, t_colors *color2)
 {
 	t_colors	*res;
 	t_pool_set	*set;

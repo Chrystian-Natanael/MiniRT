@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/09 11:46:23 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 07:28:22 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef struct s_material
 {
 	t_colors	*color;
 	t_colors	*ambient;
-	t_colors	*diffuse;
-	t_colors	*specular;
+	t_colors	*diffu;
+	t_colors	*spec;
 	double		shininess;
 }				t_material;
 
@@ -36,9 +36,8 @@ typedef struct s_sp
 	t_material	material;
 }				t_sp;
 
-t_sp			*create_sp(void);
-void			set_transf(t_sp *s, t_matrix t);
-
-t_material		material(void);
+t_sp		*create_sp(void);
+void		set_transf(t_sp *s, t_matrix t);
+t_material	material(void);
 
 #endif

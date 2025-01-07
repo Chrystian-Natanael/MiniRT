@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:52:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/02 10:09:20 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 07:26:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 typedef struct s_pt_light
 {
 	double		*pos;
-	t_colors	*intensity;
+	t_colors	*intens;
 }				t_pt_light;
 
 typedef struct s_light_aux
 {
 	t_colors	*ambient;
-	t_colors	*diffuse;
-	t_colors	*specular;
+	t_colors	*diffu;
+	t_colors	*spec;
 	t_colors	*eff_col;
 	double		*lightv;
 	double		light_dtn;
@@ -38,16 +38,17 @@ typedef struct s_light_aux
 
 typedef struct s_sight
 {
-	double	*eye;
-	double	*normal;
-}			t_sight;
+	double		*eye;
+	double		*normal;
+}				t_sight;
 
-double		*normal_at(t_sp *sp, double *wld_pt);
+double			*normal_at(t_sp *sp, double *wld_pt);
 
-double		*reflect(double *in, double *normal);
+double			*reflect(double *in, double *normal);
 
-t_pt_light	pt_light(double *pos, t_colors *intensity);
+t_pt_light		pt_light(double *pos, t_colors *intens);
 
-t_colors	*lighting(t_material m, t_pt_light light, double *pos, t_sight sig);
+t_colors		*lighting(t_material m, t_pt_light light, double *pos,
+					t_sight sig);
 
 #endif

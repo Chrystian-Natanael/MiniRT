@@ -8,16 +8,19 @@ extern "C"
 #include "Matrices.h"
 }
 
-class FixtureLight : public ::testing::Test {
+class FixtureLight : public ::testing::Test
+{
 protected:
 	t_pool_set *set;
 
-	void SetUp() override {
+	void SetUp() override
+	{
 		init_pools();
 		set = get_pools();
 	}
 
-	void TearDown() override {
+	void TearDown() override
+	{
 		deallocate(set->colors->mem);
 		deallocate(set->colors);
 		deallocate(set->matrices->mem);
@@ -135,19 +138,19 @@ TEST_F(FixtureLight, TstRefl_ReflectVectorOffSlantedSurface)
 	EXPECT_TRUE(equal(r[2], expected[2]));
 }
 
-TEST_F(FixtureLight, TstPtLight_PointLightHasPositionAndIntensity)
+TEST_F(FixtureLight, TstPtLight_PointLightHasPositionAndintens)
 {
-	t_colors *intensity = create_color(1, 1, 1);
+	t_colors *intens = create_color(1, 1, 1);
 	double *position = point(0, 0, 0);
-	t_pt_light light = pt_light(position, intensity);
+	t_pt_light light = pt_light(position, intens);
 
 	EXPECT_TRUE(equal(light.pos[0], position[0]));
 	EXPECT_TRUE(equal(light.pos[1], position[1]));
 	EXPECT_TRUE(equal(light.pos[2], position[2]));
 
-	EXPECT_TRUE(equal(light.intensity->red, intensity->red));
-	EXPECT_TRUE(equal(light.intensity->green, intensity->green));
-	EXPECT_TRUE(equal(light.intensity->blue, intensity->blue));
+	EXPECT_TRUE(equal(light.intens->red, intens->red));
+	EXPECT_TRUE(equal(light.intens->green, intens->green));
+	EXPECT_TRUE(equal(light.intens->blue, intens->blue));
 }
 
 TEST_F(FixtureLight, TstMat_DefaultMaterial)
@@ -161,12 +164,12 @@ TEST_F(FixtureLight, TstMat_DefaultMaterial)
 	EXPECT_TRUE(equal(m.ambient->red, 0.1));
 	EXPECT_TRUE(equal(m.ambient->green, 0.1));
 	EXPECT_TRUE(equal(m.ambient->blue, 0.1));
-	EXPECT_TRUE(equal(m.diffuse->red, 0.9));
-	EXPECT_TRUE(equal(m.diffuse->green, 0.9));
-	EXPECT_TRUE(equal(m.diffuse->blue, 0.9));
-	EXPECT_TRUE(equal(m.specular->red, 0.9));
-	EXPECT_TRUE(equal(m.specular->green, 0.9));
-	EXPECT_TRUE(equal(m.specular->blue, 0.9));
+	EXPECT_TRUE(equal(m.diffu->red, 0.9));
+	EXPECT_TRUE(equal(m.diffu->green, 0.9));
+	EXPECT_TRUE(equal(m.diffu->blue, 0.9));
+	EXPECT_TRUE(equal(m.spec->red, 0.9));
+	EXPECT_TRUE(equal(m.spec->green, 0.9));
+	EXPECT_TRUE(equal(m.spec->blue, 0.9));
 	EXPECT_TRUE(equal(m.shininess, 200.0));
 }
 
@@ -184,12 +187,12 @@ TEST_F(FixtureLight, TstMat_SphereHasDefaultMaterial)
 	EXPECT_TRUE(equal(s->material.ambient->red, default_material.ambient->red));
 	EXPECT_TRUE(equal(s->material.ambient->green, default_material.ambient->green));
 	EXPECT_TRUE(equal(s->material.ambient->blue, default_material.ambient->blue));
-	EXPECT_TRUE(equal(m.diffuse->red, default_material.diffuse->red));
-	EXPECT_TRUE(equal(m.diffuse->green, default_material.diffuse->green));
-	EXPECT_TRUE(equal(m.diffuse->blue, default_material.diffuse->blue));
-	EXPECT_TRUE(equal(m.specular->red, default_material.specular->red));
-	EXPECT_TRUE(equal(m.specular->green, default_material.specular->green));
-	EXPECT_TRUE(equal(m.specular->blue, default_material.specular->blue));
+	EXPECT_TRUE(equal(m.diffu->red, default_material.diffu->red));
+	EXPECT_TRUE(equal(m.diffu->green, default_material.diffu->green));
+	EXPECT_TRUE(equal(m.diffu->blue, default_material.diffu->blue));
+	EXPECT_TRUE(equal(m.spec->red, default_material.spec->red));
+	EXPECT_TRUE(equal(m.spec->green, default_material.spec->green));
+	EXPECT_TRUE(equal(m.spec->blue, default_material.spec->blue));
 	EXPECT_TRUE(equal(m.shininess, default_material.shininess));
 }
 
@@ -204,12 +207,12 @@ TEST_F(FixtureLight, TstMat_SphereAssignedMaterial)
 	EXPECT_TRUE(equal(s->material.ambient->red, m.ambient->red));
 	EXPECT_TRUE(equal(s->material.ambient->green, m.ambient->green));
 	EXPECT_TRUE(equal(s->material.ambient->blue, m.ambient->blue));
-	EXPECT_TRUE(equal(s->material.diffuse->red, m.diffuse->red));
-	EXPECT_TRUE(equal(s->material.diffuse->green, m.diffuse->green));
-	EXPECT_TRUE(equal(s->material.diffuse->blue, m.diffuse->blue));
-	EXPECT_TRUE(equal(s->material.specular->red, m.specular->red));
-	EXPECT_TRUE(equal(s->material.specular->green, m.specular->green));
-	EXPECT_TRUE(equal(s->material.specular->blue, m.specular->blue));
+	EXPECT_TRUE(equal(s->material.diffu->red, m.diffu->red));
+	EXPECT_TRUE(equal(s->material.diffu->green, m.diffu->green));
+	EXPECT_TRUE(equal(s->material.diffu->blue, m.diffu->blue));
+	EXPECT_TRUE(equal(s->material.spec->red, m.spec->red));
+	EXPECT_TRUE(equal(s->material.spec->green, m.spec->green));
+	EXPECT_TRUE(equal(s->material.spec->blue, m.spec->blue));
 	EXPECT_TRUE(equal(s->material.shininess, m.shininess));
 
 	EXPECT_TRUE(equal(s->material.color->red, m.color->red));
@@ -217,7 +220,8 @@ TEST_F(FixtureLight, TstMat_SphereAssignedMaterial)
 	EXPECT_TRUE(equal(s->material.color->blue, m.color->blue));
 }
 
-TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurface) {
+TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurface)
+{
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, 0, -1);
@@ -232,7 +236,8 @@ TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurface) {
 	EXPECT_TRUE(equal(result->blue, 1.9));
 }
 
-TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurfaceOffset45) {
+TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurfaceOffset45)
+{
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
@@ -247,7 +252,8 @@ TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurfaceOffset45) {
 	EXPECT_TRUE(equal(result->blue, 1.0));
 }
 
-TEST_F(FixtureLight, TstLighting_EyeOppositeSurfaceLightOffset45) {
+TEST_F(FixtureLight, TstLighting_EyeOppositeSurfaceLightOffset45)
+{
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, 0, -1);
@@ -262,7 +268,8 @@ TEST_F(FixtureLight, TstLighting_EyeOppositeSurfaceLightOffset45) {
 	EXPECT_TRUE(equal(result->blue, 0.7364));
 }
 
-TEST_F(FixtureLight, TstLighting_EyeInPathOfReflectionVector) {
+TEST_F(FixtureLight, TstLighting_EyeInPathOfReflectionVector)
+{
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
@@ -277,7 +284,8 @@ TEST_F(FixtureLight, TstLighting_EyeInPathOfReflectionVector) {
 	EXPECT_TRUE(equal(result->blue, 1.6364));
 }
 
-TEST_F(FixtureLight, TstLighting_LightBehindSurface) {
+TEST_F(FixtureLight, TstLighting_LightBehindSurface)
+{
 	t_material m = material();
 	double *position = point(0, 0, 0);
 	double *eyev = vector(0, 0, -1);

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 09:38:42 by thaismalhei       #+#    #+#             */
-/*   Updated: 2025/01/02 11:03:02 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 07:26:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	insert_into_light_list(t_lights **lst, t_pt_light n1)
 	set = get_pools();
 	node = (t_lights *)alloc_pool(sizeof(t_lights), set->objects);
 	node->light_src.pos = n1.pos;
-	node->light_src.intensity = n1.intensity;
+	node->light_src.intens = n1.intens;
 	tmp = *lst;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
@@ -95,8 +95,8 @@ t_world	*default_world(void)
 	lst_obj->next = (t_obj *)alloc_pool(sizeof(t_obj), set->objects);
 	lst_obj->next->sp = create_sp();
 	lst_obj->sp->material.color = create_color(0.8, 1.0, 0.6);
-	lst_obj->sp->material.diffuse = create_color(0.7, 0.7, 0.7);
-	lst_obj->sp->material.specular = create_color(0.2, 0.2, 0.2);
+	lst_obj->sp->material.diffu = create_color(0.7, 0.7, 0.7);
+	lst_obj->sp->material.spec = create_color(0.2, 0.2, 0.2);
 	lst_obj->prev = NULL;
 	lst_obj->next->prev = lst_obj;
 	set_transf(lst_obj->next->sp, scale(0.5, 0.5, 0.5));

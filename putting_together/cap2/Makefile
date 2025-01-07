@@ -60,7 +60,7 @@ SRCS =	$(SRCS2_PATH)Tuples/Addition.c \
 		$(SRCS2_PATH)Tuples/Tuples.c \
 		$(SRCS2_PATH)Colors/Addition_Colors.c \
 		$(SRCS2_PATH)Colors/Colors.c \
-		$(SRCS2_PATH)Colors/Hada_Colors.c \
+		$(SRCS2_PATH)Colors/hada_col.c \
 		$(SRCS2_PATH)Colors/Multiplication_Colors.c \
 		$(SRCS2_PATH)Colors/Subtraction_Colors.c \
 		$(SRCS2_PATH)Utils/Error.c \

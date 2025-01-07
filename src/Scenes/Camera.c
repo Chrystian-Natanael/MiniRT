@@ -6,11 +6,29 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 08:51:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 10:13:57 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:45:24 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scenes.h"
+
+t_ray	ray_for_pixel(t_camera cam, double px, double py)
+{
+	double	offset[2];
+	double	world[2];
+	double	*pixel;
+	double	*origin;
+	double	*direction;
+
+	offset[X] = (px + 0.5) * cam.pixel_sz;
+	offset[Y] = (py + 0.5) * cam.pixel_sz;
+	world[X] = (cam.half_width) - offset[X];
+	world[Y] = (cam.half_heigth) - offset[Y];
+	pixel = multiply_mtx_tp(inv(cam.transform), point(world[X], world[Y], -1));
+	origin = multiply_mtx_tp(inv(cam.transform), point(0, 0, 0));
+	direction = norm(sub(pixel, origin));
+	return (create_ray(origin, direction));
+}
 
 static void	calculate_pixel(t_camera *cam)
 {

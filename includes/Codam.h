@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:28:57 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 15:35:31 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:09:35 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_canvas
 
 }				t_canvas;
 
-void	init_window(t_canvas *canvas);
+void		init_window(t_canvas *canvas);
 mlx_image_t	*canva2image(t_paint canvas, mlx_t *mlx);
 
 #endif // ! CODAM_H

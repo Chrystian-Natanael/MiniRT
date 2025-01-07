@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:13:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 14:00:52 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:11:07 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "Canvas.h"
 # include "Colors.h"
 # include "ColorsTerm.h"
+# include "Codam.h"
 # include "Intersections.h"
 # include "Light_and_Shading.h"
 # include "Matrices.h"

@@ -6,13 +6,13 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 08:51:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 09:05:57 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:13:57 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scenes.h"
 
-static void calculate_pixel(t_camera *cam)
+static void	calculate_pixel(t_camera *cam)
 {
 	double	half_view;
 	double	aspect;

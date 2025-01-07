@@ -8,6 +8,7 @@ extern "C"
 #include "Light_and_Shading.h"
 #include "Intersections.h"
 #include "Scenes.h"
+#include "Canvas.h"
 }
 
 class FixtureWorld : public ::testing::Test
@@ -258,7 +259,8 @@ TEST_F(FixtureWorld, ArbitraryViewTransformation)
 	EXPECT_TRUE(comp_mtx(t, expected));
 }
 
-TEST_F(FixtureWorld, ConstructingCamera) {
+TEST_F(FixtureWorld, ConstructingCamera)
+{
 	int hsize = 160;
 	int vsize = 120;
 	double field_view = M_PI / 2;
@@ -270,50 +272,71 @@ TEST_F(FixtureWorld, ConstructingCamera) {
 	EXPECT_TRUE(comp_mtx(c.transform, id_mtx()));
 }
 
-TEST_F(FixtureWorld, PixelSizeForHorizontalCanvas) {
+TEST_F(FixtureWorld, pxizeForHorizontalCanvas)
+{
 	t_camera c = camera(200, 125, M_PI / 2);
 	EXPECT_TRUE(equal(c.pixel_sz, 0.01));
 }
 
-TEST_F(FixtureWorld, PixelSizeForVerticalCanvas) {
+TEST_F(FixtureWorld, pxizeForVerticalCanvas)
+{
 	t_camera c = camera(125, 200, M_PI / 2);
 	EXPECT_DOUBLE_EQ(c.pixel_sz, 0.01);
 }
 
-TEST_F(FixtureWorld, ConstructingRayThroughCenterOfCanvas) {
-    t_camera c = camera(201, 101, M_PI / 2);
-    t_ray r = ray_for_pixel(c, 100, 50);
+TEST_F(FixtureWorld, ConstructingRayThroughCenterOfCanvas)
+{
+	t_camera c = camera(201, 101, M_PI / 2);
+	t_ray r = ray_for_pixel(c, 100, 50);
 
-    EXPECT_TRUE(equal(r.src[X], 0));
-    EXPECT_TRUE(equal(r.src[Y], 0));
-    EXPECT_TRUE(equal(r.src[Z], 0));
-    EXPECT_TRUE(equal(r.dir[X], 0));
-    EXPECT_TRUE(equal(r.dir[Y], 0));
-    EXPECT_TRUE(equal(r.dir[Z], -1));
+	EXPECT_TRUE(equal(r.src[X], 0));
+	EXPECT_TRUE(equal(r.src[Y], 0));
+	EXPECT_TRUE(equal(r.src[Z], 0));
+	EXPECT_TRUE(equal(r.dir[X], 0));
+	EXPECT_TRUE(equal(r.dir[Y], 0));
+	EXPECT_TRUE(equal(r.dir[Z], -1));
 }
 
+TEST_F(FixtureWorld, ConstructingRayThroughCornerOfCanvas)
+{
+	t_camera c = camera(201, 101, M_PI / 2);
+	t_ray r = ray_for_pixel(c, 0, 0);
 
-TEST_F(FixtureWorld, ConstructingRayThroughCornerOfCanvas) {
-    t_camera c = camera(201, 101, M_PI / 2);
-    t_ray r = ray_for_pixel(c, 0, 0);
-
-    EXPECT_TRUE(equal(r.src[X], 0));
-    EXPECT_TRUE(equal(r.src[Y], 0));
-    EXPECT_TRUE(equal(r.src[Z], 0));
-    EXPECT_TRUE(equal(r.dir[X], 0.66519));
-    EXPECT_TRUE(equal(r.dir[Y], 0.33259));
-    EXPECT_TRUE(equal(r.dir[Z], -0.66851));
+	EXPECT_TRUE(equal(r.src[X], 0));
+	EXPECT_TRUE(equal(r.src[Y], 0));
+	EXPECT_TRUE(equal(r.src[Z], 0));
+	EXPECT_TRUE(equal(r.dir[X], 0.66519));
+	EXPECT_TRUE(equal(r.dir[Y], 0.33259));
+	EXPECT_TRUE(equal(r.dir[Z], -0.66851));
 }
 
-TEST_F(FixtureWorld, ConstructingRayWhenCameraIsTransformed) {
-    t_camera c = camera(201, 101, M_PI / 2);
-    c.transform = multiply_mtx(rotate_y(M_PI / 4), translate(0, -2, 5));
-    t_ray r = ray_for_pixel(c, 100, 50);
+TEST_F(FixtureWorld, ConstructingRayWhenCameraIsTransformed)
+{
+	t_camera c = camera(201, 101, M_PI / 2);
+	c.transform = multiply_mtx(rotate_y(M_PI / 4), translate(0, -2, 5));
+	t_ray r = ray_for_pixel(c, 100, 50);
 
-    EXPECT_TRUE(equal(r.src[X], 0));
-    EXPECT_TRUE(equal(r.src[Y], 2));
-    EXPECT_TRUE(equal(r.src[Z], -5));
-    EXPECT_TRUE(equal(r.dir[X], sqrt(2)/2));
-    EXPECT_TRUE(equal(r.dir[Y], 0));
-    EXPECT_TRUE(equal(r.dir[Z], -sqrt(2)/2));
+	EXPECT_TRUE(equal(r.src[X], 0));
+	EXPECT_TRUE(equal(r.src[Y], 2));
+	EXPECT_TRUE(equal(r.src[Z], -5));
+	EXPECT_TRUE(equal(r.dir[X], sqrt(2) / 2));
+	EXPECT_TRUE(equal(r.dir[Y], 0));
+	EXPECT_TRUE(equal(r.dir[Z], -sqrt(2) / 2));
+}
+
+TEST_F(FixtureWorld, RenderingWorldWithCamera)
+{
+	t_world *w = default_world();
+	t_camera c = camera(11, 11, M_PI / 2);
+	double *from = point(0, 0, -5);
+	double *to = point(0, 0, 0);
+	double *up = vector(0, 1, 0);
+	c.transform = view_transform(from, to, up);
+	t_paint image = render_canva(c, w);
+
+	t_colors *expected_color = create_color(0.38066, 0.47583, 0.2855);
+
+	EXPECT_TRUE(equal(image.px[5 * image.wid + 5]->red, 0.38066));
+	EXPECT_TRUE(equal(image.px[5 * image.wid + 5]->green, 0.47583));
+	EXPECT_TRUE(equal(image.px[5 * image.wid + 5]->blue, 0.2855));
 }

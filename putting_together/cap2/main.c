@@ -9,7 +9,7 @@ int	main(void)
 {
 	t_env			env;
 	t_projectile	*projectile;
-	t_colors		*color1;
+	t_colors		color1;
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 
@@ -26,7 +26,7 @@ int	main(void)
 	while (projectile->position[Y] <= HEIGHT)
 	{
 		mlx_put_pixel(image, dtoi(projectile->position[X]),
-			dtoi(projectile->position[Y]), rgb2hex(*color1));
+			dtoi(projectile->position[Y]), rgb2hex(color1));
 		projectile = tick(env, *projectile);
 	}
 	mlx_loop(mlx);

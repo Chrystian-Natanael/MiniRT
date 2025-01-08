@@ -45,7 +45,7 @@ TEST_F(FixtureWorld, CreatingWorld)
 TEST_F(FixtureWorld, DefaultWorld)
 {
 	double *light_position = point(-10, 10, -10);
-	t_colors *light_color = create_color(1, 1, 1);
+	t_colors light_color = create_color(1, 1, 1);
 	t_pt_light light = pt_light(light_position, light_color);
 
 	t_sp *s1 = create_sp();
@@ -61,19 +61,19 @@ TEST_F(FixtureWorld, DefaultWorld)
 	EXPECT_TRUE(equal(w->lights_lst->light_src.pos[X], light.pos[X]));
 	EXPECT_TRUE(equal(w->lights_lst->light_src.pos[Y], light.pos[Y]));
 	EXPECT_TRUE(equal(w->lights_lst->light_src.pos[Z], light.pos[Z]));
-	EXPECT_TRUE(equal(w->lights_lst->light_src.intens->blue, light.intens->blue));
-	EXPECT_TRUE(equal(w->lights_lst->light_src.intens->green, light.intens->green));
-	EXPECT_TRUE(equal(w->lights_lst->light_src.intens->red, light.intens->red));
+	EXPECT_TRUE(equal(w->lights_lst->light_src.intens.blue, light.intens.blue));
+	EXPECT_TRUE(equal(w->lights_lst->light_src.intens.green, light.intens.green));
+	EXPECT_TRUE(equal(w->lights_lst->light_src.intens.red, light.intens.red));
 
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.color->red, s1->material.color->red));
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.color->green, s1->material.color->green));
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.color->blue, s1->material.color->blue));
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.diffu->red, s1->material.diffu->red));
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.diffu->green, s1->material.diffu->green));
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.diffu->blue, s1->material.diffu->blue));
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.spec->red, s1->material.spec->red));
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.spec->green, s1->material.spec->green));
-	EXPECT_TRUE(equal(w->obj_lst->sp->material.spec->blue, s1->material.spec->blue));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.color.red, s1->material.color.red));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.color.green, s1->material.color.green));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.color.blue, s1->material.color.blue));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.diffu.red, s1->material.diffu.red));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.diffu.green, s1->material.diffu.green));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.diffu.blue, s1->material.diffu.blue));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.spec.red, s1->material.spec.red));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.spec.green, s1->material.spec.green));
+	EXPECT_TRUE(equal(w->obj_lst->sp->material.spec.blue, s1->material.spec.blue));
 
 	EXPECT_TRUE(comp_mtx(s2->transf, w->obj_lst->next->sp->transf));
 }
@@ -148,11 +148,11 @@ TEST_F(FixtureWorld, ShadingAnIntersection)
 	t_inter *i = NULL;
 	intersections(4, shape->sp, &i);
 	t_comp *comps = prepare_computations(i, r);
-	t_colors *c = shade_hit(w, *comps);
+	t_colors c = shade_hit(w, *comps);
 
-	EXPECT_TRUE(equal(c->red, 0.38066));
-	EXPECT_TRUE(equal(c->green, 0.47583));
-	EXPECT_TRUE(equal(c->blue, 0.2855));
+	EXPECT_TRUE(equal(c.red, 0.38066));
+	EXPECT_TRUE(equal(c.green, 0.47583));
+	EXPECT_TRUE(equal(c.blue, 0.2855));
 }
 
 TEST_F(FixtureWorld, ShadingAnIntersectionFromTheInside)
@@ -164,33 +164,33 @@ TEST_F(FixtureWorld, ShadingAnIntersectionFromTheInside)
 	t_inter *i = NULL;
 	intersections(0.5, shape->sp, &i);
 	t_comp *comps = prepare_computations(i, r);
-	t_colors *c = shade_hit(w, *comps);
+	t_colors c = shade_hit(w, *comps);
 
-	EXPECT_TRUE(equal(c->red, 0.90498));
-	EXPECT_TRUE(equal(c->green, 0.90498));
-	EXPECT_TRUE(equal(c->blue, 0.90498));
+	EXPECT_TRUE(equal(c.red, 0.90498));
+	EXPECT_TRUE(equal(c.green, 0.90498));
+	EXPECT_TRUE(equal(c.blue, 0.90498));
 }
 
 TEST_F(FixtureWorld, ColorWhenRayMisses)
 {
 	t_world *w = default_world();
 	t_ray r = create_ray(point(0, 0, -5), vector(0, 1, 0));
-	t_colors *c = color_at(w, r);
+	t_colors c = color_at(w, r);
 
-	EXPECT_TRUE(equal(c->red, 0));
-	EXPECT_TRUE(equal(c->green, 0));
-	EXPECT_TRUE(equal(c->blue, 0));
+	EXPECT_TRUE(equal(c.red, 0));
+	EXPECT_TRUE(equal(c.green, 0));
+	EXPECT_TRUE(equal(c.blue, 0));
 }
 
 TEST_F(FixtureWorld, ColorWhenRayHits)
 {
 	t_world *w = default_world();
 	t_ray r = create_ray(point(0, 0, -5), vector(0, 0, 1));
-	t_colors *c = color_at(w, r);
+	t_colors c = color_at(w, r);
 
-	EXPECT_TRUE(equal(c->red, 0.38066));
-	EXPECT_TRUE(equal(c->green, 0.47583));
-	EXPECT_TRUE(equal(c->blue, 0.2855));
+	EXPECT_TRUE(equal(c.red, 0.38066));
+	EXPECT_TRUE(equal(c.green, 0.47583));
+	EXPECT_TRUE(equal(c.blue, 0.2855));
 }
 
 TEST_F(FixtureWorld, ColorWithIntersectionBehindRay)
@@ -201,11 +201,11 @@ TEST_F(FixtureWorld, ColorWithIntersectionBehindRay)
 	t_obj *inner = w->obj_lst->next;
 	inner->sp->material.ambient = create_color(1, 1, 1);
 	t_ray r = create_ray(point(0, 0, 0.75), vector(0, 0, -1));
-	t_colors *c = color_at(w, r);
+	t_colors c = color_at(w, r);
 
-	EXPECT_TRUE(equal(c->red, inner->sp->material.color->red));
-	EXPECT_TRUE(equal(c->green, inner->sp->material.color->green));
-	EXPECT_TRUE(equal(c->blue, inner->sp->material.color->blue));
+	EXPECT_TRUE(equal(c.red, inner->sp->material.color.red));
+	EXPECT_TRUE(equal(c.green, inner->sp->material.color.green));
+	EXPECT_TRUE(equal(c.blue, inner->sp->material.color.blue));
 }
 
 // --------------
@@ -334,9 +334,9 @@ TEST_F(FixtureWorld, RenderingWorldWithCamera)
 	c.transform = view_transform(from, to, up);
 	t_paint image = render_canva(c, w);
 
-	t_colors *expected_color = create_color(0.38066, 0.47583, 0.2855);
+	t_colors expected_color = create_color(0.38066, 0.47583, 0.2855);
 
-	EXPECT_TRUE(equal(image.px[5 * image.wid + 5]->red, 0.38066));
-	EXPECT_TRUE(equal(image.px[5 * image.wid + 5]->green, 0.47583));
-	EXPECT_TRUE(equal(image.px[5 * image.wid + 5]->blue, 0.2855));
+	EXPECT_TRUE(equal(image.px[5 * image.wid + 5].red, 0.38066));
+	EXPECT_TRUE(equal(image.px[5 * image.wid + 5].green, 0.47583));
+	EXPECT_TRUE(equal(image.px[5 * image.wid + 5].blue, 0.2855));
 }

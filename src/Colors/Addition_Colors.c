@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Addition_Colors.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:57:10 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/12/06 11:04:03 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:19:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,12 @@
  * @param color2 The second color to add to the first
  * @return A pointer to the resulting color after addition
  */
-t_colors	*sum_colors(t_colors *color1, t_colors *color2)
+t_colors	sum_colors(t_colors color1, t_colors color2)
 {
-	t_colors	*res;
-	t_pool_set	*set;
+	t_colors	res;
 
-	set = get_pools();
-	res = (t_colors *)alloc_pool(sizeof(t_colors), set->colors);
-	res->red = color1->red + color2->red;
-	res->green = color1->green + color2->green;
-	res->blue = color1->blue + color2->blue;
+	res.red = color1.red + color2.red;
+	res.green = color1.green + color2.green;
+	res.blue = color1.blue + color2.blue;
 	return (res);
 }

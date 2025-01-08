@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:56:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/02 15:06:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:18:41 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intersections.h"
 #include "Scenes.h"
 
-t_colors	*shade_hit(t_world *w, t_comp comps)
+t_colors	shade_hit(t_world *w, t_comp comps)
 {
-	t_colors	*shade_color;
+	t_colors	shade_color;
 	t_lights	*aux;
 
 	aux = w->lights_lst;
@@ -31,9 +31,9 @@ t_colors	*shade_hit(t_world *w, t_comp comps)
 	return (shade_color);
 }
 
-t_colors	*color_at(t_world *w, t_ray r)
+t_colors	color_at(t_world *w, t_ray r)
 {
-	t_colors	*color_at_hit;
+	t_colors	color_at_hit;
 	t_comp		*comps;
 	t_inter		*nearest_hit;
 	t_inter		*hits;

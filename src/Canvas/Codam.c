@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Codam.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:30:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 15:35:28 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:39:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ mlx_image_t	*canva2image(t_paint canvas, mlx_t *mlx)
 	{
 		x = -1;
 		while (++x < canvas.wid)
-			mlx_put_pixel(im, x, y, rgb2hex(*(canvas.px[y * canvas.wid + x])));
+			mlx_put_pixel(im, x, y, rgb2hex((canvas.px[y * canvas.wid + x])));
 	}
 	return (im);
 }

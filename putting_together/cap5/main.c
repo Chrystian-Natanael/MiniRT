@@ -11,7 +11,7 @@ int	main(void)
 	double		half;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
-	t_colors	*color;
+	t_colors	color;
 	t_sp		*sp;
 	int			y;
 	int			x;
@@ -51,7 +51,7 @@ int	main(void)
 			intersections(val->t1, sp, &lst);
 			intersections(val->t2, sp, &lst);
 			if (hit(lst))
-				mlx_put_pixel(image, x, y, rgb2hex(*color));
+				mlx_put_pixel(image, x, y, rgb2hex(color));
 			;
 		}
 	}

@@ -23,15 +23,12 @@
  * @param color2 The second color
  * @return A pointer to the resulting color after the Hadamard product
  */
-t_colors	*hada_col(t_colors *color1, t_colors *color2)
+t_colors	hada_col(t_colors color1, t_colors color2)
 {
-	t_colors	*res;
-	t_pool_set	*set;
+	t_colors	res;
 
-	set = get_pools();
-	res = (t_colors *)alloc_pool(sizeof(t_colors), set->colors);
-	res->red = color1->red * color2->red;
-	res->green = color1->green * color2->green;
-	res->blue = color1->blue * color2->blue;
+	res.red = color1.red * color2.red;
+	res.green = color1.green * color2.green;
+	res.blue = color1.blue * color2.blue;
 	return (res);
 }

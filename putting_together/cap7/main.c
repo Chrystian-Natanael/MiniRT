@@ -63,7 +63,7 @@ int	main(void) {
 	w->lights_lst->light_src = pt_light(point(-10, 10, -10), create_color(1, 1, 1));
 
 	// CAM CONFIG
-	cam = camera(150, 100, 3.14159 / 3);
+	cam = camera(1920, 1080, 3.14159 / 3);
 	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
 
 	printf("0\n");

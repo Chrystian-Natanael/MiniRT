@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/07 07:28:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:22:29 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 typedef struct s_material
 {
-	t_colors	*color;
-	t_colors	*ambient;
-	t_colors	*diffu;
-	t_colors	*spec;
+	t_colors	color;
+	t_colors	ambient;
+	t_colors	diffu;
+	t_colors	spec;
 	double		shininess;
 }				t_material;
 

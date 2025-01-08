@@ -13,7 +13,7 @@ int	main(void) {
   double half;
   mlx_t *mlx;
   mlx_image_t *image;
-  t_colors *color;
+  t_colors color;
   t_sp *sp;
   int y;
   int x;
@@ -25,7 +25,7 @@ int	main(void) {
   t_inter *lst;
   t_inter *hit_lst;
   double *light_pos = point(-10, 10, -10);
-  t_colors *light_color = create_color(1, 1, 1);
+  t_colors light_color = create_color(1, 1, 1);
   t_pt_light light = pt_light(light_pos, light_color);
 
   p_ray_src = point(0, 0, -5);
@@ -59,7 +59,7 @@ int	main(void) {
         sight.eye = negate_vector(ray.dir);
         color =
             lighting(sp->material, light, pos_ray(ray, hit_lst->pos), sight);
-        mlx_put_pixel(image, x, y, rgb2hex(*color));
+        mlx_put_pixel(image, x, y, rgb2hex(color));
       }
     }
   }

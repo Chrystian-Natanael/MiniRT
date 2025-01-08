@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Scenes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 10:40:43 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:22:17 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void		create_obj_lst(t_world *world);
 t_world		*default_world(void);
 t_inter		*intersect_world(t_world *w, t_ray ray);
 t_comp		*prepare_computations(t_inter *intersec, t_ray ray);
-t_colors	*shade_hit(t_world *w, t_comp comps);
-t_colors	*color_at(t_world *w, t_ray r);
+t_colors	shade_hit(t_world *w, t_comp comps);
+t_colors	color_at(t_world *w, t_ray r);
 t_matrix	view_transform(double *from, double *to, double *up);
 t_camera	camera(int hsize, int vsize, double field_view);
 t_ray		ray_for_pixel(t_camera cam, double px, double py);

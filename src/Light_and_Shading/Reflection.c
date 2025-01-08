@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Reflection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:47:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 07:26:59 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:26:09 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	*reflect(double *in, double *normal)
 	return (sub(in, reflection));
 }
 
-t_pt_light	pt_light(double *pos, t_colors *intens)
+t_pt_light	pt_light(double *pos, t_colors intens)
 {
 	t_pt_light	light;
 
@@ -30,7 +30,7 @@ t_pt_light	pt_light(double *pos, t_colors *intens)
 	return (light);
 }
 
-t_colors	*lighting(t_material m, t_pt_light light, double *pos, t_sight sig)
+t_colors	lighting(t_material m, t_pt_light light, double *pos, t_sight sig)
 {
 	t_light_aux	dt;
 

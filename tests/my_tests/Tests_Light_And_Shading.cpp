@@ -140,7 +140,7 @@ TEST_F(FixtureLight, TstRefl_ReflectVectorOffSlantedSurface)
 
 TEST_F(FixtureLight, TstPtLight_PointLightHasPositionAndintens)
 {
-	t_colors *intens = create_color(1, 1, 1);
+	t_colors intens = create_color(1, 1, 1);
 	double *position = point(0, 0, 0);
 	t_pt_light light = pt_light(position, intens);
 
@@ -148,28 +148,28 @@ TEST_F(FixtureLight, TstPtLight_PointLightHasPositionAndintens)
 	EXPECT_TRUE(equal(light.pos[1], position[1]));
 	EXPECT_TRUE(equal(light.pos[2], position[2]));
 
-	EXPECT_TRUE(equal(light.intens->red, intens->red));
-	EXPECT_TRUE(equal(light.intens->green, intens->green));
-	EXPECT_TRUE(equal(light.intens->blue, intens->blue));
+	EXPECT_TRUE(equal(light.intens.red, intens.red));
+	EXPECT_TRUE(equal(light.intens.green, intens.green));
+	EXPECT_TRUE(equal(light.intens.blue, intens.blue));
 }
 
 TEST_F(FixtureLight, TstMat_DefaultMaterial)
 {
 	t_material m = material();
 
-	EXPECT_TRUE(equal(m.color->red, 1));
-	EXPECT_TRUE(equal(m.color->green, 1));
-	EXPECT_TRUE(equal(m.color->blue, 1));
+	EXPECT_TRUE(equal(m.color.red, 1));
+	EXPECT_TRUE(equal(m.color.green, 1));
+	EXPECT_TRUE(equal(m.color.blue, 1));
 
-	EXPECT_TRUE(equal(m.ambient->red, 0.1));
-	EXPECT_TRUE(equal(m.ambient->green, 0.1));
-	EXPECT_TRUE(equal(m.ambient->blue, 0.1));
-	EXPECT_TRUE(equal(m.diffu->red, 0.9));
-	EXPECT_TRUE(equal(m.diffu->green, 0.9));
-	EXPECT_TRUE(equal(m.diffu->blue, 0.9));
-	EXPECT_TRUE(equal(m.spec->red, 0.9));
-	EXPECT_TRUE(equal(m.spec->green, 0.9));
-	EXPECT_TRUE(equal(m.spec->blue, 0.9));
+	EXPECT_TRUE(equal(m.ambient.red, 0.1));
+	EXPECT_TRUE(equal(m.ambient.green, 0.1));
+	EXPECT_TRUE(equal(m.ambient.blue, 0.1));
+	EXPECT_TRUE(equal(m.diffu.red, 0.9));
+	EXPECT_TRUE(equal(m.diffu.green, 0.9));
+	EXPECT_TRUE(equal(m.diffu.blue, 0.9));
+	EXPECT_TRUE(equal(m.spec.red, 0.9));
+	EXPECT_TRUE(equal(m.spec.green, 0.9));
+	EXPECT_TRUE(equal(m.spec.blue, 0.9));
 	EXPECT_TRUE(equal(m.shininess, 200.0));
 }
 
@@ -180,19 +180,19 @@ TEST_F(FixtureLight, TstMat_SphereHasDefaultMaterial)
 
 	t_material default_material = material();
 
-	EXPECT_TRUE(equal(m.color->red, default_material.color->red));
-	EXPECT_TRUE(equal(m.color->green, default_material.color->green));
-	EXPECT_TRUE(equal(m.color->blue, default_material.color->blue));
+	EXPECT_TRUE(equal(m.color.red, default_material.color.red));
+	EXPECT_TRUE(equal(m.color.green, default_material.color.green));
+	EXPECT_TRUE(equal(m.color.blue, default_material.color.blue));
 
-	EXPECT_TRUE(equal(s->material.ambient->red, default_material.ambient->red));
-	EXPECT_TRUE(equal(s->material.ambient->green, default_material.ambient->green));
-	EXPECT_TRUE(equal(s->material.ambient->blue, default_material.ambient->blue));
-	EXPECT_TRUE(equal(m.diffu->red, default_material.diffu->red));
-	EXPECT_TRUE(equal(m.diffu->green, default_material.diffu->green));
-	EXPECT_TRUE(equal(m.diffu->blue, default_material.diffu->blue));
-	EXPECT_TRUE(equal(m.spec->red, default_material.spec->red));
-	EXPECT_TRUE(equal(m.spec->green, default_material.spec->green));
-	EXPECT_TRUE(equal(m.spec->blue, default_material.spec->blue));
+	EXPECT_TRUE(equal(s->material.ambient.red, default_material.ambient.red));
+	EXPECT_TRUE(equal(s->material.ambient.green, default_material.ambient.green));
+	EXPECT_TRUE(equal(s->material.ambient.blue, default_material.ambient.blue));
+	EXPECT_TRUE(equal(m.diffu.red, default_material.diffu.red));
+	EXPECT_TRUE(equal(m.diffu.green, default_material.diffu.green));
+	EXPECT_TRUE(equal(m.diffu.blue, default_material.diffu.blue));
+	EXPECT_TRUE(equal(m.spec.red, default_material.spec.red));
+	EXPECT_TRUE(equal(m.spec.green, default_material.spec.green));
+	EXPECT_TRUE(equal(m.spec.blue, default_material.spec.blue));
 	EXPECT_TRUE(equal(m.shininess, default_material.shininess));
 }
 
@@ -204,20 +204,20 @@ TEST_F(FixtureLight, TstMat_SphereAssignedMaterial)
 
 	s->material = m;
 
-	EXPECT_TRUE(equal(s->material.ambient->red, m.ambient->red));
-	EXPECT_TRUE(equal(s->material.ambient->green, m.ambient->green));
-	EXPECT_TRUE(equal(s->material.ambient->blue, m.ambient->blue));
-	EXPECT_TRUE(equal(s->material.diffu->red, m.diffu->red));
-	EXPECT_TRUE(equal(s->material.diffu->green, m.diffu->green));
-	EXPECT_TRUE(equal(s->material.diffu->blue, m.diffu->blue));
-	EXPECT_TRUE(equal(s->material.spec->red, m.spec->red));
-	EXPECT_TRUE(equal(s->material.spec->green, m.spec->green));
-	EXPECT_TRUE(equal(s->material.spec->blue, m.spec->blue));
+	EXPECT_TRUE(equal(s->material.ambient.red, m.ambient.red));
+	EXPECT_TRUE(equal(s->material.ambient.green, m.ambient.green));
+	EXPECT_TRUE(equal(s->material.ambient.blue, m.ambient.blue));
+	EXPECT_TRUE(equal(s->material.diffu.red, m.diffu.red));
+	EXPECT_TRUE(equal(s->material.diffu.green, m.diffu.green));
+	EXPECT_TRUE(equal(s->material.diffu.blue, m.diffu.blue));
+	EXPECT_TRUE(equal(s->material.spec.red, m.spec.red));
+	EXPECT_TRUE(equal(s->material.spec.green, m.spec.green));
+	EXPECT_TRUE(equal(s->material.spec.blue, m.spec.blue));
 	EXPECT_TRUE(equal(s->material.shininess, m.shininess));
 
-	EXPECT_TRUE(equal(s->material.color->red, m.color->red));
-	EXPECT_TRUE(equal(s->material.color->green, m.color->green));
-	EXPECT_TRUE(equal(s->material.color->blue, m.color->blue));
+	EXPECT_TRUE(equal(s->material.color.red, m.color.red));
+	EXPECT_TRUE(equal(s->material.color.green, m.color.green));
+	EXPECT_TRUE(equal(s->material.color.blue, m.color.blue));
 }
 
 TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurface)
@@ -229,11 +229,11 @@ TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurface)
 	t_pt_light light = pt_light(point(0, 0, -10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors *result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, position, sight);
 
-	EXPECT_TRUE(equal(result->red, 1.9));
-	EXPECT_TRUE(equal(result->green, 1.9));
-	EXPECT_TRUE(equal(result->blue, 1.9));
+	EXPECT_TRUE(equal(result.red, 1.9));
+	EXPECT_TRUE(equal(result.green, 1.9));
+	EXPECT_TRUE(equal(result.blue, 1.9));
 }
 
 TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurfaceOffset45)
@@ -245,11 +245,11 @@ TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurfaceOffset45)
 	t_pt_light light = pt_light(point(0, 0, -10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors *result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, position, sight);
 
-	EXPECT_TRUE(equal(result->red, 1.0));
-	EXPECT_TRUE(equal(result->green, 1.0));
-	EXPECT_TRUE(equal(result->blue, 1.0));
+	EXPECT_TRUE(equal(result.red, 1.0));
+	EXPECT_TRUE(equal(result.green, 1.0));
+	EXPECT_TRUE(equal(result.blue, 1.0));
 }
 
 TEST_F(FixtureLight, TstLighting_EyeOppositeSurfaceLightOffset45)
@@ -261,11 +261,11 @@ TEST_F(FixtureLight, TstLighting_EyeOppositeSurfaceLightOffset45)
 	t_pt_light light = pt_light(point(0, 10, -10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors *result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, position, sight);
 
-	EXPECT_TRUE(equal(result->red, 0.7364));
-	EXPECT_TRUE(equal(result->green, 0.7364));
-	EXPECT_TRUE(equal(result->blue, 0.7364));
+	EXPECT_TRUE(equal(result.red, 0.7364));
+	EXPECT_TRUE(equal(result.green, 0.7364));
+	EXPECT_TRUE(equal(result.blue, 0.7364));
 }
 
 TEST_F(FixtureLight, TstLighting_EyeInPathOfReflectionVector)
@@ -277,11 +277,11 @@ TEST_F(FixtureLight, TstLighting_EyeInPathOfReflectionVector)
 	t_pt_light light = pt_light(point(0, 10, -10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors *result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, position, sight);
 
-	EXPECT_TRUE(equal(result->red, 1.6364));
-	EXPECT_TRUE(equal(result->green, 1.6364));
-	EXPECT_TRUE(equal(result->blue, 1.6364));
+	EXPECT_TRUE(equal(result.red, 1.6364));
+	EXPECT_TRUE(equal(result.green, 1.6364));
+	EXPECT_TRUE(equal(result.blue, 1.6364));
 }
 
 TEST_F(FixtureLight, TstLighting_LightBehindSurface)
@@ -293,9 +293,9 @@ TEST_F(FixtureLight, TstLighting_LightBehindSurface)
 	t_pt_light light = pt_light(point(0, 0, 10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors *result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, position, sight);
 
-	EXPECT_TRUE(equal(result->red, 0.1));
-	EXPECT_TRUE(equal(result->green, 0.1));
-	EXPECT_TRUE(equal(result->blue, 0.1));
+	EXPECT_TRUE(equal(result.red, 0.1));
+	EXPECT_TRUE(equal(result.green, 0.1));
+	EXPECT_TRUE(equal(result.blue, 0.1));
 }

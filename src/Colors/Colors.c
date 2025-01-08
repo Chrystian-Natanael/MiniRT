@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:56:54 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/12/06 11:05:14 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:17:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@ static uint32_t	convert(double color_value);
  * @param blue The blue component of the color
  * @return A pointer to the newly created color structure
  */
-t_colors	*create_color(double red, double green, double blue)
+t_colors	create_color(double red, double green, double blue)
 {
-	t_colors	*color;
-	t_pool_set	*set;
+	t_colors	color;
 
-	set = get_pools();
-	color = (t_colors *)alloc_pool(sizeof(t_colors), set->colors);
-	color->red = red;
-	color->green = green;
-	color->blue = blue;
+	color.red = red;
+	color.green = green;
+	color.blue = blue;
 	return (color);
 }
 

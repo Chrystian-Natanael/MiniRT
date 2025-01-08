@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Mem_pool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 11:52:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:00:07 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ t_pool	*alloc_pool(size_t size, t_pool *pool)
 	void	*ptr;
 
 	if (!pool || pool->used + size > pool->size)
-		warning("Missing space in pool memmory", NULL, NULL);
+		error("Missing space in pool memmory", NULL, NULL, 1);
 	ptr = (char *)pool->mem + pool->used;
-	if (!ptr)
-		warning("Other missing space mns", NULL, NULL);
 	pool->used += size;
 	return (ptr);
 }

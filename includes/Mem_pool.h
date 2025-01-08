@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Mem_pool.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:25:51 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 12:28:41 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:41:50 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 
-// # define MAX_MEM 5000000000 // for grafic
+// # define MAX_MEM 99999999999 // for grafic
 # define MAX_MEM 50000 // for tests
 
 typedef struct s_pool

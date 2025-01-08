@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:20:00 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/27 15:30:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:14:24 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_matrix	inv_aux(t_matrix matrix)
 	double		value;
 	t_matrix	inv;
 
-	ft_bzero(&inv, sizeof(t_matrix));
+	init_mtx(&inv);
 	det_mtx = det(matrix);
 	ir = -1;
 	inv.col = matrix.col;

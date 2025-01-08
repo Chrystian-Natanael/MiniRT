@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:23:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/27 12:08:36 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:18:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_matrix	multiply_mtx(t_matrix matrix_a, t_matrix matrix_b)
 
 	if (matrix_a.col != matrix_b.row)
 		error("Error\n", "Not possible to multiply", NULL, 1);
-	ft_bzero(&res, sizeof(t_matrix));
+	init_mtx(&res);
 	ir = -1;
 	while (++ir < matrix_a.row)
 	{

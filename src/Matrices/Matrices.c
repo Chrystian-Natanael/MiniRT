@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:43:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:55:59 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:42:52 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_matrix	create_mtx(int row, int col, double *elements)
 	int			ic;
 	t_matrix	matrix;
 
-	ft_bzero(&matrix, sizeof(t_matrix));
+	init_mtx(&matrix);
 	if (!elements)
 		error("empty elements", NULL, NULL, 1);
 	if (row < 1 || col < 1)
@@ -83,6 +83,17 @@ bool	comp_mtx(t_matrix mtx_a, t_matrix mtx_b)
 		}
 	}
 	return (true);
+}
+
+void	init_mtx(t_matrix *mtx)
+{
+	int	i;
+
+	mtx->col = 0;
+	mtx->row = 0;
+	i = -1;
+	while (++i < 16)
+		mtx->content[i] = 0;
 }
 
 /**

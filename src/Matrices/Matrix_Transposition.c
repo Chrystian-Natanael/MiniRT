@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:40:58 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:53:21 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:18:35 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_matrix	transp_mtx(t_matrix matrix)
 	double		vl_pos_m;
 	t_matrix	transp;
 
-	ft_bzero(&transp, sizeof(t_matrix));
+	init_mtx(&transp);
 	transp.col = matrix.row;
 	transp.row = matrix.col;
 	ir = -1;

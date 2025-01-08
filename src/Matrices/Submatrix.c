@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:18:06 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/12/06 10:11:32 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:18:44 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_matrix	submtx(t_matrix matrix, int sub_r, int sub_c)
 
 	if (sub_r < 0 || sub_c < 0)
 		error("Error\n", "Impossible to remove negative row or col", NULL, 1);
-	ft_bzero(&res, sizeof(t_matrix));
+	init_mtx(&res);
 	res.row = matrix.row - 1;
 	res.col = matrix.col - 1;
 	submtx_aux(&res, matrix, sub_r, sub_c);

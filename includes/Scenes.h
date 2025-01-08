@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 09:22:17 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:42:28 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_camera
 t_world		*world(void);
 
 void		create_obj_lst(t_world *world);
+void		insert_into_obj_list(t_obj **lst, t_obj *n1);
+void		insert_into_light_list(t_lights **lst, t_pt_light n1);
 t_world		*default_world(void);
 t_inter		*intersect_world(t_world *w, t_ray ray);
 t_comp		*prepare_computations(t_inter *intersec, t_ray ray);

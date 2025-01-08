@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:25:51 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 09:48:43 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:28:41 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdio.h>
 
-# define MAX_MEM 29000000000 // for grafic
-// # define MAX_MEM 50000 // for tests
+// # define MAX_MEM 5000000000 // for grafic
+# define MAX_MEM 50000 // for tests
 
 typedef struct s_pool
 {

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:30:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 09:39:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:37:58 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 void	init_window(t_canvas *canvas)
 {
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	canvas->mlx = mlx_init(WIDTH, HEIGHT, "MiniRT", true);
 	canvas->image = mlx_new_image(canvas->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(canvas->mlx, canvas->image, 0, 0);

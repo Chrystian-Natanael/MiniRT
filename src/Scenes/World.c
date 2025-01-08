@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   World.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 09:38:42 by thaismalhei       #+#    #+#             */
-/*   Updated: 2025/01/07 07:26:59 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:41:20 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scenes.h"
 
-static void	insert_into_obj_list(t_obj **lst, t_obj *n1)
+void	insert_into_obj_list(t_obj **lst, t_obj *n1)
 {
 	t_obj	*tmp;
 
@@ -26,7 +26,7 @@ static void	insert_into_obj_list(t_obj **lst, t_obj *n1)
 		tmp->next = n1;
 }
 
-static void	insert_into_light_list(t_lights **lst, t_pt_light n1)
+void	insert_into_light_list(t_lights **lst, t_pt_light n1)
 {
 	t_lights	*tmp;
 	t_lights	*node;

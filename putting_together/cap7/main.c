@@ -39,7 +39,7 @@ int	main(void) {
 	// Large Sphere
 	create_obj_lst(w);
 	set_transf(w->obj_lst->next->next->next->sp, translate(-0.5, 1, 0.5));
-	w->obj_lst->next->next->next->sp->material.color = create_color(0.1, 1, 0.5);
+	w->obj_lst->next->next->next->sp->material.color = create_color(1, 1, 1);
 	w->obj_lst->next->next->next->sp->material.diffu = create_color(0.7, 0.7, 0.7);
 	w->obj_lst->next->next->next->sp->material.spec = create_color(0.3, 0.3, 0.3);
 
@@ -47,14 +47,14 @@ int	main(void) {
 	// Smaller green Sphere
 	create_obj_lst(w);
 	set_transf(w->obj_lst->next->next->next->next->sp, multiply_mtx(translate(1.5, 0.5, -0.5), scale(0.5, 0.5, 0.5)));
-	w->obj_lst->next->next->next->next->sp->material.color = create_color(0.5, 1, 0.1);
+	w->obj_lst->next->next->next->next->sp->material.color = create_color(1, 1, 1);
 	w->obj_lst->next->next->next->next->sp->material.diffu = create_color(0.7, 0.7, 0.7);
 	w->obj_lst->next->next->next->next->sp->material.spec = create_color(0.3, 0.3, 0.3);
 
 	// Smallest Sphere
 	create_obj_lst(w);
 	set_transf(w->obj_lst->next->next->next->next->next->sp, multiply_mtx(translate(-1.5, 0.33, -0.75), scale(0.33, 0.33, 0.33)));
-	w->obj_lst->next->next->next->next->next->sp->material.color = create_color(1, 0.02, 0.6);
+	w->obj_lst->next->next->next->next->next->sp->material.color = create_color(1, 1, 1);
 	w->obj_lst->next->next->next->next->next->sp->material.diffu = create_color(0.7, 0.7, 0.7);
 	w->obj_lst->next->next->next->next->next->sp->material.spec = create_color(0.3, 0.3, 0.3);
 
@@ -63,8 +63,12 @@ int	main(void) {
 	w->lights_lst->light_src = pt_light(point(-10, 10, -10), create_color(1, 1, 1));
 
 	// LIGHT SRC 2
-	t_pt_light light_2 = pt_light(point(-5, 5, -5), create_color(1, 0, 0));
+	t_pt_light light_2 = pt_light(point(5, -5, -5), create_color(1, 0, 0));
 	insert_into_light_list(&w->lights_lst, light_2);
+
+	// LIGHT SRC 3
+	t_pt_light light_3 = pt_light(point(-10, 10, -6), create_color(0, 0, 1));
+	insert_into_light_list(&w->lights_lst, light_3);
 
 	// CAM CONFIG
 	cam = camera(300, 300, 3.14159 / 3);

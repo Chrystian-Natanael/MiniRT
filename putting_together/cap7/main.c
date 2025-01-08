@@ -58,12 +58,16 @@ int	main(void) {
 	w->obj_lst->next->next->next->next->next->sp->material.diffu = create_color(0.7, 0.7, 0.7);
 	w->obj_lst->next->next->next->next->next->sp->material.spec = create_color(0.3, 0.3, 0.3);
 
-	// LIGHT SRC
+	// LIGHT SRC WHITE
 	w->lights_lst = (t_lights *)alloc_pool(sizeof(t_lights), set->colors);
 	w->lights_lst->light_src = pt_light(point(-10, 10, -10), create_color(1, 1, 1));
 
+	// LIGHT SRC 2
+	t_pt_light light_2 = pt_light(point(-5, 5, -5), create_color(1, 0, 0));
+	insert_into_light_list(&w->lights_lst, light_2);
+
 	// CAM CONFIG
-	cam = camera(1920, 1080, 3.14159 / 3);
+	cam = camera(300, 300, 3.14159 / 3);
 	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
 
 	printf("0\n");
@@ -71,6 +75,7 @@ int	main(void) {
 	paint = render_canva(cam, w);
 
 	printf("1\n");
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx = mlx_init(cam.hsize, cam.vsize, "PT7", true);
 	printf("2\n");
 	image = canva2image(paint, mlx);

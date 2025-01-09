@@ -223,13 +223,15 @@ TEST_F(FixtureLight, TstMat_SphereAssignedMaterial)
 TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurface)
 {
 	t_material m = material();
-	double *position = point(0, 0, 0);
+	t_pt_pos	pt;
+	pt.pos = point(0, 0, 0);
+	pt.in_shadow = false;
 	double *eyev = vector(0, 0, -1);
 	double *normalv = vector(0, 0, -1);
 	t_pt_light light = pt_light(point(0, 0, -10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, pt, sight);
 
 	EXPECT_TRUE(equal(result.red, 1.9));
 	EXPECT_TRUE(equal(result.green, 1.9));
@@ -239,13 +241,15 @@ TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurface)
 TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurfaceOffset45)
 {
 	t_material m = material();
-	double *position = point(0, 0, 0);
+	t_pt_pos	pt;
+	pt.pos = point(0, 0, 0);
+	pt.in_shadow = false;
 	double *eyev = vector(0, sqrt(2) / 2, -sqrt(2) / 2);
 	double *normalv = vector(0, 0, -1);
 	t_pt_light light = pt_light(point(0, 0, -10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, pt, sight);
 
 	EXPECT_TRUE(equal(result.red, 1.0));
 	EXPECT_TRUE(equal(result.green, 1.0));
@@ -255,13 +259,15 @@ TEST_F(FixtureLight, TstLighting_EyeBetweenLightAndSurfaceOffset45)
 TEST_F(FixtureLight, TstLighting_EyeOppositeSurfaceLightOffset45)
 {
 	t_material m = material();
-	double *position = point(0, 0, 0);
+	t_pt_pos	pt;
+	pt.pos = point(0, 0, 0);
+	pt.in_shadow = false;
 	double *eyev = vector(0, 0, -1);
 	double *normalv = vector(0, 0, -1);
 	t_pt_light light = pt_light(point(0, 10, -10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, pt, sight);
 
 	EXPECT_TRUE(equal(result.red, 0.7364));
 	EXPECT_TRUE(equal(result.green, 0.7364));
@@ -271,13 +277,15 @@ TEST_F(FixtureLight, TstLighting_EyeOppositeSurfaceLightOffset45)
 TEST_F(FixtureLight, TstLighting_EyeInPathOfReflectionVector)
 {
 	t_material m = material();
-	double *position = point(0, 0, 0);
+	t_pt_pos	pt;
+	pt.pos = point(0, 0, 0);
+	pt.in_shadow = false;
 	double *eyev = vector(0, -sqrt(2) / 2, -sqrt(2) / 2);
 	double *normalv = vector(0, 0, -1);
 	t_pt_light light = pt_light(point(0, 10, -10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, pt, sight);
 
 	EXPECT_TRUE(equal(result.red, 1.6364));
 	EXPECT_TRUE(equal(result.green, 1.6364));
@@ -287,13 +295,33 @@ TEST_F(FixtureLight, TstLighting_EyeInPathOfReflectionVector)
 TEST_F(FixtureLight, TstLighting_LightBehindSurface)
 {
 	t_material m = material();
-	double *position = point(0, 0, 0);
+	t_pt_pos	pt;
+	pt.pos = point(0, 0, 0);
+	pt.in_shadow = false;
 	double *eyev = vector(0, 0, -1);
 	double *normalv = vector(0, 0, -1);
 	t_pt_light light = pt_light(point(0, 0, 10), create_color(1, 1, 1));
 	t_sight sight = {eyev, normalv};
 
-	t_colors result = lighting(m, light, position, sight);
+	t_colors result = lighting(m, light, pt, sight);
+
+	EXPECT_TRUE(equal(result.red, 0.1));
+	EXPECT_TRUE(equal(result.green, 0.1));
+	EXPECT_TRUE(equal(result.blue, 0.1));
+}
+
+TEST_F(FixtureLight, TstLighting_SurfaceInShadow)
+{
+	t_material m = material();
+	t_pt_pos	pt;
+	pt.pos = point(0, 0, 0);
+	pt.in_shadow = true;
+	double *eyev = vector(0, 0, -1);
+	double *normalv = vector(0, 0, -1);
+	t_pt_light light = pt_light(point(0, 0, -10), create_color(1, 1, 1));
+	t_sight sight = {eyev, normalv};
+
+	t_colors result = lighting(m, light, pt, sight);
 
 	EXPECT_TRUE(equal(result.red, 0.1));
 	EXPECT_TRUE(equal(result.green, 0.1));

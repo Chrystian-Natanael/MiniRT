@@ -7,6 +7,7 @@ extern "C"
 #include "Matrices.h"
 #include "Tuples.h"
 #include "Utils.h"
+#include "Scenes.h"
 }
 
 class FixtureInter : public ::testing::Test {
@@ -368,4 +369,21 @@ TEST_F(FixtureInter, TstSp_IntersectingTranslatedSphereWithRay)
 
 	EXPECT_EQ(xs->count, 0);
 
+}
+
+TEST_F(FixtureInter, HitShouldOffsetThePoint)
+{
+	t_ray r = create_ray(point(0, 0, -5), vector(0, 0, 1));
+	t_sp *s = create_sp();
+	t_matrix translation = translate(0, 0, 1);
+
+	set_transf(s, translation);
+	t_sp_inter *val = intersect(s, r);
+	t_inter	*lst = NULL;
+	intersections(val->t1, s, &lst);
+	intersections(val->t2, s, &lst);
+	t_comp	*comps = prepare_computations(lst, r);
+
+	EXPECT_LT(comps->over_point[Z], (-(0.00001)/2));
+	EXPECT_GT(comps->point[Z], comps->over_point[Z]);
 }

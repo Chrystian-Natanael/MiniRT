@@ -340,3 +340,72 @@ TEST_F(FixtureWorld, RenderingWorldWithCamera)
 	EXPECT_TRUE(equal(image.px[5 * image.wid + 5].green, 0.47583));
 	EXPECT_TRUE(equal(image.px[5 * image.wid + 5].blue, 0.2855));
 }
+
+TEST_F(FixtureWorld, NoShadowWhenNothingIsCollinearWithPointAndLight)
+{
+	t_world *w = default_world();
+	t_pt_pos	pt;
+	pt.pos = point(0, 10, 0);
+
+	pt.in_shadow = is_shadowed(w, pt.pos);
+
+	EXPECT_FALSE(pt.in_shadow);
+}
+
+TEST_F(FixtureWorld, ShadowWhenObjectIsBetweenPointAndLight)
+{
+	t_world *w = default_world();
+	t_pt_pos	pt;
+	pt.pos = point(10, -10, 10);
+
+	pt.in_shadow = is_shadowed(w, pt.pos);
+
+	EXPECT_TRUE(pt.in_shadow);
+}
+
+TEST_F(FixtureWorld, NoShadowWhenObjectIsBehindLight)
+{
+	t_world *w = default_world();
+	t_pt_pos	pt;
+	pt.pos = point(-20, 20, -20);
+
+	pt.in_shadow = is_shadowed(w, pt.pos);
+
+	EXPECT_FALSE(pt.in_shadow);
+}
+
+TEST_F(FixtureWorld, NoShadowWhenObjectIsBehindPoint)
+{
+	t_world *w = default_world();
+	t_pt_pos	pt;
+	pt.pos = point(-2, 2, -2);
+
+	pt.in_shadow = is_shadowed(w, pt.pos);
+
+	EXPECT_FALSE(pt.in_shadow);
+}
+
+TEST_F(FixtureWorld, ShadeHitIsGivenAnIntersectionInShadow)
+{
+	t_world *w = world();
+
+	w->lights_lst = (t_lights *)alloc_pool(sizeof(t_lights), set->colors);
+	w->lights_lst->light_src = pt_light(point(0, 0, -10), create_color(1, 1, 1));
+
+	create_obj_lst(w);
+	w->obj_lst->sp->material.color = create_color(1, 1, 1);
+	w->obj_lst->sp->material.spec = create_color(0, 0, 0);
+
+	create_obj_lst(w);
+	w->obj_lst->next->sp->material.color = create_color(1, 1, 1);
+	w->obj_lst->next->sp->material.spec = create_color(0, 0, 0);
+	set_transf(w->obj_lst->next->sp, (translate(0, 0, 10)));
+
+	t_ray	ray = create_ray(point(0, 0, 5), vector(0, 0, 1));
+
+	t_colors	color_at_hit = color_at(w, ray);
+
+	EXPECT_DOUBLE_EQ(color_at_hit.red, 0.1);
+	EXPECT_DOUBLE_EQ(color_at_hit.green, 0.1);
+	EXPECT_DOUBLE_EQ(color_at_hit.blue, 0.1);
+}

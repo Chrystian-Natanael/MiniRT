@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:30:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 11:37:58 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:41:09 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ mlx_image_t	*canva2image(t_paint canvas, mlx_t *mlx)
 
 	im = mlx_new_image(mlx, canvas.wid, canvas.hei);
 	if (!im)
-		error("ERRO NA IMAGEM", NULL, NULL, 1);
+		error("IMAGE ERROR", NULL, NULL, 1);
 	y = -1;
 	while (++y < canvas.hei)
 	{

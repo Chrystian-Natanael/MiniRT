@@ -93,6 +93,7 @@ SRCS =	$(SRCS2_PATH)mem_pool/Mem_pool.c \
 		$(SRCS2_PATH)Scenes/Shade.c \
 		$(SRCS2_PATH)Scenes/View_transform.c \
 		$(SRCS2_PATH)Scenes/World.c \
+		$(SRCS2_PATH)Scenes/Is_shadowed.c \
         $(wildcard $(SRCS_PATH)*$(FILE_EXTENSION))
 OBJS = $(SRCS:%$(FILE_EXTENSION)=$(BUILD_DIR)%.o)
 DEPS = $(OBJS:.o=.d)

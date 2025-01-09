@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 10:42:28 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:46:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ typedef struct s_comp
 	double	pos;
 	t_sp	*sp;
 	double	*point;
+	double	*over_point;
 	t_sight	sig;
 	bool	inside;
+	bool	in_shadow;
 }			t_comp;
 
 typedef struct s_obj
@@ -71,5 +73,6 @@ t_colors	color_at(t_world *w, t_ray r);
 t_matrix	view_transform(double *from, double *to, double *up);
 t_camera	camera(int hsize, int vsize, double field_view);
 t_ray		ray_for_pixel(t_camera cam, double px, double py);
+bool		is_shadowed(t_world *world, double *pos);
 
 #endif

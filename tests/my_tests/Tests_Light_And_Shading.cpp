@@ -33,7 +33,10 @@ protected:
 
 TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnXAxis)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	double *n = normal_at(s, point(1, 0, 0));
 	double *expected = vector(1, 0, 0);
 
@@ -44,7 +47,10 @@ TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnXAxis)
 
 TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnYAxis)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	double *n = normal_at(s, point(0, 1, 0));
 	double *expected = vector(0, 1, 0);
 
@@ -55,7 +61,10 @@ TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnYAxis)
 
 TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnZAxis)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	double *n = normal_at(s, point(0, 0, 1));
 	double *expected = vector(0, 0, 1);
 
@@ -66,7 +75,10 @@ TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtPointOnZAxis)
 
 TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtNonaxialPoint)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	double sqrt3_over_3 = sqrt(3) / 3;
 	double *n = normal_at(s, point(sqrt3_over_3, sqrt3_over_3, sqrt3_over_3));
 	double *expected = vector(sqrt3_over_3, sqrt3_over_3, sqrt3_over_3);
@@ -78,7 +90,10 @@ TEST_F(FixtureLight, TstNormalAt_NormalOnSphereAtNonaxialPoint)
 
 TEST_F(FixtureLight, TstNormalAt_NormalIsNormalizedVector)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	double sqrt3_over_3 = sqrt(3) / 3;
 	double *n = normal_at(s, point(sqrt3_over_3, sqrt3_over_3, sqrt3_over_3));
 	double *normalized_n = norm(n);
@@ -90,7 +105,10 @@ TEST_F(FixtureLight, TstNormalAt_NormalIsNormalizedVector)
 
 TEST_F(FixtureLight, TstNormalAt_NormalOnTranslatedSphere)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	set_transf(s, translate(0, 1, 0));
 	double *n = normal_at(s, point(0, 1.70711, -0.70711));
 	double *expected = vector(0, 0.70711, -0.70711);
@@ -102,7 +120,10 @@ TEST_F(FixtureLight, TstNormalAt_NormalOnTranslatedSphere)
 
 TEST_F(FixtureLight, TstNormalAt_NormalOnTransformedSphere)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	t_matrix m = multiply_mtx(scale(1, 0.5, 1), rotate_z(M_PI / 5));
 	set_transf(s, m);
 	double *n = normal_at(s, point(0, sqrt(2) / 2, -sqrt(2) / 2));
@@ -175,7 +196,10 @@ TEST_F(FixtureLight, TstMat_DefaultMaterial)
 
 TEST_F(FixtureLight, TstMat_SphereHasDefaultMaterial)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	t_material m = s->material;
 
 	t_material default_material = material();
@@ -198,7 +222,10 @@ TEST_F(FixtureLight, TstMat_SphereHasDefaultMaterial)
 
 TEST_F(FixtureLight, TstMat_SphereAssignedMaterial)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
+
 	t_material m = material();
 	m.ambient = create_color(1, 1, 1);
 

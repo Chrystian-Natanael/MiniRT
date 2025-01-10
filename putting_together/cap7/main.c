@@ -18,45 +18,45 @@ int	main(void) {
 	t_pool_set *set = get_pools();
 
 	// floor
-	create_obj_lst(w);
-	set_transf(w->obj_lst->sp, scale(10, 0.01, 10));
-	w->obj_lst->sp->material.color = create_color(1, 0.9, 0.9);
-	w->obj_lst->sp->material.spec = create_color(0, 0, 0);
+	create_obj_lst(w, SPHERE);
+	set_transf(w->obj_lst->shape, scale(10, 0.01, 10));
+	w->obj_lst->shape->material.color = create_color(1, 0.9, 0.9);
+	w->obj_lst->shape->material.spec = create_color(0, 0, 0);
 
 
 	// Left wall
-	create_obj_lst(w);
-	w->obj_lst->next->sp->material.color = create_color(1, 0.9, 0.9);
-	w->obj_lst->next->sp->material.spec = create_color(0, 0, 0);
-	set_transf(w->obj_lst->next->sp, multiply_mtx(multiply_mtx(multiply_mtx(translate(0, 0, 5), rotate_y(-3.14159 / 4)), rotate_x(3.14159/2)), scale(10, 0.01, 10)));
+	create_obj_lst(w, SPHERE);
+	w->obj_lst->next->shape->material.color = create_color(1, 0.9, 0.9);
+	w->obj_lst->next->shape->material.spec = create_color(0, 0, 0);
+	set_transf(w->obj_lst->next->shape, multiply_mtx(multiply_mtx(multiply_mtx(translate(0, 0, 5), rotate_y(-3.14159 / 4)), rotate_x(3.14159/2)), scale(10, 0.01, 10)));
 
 	// right wall
-	create_obj_lst(w);
-	w->obj_lst->next->next->sp->material.color = create_color(1, 0.9, 0.9);
-	w->obj_lst->next->next->sp->material.spec = create_color(0, 0, 0);
-	set_transf(w->obj_lst->next->next->sp, multiply_mtx(multiply_mtx(multiply_mtx(translate(0, 0, 5), rotate_y(3.14159/4)), rotate_x(3.14159 / 2)), scale(10, 0.01, 10)));
+	create_obj_lst(w, SPHERE);
+	w->obj_lst->next->next->shape->material.color = create_color(1, 0.9, 0.9);
+	w->obj_lst->next->next->shape->material.spec = create_color(0, 0, 0);
+	set_transf(w->obj_lst->next->next->shape, multiply_mtx(multiply_mtx(multiply_mtx(translate(0, 0, 5), rotate_y(3.14159/4)), rotate_x(3.14159 / 2)), scale(10, 0.01, 10)));
 
 	// Large Sphere
-	create_obj_lst(w);
-	set_transf(w->obj_lst->next->next->next->sp, translate(-0.5, 1, 0.5));
-	w->obj_lst->next->next->next->sp->material.color = create_color(1, 1, 1);
-	w->obj_lst->next->next->next->sp->material.diffu = create_color(0.7, 0.7, 0.7);
-	w->obj_lst->next->next->next->sp->material.spec = create_color(0.3, 0.3, 0.3);
+	create_obj_lst(w, SPHERE);
+	set_transf(w->obj_lst->next->next->next->shape, translate(-0.5, 1, 0.5));
+	w->obj_lst->next->next->next->shape->material.color = create_color(1, 1, 1);
+	w->obj_lst->next->next->next->shape->material.diffu = create_color(0.7, 0.7, 0.7);
+	w->obj_lst->next->next->next->shape->material.spec = create_color(0.3, 0.3, 0.3);
 
 
 	// Smaller green Sphere
-	create_obj_lst(w);
-	set_transf(w->obj_lst->next->next->next->next->sp, multiply_mtx(translate(1.5, 0.5, -0.5), scale(0.5, 0.5, 0.5)));
-	w->obj_lst->next->next->next->next->sp->material.color = create_color(1, 1, 1);
-	w->obj_lst->next->next->next->next->sp->material.diffu = create_color(0.7, 0.7, 0.7);
-	w->obj_lst->next->next->next->next->sp->material.spec = create_color(0.3, 0.3, 0.3);
+	create_obj_lst(w, SPHERE);
+	set_transf(w->obj_lst->next->next->next->next->shape, multiply_mtx(translate(1.5, 0.5, -0.5), scale(0.5, 0.5, 0.5)));
+	w->obj_lst->next->next->next->next->shape->material.color = create_color(1, 1, 1);
+	w->obj_lst->next->next->next->next->shape->material.diffu = create_color(0.7, 0.7, 0.7);
+	w->obj_lst->next->next->next->next->shape->material.spec = create_color(0.3, 0.3, 0.3);
 
 	// Smallest Sphere
-	create_obj_lst(w);
-	set_transf(w->obj_lst->next->next->next->next->next->sp, multiply_mtx(translate(-1.5, 0.33, -0.75), scale(0.33, 0.33, 0.33)));
-	w->obj_lst->next->next->next->next->next->sp->material.color = create_color(1, 1, 1);
-	w->obj_lst->next->next->next->next->next->sp->material.diffu = create_color(0.7, 0.7, 0.7);
-	w->obj_lst->next->next->next->next->next->sp->material.spec = create_color(0.3, 0.3, 0.3);
+	create_obj_lst(w, SPHERE);
+	set_transf(w->obj_lst->next->next->next->next->next->shape, multiply_mtx(translate(-1.5, 0.33, -0.75), scale(0.33, 0.33, 0.33)));
+	w->obj_lst->next->next->next->next->next->shape->material.color = create_color(1, 1, 1);
+	w->obj_lst->next->next->next->next->next->shape->material.diffu = create_color(0.7, 0.7, 0.7);
+	w->obj_lst->next->next->next->next->next->shape->material.spec = create_color(0.3, 0.3, 0.3);
 
 	// LIGHT SRC WHITE
 	w->lights_lst = (t_lights *)alloc_pool(sizeof(t_lights), set->colors);
@@ -91,3 +91,4 @@ int	main(void) {
 	mlx_terminate(mlx);
 	quit(0);
 }
+

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/07 07:25:06 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:03:48 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Sphere.h"
+#include "Objects.h"
 
 t_sp	*create_sp(void)
 {
@@ -21,14 +21,10 @@ t_sp	*create_sp(void)
 	sp = (t_sp *)alloc_pool(sizeof(t_sp), set->objects);
 	sp->src = point(0, 0, 0);
 	sp->radius = 1;
-	sp->transf = id_mtx();
-	sp->inv = id_mtx();
-	sp->transp = id_mtx();
-	sp->material = material();
 	return (sp);
 }
 
-void	set_transf(t_sp *s, t_matrix t)
+void	set_transf(t_shape *s, t_matrix t)
 {
 	s->transf = t;
 	s->inv = inv(s->transf);

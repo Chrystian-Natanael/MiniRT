@@ -8,6 +8,7 @@ extern "C"
 #include "Tuples.h"
 #include "Utils.h"
 #include "Scenes.h"
+#include "Objects.h"
 }
 
 class FixtureInter : public ::testing::Test {
@@ -74,9 +75,11 @@ TEST_F(FixtureInter, TstRay_RayIntersectsSphereAtTwoPoints)
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
-	t_sp *s = create_sp();
+	t_shape *s;
 
-	t_sp_inter *lst = intersect(s, r);
+	init_shape(SPHERE, s);
+
+	t_sp_inter *lst = (t_sp_inter *)intersect(s, r);
 
 	EXPECT_TRUE(equal(lst->t1, 4.0));
 	EXPECT_TRUE(equal(lst->t2, 6.0));
@@ -89,9 +92,11 @@ TEST_F(FixtureInter, TstRay_RayIntersectsSphereAtTangent)
 	double *src = point(0, 1, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
-	t_sp *s = create_sp();
+	t_shape *s;
 
-	t_sp_inter *lst = intersect(s, r);
+	init_shape(SPHERE, s);
+
+	t_sp_inter *lst = (t_sp_inter *)intersect(s, r);
 
 	EXPECT_TRUE(equal(lst->t1, 5.0));
 	EXPECT_TRUE(equal(lst->t2, 5.0));
@@ -104,9 +109,11 @@ TEST_F(FixtureInter, TstRay_RayMissesSphere)
 	double *src = point(0, 2, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
-	t_sp *s = create_sp();
+	t_shape *s;
 
-	t_sp_inter *lst = intersect(s, r);
+	init_shape(SPHERE, s);
+
+	t_sp_inter *lst = (t_sp_inter *)intersect(s, r);
 
 	EXPECT_EQ(lst->count, 0);
 
@@ -117,9 +124,11 @@ TEST_F(FixtureInter, TstRay_RaysrcatesInsideSphere)
 	double *src = point(0, 0, 0);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
-	t_sp *s = create_sp();
+	t_shape *s;
 
-	t_sp_inter *lst = intersect(s, r);
+	init_shape(SPHERE, s);
+
+	t_sp_inter *lst = (t_sp_inter *)intersect(s, r);
 
 	EXPECT_TRUE(equal(lst->t1, -1.0));
 	EXPECT_TRUE(equal(lst->t2, 1.0));
@@ -132,9 +141,11 @@ TEST_F(FixtureInter, TstRay_SphereIsBehindRay)
 	double *src = point(0, 0, 5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
-	t_sp *s = create_sp();
+	t_shape	*s;
 
-	t_sp_inter *lst = intersect(s, r);
+	init_shape(SPHERE, s);
+
+	t_sp_inter *lst = (t_sp_inter *)intersect(s, r);
 
 	EXPECT_TRUE(equal(lst->t1, -6.0));
 	EXPECT_TRUE(equal(lst->t2, -4.0));
@@ -144,22 +155,27 @@ TEST_F(FixtureInter, TstRay_SphereIsBehindRay)
 
 TEST_F(FixtureInter, TstRay_IntersectionEncapsulatesTAndObject)
 {
-	t_sp *s = create_sp();
+	t_shape *s;
 	t_inter *dest;
+
+	init_shape(SPHERE, s);
 
 	dest = NULL;
 	intersections(3.5, s, &dest);
 
 	EXPECT_TRUE(equal(dest->pos, 3.5));
-	EXPECT_EQ(dest->sp->src, s->src);
-	EXPECT_EQ(dest->sp->radius, s->radius);
+
+	EXPECT_EQ(((t_sp *)dest->shape->obj)->src, ((t_sp *)s->obj)->src);
+	EXPECT_EQ(((t_sp *)dest->shape->obj)->radius, ((t_sp *)s->obj)->radius);
 
 }
 
 TEST_F(FixtureInter, TstRay_AggregatingIntersections)
 {
-	t_sp *s = create_sp();
 	t_inter *dest;
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 
 	dest = NULL;
 	intersections(1, s, &dest);
@@ -176,19 +192,21 @@ TEST_F(FixtureInter, TstRay_IntersectSetsObjectOnIntersection)
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
-	t_sp *s = create_sp();
 	t_inter *dest;
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 
 	dest = NULL;
-	t_sp_inter *xs = intersect(s, r);
+	t_sp_inter *xs = (t_sp_inter *)intersect(s, r);
 	intersections(xs->t1, s, &dest);
 	intersections(xs->t2, s, &dest);
 
 	EXPECT_EQ(xs->count, 2);
 	EXPECT_EQ(lst_count(dest), 2);
-	EXPECT_EQ(xs->sp, s);
-	EXPECT_EQ(dest->sp, s);
-	EXPECT_EQ(dest->next->sp, s);
+	EXPECT_EQ(xs->sp, (t_sp *)s);
+	EXPECT_EQ(dest->shape, s);
+	EXPECT_EQ(dest->next->shape, s);
 
 	EXPECT_TRUE(equal(dest->pos, xs->t1));
 	EXPECT_TRUE(equal(dest->next->pos, xs->t2));
@@ -197,7 +215,9 @@ TEST_F(FixtureInter, TstRay_IntersectSetsObjectOnIntersection)
 
 TEST_F(FixtureInter, TstRay_OrdenadedNumbers)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_inter *dest;
 
 	dest = NULL;
@@ -214,7 +234,9 @@ TEST_F(FixtureInter, TstRay_OrdenadedNumbers)
 
 TEST_F(FixtureInter, TstRay_HitWhenAllIntersectionsHavePositiveT)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_inter *dest;
 
 	dest = NULL;
@@ -229,7 +251,9 @@ TEST_F(FixtureInter, TstRay_HitWhenAllIntersectionsHavePositiveT)
 
 TEST_F(FixtureInter, TstRay_HitWhenSomeIntersectionsHaveNegativeT)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_inter *dest;
 
 	dest = NULL;
@@ -244,7 +268,9 @@ TEST_F(FixtureInter, TstRay_HitWhenSomeIntersectionsHaveNegativeT)
 
 TEST_F(FixtureInter, TstRay_HitWhenAllIntersectionsHaveNegativeT)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_inter *dest;
 
 	dest = NULL;
@@ -259,7 +285,9 @@ TEST_F(FixtureInter, TstRay_HitWhenAllIntersectionsHaveNegativeT)
 
 TEST_F(FixtureInter, TstRay_HitIsAlwaysLowestNonnegativeIntersection)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_inter *dest;
 
 	dest = NULL;
@@ -320,7 +348,9 @@ TEST_F(FixtureInter, TstRay_ScalingARay)
 
 TEST_F(FixtureInter, TstSp_DefaultTransformation)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_matrix identity = id_mtx();
 
 	EXPECT_TRUE(comp_mtx(s->transf, identity));
@@ -329,7 +359,9 @@ TEST_F(FixtureInter, TstSp_DefaultTransformation)
 
 TEST_F(FixtureInter, TstSp_ChangingTransformation)
 {
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_matrix t = translate(2, 3, 4);
 
 	set_transf(s, t);
@@ -343,12 +375,14 @@ TEST_F(FixtureInter, TstSp_IntersectingScaledSphereWithRay)
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_matrix scaling = scale(2, 2, 2);
 
 	set_transf(s, scaling);
 
-	t_sp_inter *xs = intersect(s, r);
+	t_sp_inter *xs = (t_sp_inter *)intersect(s, r);
 
 	EXPECT_EQ(xs->count, 2);
 	EXPECT_EQ(xs->t1, 3);
@@ -361,11 +395,13 @@ TEST_F(FixtureInter, TstSp_IntersectingTranslatedSphereWithRay)
 	double *src = point(0, 0, -5);
 	double *dir = vector(0, 0, 1);
 	t_ray r = create_ray(src, dir);
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_matrix translation = translate(5, 0, 0);
 
 	set_transf(s, translation);
-	t_sp_inter *xs = intersect(s, r);
+	t_sp_inter *xs = (t_sp_inter *)intersect(s, r);
 
 	EXPECT_EQ(xs->count, 0);
 
@@ -374,11 +410,13 @@ TEST_F(FixtureInter, TstSp_IntersectingTranslatedSphereWithRay)
 TEST_F(FixtureInter, HitShouldOffsetThePoint)
 {
 	t_ray r = create_ray(point(0, 0, -5), vector(0, 0, 1));
-	t_sp *s = create_sp();
+	t_shape	*s;
+
+	init_shape(SPHERE, s);
 	t_matrix translation = translate(0, 0, 1);
 
 	set_transf(s, translation);
-	t_sp_inter *val = intersect(s, r);
+	t_sp_inter *val = (t_sp_inter *)intersect(s, r);
 	t_inter	*lst = NULL;
 	intersections(val->t1, s, &lst);
 	intersections(val->t2, s, &lst);

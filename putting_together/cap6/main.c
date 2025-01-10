@@ -14,7 +14,7 @@ int	main(void) {
   mlx_t *mlx;
   mlx_image_t *image;
   t_colors color;
-  t_sp *sp;
+  t_sphere *sp;
   int y;
   int x;
   double world_y;

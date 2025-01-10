@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:56:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/09 12:14:43 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:34:48 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ t_colors	shade_hit(t_world *w, t_comp comps)
 	aux = w->lights_lst;
 	pt.pos = comps.point;
 	pt.in_shadow = comps.in_shadow;
-	shade_color = lighting(comps.sp->material, aux->light_src, pt, comps.sig);
+	shade_color = lighting(comps.shape->material, aux->light_src, pt, comps.sig);
 	aux = aux->next;
 	while (aux)
 	{
-		shade_color = sum_colors(shade_color, lighting(comps.sp->material,
+		shade_color = sum_colors(shade_color, lighting(comps.shape->material,
 					aux->light_src, pt, comps.sig));
 		aux = aux->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:52:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/08 15:43:24 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:11:17 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "Colors.h"
 # include "Matrices.h"
-# include "Sphere.h"
+// # include "Sphere.h"
+# include "Objects.h"
 
 typedef struct s_pt_light
 {
@@ -48,7 +49,9 @@ typedef struct s_pt_pos
 	bool	in_shadow;
 }				t_pt_pos;
 
-double			*normal_at(t_sp *sp, double *wld_pt);
+double			*normal_at(t_shape *shape, double *wld_pt);
+double			*normal_at_sphere(t_shape *shape, double *wld_pt);
+
 
 double			*reflect(double *in, double *normal);
 

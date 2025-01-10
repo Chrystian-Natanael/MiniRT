@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 10:56:04 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:01:53 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define INTERSECTIONS_H
 
 # include "Matrices.h"
-# include "Sphere.h"
+# include "Objects.h"
 
 typedef struct s_ray
 {
@@ -25,7 +25,7 @@ typedef struct s_ray
 typedef struct s_inter
 {
 	double			pos;
-	t_sp			*sp;
+	t_shape			*shape;
 	struct s_inter	*next;
 	struct s_inter	*prev;
 }					t_inter;
@@ -46,20 +46,22 @@ typedef struct s_coef
 	double			discrim;
 }					t_coef;
 
-t_ray				create_ray(double *src, double *dir);
-double				*pos_ray(t_ray ray, double time);
+t_ray		create_ray(double *src, double *dir);
+double		*pos_ray(t_ray ray, double time);
 
-t_sp_inter			*intersect(t_sp *sp, t_ray ray);
+void		*intersect(t_shape *shape, t_ray ray);
+t_sp_inter	*intersect_sphere(t_shape *shape, t_ray ray);
 
-void				intersections(double pos, t_sp *s, t_inter **dest);
+void		create_t_inter(t_shape *shape, void *lst, t_inter **dest);
+void		intersections(double pos, t_shape *s, t_inter **dest);
 
-void				append_to_end(t_inter *tmp, t_inter *new1);
-void				insert_before(t_inter *tmp, t_inter *new_node);
-void				insert_into_list(t_inter **head, t_inter *n1);
-int					lst_count(t_inter *lst);
+void		append_to_end(t_inter *tmp, t_inter *new1);
+void		insert_before(t_inter *tmp, t_inter *new_node);
+void		insert_into_list(t_inter **head, t_inter *n1);
+int			lst_count(t_inter *lst);
 
-t_inter				*hit(t_inter *list);
+t_inter		*hit(t_inter *list);
 
-t_ray				transform(t_ray ray, t_matrix action);
+t_ray		transform(t_ray ray, t_matrix action);
 
 #endif

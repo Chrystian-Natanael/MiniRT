@@ -6,21 +6,21 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/09 11:46:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:15:29 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENES_H
 # define SCENES_H
 
-# include "Sphere.h"
+# include "Objects.h"
 # include "Light_and_Shading.h"
 # include "Intersections.h"
 
 typedef struct s_comp
 {
 	double	pos;
-	t_sp	*sp;
+	t_shape	*shape;
 	double	*point;
 	double	*over_point;
 	t_sight	sig;
@@ -30,7 +30,7 @@ typedef struct s_comp
 
 typedef struct s_obj
 {
-	t_sp			*sp;
+	t_shape			*shape;
 	struct s_obj	*next;
 	struct s_obj	*prev;
 }					t_obj;
@@ -62,7 +62,8 @@ typedef struct s_camera
 
 t_world		*world(void);
 
-void		create_obj_lst(t_world *world);
+void		create_obj_lst(t_world *world, t_shape_id id);
+// void		create_obj_lst(t_world *world); // TESTE
 void		insert_into_obj_list(t_obj **lst, t_obj *n1);
 void		insert_into_light_list(t_lights **lst, t_pt_light n1);
 t_world		*default_world(void);

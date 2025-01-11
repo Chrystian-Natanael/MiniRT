@@ -4,7 +4,7 @@
 extern "C"
 {
 #include "Matrices.h"
-#include "Sphere.h"
+#include "Shapes.h"
 #include "Light_and_Shading.h"
 #include "Intersections.h"
 #include "Scenes.h"

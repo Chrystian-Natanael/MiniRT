@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/10 16:01:53 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:20:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct s_sp_inter
 	double			t2;
 }					t_sp_inter;
 
+typedef struct s_pl_inter
+{
+	t_pl			*pl;
+	int				count;
+	double			t;
+}					t_pl_inter;
+
 typedef struct s_coef
 {
 	double			a;
@@ -51,7 +58,10 @@ double		*pos_ray(t_ray ray, double time);
 
 void		*intersect(t_shape *shape, t_ray ray);
 t_sp_inter	*intersect_sphere(t_shape *shape, t_ray ray);
+t_pl_inter	*intersect_plane(t_shape *shape, t_ray ray);
 
+t_sp_inter	*calc_intersection(t_coef coef);
+t_coef		calc_coef(t_sp *sp, t_ray ray);
 void		create_t_inter(t_shape *shape, void *lst, t_inter **dest);
 void		intersections(double pos, t_shape *s, t_inter **dest);
 

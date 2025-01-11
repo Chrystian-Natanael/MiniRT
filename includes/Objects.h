@@ -6,14 +6,14 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:50:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 12:50:37 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/11 13:23:09 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
-# include "Sphere.h"
+# include "Shapes.h"
 
 typedef struct s_material
 {
@@ -26,7 +26,8 @@ typedef struct s_material
 
 typedef enum e_shape_id
 {
-	SPHERE
+	SPHERE,
+	PLANE
 }				t_shape_id;
 
 typedef struct s_shape

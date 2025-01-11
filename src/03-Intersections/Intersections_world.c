@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections_world.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:03:34 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/09 16:23:13 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:13:12 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	create_t_inter(t_shape *shape, void *lst, t_inter **dest)
 		intersections(((t_sp_inter *)lst)->t1, shape, dest);
 		intersections(((t_sp_inter *)lst)->t2, shape, dest);
 	}
+	if (shape->id == PLANE)
+		intersections(((t_pl_inter *)lst)->t, shape, dest);
 }
 
 t_inter	*intersect_world(t_world *w, t_ray ray)

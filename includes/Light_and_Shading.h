@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:52:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 12:50:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:24:10 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "Colors.h"
 # include "Matrices.h"
-// # include "Sphere.h"
 # include "Objects.h"
 
 typedef struct s_pt_light

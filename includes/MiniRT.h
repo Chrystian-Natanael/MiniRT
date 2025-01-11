@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:13:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 17:11:07 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/11 13:23:09 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "Matrices.h"
 # include "Mem_pool.h"
 # include "Scenes.h"
-# include "Sphere.h"
+# include "Shapes.h"
 # include "Tuples.h"
 # include "Utils.h"
 # include "garbage_collector.h"

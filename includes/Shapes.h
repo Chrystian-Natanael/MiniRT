@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sphere.c                                           :+:      :+:    :+:   */
+/*   Shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 13:25:41 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/11/22 12:04:17 by tmalheir          #+#    #+#             */
+/*   Updated: 2025/01/11 13:24:57 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Objects.h"
+#ifndef SHAPES_H
+# define SHAPES_H
 
-t_sp	*create_sp(void)
+# include "Colors.h"
+# include "Matrices.h"
+# include "Tuples.h"
+
+typedef struct s_sp
 {
-	t_sp		*sp;
-	t_pool_set	*set;
+	double		*src;
+	double		radius;
+}				t_sp;
 
-	set = get_pools();
-	sp = (t_sp *)alloc_pool(sizeof(t_sp), set->objects);
-	sp->src = point(0, 0, 0);
-	sp->radius = 1;
-	return (sp);
-}
+typedef struct s_pl
+{
+	double	*src;
+}			t_pl;
+
+t_sp	*create_sp(void);
+t_pl	*create_pl(void);
+
+#endif

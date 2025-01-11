@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Normal_at.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:51:42 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/09 16:11:24 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/11 13:18:43 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ double	*normal_at(t_shape *shape, double *wld_pt)
 {
 	if (shape->id == SPHERE)
 		return (normal_at_sphere(shape, wld_pt));
+	else if (shape->id == PLANE)
+		return (vector(0, 1, 0));
 	return (0);
 }

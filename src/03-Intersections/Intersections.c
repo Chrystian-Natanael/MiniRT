@@ -6,13 +6,13 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 12:47:55 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:20:26 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intersections.h"
 
-static t_sp_inter	*calc_intersection(t_coef coef)
+t_sp_inter	*calc_intersection(t_coef coef)
 {
 	t_sp_inter	*list;
 	t_pool_set	*set;
@@ -27,7 +27,7 @@ static t_sp_inter	*calc_intersection(t_coef coef)
 	return (list);
 }
 
-static t_coef	calc_coef(t_sp *sp, t_ray ray)
+t_coef	calc_coef(t_sp *sp, t_ray ray)
 {
 	t_coef	coef;
 	double	*sp_to_ray;
@@ -63,24 +63,11 @@ void	intersections(double pos, t_shape *s, t_inter **dest)
 		*dest = (*dest)->prev;
 }
 
-t_sp_inter	*intersect_sphere(t_shape *shape, t_ray ray)
-{
-	t_coef		coef;
-	t_sp_inter	*value;
-	t_ray		new_ray;
-
-	if (!shape || !(t_sp *)shape->obj)
-		error("Error\n", "Sphere doesn't exist", NULL, ERROR);
-	new_ray = transform(ray, shape->inv);
-	coef = calc_coef((t_sp *)shape->obj, new_ray);
-	value = calc_intersection(coef);
-	value->sp = (t_sp *)shape->obj;
-	return (value);
-}
-
 void	*intersect(t_shape *shape, t_ray ray)
 {
 	if (shape->id == SPHERE)
 		return ((void *)intersect_sphere(shape, ray));
+	if (shape->id == PLANE)
+		return ((void *)intersect_plane(shape, ray));
 	return (NULL);
 }

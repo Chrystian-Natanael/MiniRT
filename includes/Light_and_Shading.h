@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Light_and_Shading.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:52:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/10 12:11:17 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/11 12:50:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_pt_pos
 
 double			*normal_at(t_shape *shape, double *wld_pt);
 double			*normal_at_sphere(t_shape *shape, double *wld_pt);
-
 
 double			*reflect(double *in, double *normal);
 

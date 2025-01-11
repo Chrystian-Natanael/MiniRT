@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/10 16:03:23 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/11 12:47:55 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,41 +52,16 @@ void	intersections(double pos, t_shape *s, t_inter **dest)
 	{
 		(*dest) = (t_inter *)alloc_pool(sizeof(t_inter), set->objects);
 		(*dest)->pos = pos;
-		init_shape(s->id, s);
 		(*dest)->shape = s;
 		return ;
 	}
 	node = (t_inter *)alloc_pool(sizeof(t_inter), set->objects);
 	node->pos = pos;
-	init_shape(s->id, s);
 	node->shape = s;
 	insert_into_list(dest, node);
 	while ((*dest)->prev)
 		*dest = (*dest)->prev;
 }
-
-// void	intersections(double pos, t_shape *s, t_inter **dest)
-// {
-// 	t_inter		*node;
-// 	t_pool_set	*set;
-
-// 	set = get_pools();
-// 	if (!s)
-// 		error("Error\n", "Shape doesn't exist", NULL, ERROR);
-// 	if (!(*dest))
-// 	{
-// 		(*dest) = (t_inter *)alloc_pool(sizeof(t_inter), set->objects);
-// 		(*dest)->pos = pos;
-// 		(*dest)->shape->create_shape(s->id, (*dest)->shape);
-// 		return ;
-// 	}
-// 	node = (t_inter *)alloc_pool(sizeof(t_inter), set->objects);
-// 	node->shape->create_shape(s->id, node->shape);
-// 	node->pos = pos;
-// 	insert_into_list(dest, node);
-// 	while ((*dest)->prev)
-// 		*dest = (*dest)->prev;
-// }
 
 t_sp_inter	*intersect_sphere(t_shape *shape, t_ray ray)
 {
@@ -107,19 +82,5 @@ void	*intersect(t_shape *shape, t_ray ray)
 {
 	if (shape->id == SPHERE)
 		return ((void *)intersect_sphere(shape, ray));
-	return (NULL);
-}
-
-t_inter	*hit(t_inter *list)
-{
-	t_inter	*tmp;
-
-	tmp = list;
-	while (tmp)
-	{
-		if (tmp->pos > 0)
-			return (tmp);
-		tmp = tmp->next;
-	}
 	return (NULL);
 }

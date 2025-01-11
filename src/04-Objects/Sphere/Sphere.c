@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/10 16:03:48 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/11 12:00:22 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ t_sp	*create_sp(void)
 	return (sp);
 }
 
-void	set_transf(t_shape *s, t_matrix t)
+void	set_transf(t_shape **s, t_matrix t)
 {
-	s->transf = t;
-	s->inv = inv(s->transf);
-	s->transp = transp_mtx(s->inv);
+	(*s)->transf = t;
+	(*s)->inv = inv((*s)->transf);
+	(*s)->transp = transp_mtx((*s)->inv);
 	return ;
 }
 

@@ -50,7 +50,7 @@ TEST_F(FixtureWorld, DefaultWorld)
 
 	t_shape	*s1;
 
-	init_shape(SPHERE, s1);
+	init_shape(SPHERE, &s1);
 
 	s1->material.color = create_color(0.8, 1.0, 0.6);
 	s1->material.diffu = create_color(0.7, 0.7, 0.7);
@@ -58,7 +58,7 @@ TEST_F(FixtureWorld, DefaultWorld)
 
 	t_shape	*s2;
 
-	init_shape(SPHERE, s2);
+	init_shape(SPHERE, &s2);
 
 	s2->transf = scale(0.5, 0.5, 0.5);
 
@@ -103,7 +103,7 @@ TEST_F(FixtureWorld, PrecomputingStateOfIntersection)
 	t_ray r = create_ray(point(0, 0, -5), vector(0, 0, 1));
 	t_shape	*shape;
 
-	init_shape(SPHERE, shape);
+	init_shape(SPHERE, &shape);
 	t_inter *i = NULL;
 	intersections(4, shape, &i);
 	t_comp *comps = prepare_computations(i, r);
@@ -130,7 +130,7 @@ TEST_F(FixtureWorld, HitWhenIntersectionOccursOnInside)
 	t_ray r = create_ray(point(0, 0, 0), vector(0, 0, 1));
 	t_shape	*shape;
 
-	init_shape(SPHERE, shape);
+	init_shape(SPHERE, &shape);
 	t_inter *i = NULL;
 	intersections(1, shape, &i);
 	t_comp *comps = prepare_computations(i, r);
@@ -409,7 +409,7 @@ TEST_F(FixtureWorld, ShadeHitIsGivenAnIntersectionInShadow)
 	create_obj_lst(w, SPHERE);
 	w->obj_lst->next->shape->material.color = create_color(1, 1, 1);
 	w->obj_lst->next->shape->material.spec = create_color(0, 0, 0);
-	set_transf(w->obj_lst->next->shape, (translate(0, 0, 10)));
+	set_transf(&w->obj_lst->next->shape, (translate(0, 0, 10)));
 
 	t_ray	ray = create_ray(point(0, 0, 5), vector(0, 0, 1));
 

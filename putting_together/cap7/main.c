@@ -19,7 +19,7 @@ int	main(void) {
 
 	// floor
 	create_obj_lst(w, SPHERE);
-	set_transf(w->obj_lst->shape, scale(10, 0.01, 10));
+	set_transf(&w->obj_lst->shape, scale(10, 0.01, 10));
 	w->obj_lst->shape->material.color = create_color(1, 0.9, 0.9);
 	w->obj_lst->shape->material.spec = create_color(0, 0, 0);
 
@@ -28,17 +28,17 @@ int	main(void) {
 	create_obj_lst(w, SPHERE);
 	w->obj_lst->next->shape->material.color = create_color(1, 0.9, 0.9);
 	w->obj_lst->next->shape->material.spec = create_color(0, 0, 0);
-	set_transf(w->obj_lst->next->shape, multiply_mtx(multiply_mtx(multiply_mtx(translate(0, 0, 5), rotate_y(-3.14159 / 4)), rotate_x(3.14159/2)), scale(10, 0.01, 10)));
+	set_transf(&w->obj_lst->next->shape, multiply_mtx(multiply_mtx(multiply_mtx(translate(0, 0, 5), rotate_y(-3.14159 / 4)), rotate_x(3.14159/2)), scale(10, 0.01, 10)));
 
 	// right wall
 	create_obj_lst(w, SPHERE);
 	w->obj_lst->next->next->shape->material.color = create_color(1, 0.9, 0.9);
 	w->obj_lst->next->next->shape->material.spec = create_color(0, 0, 0);
-	set_transf(w->obj_lst->next->next->shape, multiply_mtx(multiply_mtx(multiply_mtx(translate(0, 0, 5), rotate_y(3.14159/4)), rotate_x(3.14159 / 2)), scale(10, 0.01, 10)));
+	set_transf(&w->obj_lst->next->next->shape, multiply_mtx(multiply_mtx(multiply_mtx(translate(0, 0, 5), rotate_y(3.14159/4)), rotate_x(3.14159 / 2)), scale(10, 0.01, 10)));
 
 	// Large Sphere
 	create_obj_lst(w, SPHERE);
-	set_transf(w->obj_lst->next->next->next->shape, translate(-0.5, 1, 0.5));
+	set_transf(&w->obj_lst->next->next->next->shape, translate(-0.5, 1, 0.5));
 	w->obj_lst->next->next->next->shape->material.color = create_color(1, 1, 1);
 	w->obj_lst->next->next->next->shape->material.diffu = create_color(0.7, 0.7, 0.7);
 	w->obj_lst->next->next->next->shape->material.spec = create_color(0.3, 0.3, 0.3);
@@ -46,14 +46,14 @@ int	main(void) {
 
 	// Smaller green Sphere
 	create_obj_lst(w, SPHERE);
-	set_transf(w->obj_lst->next->next->next->next->shape, multiply_mtx(translate(1.5, 0.5, -0.5), scale(0.5, 0.5, 0.5)));
+	set_transf(&w->obj_lst->next->next->next->next->shape, multiply_mtx(translate(1.5, 0.5, -0.5), scale(0.5, 0.5, 0.5)));
 	w->obj_lst->next->next->next->next->shape->material.color = create_color(1, 1, 1);
 	w->obj_lst->next->next->next->next->shape->material.diffu = create_color(0.7, 0.7, 0.7);
 	w->obj_lst->next->next->next->next->shape->material.spec = create_color(0.3, 0.3, 0.3);
 
 	// Smallest Sphere
 	create_obj_lst(w, SPHERE);
-	set_transf(w->obj_lst->next->next->next->next->next->shape, multiply_mtx(translate(-1.5, 0.33, -0.75), scale(0.33, 0.33, 0.33)));
+	set_transf(&w->obj_lst->next->next->next->next->next->shape, multiply_mtx(translate(-1.5, 0.33, -0.75), scale(0.33, 0.33, 0.33)));
 	w->obj_lst->next->next->next->next->next->shape->material.color = create_color(1, 1, 1);
 	w->obj_lst->next->next->next->next->next->shape->material.diffu = create_color(0.7, 0.7, 0.7);
 	w->obj_lst->next->next->next->next->next->shape->material.spec = create_color(0.3, 0.3, 0.3);

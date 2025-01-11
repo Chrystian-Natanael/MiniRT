@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:50:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/10 15:55:43 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/11 12:50:37 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ typedef struct s_material
 	double		shininess;
 }				t_material;
 
-typedef enum	e_shape_id
+typedef enum e_shape_id
 {
 	SPHERE
 }				t_shape_id;
 
-typedef struct	s_shape
+typedef struct s_shape
 {
 	t_matrix	transf;
 	t_matrix	inv;
@@ -37,12 +37,10 @@ typedef struct	s_shape
 	t_material	material;
 	t_shape_id	id;
 	void		*obj;
-	// void		(*create_shape)(t_shape_id id, struct s_shape *shape);
 }				t_shape;
 
 t_material	material(void);
-void		init_shape(t_shape_id id, struct s_shape *shape);
-// void		create_shape(t_shape_id id, struct s_shape *shape);
-void		set_transf(t_shape *s, t_matrix t);
+void		init_shape(t_shape_id id, struct s_shape **shape);
+void		set_transf(t_shape **s, t_matrix t);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Codam.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:30:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/10 09:51:33 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/11 12:47:27 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
  * associated with the window, displayed at position (0, 0). MLX settings are
  * adjusted to allow image stretching.
  *
- * @param canvas A pointer to a `t_canvas` structure that holds references to the MLX window
- * and the image to be displayed. The function initializes the `canvas` structure with the
+ * @param canvas A pointer to a `t_canvas` structure that holds references
+ * to the MLX window
+ * and the image to be displayed. The function initializes the `canvas`
+ * structure with the
  * appropriate window and image.
  */
 void	init_window(t_canvas *canvas)
@@ -35,6 +37,7 @@ void	init_window(t_canvas *canvas)
 	canvas->image = mlx_new_image(canvas->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(canvas->mlx, canvas->image, 0, 0);
 }
+
 /**
  * @brief Converts canvas data to a usable MLX image
  *

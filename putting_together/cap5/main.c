@@ -35,7 +35,7 @@ int	main(void)
 	mlx_image_to_window(mlx, image, 0, 0);
 	color = create_color(0, 0, 1);
 	sp = create_sp();
-	set_transf(sp, scale(2, 2, 2));
+	set_transf(&sp, scale(2, 2, 2));
 	y = -1;
 	while (++y < canvas_px)
 	{

@@ -71,7 +71,7 @@ int	main(void) {
 	insert_into_light_list(&w->lights_lst, light_3);
 
 	// CAM CONFIG
-	cam = camera(500, 500, 3.14159 / 3);
+	cam = camera(400, 400, 3.14159 / 3);
 	cam.transform = view_transform(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0));
 
 	printf("0\n");

@@ -85,7 +85,7 @@ SRCS =	$(SRCS2_PATH)00-mem_pool/Mem_pool.c \
 		$(SRCS2_PATH)04-Objects/Sphere/Sphere.c \
 		$(SRCS2_PATH)03-Intersections/Intersections.c \
 		$(SRCS2_PATH)03-Intersections/lst_functions.c \
-		$(SRCS2_PATH)03-Intersections/Ray.c \
+		$(SRCS2_PATH)03-Intersections/Ray_and_hit.c \
 		$(SRCS2_PATH)03-Intersections/Intersections_world.c \
 		$(SRCS2_PATH)05-Light_and_Shading/Normal_at.c \
 		$(SRCS2_PATH)05-Light_and_Shading/Reflection.c \

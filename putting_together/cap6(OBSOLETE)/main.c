@@ -40,7 +40,7 @@ int	main(void) {
   mlx_image_to_window(mlx, image, 0, 0);
   sp = create_sp();
   sp->material.color = create_color(1, 0.2, 1);
-  set_transf(&sp, translate(3, 0, 0));
+  set_transf(sp, translate(3, 0, 0));
   y = -1;
   while (++y < canvas_px) {
     world_y = half - (pixel_size * y);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 19:19:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:17:29 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_material	material(void)
 	material.diffu = create_color(0.9, 0.9, 0.9);
 	material.spec = create_color(0.9, 0.9, 0.9);
 	material.shininess = 200;
+	material.pattern.flag = false;
 	return (material);
 }
 

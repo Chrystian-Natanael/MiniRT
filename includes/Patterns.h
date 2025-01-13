@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MiniRT.h                                           :+:      :+:    :+:   */
+/*   Patterns.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 14:13:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/13 14:34:28 by tmalheir         ###   ########.fr       */
+/*   Created: 2025/01/13 11:36:07 by tmalheir          #+#    #+#             */
+/*   Updated: 2025/01/13 16:22:46 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef PATTERNS_H
+# define PATTERNS_H
 
-# include "Canvas.h"
 # include "Colors.h"
-# include "ColorsTerm.h"
-# include "Codam.h"
-# include "Intersections.h"
-# include "Light_and_Shading.h"
-# include "Matrices.h"
-# include "Mem_pool.h"
-# include "Patterns.h"
-# include "Scenes.h"
-# include "Shapes.h"
-# include "Tuples.h"
-# include "Utils.h"
-# include "garbage_collector.h"
-# include "MLX42/MLX42.h"
+# include <math.h>
+# include <stdbool.h>
 
-#endif // ! MINIRT_H
+typedef struct s_pattern
+{
+	t_colors	c1;
+	t_colors	c2;
+	bool		flag;
+}				t_pattern;
+
+t_colors	choose_color(double *point, t_colors ca, t_colors cb);
+t_pattern	stripe_pattern(t_colors ca, t_colors cb);
+t_colors	stripe_at(t_pattern pattern, double *point);
+
+#endif

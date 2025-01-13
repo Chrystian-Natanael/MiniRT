@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:50:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 13:23:09 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:33:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define OBJECTS_H
 
 # include "Shapes.h"
+# include "Patterns.h"
 
 typedef struct s_material
 {
@@ -22,6 +23,7 @@ typedef struct s_material
 	t_colors	diffu;
 	t_colors	spec;
 	double		shininess;
+	t_pattern	pattern;
 }				t_material;
 
 typedef enum e_shape_id

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:47:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/15 13:47:27 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:18:04 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ t_colors	lighting(t_shape *s, t_pt_light light, t_pt_pos pt, t_sight sig)
 	t_light_aux	dt;
 
 	if (s->material.pattern.flag)
-		dt.eff_col = hada_col((stripe_at_object(s, pt.pos)), light.intens);
+		dt.eff_col = hada_col((pattern_at_shape(s, pt.pos)), light.intens);
+		// dt.eff_col = hada_col((stripe_at_object(s, pt.pos)), light.intens);
 	else
 		dt.eff_col = hada_col(s->material.color, light.intens);
 	dt.lightv = norm(sub(light.pos, pt.pos));

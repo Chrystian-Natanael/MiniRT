@@ -156,21 +156,36 @@ TEST_F(FixturePatterns, LightingWithPatternApplied) {
 	EXPECT_DOUBLE_EQ(c2.blue, 0);
 }
 
-TEST_F(FixturePatterns, StripesWithAnObjectTransformation) {
-	t_colors	black = create_color(0, 0, 0);
-	t_colors	white = create_color(1, 1, 1);
+// TEST_F(FixturePatterns, StripesWithAnObjectTransformation) {
+// 	t_colors	black = create_color(0, 0, 0);
+// 	t_colors	white = create_color(1, 1, 1);
 
+// 	t_shape	*s;
+// 	init_shape(SPHERE, &s);
+// 	set_transf(&s, scale(2, 2, 2));
+
+// 	s->material.pattern = stripe_pattern(white, black);
+// 	set_pattern_transf(&s->material.pattern, scale(2, 2, 2));
+
+// 	t_colors	c = pattern_at_shape(s, point(1.5, 0, 0));
+// 	EXPECT_DOUBLE_EQ(c.red, 1);
+// 	EXPECT_DOUBLE_EQ(c.green, 1);
+// 	EXPECT_DOUBLE_EQ(c.blue, 1);
+// }
+
+TEST_F(FixturePatterns, PatternWithAnObjectTransformation) {
 	t_shape	*s;
 	init_shape(SPHERE, &s);
 	set_transf(&s, scale(2, 2, 2));
 
-	s->material.pattern = stripe_pattern(white, black);
+	init_pattern(&s->material.pattern);
 	set_pattern_transf(&s->material.pattern, scale(2, 2, 2));
 
-	t_colors	c = stripe_at_object(s, point(1.5, 0, 0));
+	t_colors	c = pattern_at_shape(s, point(2, 3, 4));
+
 	EXPECT_DOUBLE_EQ(c.red, 1);
-	EXPECT_DOUBLE_EQ(c.green, 1);
-	EXPECT_DOUBLE_EQ(c.blue, 1);
+	EXPECT_DOUBLE_EQ(c.green, 1.5);
+	EXPECT_DOUBLE_EQ(c.blue, 2);
 }
 
 TEST_F(FixturePatterns, StripesWithPatternTransformation) {
@@ -184,8 +199,31 @@ TEST_F(FixturePatterns, StripesWithPatternTransformation) {
 	s->material.pattern = stripe_pattern(white, black);
 	set_pattern_transf(&s->material.pattern, scale(2, 2, 2));
 
-	t_colors	c = stripe_at_object(s, point(1.5, 0, 0));
+	t_colors	c = pattern_at_shape(s, point(1.5, 0, 0));
 	EXPECT_DOUBLE_EQ(c.red, 1);
 	EXPECT_DOUBLE_EQ(c.green, 1);
 	EXPECT_DOUBLE_EQ(c.blue, 1);
+}
+
+TEST_F(FixturePatterns, TheDefaultPatternTransformation) {
+
+	t_matrix	matrix = id_mtx();
+	t_shape *s;
+	init_shape(SPHERE, &s);
+	s->material.pattern = stripe_pattern(create_color(1, 1, 1), create_color(0, 0, 0));
+	init_pattern(&s->material.pattern);
+
+	EXPECT_TRUE(comp_mtx(matrix, s->material.pattern.transf));
+}
+
+TEST_F(FixturePatterns, AssigningTransformation) {
+
+	t_matrix	matrix = translate(1, 2, 3);
+	t_shape *s;
+	init_shape(SPHERE, &s);
+	s->material.pattern = stripe_pattern(create_color(1, 1, 1), create_color(0, 0, 0));
+	init_pattern(&s->material.pattern);
+	set_pattern_transf(&s->material.pattern, translate(1, 2, 3));
+
+	EXPECT_TRUE(comp_mtx(matrix, s->material.pattern.transf));
 }

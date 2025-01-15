@@ -6,20 +6,31 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/15 13:30:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:03:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Objects.h"
 
-t_colors	stripe_at_object(t_shape *obj, double *world_pt)
+// t_colors	stripe_at_object(t_shape *obj, double *world_pt)
+// {
+// 	double	*obj_pt;
+// 	double	*pat_pt;
+
+// 	obj_pt = multiply_mtx_tp(inv((obj->transf)), world_pt);
+// 	pat_pt = multiply_mtx_tp(inv(obj->material.pattern.transf), obj_pt);
+// 	return (stripe_at(obj->material.pattern, pat_pt));
+// }
+
+t_colors	pattern_at_shape(t_shape *obj, double *world_pt)
 {
 	double	*obj_pt;
 	double	*pat_pt;
 
 	obj_pt = multiply_mtx_tp(inv((obj->transf)), world_pt);
 	pat_pt = multiply_mtx_tp(inv(obj->material.pattern.transf), obj_pt);
-	return (stripe_at(obj->material.pattern, pat_pt));
+	if (obj->material.pattern.id == STRIPES)
+		return (stripe_at(obj->material.pattern, pat_pt));
 }
 
 void	set_transf(t_shape **s, t_matrix t)

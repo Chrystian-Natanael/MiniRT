@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:36:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/15 10:35:33 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:28:35 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,22 @@
 # include <math.h>
 # include <stdbool.h>
 
+typedef enum e_pattern_id
+{
+	STRIPES,
+	GRADIENT,
+	RING,
+	CHECKER,
+}			t_pattern_id;
+
 typedef struct s_pattern
 {
-	t_colors	c1;
-	t_colors	c2;
-	bool		flag;
-	t_matrix	transf;
-	t_matrix	inv;
+	t_colors		c1;
+	t_colors		c2;
+	bool			flag;
+	t_matrix		inv;
+	t_matrix		transf;
+	t_pattern_id	id;
 }				t_pattern;
 
 t_colors	choose_color(double *point, t_colors ca, t_colors cb);

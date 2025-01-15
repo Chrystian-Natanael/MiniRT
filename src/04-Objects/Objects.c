@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaismalheiros <thaismalheiros@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/13 14:17:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:43:22 by thaismalhei      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Objects.h"
+
+t_colors	stripe_at_object(t_pattern pat, t_shape *obj, double *world_pt)
+{
+	double	*obj_pt;
+	double	*pat_pt;
+	
+	obj_pt = multiply_mtx_tp(inv((obj->transf)), world_pt);
+	pat_pt = multiply_mtx_tp(inv(pat.transf), obj_pt);
+	return (stripe_at(pat, pat_pt));
+}
+
+void	set_transf_pattern(t_shape **s, t_matrix t)
+{
+	(*s)->material.pattern.transf = t;
+	(*s)->material.pattern.inv = inv((*s)->material.pattern.inv);
+	(*s)->material.pattern.transf = transp_mtx((*s)->material.pattern.inv);
+}
 
 void	set_transf(t_shape **s, t_matrix t)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaismalheiros <thaismalheiros@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:50:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/13 13:33:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:52:54 by thaismalhei      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ typedef struct s_shape
 t_material	material(void);
 void		init_shape(t_shape_id id, struct s_shape **shape);
 void		set_transf(t_shape **s, t_matrix t);
+void		set_transf_pattern(t_shape **s, t_matrix t);
+t_colors	stripe_at_object(t_pattern pat, t_shape *obj, double *world_pt);
 
 #endif

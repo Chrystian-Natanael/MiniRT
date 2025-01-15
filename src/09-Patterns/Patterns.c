@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Patterns.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaismalheiros <thaismalheiros@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:56:56 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/13 16:25:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/14 21:17:26 by thaismalhei      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,6 @@ t_colors	stripe_at(t_pattern pattern, double *point)
 	pattern.c2 = create_color(0, 0, 0);
 	return (choose_color(point, pattern.c1, pattern.c2));
 }
+
+// CRIAR UMA INIT_PATTERN
+

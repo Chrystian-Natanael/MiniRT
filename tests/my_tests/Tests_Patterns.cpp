@@ -155,3 +155,37 @@ TEST_F(FixturePatterns, LightingWithPatternApplied) {
 	EXPECT_DOUBLE_EQ(c2.green, 0);
 	EXPECT_DOUBLE_EQ(c2.blue, 0);
 }
+
+// TEST_F(FixturePatterns, StripesWithAnObjectTransformation) {
+// 	t_colors	black = create_color(0, 0, 0);
+// 	t_colors	white = create_color(1, 1, 1);
+
+// 	t_shape	*s;
+// 	init_shape(SPHERE, &s);
+// 	set_transf(&s, scale(2, 2, 2));
+
+// 	s->material.pattern = stripe_pattern(white, black);
+// 	set_transf_pattern(&s, scale(2, 2, 2));
+
+// 	t_colors	c = stripe_at_object(s->material.pattern, s, point(1.5, 0, 0));
+// 	EXPECT_DOUBLE_EQ(c.red, 1);
+// 	EXPECT_DOUBLE_EQ(c.green, 1);
+// 	EXPECT_DOUBLE_EQ(c.blue, 1);
+// }
+
+// TEST_F(FixturePatterns, StripesWithPatternTransformation) {
+// 	t_colors	black = create_color(0, 0, 0);
+// 	t_colors	white = create_color(1, 1, 1);
+
+// 	t_shape	*s;
+// 	init_shape(SPHERE, &s);
+// 	set_transf(&s, scale(2, 2, 2));
+
+// 	s->material.pattern = stripe_pattern(white, black);
+// 	set_transf_pattern(&s, scale(2, 2, 2));
+
+// 	t_colors	c = stripe_at_object(s->material.pattern, s, point(1.5, 0, 0));
+// 	EXPECT_DOUBLE_EQ(c.red, 1);
+// 	EXPECT_DOUBLE_EQ(c.green, 1);
+// 	EXPECT_DOUBLE_EQ(c.blue, 1);
+// }

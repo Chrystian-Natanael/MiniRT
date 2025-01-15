@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   Patterns.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaismalheiros <thaismalheiros@student.    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:56:56 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/14 21:17:26 by thaismalhei      ###   ########.fr       */
+/*   Updated: 2025/01/15 13:37:17 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Patterns.h"
+
+void	set_pattern_transf(t_pattern *pattern, t_matrix t)
+{
+	pattern->transf = t;
+	pattern->inv = inv(t);
+}
+
+void	init_pattern(t_pattern *pattern)
+{
+	pattern->flag = true;
+	pattern->inv = id_mtx();
+	pattern->transf = id_mtx();
+}
 
 t_colors	choose_color(double *point, t_colors ca, t_colors cb)
 {
@@ -38,6 +51,3 @@ t_colors	stripe_at(t_pattern pattern, double *point)
 	pattern.c2 = create_color(0, 0, 0);
 	return (choose_color(point, pattern.c1, pattern.c2));
 }
-
-// CRIAR UMA INIT_PATTERN
-

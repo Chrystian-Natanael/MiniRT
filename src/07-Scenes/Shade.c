@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:56:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/11 12:49:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/15 11:22:05 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ t_colors	shade_hit(t_world *w, t_comp comps)
 	aux = w->lights_lst;
 	pt.pos = comps.point;
 	pt.in_shadow = comps.in_shadow;
-	shade_color = lighting(comps.shape->material,
+	shade_color = lighting(comps.shape,
 			aux->light_src, pt, comps.sig);
 	aux = aux->next;
 	while (aux)
 	{
-		shade_color = sum_colors(shade_color, lighting(comps.shape->material,
+		shade_color = sum_colors(shade_color, lighting(comps.shape,
 					aux->light_src, pt, comps.sig));
 		aux = aux->next;
 	}

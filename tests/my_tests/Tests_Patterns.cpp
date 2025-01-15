@@ -122,31 +122,31 @@ TEST_F(FixturePatterns, LightingWithPatternApplied) {
 	t_colors	black = create_color(0, 0, 0);
 	t_colors	white = create_color(1, 1, 1);
 
-	t_material	m;
-	m.pattern = stripe_pattern(white, black);
-	m.pattern.flag = true;
-	m.ambient = create_color(1, 1, 1);
-	m.diffu = create_color (0, 0, 0);
-	m.spec = create_color (0, 0, 0);
+	t_shape	*s;
+	init_shape(SPHERE, &s);
+	s->material.pattern = stripe_pattern(white, black);
+	init_pattern(&s->material.pattern);
+	s->material.ambient = create_color(1, 1, 1);
+	s->material.diffu = create_color (0, 0, 0);
+	s->material.spec = create_color (0, 0, 0);
 
 	t_sight	sight;
 	sight.eye = vector(0, 0, -1);
 	sight.normal = vector(0, 0, -1);
 
 	t_pt_light	light = pt_light(point(0, 0, -10), create_color(1, 1, 1));
-	t_pt_pos	pt1;
 
+	t_pt_pos	pt1;
 	pt1.in_shadow = false;
 	pt1.pos = point(0.9, 0, 0);
 
-	t_colors	c1 = lighting(m, light, pt1, sight);
+	t_colors	c1 = lighting(s, light, pt1, sight);
 
 	t_pt_pos	pt2;
-
 	pt2.in_shadow = false;
 	pt2.pos = point(1.1, 0, 0);
 
-	t_colors	c2 = lighting(m, light, pt2, sight);
+	t_colors	c2 = lighting(s, light, pt2, sight);
 
 	EXPECT_DOUBLE_EQ(c1.red, 1);
 	EXPECT_DOUBLE_EQ(c1.green, 1);
@@ -156,36 +156,36 @@ TEST_F(FixturePatterns, LightingWithPatternApplied) {
 	EXPECT_DOUBLE_EQ(c2.blue, 0);
 }
 
-// TEST_F(FixturePatterns, StripesWithAnObjectTransformation) {
-// 	t_colors	black = create_color(0, 0, 0);
-// 	t_colors	white = create_color(1, 1, 1);
+TEST_F(FixturePatterns, StripesWithAnObjectTransformation) {
+	t_colors	black = create_color(0, 0, 0);
+	t_colors	white = create_color(1, 1, 1);
 
-// 	t_shape	*s;
-// 	init_shape(SPHERE, &s);
-// 	set_transf(&s, scale(2, 2, 2));
+	t_shape	*s;
+	init_shape(SPHERE, &s);
+	set_transf(&s, scale(2, 2, 2));
 
-// 	s->material.pattern = stripe_pattern(white, black);
-// 	set_transf_pattern(&s, scale(2, 2, 2));
+	s->material.pattern = stripe_pattern(white, black);
+	set_pattern_transf(&s->material.pattern, scale(2, 2, 2));
 
-// 	t_colors	c = stripe_at_object(s->material.pattern, s, point(1.5, 0, 0));
-// 	EXPECT_DOUBLE_EQ(c.red, 1);
-// 	EXPECT_DOUBLE_EQ(c.green, 1);
-// 	EXPECT_DOUBLE_EQ(c.blue, 1);
-// }
+	t_colors	c = stripe_at_object(s, point(1.5, 0, 0));
+	EXPECT_DOUBLE_EQ(c.red, 1);
+	EXPECT_DOUBLE_EQ(c.green, 1);
+	EXPECT_DOUBLE_EQ(c.blue, 1);
+}
 
-// TEST_F(FixturePatterns, StripesWithPatternTransformation) {
-// 	t_colors	black = create_color(0, 0, 0);
-// 	t_colors	white = create_color(1, 1, 1);
+TEST_F(FixturePatterns, StripesWithPatternTransformation) {
+	t_colors	black = create_color(0, 0, 0);
+	t_colors	white = create_color(1, 1, 1);
 
-// 	t_shape	*s;
-// 	init_shape(SPHERE, &s);
-// 	set_transf(&s, scale(2, 2, 2));
+	t_shape	*s;
+	init_shape(SPHERE, &s);
+	set_transf(&s, scale(2, 2, 2));
 
-// 	s->material.pattern = stripe_pattern(white, black);
-// 	set_transf_pattern(&s, scale(2, 2, 2));
+	s->material.pattern = stripe_pattern(white, black);
+	set_pattern_transf(&s->material.pattern, scale(2, 2, 2));
 
-// 	t_colors	c = stripe_at_object(s->material.pattern, s, point(1.5, 0, 0));
-// 	EXPECT_DOUBLE_EQ(c.red, 1);
-// 	EXPECT_DOUBLE_EQ(c.green, 1);
-// 	EXPECT_DOUBLE_EQ(c.blue, 1);
-// }
+	t_colors	c = stripe_at_object(s, point(1.5, 0, 0));
+	EXPECT_DOUBLE_EQ(c.red, 1);
+	EXPECT_DOUBLE_EQ(c.green, 1);
+	EXPECT_DOUBLE_EQ(c.blue, 1);
+}

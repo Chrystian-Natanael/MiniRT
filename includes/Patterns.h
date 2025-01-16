@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:36:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/15 15:28:35 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:55:07 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ typedef struct s_pattern
 	t_pattern_id	id;
 }				t_pattern;
 
-t_colors	choose_color(double *point, t_colors ca, t_colors cb);
+void		set_pattern_transf(t_pattern *pattern, t_matrix t);
 t_pattern	stripe_pattern(t_colors ca, t_colors cb);
 t_colors	stripe_at(t_pattern pattern, double *point);
-void		init_pattern(t_pattern *pattern);
-void		set_pattern_transf(t_pattern *pattern, t_matrix t);
+t_pattern	gradient_pattern(t_colors ca, t_colors cb);
+t_colors	gradient_at(t_pattern pattern, double *point);
+t_pattern	ring_pattern(t_colors ca, t_colors cb);
+t_colors	ring_at(t_pattern pattern, double *point);
+t_pattern	checker_pattern(t_colors ca, t_colors cb);
+t_colors	checker_at(t_pattern pattern, double *point);
 
 #endif

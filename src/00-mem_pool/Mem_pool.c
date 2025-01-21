@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 14:00:07 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:59:32 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_pool_set	*get_pools(void)
 	return (&set);
 }
 
-void	init_pools(void)
+__attribute__((constructor)) void	init_pools(void)
 {
 	t_pool_set	*set;
 

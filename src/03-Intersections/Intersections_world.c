@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:03:34 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/21 12:04:05 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:32:13 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	create_t_inter(t_shape *shape, void *lst, t_inter **dest)
 	{
 		if (lst && ((t_cl_inter *)lst)->is_y[0])
 			intersections(((t_cl_inter *)lst)->t1, shape, dest);
-		if (lst && ((t_cl_inter *)lst)->is_t_cap[0])
-			intersections(((t_cl_inter *)lst)->t_cap[0], shape, dest);
 		if (lst && ((t_cl_inter *)lst)->is_y[1])
 			intersections(((t_cl_inter *)lst)->t2, shape, dest);
+		if (lst && ((t_cl_inter *)lst)->is_t_cap[0])
+			intersections(((t_cl_inter *)lst)->t_cap[0], shape, dest);
 		if (lst && ((t_cl_inter *)lst)->is_t_cap[1])
 			intersections(((t_cl_inter *)lst)->t_cap[1], shape, dest);
 	}

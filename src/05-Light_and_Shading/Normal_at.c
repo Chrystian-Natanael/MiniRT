@@ -6,45 +6,54 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:51:42 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/21 12:02:14 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:58:56 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Light_and_Shading.h"
 #include "Objects.h"
 
-double	*normal_at_sphere(t_shape *shape, double *wld_pt)
+double	*normal_at_sphere(t_shape *shape, double *obj_pt)
 {
-	double	*obj_pt;
 	double	*obj_n;
 	double	*wld_n;
 
-	obj_pt = multiply_mtx_tp(shape->inv, wld_pt);
+	(void)shape;
 	obj_n = sub(obj_pt, point(0, 0, 0));
 	wld_n = multiply_mtx_tp(shape->transp, obj_n);
 	wld_n[W] = 0;
 	return (norm(wld_n));
 }
 
-double	*normal_at_cylinder(t_shape *shape, double *wld_pt)
+double	*normal_at_cylinder(t_shape *shape, double *obj_pt)
 {
 	double	dist;
 
-	dist = pow(wld_pt[X], 2) + pow(wld_pt[Z], 2);
-	if (dist < 1 && wld_pt[Y] >= ((t_cl *)shape->obj)->max - MAX_DIFF)
+	dist = pow(obj_pt[X], 2) + pow(obj_pt[Z], 2);
+	if (dist < 1 && obj_pt[Y] >= ((t_cl *)shape->obj)->max - MAX_DIFF)
 		return (vector(0, 1, 0));
-	if (dist < 1 && wld_pt[Y] <= ((t_cl *)shape->obj)->min + MAX_DIFF)
+	if (dist < 1 && obj_pt[Y] <= ((t_cl *)shape->obj)->min + MAX_DIFF)
 		return (vector(0, -1, 0));
-	return (vector(wld_pt[X], 0, wld_pt[Z]));
+	return (vector(obj_pt[X], 0, obj_pt[Z]));
 }
 
 double	*normal_at(t_shape *shape, double *wld_pt)
 {
+	double	*obj_pt;
+	double	*obj_normal;
+	double	*world_normal;
+
+	obj_normal = NULL;
+	obj_pt = multiply_mtx_tp(shape->inv, wld_pt);
 	if (shape->id == SPHERE)
-		return (normal_at_sphere(shape, wld_pt));
-	if (shape->id == PLANE)
-		return (vector(0, 1, 0));
-	if (shape->id == CYLINDER)
-		return (normal_at_cylinder(shape, wld_pt));
-	return (0);
+		obj_normal = normal_at_sphere(shape, obj_pt);
+	else if (shape->id == PLANE)
+		obj_normal = vector(0, 1, 0);
+	else if (shape->id == CYLINDER)
+		obj_normal = normal_at_cylinder(shape, obj_pt);
+	else
+		error("Error", NULL, NULL, 1);
+	world_normal = multiply_mtx_tp(shape->transp, obj_normal);
+	world_normal[W] = 0;
+	return (norm(world_normal));
 }

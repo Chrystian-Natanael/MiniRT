@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 19:20:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:16:22 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 typedef struct s_ray
 {
-	double			*src;
-	double			*dir;
-}					t_ray;
+	double	*src;
+	double	*dir;
+}			t_ray;
 
 typedef struct s_inter
 {
@@ -32,26 +32,38 @@ typedef struct s_inter
 
 typedef struct s_sp_inter
 {
-	t_sp			*sp;
-	int				count;
-	double			t1;
-	double			t2;
-}					t_sp_inter;
+	t_sp	*sp;
+	int		count;
+	double	t1;
+	double	t2;
+}			t_sp_inter;
 
 typedef struct s_pl_inter
 {
-	t_pl			*pl;
-	int				count;
-	double			t;
-}					t_pl_inter;
+	t_pl	*pl;
+	int		count;
+	double	t;
+}			t_pl_inter;
+
+typedef struct s_cl_inter
+{
+	t_cl	*cl;
+	int		count;
+	double	t1;
+	double	t2;
+	double	y[2];
+	double	t_cap[2];
+	bool	is_y[2];
+	bool	is_t_cap[2];
+}			t_cl_inter;
 
 typedef struct s_coef
 {
-	double			a;
-	double			b;
-	double			c;
-	double			discrim;
-}					t_coef;
+	double	a;
+	double	b;
+	double	c;
+	double	discrim;
+}			t_coef;
 
 t_ray		create_ray(double *src, double *dir);
 double		*pos_ray(t_ray ray, double time);
@@ -59,6 +71,7 @@ double		*pos_ray(t_ray ray, double time);
 void		*intersect(t_shape *shape, t_ray ray);
 t_sp_inter	*intersect_sphere(t_shape *shape, t_ray ray);
 t_pl_inter	*intersect_plane(t_shape *shape, t_ray ray);
+t_cl_inter	*intersect_cylinder(t_shape *shape, t_ray ray);
 
 t_sp_inter	*calc_intersection(t_coef coef);
 t_coef		calc_coef(t_sp *sp, t_ray ray);
@@ -73,5 +86,7 @@ int			lst_count(t_inter *lst);
 t_inter		*hit(t_inter *list);
 
 t_ray		transform(t_ray ray, t_matrix action);
+
+bool	check_cap(t_ray ray, double t);
 
 #endif

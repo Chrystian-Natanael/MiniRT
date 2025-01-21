@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 19:20:26 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:44:21 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,14 @@ void	intersections(double pos, t_shape *s, t_inter **dest)
 
 void	*intersect(t_shape *shape, t_ray ray)
 {
+	t_ray	new_ray;
+
+	new_ray = transform(ray, shape->inv);
 	if (shape->id == SPHERE)
-		return ((void *)intersect_sphere(shape, ray));
+		return ((void *)intersect_sphere(shape, new_ray));
 	if (shape->id == PLANE)
-		return ((void *)intersect_plane(shape, ray));
+		return ((void *)intersect_plane(shape, new_ray));
+	if (shape->id == CYLINDER)
+		return ((void *)intersect_cylinder(shape, new_ray));
 	return (NULL);
 }

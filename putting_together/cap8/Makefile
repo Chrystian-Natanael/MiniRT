@@ -84,6 +84,7 @@ SRCS =	$(SRCS2_PATH)00-mem_pool/Mem_pool.c \
 		$(SRCS2_PATH)04-Objects/Objects.c \
 		$(SRCS2_PATH)04-Objects/Sphere/Sphere.c \
 		$(SRCS2_PATH)04-Objects/Planes/Planes.c \
+		$(SRCS2_PATH)04-Objects/Cylinders/Cylinders.c \
 		$(SRCS2_PATH)03-Intersections/Intersections.c \
 		$(SRCS2_PATH)03-Intersections/lst_functions.c \
 		$(SRCS2_PATH)03-Intersections/Intersections_objects.c \

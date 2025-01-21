@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/11 19:19:35 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:03:16 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_paint	render_canva(t_camera cam, t_world *world)
 			if (i[1] >= canvas.wid || i[0] >= canvas.hei)
 				continue ;
 			canvas.px[i[0] * canvas.wid + i[1]] = color;
+			printf("Y[%d] - X[%d]\n", i[0], i[1]);
 		}
 	}
 	return (canvas);

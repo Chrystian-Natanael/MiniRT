@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 19:19:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:29:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,10 @@ void	init_shape(t_shape_id id, t_shape **shape)
 	{
 		(*shape)->obj = create_pl();
 		(*shape)->id = PLANE;
+	}
+	else if (id == CYLINDER)
+	{
+		(*shape)->obj = create_cl();
+		(*shape)->id = CYLINDER;
 	}
 }

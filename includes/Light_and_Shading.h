@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:52:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 15:24:10 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:45:33 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ typedef struct s_pt_pos
 {
 	double	*pos;
 	bool	in_shadow;
-}				t_pt_pos;
+}			t_pt_pos;
 
 double			*normal_at(t_shape *shape, double *wld_pt);
 double			*normal_at_sphere(t_shape *shape, double *wld_pt);
+double			*normal_at_cylinder(t_shape *shape, double *wld_pt);
+
 
 double			*reflect(double *in, double *normal);
 

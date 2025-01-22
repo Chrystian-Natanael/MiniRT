@@ -121,12 +121,14 @@ TEST_F(FixtureLight, TstNormalAt_NormalOnTranslatedSphere)
 TEST_F(FixtureLight, TstNormalAt_NormalOnTransformedSphere)
 {
 	t_shape	*s;
+	double *pt = point(0, sqrt(2) / 2, -sqrt(2) / 2);
 
 	init_shape(SPHERE, &s);
 
 	t_matrix m = multiply_mtx(scale(1, 0.5, 1), rotate_z(M_PI / 5));
 	set_transf(&s, m);
-	double *n = normal_at(s, point(0, sqrt(2) / 2, -sqrt(2) / 2));
+	double *obj_pt = multiply_mtx_tp(s->inv, pt);
+	double *n = normal_at_sphere(s, obj_pt);
 	double *expected = vector(0, 0.97014, -0.24254);
 
 	EXPECT_TRUE(equal(n[0], expected[0]));

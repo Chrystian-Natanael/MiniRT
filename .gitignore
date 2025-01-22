@@ -7,5 +7,6 @@ libs/garbage-collector
 .vscode/
 *.o
 *.d
+*.ppm
 gmon.out
 prof

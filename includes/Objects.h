@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:50:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/15 15:04:12 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:10:30 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_material
 typedef enum e_shape_id
 {
 	SPHERE,
-	PLANE
+	PLANE,
+	CYLINDER,
 }				t_shape_id;
 
 typedef struct s_shape

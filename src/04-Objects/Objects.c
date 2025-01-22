@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/16 11:54:35 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:15:30 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,10 @@ void	init_shape(t_shape_id id, t_shape **shape)
 	{
 		(*shape)->obj = create_pl();
 		(*shape)->id = PLANE;
+	}
+	else if (id == CYLINDER)
+	{
+		(*shape)->obj = create_cl();
+		(*shape)->id = CYLINDER;
 	}
 }

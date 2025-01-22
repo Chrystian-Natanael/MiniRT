@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Light_and_Shading.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:52:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/15 11:18:38 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:15:24 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ typedef struct s_pt_pos
 {
 	double	*pos;
 	bool	in_shadow;
-}				t_pt_pos;
+}			t_pt_pos;
 
 double			*normal_at(t_shape *shape, double *wld_pt);
 double			*normal_at_sphere(t_shape *shape, double *wld_pt);
+double			*normal_at_cylinder(t_shape *shape, double *wld_pt);
 
 double			*reflect(double *in, double *normal);
 
@@ -57,8 +58,5 @@ t_pt_light		pt_light(double *pos, t_colors intens);
 
 t_colors		lighting(t_shape *shape, t_pt_light light, t_pt_pos pt,
 					t_sight sig);
-
-// t_colors		lighting(t_material m, t_pt_light light, t_pt_pos pt,
-// 					t_sight sig);
 
 #endif

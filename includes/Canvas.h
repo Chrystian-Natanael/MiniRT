@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Canvas.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:43:44 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 09:07:24 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:35:11 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ typedef struct s_paint
 }				t_paint;
 
 t_paint	render_canva(t_camera cam, t_world *world);
+void	canva2ppm(t_paint paint, char *filename);
 
 #endif

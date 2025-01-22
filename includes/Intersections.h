@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/13 15:16:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:28:58 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ t_inter		*hit(t_inter *list);
 
 t_ray		transform(t_ray ray, t_matrix action);
 
-bool	check_cap(t_ray ray, double t);
+bool		check_cap(t_ray ray, double t);
 
 #endif

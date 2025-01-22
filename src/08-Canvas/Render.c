@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/21 17:00:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:28:19 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ t_paint	render_canva(t_camera cam, t_world *world)
 				continue ;
 			canvas.px[i[0] * canvas.wid + i[1]] = color;
 		}
-		printf("Y[%d]\n", i[0]);
 	}
 	return (canvas);
 }

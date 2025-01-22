@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   Swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 14:58:24 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/22 13:44:10 by cnatanae         ###   ########.fr       */
+/*   Created: 2025/01/22 13:18:32 by cnatanae          #+#    #+#             */
+/*   Updated: 2025/01/22 13:18:55 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MiniRT.h"
-#include <math.h>
+#include "Utils.h"
 
-int	main(void)
+void	swap(double *t1, double *t2)
 {
-	t_canvas	canva;
+	double	tmp;
 
-	init_window(&canva);
-	mlx_loop(canva.mlx);
-	mlx_terminate(canva.mlx);
-	quit(0);
+	tmp = *t1;
+	*t1 = *t2;
+	*t2 = tmp;
 }

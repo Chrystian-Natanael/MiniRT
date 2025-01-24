@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 14:58:24 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/22 14:57:31 by tmalheir         ###   ########.fr       */
+/*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
+/*   Updated: 2025/01/24 15:07:58 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MiniRT.h"
+#include "get_next_line.h"
 
-int	main(int argc, char **argv)
+void	parse(int fd, t_world *world)
 {
-	t_canvas	canva;
+	char	*line;
 
-	parser(argc, argv);
-	init_window(&canva);
-	mlx_loop(canva.mlx);
-	mlx_terminate(canva.mlx);
-	quit(0);
+	world = default_world();
+	line = get_next_line(fd);
+}
+
+void	parser(int argc, char **argv)
+{
+	int		fd;
+	t_world	*world;
+
+	world = NULL;
+	check_argc(argc);
+	check_extensions(argv);
+	open_file(&fd, argv[1]);
+	parse(fd, world);
 }

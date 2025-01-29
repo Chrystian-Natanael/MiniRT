@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaismalheiros <thaismalheiros@student.    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:28:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/28 20:56:59 by thaismalhei      ###   ########.fr       */
+/*   Updated: 2025/01/29 10:45:33 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,19 @@ void	check_newline(char *line)
 
 bool	check_empty_line(char *line)
 {
-    if (!line[0] || line[0] == '#')
-        return(true);
-    return (false);
+	if (!line[0] || line[0] == '#')
+		return (true);
+	return (false);
+}
+
+bool	check_count(char **info, int count)
+{
+	int	i;
+
+	i = 0;
+	while (info && info[i])
+		i++;
+	if (i != count)
+		return (false);
+	return (true);
 }

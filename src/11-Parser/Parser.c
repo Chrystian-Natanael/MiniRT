@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/29 15:26:02 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:04:51 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,16 @@ static void	open_file(int *fd, char *file)
 		error("Error\n", "Could not open file", "", 1);
 }
 
-/**
- * @todo verificar onde deve ir o parseamento de materials
- * @todo vai ter que ter outro parser para o bônus (padrões e mais de uma luz)
- */
 bool	parse_line(char *line, t_world *world)
 {
 	if (!ft_strncmp(line, "A", 1))
 		return (parse_ambient(line, world));
-	// else if (!ft_strncmp(line, "C", 1))
-	// 	return (parse_camera(line, world));
-	// else if (!ft_strncmp(line, "L", 1))
-	// 	return (parse_light(line, world));
-	// else if (!ft_strncmp(line, "sp", 2))
-	// 	return (parse_sphere(line, world));
+	else if (!ft_strncmp(line, "C", 1))
+		return (parse_camera(line, world));
+	else if (!ft_strncmp(line, "L", 1))
+		return (parse_light(line, world));
+	else if (!ft_strncmp(line, "sp", 2))
+		return (parse_sphere(line, world));
 	// else if (!ft_strncmp(line, "pl", 2))
 	// 	return (parse_plane(line, world));
 	// else if (!ft_strncmp(line, "cy", 2))
@@ -40,16 +36,14 @@ bool	parse_line(char *line, t_world *world)
 	return (false);
 }
 
-/**
- * @todo checar se a linha 50 vai dar leak de memoria
- */
 void	get_line(int fd, t_world *world)
 {
 	int		count;
 	char	*line;
 
 	world = default_world();
-	count = 0;
+	set_scene(&world);
+	count = 1;
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -68,7 +62,7 @@ void	get_line(int fd, t_world *world)
 void	parser(int argc, char **argv)
 {
 	int		fd;
-	t_world	*world; // Passar *world ou **world?
+	t_world	*world;
 
 	world = NULL;
 	check_argc(argc);

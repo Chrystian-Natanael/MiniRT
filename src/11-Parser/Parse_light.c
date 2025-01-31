@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parse_ambient.c                                    :+:      :+:    :+:   */
+/*   Parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 10:01:05 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:02:25 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
 
-bool	parse_ambient(char *line, t_world *world)
+bool	parse_light(char *line, t_world *world)
 {
 	double		*norm_col;
+	double		*pos;
 	char		**info;
 
 	info = ft_split(line, ' ');
-	if (!check_count(info, 3) || !is_double(info[1])
-		|| !in_range_double(info[1]) || !parse_color(info[2]))
+	if (!check_count(info, 4) || !parse_pos(info[1]) || !is_double(info[2])
+		|| !in_range_double(info[2]) || !parse_color(info[3]))
 		return (true_or_false(info, false));
 	norm_col = allocate(sizeof(double) * 3);
-	norm_col = normalize_rgb_to_double(info[2]);
-	world->scene.ambient = multiply_col(create_color
-		(norm_col[0], norm_col[1], norm_col[2]), ft_atod(info[1]));
-	world->scene.has_ambient += world->scene.has_ambient + 1;
-	if (world->scene.has_ambient > 1)
+	norm_col = normalize_rgb_to_double(info[3]);
+	world->scene.light = multiply_col
+		(create_color(norm_col[0], norm_col[1], norm_col[2]), ft_atod(info[2]));
+	pos = allocate(sizeof(double) * 3);
+	pos = pos_to_double(info[1]);
+	world->scene.light_pos[X] = pos[X];
+	world->scene.light_pos[Y] = pos[Y];
+	world->scene.light_pos[Z] = pos[Z];
+	world->scene.has_light += world->scene.has_light + 1;
+	if (world->scene.has_light > 1)
 	{
-		warning("Error\n", "Only one ambient light allowed", "");
+		warning("Error\n", "Only one light allowed", "");
 		return (true_or_false(info, false));
 	}
 	return (true_or_false(info, true));

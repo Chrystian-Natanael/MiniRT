@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parse_ambient.c                                    :+:      :+:    :+:   */
+/*   Parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 10:01:05 by tmalheir         ###   ########.fr       */
+/*   Created: 2025/01/30 14:38:49 by tmalheir          #+#    #+#             */
+/*   Updated: 2025/01/30 15:26:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
 
-bool	parse_ambient(char *line, t_world *world)
+bool	parse_sphere(char *line, t_world *world)
 {
 	double		*norm_col;
+	double		*pos;
 	char		**info;
 
 	info = ft_split(line, ' ');
-	if (!check_count(info, 3) || !is_double(info[1])
-		|| !in_range_double(info[1]) || !parse_color(info[2]))
+	if (!check_count(info, 4) || !parse_pos(info[1]) || !is_double(info[2])
+		|| !parse_color(info[3]))
 		return (true_or_false(info, false));
 	norm_col = allocate(sizeof(double) * 3);
-	norm_col = normalize_rgb_to_double(info[2]);
-	world->scene.ambient = multiply_col(create_color
-		(norm_col[0], norm_col[1], norm_col[2]), ft_atod(info[1]));
-	world->scene.has_ambient += world->scene.has_ambient + 1;
-	if (world->scene.has_ambient > 1)
-	{
-		warning("Error\n", "Only one ambient light allowed", "");
-		return (true_or_false(info, false));
-	}
+	norm_col = normalize_rgb_to_double(info[3]);
+	pos = allocate(sizeof(double) * 3);
+	pos = pos_to_double(info[1]);
+	// Lógica para mudar as esferas ou adicionar novas
+	set_transf(&world->obj_lst->shape, translate(pos[0], pos[1], pos[2]));
 	return (true_or_false(info, true));
 }

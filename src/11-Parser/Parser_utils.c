@@ -6,11 +6,18 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:28:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/29 15:56:10 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:49:17 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
+
+void	set_scene(t_world *world)
+{
+	world->scene.has_ambient = 0;
+	world->scene.has_camera = 0;
+	world->scene.has_light = 0;
+}
 
 bool	is_double(char *str)
 {

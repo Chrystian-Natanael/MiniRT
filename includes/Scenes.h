@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/10 12:15:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:01:05 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,23 @@ typedef struct s_lights
 	struct s_lights	*prev;
 }					t_lights;
 
+typedef struct s_scene
+{
+	t_colors	ambient;
+	int			has_ambient;
+	double		*camera_pos;
+	double		*camera_dir;
+	int			has_camera;
+	t_colors	light;
+	double		*light_pos;
+	int			has_light;
+}			t_scene;
+
 typedef struct s_world
 {
 	t_obj		*obj_lst;
 	t_lights	*lights_lst;
+	t_scene		scene;
 }				t_world;
 
 typedef struct s_camera

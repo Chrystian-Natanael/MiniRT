@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:18:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/29 15:55:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:13:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ double	*normalize_rgb_to_double(char *str)
 	char	**colors;
 
 	idx = 0;
-	rgb = NULL;
+	rgb = allocate(sizeof(double) * 3);
 	colors = ft_split(str, ',');
 	while (colors[idx])
 	{
@@ -58,13 +58,13 @@ double	*normalize_rgb_to_double(char *str)
 	return (rgb);
 }
 
-bool	parse_color(char *line)
+bool	parse_color(char *str)
 {
 	int		idx;
 	char	**colors;
 
 	idx = 0;
-	colors = ft_split(line, ',');
+	colors = ft_split(str, ',');
 	if (!check_count(colors, 3))
 		return (true_or_false(colors, false));
 	while (colors[idx])

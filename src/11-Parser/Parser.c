@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 10:04:51 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:40:11 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ bool	parse_line(char *line, t_world *world)
 {
 	if (!ft_strncmp(line, "A", 1))
 		return (parse_ambient(line, world));
-	else if (!ft_strncmp(line, "C", 1))
-		return (parse_camera(line, world));
+	// else if (!ft_strncmp(line, "C", 1)) // !Comentado por enquanto
+		// return (parse_camera(line, world));
 	else if (!ft_strncmp(line, "L", 1))
 		return (parse_light(line, world));
 	else if (!ft_strncmp(line, "sp", 2))
@@ -42,7 +42,7 @@ void	get_line(int fd, t_world *world)
 	char	*line;
 
 	world = default_world();
-	set_scene(&world);
+	set_scene(world);
 	count = 1;
 	line = get_next_line(fd);
 	while (line)

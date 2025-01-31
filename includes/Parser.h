@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 09:47:43 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:38:18 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_free_array(char **str);
 void	get_line(int fd, t_world *world);
 bool	parse_line(char *line, t_world *world);
 bool	parse_ambient(char *line, t_world *world);
-bool	parse_camera(char *line, t_world *world);
+// bool	parse_camera(char *line, t_world *world); // !Comentado por enquanto
 bool	parse_light(char *line, t_world *world);
 bool	parse_sphere(char *line, t_world *world);
 bool	parse_plane(char *line, t_world *world);

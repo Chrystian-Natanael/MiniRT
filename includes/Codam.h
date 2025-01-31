@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:28:57 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 17:09:35 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:41:15 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define CODAM_H
 
 # include "MLX42/MLX42.h"
+# include "Canvas.h"
 
-# define WIDTH 1366
-# define HEIGHT 720
+# define WIDTH 900
+# define HEIGHT 900
 
 typedef struct s_canvas
 {

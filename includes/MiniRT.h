@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MiniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:13:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/13 14:34:28 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:12:43 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "Codam.h"
 # include "Intersections.h"
 # include "Light_and_Shading.h"
+# include "Loading.h"
 # include "Matrices.h"
 # include "Mem_pool.h"
 # include "Patterns.h"

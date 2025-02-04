@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:20:00 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 15:14:24 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:27:30 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ static t_matrix	inv_aux(t_matrix matrix)
 t_matrix	inv(t_matrix matrix)
 {
 	if (det(matrix) == 0)
-		error("Error\n", "msn", NULL, 1);
+		error("Error\n", "Impossible to calculate inverse of NULL mtx", "", 1);
 	return (inv_aux(matrix));
 }

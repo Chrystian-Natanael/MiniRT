@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:28:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 09:49:17 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:17:22 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	set_scene(t_world *world)
 	world->scene.has_ambient = 0;
 	world->scene.has_camera = 0;
 	world->scene.has_light = 0;
+	world->scene.save_img = false;
 }
 
 bool	is_double(char *str)

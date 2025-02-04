@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/16 11:54:35 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:36:40 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	set_transf(t_shape **s, t_matrix t)
 {
 	(*s)->transf = t;
 	(*s)->inv = inv((*s)->transf);
+	printf("&inv = [%p]\n", &(*s)->inv);
 	(*s)->transp = transp_mtx((*s)->inv);
 	return ;
 }

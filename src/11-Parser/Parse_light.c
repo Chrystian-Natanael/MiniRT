@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 10:02:25 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/03 09:56:20 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	parse_light(char *line, t_world *world)
 	world->scene.light_pos[X] = pos[X];
 	world->scene.light_pos[Y] = pos[Y];
 	world->scene.light_pos[Z] = pos[Z];
-	world->scene.has_light += world->scene.has_light + 1;
+	world->scene.has_light += 1;
 	if (world->scene.has_light > 1)
 	{
 		warning("Error\n", "Only one light allowed", "");

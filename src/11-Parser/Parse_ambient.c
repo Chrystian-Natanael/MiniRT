@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 10:01:05 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/03 09:56:39 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	parse_ambient(char *line, t_world *world)
 	norm_col = normalize_rgb_to_double(info[2]);
 	world->scene.ambient = multiply_col(create_color
 		(norm_col[0], norm_col[1], norm_col[2]), ft_atod(info[1]));
-	world->scene.has_ambient += world->scene.has_ambient + 1;
+	world->scene.has_ambient += 1;
 	if (world->scene.has_ambient > 1)
 	{
 		warning("Error\n", "Only one ambient light allowed", "");

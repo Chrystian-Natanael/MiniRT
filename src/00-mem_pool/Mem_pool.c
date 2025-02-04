@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 14:00:07 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:03:13 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,20 @@ t_pool_set	*get_pools(void)
 	return (&set);
 }
 
-void	init_pools(void)
+void	init_pools(t_count_el counts)
 {
 	t_pool_set	*set;
 
 	set = get_pools();
-	set->colors = create_pool(MAX_MEM);
-	set->objects = create_pool(MAX_MEM);
-	set->matrices = create_pool(MAX_MEM);
+	set->colors = create_pool(counts.sp * sizeof(t_colors) * 4 +
+	counts.pl * sizeof(t_colors) * 8 +
+	counts.cy * sizeof(t_colors) * 8 + 
+	(counts.lights * sizeof(t_colors)) * 20 +
+	(counts.patterns * sizeof(t_colors) * 4) * 10 + 5e8);
+	set->objects = create_pool(counts.sp * 4 + counts.pl * 4 + counts.cy * 4 + 5e8);
+	set->matrices = create_pool((counts.sp * sizeof(t_matrix) * 128) +
+	(counts.pl * sizeof(t_matrix) * 128) +
+	(counts.cy * sizeof(t_matrix) * 128) +
+	counts.lights * sizeof(t_matrix) * 60 +
+	(counts.patterns * sizeof(t_matrix) * 40) + 5e8);
 }

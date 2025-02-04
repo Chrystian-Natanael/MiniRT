@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 14:40:11 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:16:30 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ bool	parse_line(char *line, t_world *world)
 	return (false);
 }
 
-void	get_line(int fd, t_world *world)
+void	get_line(int fd, t_world *wld)
 {
 	int		count;
 	char	*line;
 
-	world = default_world();
-	set_scene(world);
 	count = 1;
 	line = get_next_line(fd);
 	while (line)
@@ -50,7 +48,7 @@ void	get_line(int fd, t_world *world)
 		check_newline(line);
 		if (!check_empty_line(line))
 		{
-			if (!parse_line(line, world))
+			if (!parse_line(line, wld))
 				error("Error\n", "Bad arguments on line ", ft_itoa(count), 1);
 		}
 		free(line);
@@ -59,15 +57,56 @@ void	get_line(int fd, t_world *world)
 	}
 }
 
-void	parser(int argc, char **argv)
+void	parse_count(char *line, t_count_el *counts)
+{
+	if (!ft_strncmp(line, "sp", 2))
+		counts->sp++;
+	else if (!ft_strncmp(line, "pl", 2))
+		counts->pl++;
+	else if (!ft_strncmp(line, "cy", 2))
+		counts->cy++;
+	else if (!ft_strncmp(line, "L", 1))
+		counts->lights++;
+	else if (!ft_strncmp(line, "p", 1))
+		counts->patterns++;
+}
+
+t_count_el	calc_sz_pools(char *file_name)
 {
 	int		fd;
-	t_world	*world;
+	char	*line;
+	t_count_el	counts;
 
-	world = NULL;
+	ft_bzero(&counts, sizeof(t_count_el));
+	open_file(&fd, file_name);
+	line = get_next_line(fd);
+	while (line)
+	{
+		check_newline(line);
+		if (!check_empty_line(line))
+			parse_count(line ,&counts);
+		free(line);
+		line = get_next_line(fd);
+	}
+	close (fd);
+	return (counts);
+}
+
+t_world	*parser(int argc, char **argv)
+{
+	int			fd;
+	t_world		*wld;
+	t_count_el	counts;
+
 	check_argc(argc);
 	check_extensions(argv);
 	open_file(&fd, argv[1]);
-	get_line(fd, world);
+	counts = calc_sz_pools(argv[1]);
+	printf("SP[%d]\nPL[%d]\nCY[%d]\nL[%d]\nP[%d]\n", counts.sp, counts.pl, counts.cy, counts.lights, counts.patterns);
+	init_pools(counts);
+	wld = world();
+	// set_scene(wld);
+	// get_line(fd, wld);
 	close(fd);
+	return (wld);
 }

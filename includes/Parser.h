@@ -6,19 +6,21 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/31 14:38:18 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:07:18 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "get_next_line.h"
 # include "libft.h"
 # include "Scenes.h"
+# include "Count_el.h"
 # include <stdbool.h>
 
-void	parser(int argc, char **argv);
+
+
+t_world	*parser(int argc, char **argv);
 
 void	check_argc(int argc);
 void	check_extensions(char **argv);

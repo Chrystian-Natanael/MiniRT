@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Scenes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/31 11:01:05 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:17:03 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_scene
 	t_colors	light;
 	double		*light_pos;
 	int			has_light;
+	bool		save_img;
 }			t_scene;
 
 typedef struct s_world

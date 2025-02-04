@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Mem_pool.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:25:51 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/15 13:17:48 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:08:11 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define MEM_POOL_H
 
 # include <stdio.h>
+# include "Count_el.h"
+# include "Colors.h"
+#include "Matrices.h"
 
 // # define MAX_MEM 199999999999 // for grafic full screen
 // # define MAX_MEM 99999999999 // for simple grafic (max 1000x1000)
@@ -36,6 +39,6 @@ typedef struct s_pool_set
 t_pool		*create_pool(size_t size);
 t_pool		*alloc_pool(size_t size, t_pool *pool);
 t_pool_set	*get_pools(void);
-void		init_pools(void);
+void		init_pools(t_count_el count);
 
 #endif // ! MEM_POOL_H

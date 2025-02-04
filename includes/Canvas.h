@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:43:44 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 09:07:24 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:18:56 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "Scenes.h"
 # include "Colors.h"
+
+# define WIDHT 800
+# define HEIGHT 800
 
 typedef struct s_paint
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 08:51:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/07 10:45:24 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:47:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_camera	camera(int hsize, int vsize, double field_view)
 	cam.hsize = hsize;
 	cam.vsize = vsize;
 	cam.field_view = field_view;
+	cam.up = vector(0, 1, 0);
 	cam.transform = id_mtx();
 	calculate_pixel(&cam);
 	return (cam);

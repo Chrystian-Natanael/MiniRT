@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Scenes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/03 11:17:03 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:13:00 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,14 @@ typedef struct s_scene
 {
 	t_colors	ambient;
 	int			has_ambient;
-	double		*camera_pos;
-	double		*camera_dir;
+	double		*camera_from;
+	double		*camera_to;
 	int			has_camera;
 	t_colors	light;
 	double		*light_pos;
 	int			has_light;
 	bool		save_img;
 }			t_scene;
-
-typedef struct s_world
-{
-	t_obj		*obj_lst;
-	t_lights	*lights_lst;
-	t_scene		scene;
-}				t_world;
 
 typedef struct s_camera
 {
@@ -71,8 +64,17 @@ typedef struct s_camera
 	double		pixel_sz;
 	double		half_width;
 	double		half_heigth;
+	double		*up;
 	t_matrix	transform;
 }				t_camera;
+
+typedef struct s_world
+{
+	t_obj		*obj_lst;
+	t_lights	*lights_lst;
+	t_scene		scene;
+	t_camera	camera;
+}				t_world;
 
 t_world		*world(void);
 

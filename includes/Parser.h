@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/03 12:07:18 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:09:18 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "Count_el.h"
 # include <stdbool.h>
 
-
+#define PI 3.14159265358979323846
 
 t_world	*parser(int argc, char **argv);
 
@@ -37,7 +37,7 @@ void	ft_free_array(char **str);
 void	get_line(int fd, t_world *world);
 bool	parse_line(char *line, t_world *world);
 bool	parse_ambient(char *line, t_world *world);
-// bool	parse_camera(char *line, t_world *world); // !Comentado por enquanto
+bool	parse_camera(char *line, t_world *world);
 bool	parse_light(char *line, t_world *world);
 bool	parse_sphere(char *line, t_world *world);
 bool	parse_plane(char *line, t_world *world);

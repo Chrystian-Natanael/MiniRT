@@ -58,6 +58,7 @@ GARB = $(addprefix $(GARB_DIR), garbage_collector.a)
 # SRCS = $(shell find $(SRCS_PATH) -type f -name "*$(FILE_EXTENSION)") # PARA PEGAR TODOS OS ARQUIVOS
 SRCS = $(addprefix $(SRCS_PATH), \
 		00-mem_pool/Mem_pool.c \
+		00-mem_pool/Count_pool.c \
 		00-Utils/Convert.c \
 		00-Utils/Equal.c \
 		00-Utils/Error.c \
@@ -117,6 +118,7 @@ SRCS = $(addprefix $(SRCS_PATH), \
 		11-Parser/Parse_color.c \
 		11-Parser/Parse_light.c \
 		11-Parser/Parse_position.c \
+		11-Parser/Parse_plane.c \
 		11-Parser/Parse_sphere.c \
 		11-Parser/Parser_utils.c \
 		11-Parser/Parser.c \

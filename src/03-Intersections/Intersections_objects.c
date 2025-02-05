@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections_objects.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:18:03 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/04 15:30:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_pl_inter	*intersect_plane(t_shape *shape, t_ray ray)
 	if (fabs(ray.dir[Y]) < MAX_DIFF)
 		return (NULL);
 	set = get_pool();
-	value = (t_pl_inter *)alloc_pool(sizeof(t_pl_inter), set->The_pool);
+	value = (t_pl_inter *)alloc_pool(sizeof(t_pl_inter), set->the_pool);
 	value->count = 1;
 	value->t = -ray.src[Y] / ray.dir[Y];
 	value->pl = (t_pl *)shape->obj;

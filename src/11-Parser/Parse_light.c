@@ -6,17 +6,19 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:18:04 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:56:27 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
+#include "Tuples.h"
 
 bool	parse_light(char *line, t_world *world)
 {
 	double		*norm_col;
 	double		*pos;
 	char		**info;
+	t_pt_light	light;
 
 	world->scene.has_light += 1;
 	if (world->scene.has_light > 1)
@@ -31,8 +33,8 @@ bool	parse_light(char *line, t_world *world)
 		(create_color(norm_col[0], norm_col[1], norm_col[2]), ft_atod(info[2]));
 	pos = allocate(sizeof(double) * 3);
 	pos = pos_to_double(info[1]);
-	world->scene.light_pos[X] = pos[X];
-	world->scene.light_pos[Y] = pos[Y];
-	world->scene.light_pos[Z] = pos[Z];
+	world->scene.light_pos = create_tp(pos[X], pos[Y], pos[Z], POINT);
+	light = pt_light(world->scene.light_pos, create_color(norm_col[X], norm_col[Y], norm_col[Z]));
+	insert_into_light_list(&world->lights_lst, light);
 	return (true_or_false(info, true));
 }

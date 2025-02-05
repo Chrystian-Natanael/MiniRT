@@ -6,17 +6,19 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:09:43 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:53:18 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
+#include "Mem_pool.h"
 
-static void	open_file(int *fd, char *file)
+void	set_scene(t_world *world)
 {
-	*fd = open(file, O_RDONLY);
-	if (*fd == -1)
-		error("Error\n", "Could not open file", "", 1);
+	world->scene.has_ambient = 0;
+	world->scene.has_camera = 0;
+	world->scene.has_light = 0;
+	world->scene.save_img = false;
 }
 
 bool	parse_line(char *line, t_world *world)
@@ -29,8 +31,8 @@ bool	parse_line(char *line, t_world *world)
 		return (parse_light(line, world));
 	else if (!ft_strncmp(line, "sp", 2))
 		return (parse_sphere(line, world));
-	// else if (!ft_strncmp(line, "pl", 2))
-	// 	return (parse_plane(line, world));
+	else if (!ft_strncmp(line, "pl", 2))
+		return (parse_plane(line, world));
 	// else if (!ft_strncmp(line, "cy", 2))
 	// 	return (parse_cylinder(line, world));
 	return (false);
@@ -56,40 +58,32 @@ void	get_line(int fd, t_world *wld)
 		count++;
 	}
 }
-
-void	parse_count(char *line, t_count_el *counts)
+t_world	*init_world(int argc, char **argv)
 {
-	if (!ft_strncmp(line, "sp", 2))
-		counts->sp++;
-	else if (!ft_strncmp(line, "pl", 2))
-		counts->pl++;
-	else if (!ft_strncmp(line, "cy", 2))
-		counts->cy++;
-	else if (!ft_strncmp(line, "L", 1))
-		counts->lights++;
-	else if (!ft_strncmp(line, "p", 1))
-		counts->patterns++;
+	t_world	*wld;
+
+	wld = world();
+	set_scene(wld);
+	if (argc == 3)
+	{
+		wld->scene.save_img = true;
+		wld->scene.file_name = argv[2];
+	}
+	return (wld);
 }
 
-t_count_el	calc_sz_pools(char *file_name)
+void	set_ambient(t_world *wld)
 {
-	int		fd;
-	char	*line;
-	t_count_el	counts;
+	t_obj		*aux;
+	t_colors	amb;
 
-	ft_bzero(&counts, sizeof(t_count_el));
-	open_file(&fd, file_name);
-	line = get_next_line(fd);
-	while (line)
+	aux = wld->obj_lst;
+	amb = wld->scene.ambient;
+	while (aux)
 	{
-		check_newline(line);
-		if (!check_empty_line(line))
-			parse_count(line ,&counts);
-		free(line);
-		line = get_next_line(fd);
+		aux->shape->material.ambient = amb;
+		aux = aux->next;
 	}
-	close (fd);
-	return (counts);
 }
 
 t_world	*parser(int argc, char **argv)
@@ -102,11 +96,10 @@ t_world	*parser(int argc, char **argv)
 	check_extensions(argv);
 	open_file(&fd, argv[1]);
 	counts = calc_sz_pools(argv[1]);
-	printf("SP[%d]\nPL[%d]\nCY[%d]\nL[%d]\nP[%d]\n", counts.sp, counts.pl, counts.cy, counts.lights, counts.patterns);
 	init_pools(counts);
-	wld = world();
-	// set_scene(wld);
-	// get_line(fd, wld);
+	wld = init_world(argc, argv);
+	get_line(fd, wld);
 	close(fd);
+	set_ambient(wld);
 	return (wld);
 }

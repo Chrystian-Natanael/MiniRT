@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:31:16 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_sp_inter	*calc_intersection(t_coef coef)
 	t_pool_set	*set;
 
 	set = get_pool();
-	list = (t_sp_inter *)alloc_pool(sizeof(t_sp_inter), set->The_pool);
+	list = (t_sp_inter *)alloc_pool(sizeof(t_sp_inter), set->the_pool);
 	if (coef.discrim < 0)
 		return (list);
 	list->count = 2;
@@ -50,12 +50,12 @@ void	intersections(double pos, t_shape *s, t_inter **dest)
 		error("Error\n", "Shape doesn't exist", NULL, ERROR);
 	if (!(*dest))
 	{
-		(*dest) = (t_inter *)alloc_pool(sizeof(t_inter), set->The_pool);
+		(*dest) = (t_inter *)alloc_pool(sizeof(t_inter), set->the_pool);
 		(*dest)->pos = pos;
 		(*dest)->shape = s;
 		return ;
 	}
-	node = (t_inter *)alloc_pool(sizeof(t_inter), set->The_pool);
+	node = (t_inter *)alloc_pool(sizeof(t_inter), set->the_pool);
 	node->pos = pos;
 	node->shape = s;
 	insert_into_list(dest, node);

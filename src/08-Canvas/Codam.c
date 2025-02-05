@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Codam.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:30:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 09:59:54 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:11:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @brief Initializes the application window with the specified settings
  *
  * This function initializes the application window using the MLX library.
- * The window is created with the dimensions defined by `WIDTH` and `HEIGHT`,
+ * The window is created with the dimensions defined by `WIDHT` and `HEIGHT`,
  * and with the title "MiniRT". Additionally, a new image is created and
  * associated with the window, displayed at position (0, 0). MLX settings are
  * adjusted to allow image stretching.
@@ -33,15 +33,15 @@
 // void	init_window(t_canvas *canvas)
 // {
 // 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-// 	canvas->mlx = mlx_init(WIDTH, HEIGHT, "MiniRT", true);
-// 	canvas->image = mlx_new_image(canvas->mlx, WIDTH, HEIGHT);
+// 	canvas->mlx = mlx_init(WIDHT, HEIGHT, "MiniRT", true);
+// 	canvas->image = mlx_new_image(canvas->mlx, WIDHT, HEIGHT);
 // 	mlx_image_to_window(canvas->mlx, canvas->image, 0, 0);
 // }
 // void	init_window(t_canvas *canvas)
 // {
 // 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-// 	canvas->mlx = mlx_init(WIDTH, HEIGHT, "MiniRT", true);
-// 	canvas->image = mlx_new_image(canvas->mlx, WIDTH, HEIGHT);
+// 	canvas->mlx = mlx_init(WIDHT, HEIGHT, "MiniRT", true);
+// 	canvas->image = mlx_new_image(canvas->mlx, WIDHT, HEIGHT);
 // 	mlx_image_to_window(canvas->mlx, canvas->image, 0, 0);
 // }
 

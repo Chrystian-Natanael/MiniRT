@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Planes.c                                           :+:      :+:    :+:   */
+/*   Parse_sphere_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/11 13:09:35 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
+/*   Created: 2025/02/05 09:46:36 by tmalheir          #+#    #+#             */
+/*   Updated: 2025/02/05 09:48:02 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Objects.h"
+#include "Parser.h"
 
-t_pl	*create_pl(void)
+void	check_sphere(char *line)
 {
-	t_pl	*pl;
-	t_pool_set	*set;
+	char	**info;
 
-	set = get_pool();
-	pl = (t_pl *)alloc_pool(sizeof(t_pl), set->the_pool);
-	pl->src = point(0, 0, 0);
-	return (pl);
+	info = ft_split(line, ' ');
+	if (!check_count(info, 4) || !parse_pos(info[1]) || !is_double(info[2])
+		|| !parse_color(info[3]))
+		return (true_or_false(info, false));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Mem_pool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 09:48:37 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:11:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Utils.h"
 #include "Canvas.h"
 #include "garbage_collector.h"
+# include "Count_el.h"
 
 t_pool	*create_pool(size_t size)
 {
@@ -49,10 +50,10 @@ void	init_pools(t_count_el counts)
 	t_pool_set	*set;
 
 	set = get_pool();
-	set->The_pool = create_pool(counts.cy * sizeof(t_obj) * 32 +
+	set->the_pool = create_pool(counts.cy * sizeof(t_obj) * 32 +
 	counts.pl * sizeof(t_obj) * 32 +
 	counts.sp * sizeof(t_obj) * 32 +
 	counts.lights * sizeof(t_lights) * 32 +
 	counts.patterns * sizeof(t_lights) * 32 *
-	(WIDTH * HEIGHT * 10e-2) + 10e11);
+	(WIDHT * HEIGHT * 10e-2) + 10e11);
 }

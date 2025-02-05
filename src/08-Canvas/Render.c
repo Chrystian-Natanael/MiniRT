@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/04 15:33:16 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_paint	render_canva(t_camera cam, t_world *world)
 	canvas.hei = cam.vsize;
 	canvas.wid = cam.hsize;
 	canvas.px = (t_colors *)alloc_pool(sizeof(t_colors) * canvas.hei
-			* canvas.wid, set->The_pool);
+			* canvas.wid, set->the_pool);
 	while (++i[0] <= (cam.vsize - 1))
 	{
 		i[1] = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Negating.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:36:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:29:39 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ double	*negate(double x, double y, double z, double w)
 	t_pool_set	*set;
 
 	set = get_pool();
-	neg_tpl = (double *)alloc_pool(sizeof(double) * 4, set->The_pool);
+	neg_tpl = (double *)alloc_pool(sizeof(double) * 4, set->the_pool);
 	neg_tpl[X] = -x;
 	neg_tpl[Y] = -y;
 	neg_tpl[Z] = -z;

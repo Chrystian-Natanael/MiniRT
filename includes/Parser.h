@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:09:18 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:57:26 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 # include "libft.h"
 # include "Scenes.h"
-# include "Count_el.h"
 # include <stdbool.h>
 
 #define PI 3.14159265358979323846
 
 t_world	*parser(int argc, char **argv);
+t_world	*init_world(int argc, char **argv);
+void	set_scene(t_world *world);
+void	open_file(int *fd, char *file);
 
 void	check_argc(int argc);
 void	check_extensions(char **argv);
@@ -28,7 +30,7 @@ void	check_newline(char *line);
 bool	check_empty_line(char *line);
 bool	check_count(char **info, int count);
 
-void	set_scene(t_world *world);
+void	open_file(int *fd, char *file);
 bool	is_double(char *str);
 bool	in_range_double(char *str);
 bool	true_or_false(char **str, bool flag);
@@ -52,5 +54,8 @@ bool	parse_pos(char *str);
 double	*pos_to_double(char *str);
 
 bool	parse_sphere(char *line, t_world *world);
+
+bool	parse_dir(char *str);
+bool	dir_in_range(char *str);
 
 #endif

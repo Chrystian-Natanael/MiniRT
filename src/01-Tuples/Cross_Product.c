@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cross_Product.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:25:59 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:00:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:25:51 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,13 @@ static double	*cross_prod_aux(double *vec1, double *vec2)
 double	*cross_prod(double *vector1, double *vector2)
 {
 	if (!vector1 || !vector2 || vector1[W] != 0 || vector2[W] != 0)
+	{
+		printf("v1[W][%f], v2[W][%f]\n", vector1[Y], vector2[Y]);
 		error("Error\n",
 			"Impossible 'cross product' operation with null \
 			vectors or with point",
 			NULL,
 			ERROR);
+	}
 	return (cross_prod_aux(vector1, vector2));
 }

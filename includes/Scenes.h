@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/04 15:13:00 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:32:01 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_scene
 	double		*light_pos;
 	int			has_light;
 	bool		save_img;
+	char		*file_name;
 }			t_scene;
 
 typedef struct s_camera
@@ -62,7 +63,7 @@ typedef struct s_camera
 	double		vsize;
 	double		field_view;
 	double		pixel_sz;
-	double		half_width;
+	double		half_widht;
 	double		half_heigth;
 	double		*up;
 	t_matrix	transform;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:31:32 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:43:38 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	set_transf(t_shape **s, t_matrix t)
 {
 	(*s)->transf = t;
 	(*s)->inv = inv((*s)->transf);
-	printf("&inv = [%p]\n", &(*s)->inv);
 	(*s)->transp = transp_mtx((*s)->inv);
 	return ;
 }
@@ -57,7 +56,7 @@ t_shape	*new_shape(void)
 	t_shape		*shape;
 
 	set = get_pool();
-	shape = (t_shape *)alloc_pool(sizeof(t_shape), set->The_pool);
+	shape = (t_shape *)alloc_pool(sizeof(t_shape), set->the_pool);
 	shape->inv = id_mtx();
 	shape->transp = id_mtx();
 	shape->material = material();

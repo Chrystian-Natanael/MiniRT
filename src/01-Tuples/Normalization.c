@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Normalization.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:17:30 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:29:49 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static double	*norm_aux(double *vector, double mag)
 	t_pool_set	*set;
 
 	set = get_pool();
-	vector_norm = (double *)alloc_pool(sizeof(double) * 4, set->The_pool);
+	vector_norm = (double *)alloc_pool(sizeof(double) * 4, set->the_pool);
 	idx = -1;
 	while (++idx < 4)
 		vector_norm[idx] = vector[idx] / mag;

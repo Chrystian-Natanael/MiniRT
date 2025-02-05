@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Tuples.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:26 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/04 15:30:29 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ double	*create_tp(double x, double y, double z, double w)
 	t_pool_set	*set;
 
 	set = get_pool();
-	tuple = (double *)alloc_pool(sizeof(double) * 4, set->The_pool);
+	tuple = (double *)alloc_pool(sizeof(double) * 4, set->the_pool);
 	tuple[0] = x;
 	tuple[1] = y;
 	tuple[2] = z;

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:28:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/03 11:17:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:09:39 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
+#include "Canvas.h"
 
-void	set_scene(t_world *world)
+void	open_file(int *fd, char *file)
 {
-	world->scene.has_ambient = 0;
-	world->scene.has_camera = 0;
-	world->scene.has_light = 0;
-	world->scene.save_img = false;
+	*fd = open(file, O_RDONLY);
+	if (*fd == -1)
+		error("Error\n", "Could not open file", "", 1);
 }
 
 bool	is_double(char *str)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/03 12:16:30 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:09:43 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ bool	parse_line(char *line, t_world *world)
 {
 	if (!ft_strncmp(line, "A", 1))
 		return (parse_ambient(line, world));
-	// else if (!ft_strncmp(line, "C", 1)) // !Comentado por enquanto
-		// return (parse_camera(line, world));
+	else if (!ft_strncmp(line, "C", 1))
+		return (parse_camera(line, world));
 	else if (!ft_strncmp(line, "L", 1))
 		return (parse_light(line, world));
 	else if (!ft_strncmp(line, "sp", 2))

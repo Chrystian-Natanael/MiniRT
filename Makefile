@@ -113,6 +113,7 @@ SRCS = $(addprefix $(SRCS_PATH), \
 		09-Patterns/Ring.c \
 		09-Patterns/Stripes.c \
 		11-Parser/Parse_ambient.c \
+		11-Parser/Parse_camera.c \
 		11-Parser/Parse_color.c \
 		11-Parser/Parse_light.c \
 		11-Parser/Parse_position.c \
@@ -122,7 +123,6 @@ SRCS = $(addprefix $(SRCS_PATH), \
 		11-Parser/Validations.c \
 		main.c \
 		)
-		# 11-Parser/Parse_camera.c # ! TEM Q VOLTAR LÁ PRA CIMA
 OBJS = $(SRCS:%$(FILE_EXTENSION)=$(BUILD_DIR)%.o)
 DEPS = $(OBJS:.o=.d)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)

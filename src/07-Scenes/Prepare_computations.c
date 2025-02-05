@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Prepare_computations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:27:30 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/09 16:13:12 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:32:10 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_comp	*prepare_computations(t_inter *intersec, t_ray ray)
 	t_comp		*comps;
 	t_pool_set	*set;
 
-	set = get_pools();
-	comps = (t_comp *)alloc_pool(sizeof(t_comp), set->objects);
+	set = get_pool();
+	comps = (t_comp *)alloc_pool(sizeof(t_comp), set->The_pool);
 	comps->pos = intersec->pos;
 	comps->shape = intersec->shape;
 	comps->point = pos_ray(ray, intersec->pos);

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:38:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/03 12:09:58 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:33:35 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ bool	parse_sphere(char *line, t_world *world)
 	norm_col = normalize_rgb_to_double(info[3]);
 	pos = allocate(sizeof(double) * 3);
 	pos = pos_to_double(info[1]);
-	set = get_pools();
-	sp = (t_obj *)alloc_pool(sizeof(t_obj), set->objects);
+	set = get_pool();
+	sp = (t_obj *)alloc_pool(sizeof(t_obj), set->The_pool);
 	init_shape(SPHERE, &sp->shape);
 	sp->next = NULL;
 	sp->prev = NULL;

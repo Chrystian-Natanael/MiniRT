@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/11 19:19:35 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:33:16 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@
  */
 t_paint	render_canva(t_camera cam, t_world *world)
 {
-	t_pool_set	*set;
 	int			i[2];
+	t_ray		ray;
+	t_pool_set	*set;
 	t_paint		canvas;
 	t_colors	color;
-	t_ray		ray;
 
 	i[0] = -1;
-	set = get_pools();
+	set = get_pool();
 	canvas.hei = cam.vsize;
 	canvas.wid = cam.hsize;
 	canvas.px = (t_colors *)alloc_pool(sizeof(t_colors) * canvas.hei
-			* canvas.wid, set->colors);
+			* canvas.wid, set->The_pool);
 	while (++i[0] <= (cam.vsize - 1))
 	{
 		i[1] = -1;
@@ -56,6 +56,7 @@ t_paint	render_canva(t_camera cam, t_world *world)
 				continue ;
 			canvas.px[i[0] * canvas.wid + i[1]] = color;
 		}
+		printf("LINE[%d]\n", i[0]);
 	}
 	return (canvas);
 }

@@ -18,16 +18,11 @@ protected:
 
 	void SetUp() override {
 		init_pools();
-		set = get_pools();
+		set = get_pool();
 	}
 
 	void TearDown() override {
-		deallocate(set->colors->mem);
-		deallocate(set->colors);
-		deallocate(set->matrices->mem);
-		deallocate(set->matrices);
-		deallocate(set->objects->mem);
-		deallocate(set->objects);
+		deallocate(set->mem);
 		deallocate(set);
 	}
 };

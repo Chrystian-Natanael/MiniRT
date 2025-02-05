@@ -15,7 +15,7 @@ int	main(void) {
 	t_world			*w;
 	w = world();
 
-	t_pool_set *set = get_pools();
+	t_pool_set *set = get_pool();
 
 	// floor
 	t_obj *floor= (t_obj *)alloc_pool(sizeof(t_obj), set->objects);

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:36:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 11:06:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:29:39 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
  */
 double	*negate(double x, double y, double z, double w)
 {
-	double		*neg_tpl;
+	double	*neg_tpl;
 	t_pool_set	*set;
 
-	set = get_pools();
-	neg_tpl = (double *)alloc_pool(sizeof(double) * 4, set->matrices);
+	set = get_pool();
+	neg_tpl = (double *)alloc_pool(sizeof(double) * 4, set->The_pool);
 	neg_tpl[X] = -x;
 	neg_tpl[Y] = -y;
 	neg_tpl[Z] = -z;

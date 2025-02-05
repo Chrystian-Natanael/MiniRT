@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 13:25:41 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:31:57 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 t_sp	*create_sp(void)
 {
-	t_sp		*sp;
+	t_sp	*sp;
 	t_pool_set	*set;
 
-	set = get_pools();
-	sp = (t_sp *)alloc_pool(sizeof(t_sp), set->objects);
+	set = get_pool();
+	sp = (t_sp *)alloc_pool(sizeof(t_sp), set->The_pool);
 	sp->src = point(0, 0, 0);
 	sp->radius = 1;
 	return (sp);

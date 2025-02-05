@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:25:51 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/03 12:08:11 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:28:08 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ typedef struct s_pool
 
 typedef struct s_pool_set
 {
-	t_pool	*colors;
-	t_pool	*objects;
-	t_pool	*matrices;
+	t_pool	*The_pool;
 }			t_pool_set;
 
 t_pool		*create_pool(size_t size);
 t_pool		*alloc_pool(size_t size, t_pool *pool);
-t_pool_set	*get_pools(void);
+t_pool_set	*get_pool(void);
 void		init_pools(t_count_el count);
 
 #endif // ! MEM_POOL_H

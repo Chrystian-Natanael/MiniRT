@@ -15,7 +15,7 @@ int	main(void) {
 	t_world			*w;
 	w = world();
 
-	t_pool_set *set = get_pools();
+	t_pool_set *set = get_pool();
 
 	printf("0\n");
 	// floor

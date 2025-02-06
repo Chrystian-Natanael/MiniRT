@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:25:59 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 10:00:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:28:14 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ static double	*cross_prod_aux(double *vec1, double *vec2)
 double	*cross_prod(double *vector1, double *vector2)
 {
 	if (!vector1 || !vector2 || vector1[W] != 0 || vector2[W] != 0)
+	{
 		error("Error\n",
 			"Impossible 'cross product' operation with null \
 			vectors or with point",
 			NULL,
 			ERROR);
+	}
 	return (cross_prod_aux(vector1, vector2));
 }

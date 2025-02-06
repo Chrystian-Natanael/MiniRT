@@ -15,7 +15,7 @@ int	main(void) {
 
 	t_world			*w;
 	w = world();
-	t_pool_set *set = get_pools();
+	t_pool_set *set = get_pool();
 
 	// floor
 	create_obj_lst(w, SPHERE);

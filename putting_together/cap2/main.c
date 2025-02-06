@@ -20,8 +20,8 @@ int	main(void)
 	projectile->velocity = multiply(norm(vector(1, -1.8, 0)), 11.25);
 	env.gravity = vector(0, 0.1, 0);
 	env.wind = vector(-0.01, 0, 0);
-	mlx = mlx_init(WIDTH, HEIGHT, "Puttingtogether2", true);
-	image = mlx_new_image(mlx, WIDTH, HEIGHT);
+	mlx = mlx_init(WIDHT, HEIGHT, "Puttingtogether2", true);
+	image = mlx_new_image(mlx, WIDHT, HEIGHT);
 	mlx_image_to_window(mlx, image, 0, 0);
 	while (projectile->position[Y] <= HEIGHT)
 	{

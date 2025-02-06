@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:50:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/22 14:10:30 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:46:47 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ t_material	material(void);
 void		init_shape(t_shape_id id, struct s_shape **shape);
 void		set_transf(t_shape **s, t_matrix t);
 t_colors	pattern_at_shape(t_shape *obj, double *world_pt);
-// t_colors	stripe_at_object(t_shape *obj, double *world_pt);
 
 #endif

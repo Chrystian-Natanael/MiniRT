@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   View_transform.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 09:09:03 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/03 09:47:41 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:46:01 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,17 @@ t_matrix	view_transform(double *from, double *to, double *up)
 	double		*forward;
 	double		*left;
 	double		*true_up;
+	double		*up2;
 	t_matrix	orientation;
 
 	forward = norm(sub(to, from));
-	left = cross_prod(forward, norm(up));
+	if (equal(dot_prod(forward, up), MAX_DIFF))
+		left = vector(-1, 0, 0);
+	else
+	{
+		up2 = norm(up);
+		left = cross_prod(forward, up2);
+	}
 	true_up = cross_prod(left, forward);
 	orientation = id_mtx();
 	set_val_mtx(&orientation, forward, left, true_up);

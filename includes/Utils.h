@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:31:54 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/22 13:19:11 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:47:03 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	error(char *m1, char *m2, char *m3, int code);
 
 // ! Equal
 bool	equal(double nbr1, double nbr2);
+
+double	ft_atod(const char *nptr);
 
 // ! Swap
 void	swap(double *t1, double *t2);

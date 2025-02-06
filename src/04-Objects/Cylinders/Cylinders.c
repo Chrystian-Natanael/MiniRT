@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:03:04 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/22 13:27:40 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:01:54 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	init_t_cl_inter(t_cl_inter **val, t_shape *shape, t_coef coef)
 {
 	t_pool_set	*set;
 
-	set = get_pools();
-	(*val) = (t_cl_inter *)alloc_pool(sizeof(t_cl_inter), set->objects);
+	set = get_pool();
+	(*val) = (t_cl_inter *)alloc_pool(sizeof(t_cl_inter), set->the_pool);
 	(*val)->cl = (t_cl *)shape->obj;
 	(*val)->t1 = (-coef.b - sqrt(coef.discrim)) / (2 * coef.a);
 	(*val)->t2 = (-coef.b + sqrt(coef.discrim)) / (2 * coef.a);
@@ -95,8 +95,8 @@ t_cl	*create_cl(void)
 	t_cl		*cl;
 	t_pool_set	*set;
 
-	set = get_pools();
-	cl = (t_cl *)alloc_pool(sizeof(t_cl), set->objects);
+	set = get_pool();
+	cl = (t_cl *)alloc_pool(sizeof(t_cl), set->the_pool);
 	cl->src = point(0, 0, 0);
 	cl->radius = 1;
 	cl->min = INT32_MIN;

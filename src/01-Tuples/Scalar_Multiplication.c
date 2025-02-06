@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Scalar_Multiplication.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:57:21 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 11:07:07 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:24:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ double	*multiply(double *tuple, double factor)
 	double		*res;
 	t_pool_set	*set;
 
-	set = get_pools();
+	set = get_pool();
 	if (!tuple)
-	{
-		warning("Not possible to multiply a null tuple", NULL, NULL);
-		return (NULL);
-	}
-	res = (double *)alloc_pool(sizeof(double) * 4, set->matrices);
+		error("Not possible to multiply a null tuple", "", "", 1);
+	res = (double *)alloc_pool(sizeof(double) * 4, set->the_pool);
 	idx = -1;
 	while (++idx < 4)
 		res[idx] = factor * tuple[idx];

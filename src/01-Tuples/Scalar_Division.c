@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Scalar_Division.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:57:41 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 11:07:03 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:24:20 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ double	*division(double *tuple, double divisor)
 	double		*res;
 	t_pool_set	*set;
 
-	set = get_pools();
+	set = get_pool();
 	if (!tuple || !divisor)
-	{
-		warning("Not possible to divide by zero or null tuple", NULL, NULL);
-		return (NULL);
-	}
-	res = (double *)alloc_pool(sizeof(double) * 4, set->matrices);
+		error("Not possible to divide by zero or null tuple", "", "", 1);
+	res = (double *)alloc_pool(sizeof(double) * 4, set->the_pool);
 	idx = -1;
 	while (++idx < 4)
 		res[idx] = tuple[idx] / divisor;

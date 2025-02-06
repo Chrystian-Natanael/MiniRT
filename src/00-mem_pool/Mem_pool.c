@@ -6,13 +6,15 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/21 16:59:32 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:00:48 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Mem_pool.h"
 #include "Utils.h"
+#include "Canvas.h"
 #include "garbage_collector.h"
+#include "Count_el.h"
 
 t_pool	*create_pool(size_t size)
 {
@@ -36,19 +38,25 @@ t_pool	*alloc_pool(size_t size, t_pool *pool)
 	return (ptr);
 }
 
-t_pool_set	*get_pools(void)
+t_pool_set	*get_pool(void)
 {
 	static t_pool_set	set;
 
 	return (&set);
 }
 
-__attribute__((constructor)) void	init_pools(void)
+void	init_pools(t_count_el counts)
 {
 	t_pool_set	*set;
 
-	set = get_pools();
-	set->colors = create_pool(MAX_MEM);
-	set->objects = create_pool(MAX_MEM);
-	set->matrices = create_pool(MAX_MEM);
+	set = get_pool();
+	set->the_pool = create_pool(counts.cy * sizeof(t_obj) * 32
+			+ counts.pl * sizeof(t_obj) * 32
+			+ counts.sp * sizeof(t_obj) * 32
+			+ counts.lights * sizeof(t_lights) * 32
+			+ counts.patterns * sizeof(t_lights) * 32
+			* (WIDHT * HEIGHT * 10e-2) + 10e11);
+
+	// (void)counts;
+	// set->the_pool = create_pool(10e6);
 }

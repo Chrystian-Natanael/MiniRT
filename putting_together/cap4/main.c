@@ -15,11 +15,11 @@ int	main(void)
 
 	color_center = create_color(1, 0, 0);
 	color_hour = create_color(1, 1, 1);
-	center = point(WIDTH / 2, HEIGHT / 2, 0);
+	center = point(WIDHT / 2, HEIGHT / 2, 0);
 	trans_src = translate(center[X], center[Y], center[Z]);
 	radius = 200;
-	mlx = mlx_init(WIDTH, HEIGHT, "Puttingtogether4", true);
-	image = mlx_new_image(mlx, WIDTH, HEIGHT);
+	mlx = mlx_init(WIDHT, HEIGHT, "Puttingtogether4", true);
+	image = mlx_new_image(mlx, WIDHT, HEIGHT);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_put_pixel(image, dtoi(center[X]), dtoi(center[Y]),
 		rgb2hex(color_center));

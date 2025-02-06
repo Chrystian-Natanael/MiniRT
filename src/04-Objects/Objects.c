@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/22 14:15:30 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:33:40 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,15 @@ t_shape	*new_shape(void)
 	t_pool_set	*set;
 	t_shape		*shape;
 
-	set = get_pools();
-	shape = (t_shape *)alloc_pool(sizeof(t_shape), set->objects);
+	set = get_pool();
+	shape = (t_shape *)alloc_pool(sizeof(t_shape), set->the_pool);
 	shape->inv = id_mtx();
 	shape->transp = id_mtx();
 	shape->material = material();
 	shape->transf = id_mtx();
 	return (shape);
 }
+void	init_shape(t_shape_id id, struct s_shape **shape);
 
 void	init_shape(t_shape_id id, t_shape **shape)
 {

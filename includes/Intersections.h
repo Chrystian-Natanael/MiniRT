@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/22 13:28:58 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:44:42 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_pl_inter	*intersect_plane(t_shape *shape, t_ray ray);
 t_cl_inter	*intersect_cylinder(t_shape *shape, t_ray ray);
 
 t_sp_inter	*calc_intersection(t_coef coef);
-t_coef		calc_coef(t_sp *sp, t_ray ray);
+t_coef		calc_coef(t_ray ray);
 void		create_t_inter(t_shape *shape, void *lst, t_inter **dest);
 void		intersections(double pos, t_shape *s, t_inter **dest);
 

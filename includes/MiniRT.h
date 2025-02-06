@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:13:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/13 14:34:28 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:58:50 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@
 # include "Utils.h"
 # include "garbage_collector.h"
 # include "MLX42/MLX42.h"
+# include "Parser.h"
 
 #endif // ! MINIRT_H

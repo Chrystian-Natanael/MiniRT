@@ -31,8 +31,8 @@ cn  3.5,1.0,1        0,1,0   1.5   1.5   40,220,55     default  checkers
 
 # Cylinder
 # <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
-cy  0.8,0.7,0        0,1,0   0.5   4     200,200,200   default  checkers
-cy  -3,0.6,1.6       0,1,0   1.2   10     122,23,230    default  checkers
+# cy  0.8,0.7,0        0,1,0   0.5   4     200,200,200   default  checkers
+# cy  -3,0.6,1.6       0,1,0   1.2   10     122,23,230    default  checkers
 
 # Plane
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue>

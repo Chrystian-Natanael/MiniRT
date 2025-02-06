@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:25:51 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/22 14:10:18 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:45:50 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 # define MEM_POOL_H
 
 # include <stdio.h>
-
-// # define MAX_MEM 199999999999 // for grafic full screen
-// # define MAX_MEM 99999999999 // for simple grafic (max 1000x1000)
-# define MAX_MEM 500000 // for tests
+# include "Colors.h"
+# include "Matrices.h"
+# include "Count_el.h"
 
 typedef struct s_pool
 {
@@ -28,14 +27,12 @@ typedef struct s_pool
 
 typedef struct s_pool_set
 {
-	t_pool	*colors;
-	t_pool	*objects;
-	t_pool	*matrices;
+	t_pool	*the_pool;
 }			t_pool_set;
 
 t_pool		*create_pool(size_t size);
 t_pool		*alloc_pool(size_t size, t_pool *pool);
-t_pool_set	*get_pools(void);
-void		init_pools(void);
+t_pool_set	*get_pool(void);
+void		init_pools(t_count_el count);
 
 #endif // ! MEM_POOL_H

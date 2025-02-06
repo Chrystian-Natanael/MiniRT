@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Scenes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/10 12:15:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:36:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,19 @@ typedef struct s_lights
 	struct s_lights	*prev;
 }					t_lights;
 
-typedef struct s_world
+typedef struct s_scene
 {
-	t_obj		*obj_lst;
-	t_lights	*lights_lst;
-}				t_world;
+	t_colors	ambient;
+	int			has_ambient;
+	double		*camera_from;
+	double		*camera_to;
+	int			has_camera;
+	t_colors	light;
+	double		*light_pos;
+	int			has_light;
+	bool		save_img;
+	char		*file_name;
+}			t_scene;
 
 typedef struct s_camera
 {
@@ -55,15 +63,23 @@ typedef struct s_camera
 	double		vsize;
 	double		field_view;
 	double		pixel_sz;
-	double		half_width;
+	double		half_widht;
 	double		half_heigth;
+	double		*up;
 	t_matrix	transform;
 }				t_camera;
+
+typedef struct s_world
+{
+	t_obj		*obj_lst;
+	t_lights	*lights_lst;
+	t_scene		scene;
+	t_camera	camera;
+}				t_world;
 
 t_world		*world(void);
 
 void		create_obj_lst(t_world *world, t_shape_id id);
-// void		create_obj_lst(t_world *world); // TESTE
 void		insert_into_obj_list(t_obj **lst, t_obj *n1);
 void		insert_into_light_list(t_lights **lst, t_pt_light n1);
 t_world		*default_world(void);

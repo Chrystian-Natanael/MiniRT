@@ -12,14 +12,15 @@ class FixtureMatrix : public ::testing::Test {
 protected:
 	t_pool_set *set;
 
-	void SetUp() override {
-		init_pools();
+	void SetUp() override
+	{
 		set = get_pool();
+		set->the_pool = create_pool(500000);
 	}
 
-	void TearDown() override {
-		deallocate(set->mem);
-		deallocate(set);
+	void TearDown() override
+	{
+		deallocate(set->the_pool);
 	}
 };
 

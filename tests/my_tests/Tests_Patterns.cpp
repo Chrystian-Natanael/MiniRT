@@ -20,14 +20,13 @@ protected:
 
 	void SetUp() override
 	{
-		init_pools();
 		set = get_pool();
+		set->the_pool = create_pool(500000);
 	}
 
 	void TearDown() override
 	{
-		deallocate(set->mem);
-		deallocate(set);
+		deallocate(set->the_pool);
 	}
 };
 

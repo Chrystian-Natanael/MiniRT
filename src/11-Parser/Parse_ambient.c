@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:18:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:22:01 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ bool	parse_ambient(char *line, t_world *world)
 	norm_col = allocate(sizeof(double) * 3);
 	norm_col = normalize_rgb_to_double(info[2]);
 	world->scene.ambient = multiply_col(create_color
-		(norm_col[0], norm_col[1], norm_col[2]), ft_atod(info[1]));
+			(norm_col[0], norm_col[1], norm_col[2]), ft_atod(info[1]));
 	return (true_or_false(info, true));
 }

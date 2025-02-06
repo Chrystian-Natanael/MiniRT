@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:25:51 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 10:19:02 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:15:04 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdio.h>
 # include "Colors.h"
-#include "Matrices.h"
-#include "Count_el.h"
+# include "Matrices.h"
+# include "Count_el.h"
 
 typedef struct s_pool
 {

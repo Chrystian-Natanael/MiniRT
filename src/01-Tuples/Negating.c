@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:36:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:23:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  */
 double	*negate(double x, double y, double z, double w)
 {
-	double	*neg_tpl;
+	double		*neg_tpl;
 	t_pool_set	*set;
 
 	set = get_pool();

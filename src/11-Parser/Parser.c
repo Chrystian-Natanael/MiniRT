@@ -6,36 +6,28 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 15:53:18 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:41:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
 #include "Mem_pool.h"
 
-void	set_scene(t_world *world)
+t_world	*init_world(int argc, char **argv)
 {
-	world->scene.has_ambient = 0;
-	world->scene.has_camera = 0;
-	world->scene.has_light = 0;
-	world->scene.save_img = false;
-}
+	t_world	*wld;
 
-bool	parse_line(char *line, t_world *world)
-{
-	if (!ft_strncmp(line, "A", 1))
-		return (parse_ambient(line, world));
-	else if (!ft_strncmp(line, "C", 1))
-		return (parse_camera(line, world));
-	else if (!ft_strncmp(line, "L", 1))
-		return (parse_light(line, world));
-	else if (!ft_strncmp(line, "sp", 2))
-		return (parse_sphere(line, world));
-	else if (!ft_strncmp(line, "pl", 2))
-		return (parse_plane(line, world));
-	// else if (!ft_strncmp(line, "cy", 2))
-	// 	return (parse_cylinder(line, world));
-	return (false);
+	wld = world();
+	wld->scene.has_ambient = 0;
+	wld->scene.has_camera = 0;
+	wld->scene.has_light = 0;
+	wld->scene.save_img = false;
+	if (argc == 3)
+	{
+		wld->scene.save_img = true;
+		wld->scene.file_name = argv[2];
+	}
+	return (wld);
 }
 
 void	get_line(int fd, t_world *wld)
@@ -58,18 +50,22 @@ void	get_line(int fd, t_world *wld)
 		count++;
 	}
 }
-t_world	*init_world(int argc, char **argv)
-{
-	t_world	*wld;
 
-	wld = world();
-	set_scene(wld);
-	if (argc == 3)
-	{
-		wld->scene.save_img = true;
-		wld->scene.file_name = argv[2];
-	}
-	return (wld);
+bool	parse_line(char *line, t_world *world)
+{
+	if (!ft_strncmp(line, "A", 1))
+		return (parse_ambient(line, world));
+	else if (!ft_strncmp(line, "C", 1))
+		return (parse_camera(line, world));
+	else if (!ft_strncmp(line, "L", 1))
+		return (parse_light(line, world));
+	else if (!ft_strncmp(line, "sp", 2))
+		return (parse_sphere(line, world));
+	else if (!ft_strncmp(line, "pl", 2))
+		return (parse_plane(line, world));
+	// else if (!ft_strncmp(line, "cy", 2))
+	// 	return (parse_cylinder(line, world));
+	return (false);
 }
 
 void	set_ambient(t_world *wld)

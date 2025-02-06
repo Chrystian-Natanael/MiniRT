@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:17:30 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:23:55 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
  */
 static double	*norm_aux(double *vector, double mag)
 {
-	int		idx;
-	double	*vector_norm;
+	int			idx;
+	double		*vector_norm;
 	t_pool_set	*set;
 
 	set = get_pool();

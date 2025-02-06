@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:22:15 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/30 12:13:41 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:21:35 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ bool	parse_pos(char *str)
 	}
 	return (true_or_false(pos, true));
 }
+
 double	*pos_to_double(char *str)
 {
 	int		idx;

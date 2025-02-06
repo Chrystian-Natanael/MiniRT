@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:03:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 10:21:06 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:30:13 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 t_count_el	calc_sz_pools(char *file_name)
 {
-	int		fd;
-	char	*line;
+	int			fd;
+	char		*line;
 	t_count_el	counts;
 
 	ft_bzero(&counts, sizeof(t_count_el));
@@ -27,7 +27,7 @@ t_count_el	calc_sz_pools(char *file_name)
 	{
 		check_newline(line);
 		if (!check_empty_line(line))
-			parse_count(line ,&counts);
+			parse_count(line, &counts);
 		free(line);
 		line = get_next_line(fd);
 	}

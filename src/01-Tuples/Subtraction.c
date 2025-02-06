@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:20 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:25:03 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
  */
 double	*sub(double *tpl1, double *tpl2)
 {
-	int		idx;
-	double	*res;
+	int			idx;
+	double		*res;
 	t_pool_set	*set;
 
 	set = get_pool();

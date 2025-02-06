@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 09:36:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ t_sp_inter	*calc_intersection(t_coef coef)
 	return (list);
 }
 
-t_coef	calc_coef(t_sp *sp, t_ray ray)
+t_coef	calc_coef(t_ray ray)
 {
 	t_coef	coef;
 	double	*sp_to_ray;
 
-	sp_to_ray = sub(ray.src, sp->src);
+	sp_to_ray = sub(ray.src, point(0, 0, 0));
 	coef.a = dot_prod(ray.dir, ray.dir);
 	coef.b = 2 * dot_prod(ray.dir, sp_to_ray);
 	coef.c = dot_prod(sp_to_ray, sp_to_ray) - 1;

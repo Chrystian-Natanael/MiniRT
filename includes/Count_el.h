@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:06:27 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 10:05:58 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:09:50 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define COUNT_EL_H
 
 typedef struct s_count_el {
-	int	sp; // 1 cores & 4 matrizes & 1 obj
-	int	pl; // 1 cores & 4 matrizes & 1 obj
-	int	cy; // 1 cores & 4 matrizes & 1 obj
-	int	lights; // 5 cores & 1 matriz
-	int	patterns; // 2 cores & 2 matrizes
+	int	sp;
+	int	pl;
+	int	cy;
+	int	lights;
+	int	patterns;
 }			t_count_el;
 
 t_count_el	calc_sz_pools(char *file_name);

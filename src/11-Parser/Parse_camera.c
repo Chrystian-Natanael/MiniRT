@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:06:00 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 16:39:03 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:19:59 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 static bool	check_fov(char *str)
 {
 	if (!is_double(str) || (ft_atod(str) < 0 || ft_atod(str) > 180))
-			return (false);
+		return (false);
 	return (true);
 }
 
@@ -27,7 +27,7 @@ bool	dir_in_range(char *str)
 	double	nbr;
 
 	nbr = ft_atod(str);
-	if (nbr < - 1.0 || nbr > 1.0)
+	if (nbr < -1.0 || nbr > 1.0)
 		return (false);
 	return (true);
 }
@@ -68,8 +68,10 @@ bool	parse_camera(char *line, t_world *world)
 	world->scene.camera_from = point(from[X], from[Y], from[Z]);
 	dir = allocate(sizeof(double) * 3);
 	dir = pos_to_double(info[2]);
-	world->scene.camera_to = sum(world->scene.camera_from, norm(vector(dir[X], dir[Y], dir[Z])));
-	world->camera = camera(WIDHT, HEIGHT, (ft_atod(info[3])) *  (PI / 180));
-	world->camera.transform = view_transform(world->scene.camera_from, world->scene.camera_to, world->camera.up);
+	world->scene.camera_to = sum
+		(world->scene.camera_from, norm(vector(dir[X], dir[Y], dir[Z])));
+	world->camera = camera(WIDHT, HEIGHT, (ft_atod(info[3])) * (PI / 180));
+	world->camera.transform = view_transform
+		(world->scene.camera_from, world->scene.camera_to, world->camera.up);
 	return (true_or_false(info, true));
 }

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:57:41 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:24:20 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
  */
 double	*division(double *tuple, double divisor)
 {
-	int		idx;
-	double	*res;
+	int			idx;
+	double		*res;
 	t_pool_set	*set;
 
 	set = get_pool();

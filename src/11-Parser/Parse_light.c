@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 11:56:27 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:22:56 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ bool	parse_light(char *line, t_world *world)
 	pos = allocate(sizeof(double) * 3);
 	pos = pos_to_double(info[1]);
 	world->scene.light_pos = create_tp(pos[X], pos[Y], pos[Z], POINT);
-	light = pt_light(world->scene.light_pos, create_color(norm_col[X], norm_col[Y], norm_col[Z]));
+	light = pt_light(world->scene.light_pos, create_color
+			(norm_col[X], norm_col[Y], norm_col[Z]));
 	insert_into_light_list(&world->lights_lst, light);
 	return (true_or_false(info, true));
 }

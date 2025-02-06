@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 09:38:42 by thaismalhei       #+#    #+#             */
-/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:30:58 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	insert_into_light_list(t_lights **lst, t_pt_light n1)
 
 void	create_obj_lst(t_world *world, t_shape_id id)
 {
-	t_obj	*node;
+	t_obj		*node;
 	t_pool_set	*set;
 
 	set = get_pool();
@@ -70,7 +70,7 @@ void	create_obj_lst(t_world *world, t_shape_id id)
 
 t_world	*world(void)
 {
-	t_world	*world;
+	t_world		*world;
 	t_pool_set	*set;
 
 	set = get_pool();

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 11:59:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:05:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ bool		parse_sphere(char *line, t_world *world);
 bool		parse_plane(char *line, t_world *world);
 void		set_plane(t_obj **pl, char *pos, char *norm, char *col);
 t_matrix	rotate_mtx(double *pos, double *norm, t_obj **obj);
+t_matrix	get_matrix(t_matrix scale, t_matrix rotate, t_matrix translate);
 
 int			sign(int number);
 t_matrix	get_rot_matrix(double x, double z);

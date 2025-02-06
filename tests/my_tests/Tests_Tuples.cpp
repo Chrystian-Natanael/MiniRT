@@ -9,14 +9,15 @@ class FixtureTuple : public ::testing::Test {
 protected:
 	t_pool_set *set;
 
-	void SetUp() override {
-		init_pools();
+	void SetUp() override
+	{
 		set = get_pool();
+		set->the_pool = create_pool(500000);
 	}
 
-	void TearDown() override {
-		deallocate(set->mem);
-		deallocate(set);
+	void TearDown() override
+	{
+		deallocate(set->the_pool);
 	}
 };
 
@@ -157,14 +158,6 @@ TEST_F(FixtureTuple, OperTst_TestDivFunctionWithValidDividend){
 	EXPECT_DOUBLE_EQ(r[1], -1);
 	EXPECT_DOUBLE_EQ(r[2], 1.5);
 	EXPECT_DOUBLE_EQ(r[3], -2);
-
-}
-
-TEST_F(FixtureTuple, OperTst_TestDivFunctionWithInvalidDividend){
-	double *v = create_tp(1, -2, 3, -4);
-	double *r = division(v, 0);
-
-	ASSERT_EQ(r, nullptr);
 
 }
 

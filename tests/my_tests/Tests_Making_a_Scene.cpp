@@ -18,14 +18,13 @@ protected:
 
 	void SetUp() override
 	{
-		init_pools();
 		set = get_pool();
+		set->the_pool = create_pool(500000);
 	}
 
 	void TearDown() override
 	{
-		deallocate(set->mem);
-		deallocate(set);
+		deallocate(set->the_pool);
 	}
 };
 
@@ -394,7 +393,7 @@ TEST_F(FixtureWorld, ShadeHitIsGivenAnIntersectionInShadow)
 {
 	t_world *w = world();
 
-	w->lights_lst = (t_lights *)alloc_pool(sizeof(t_lights), set->colors);
+	w->lights_lst = (t_lights *)alloc_pool(sizeof(t_lights), set->the_pool);
 	w->lights_lst->light_src = pt_light(point(0, 0, -10), create_color(1, 1, 1));
 
 	create_obj_lst(w, SPHERE);

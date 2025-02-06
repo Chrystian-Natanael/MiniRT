@@ -15,14 +15,15 @@ class FixtureObj : public ::testing::Test {
 protected:
 	t_pool_set *set;
 
-	void SetUp() override {
-		init_pools();
+	void SetUp() override
+	{
 		set = get_pool();
+		set->the_pool = create_pool(500000);
 	}
 
-	void TearDown() override {
-		deallocate(set->mem);
-		deallocate(set);
+	void TearDown() override
+	{
+		deallocate(set->the_pool);
 	}
 };
 
@@ -45,7 +46,7 @@ TEST_F(FixtureObj, NormalOfPlaneIsConstantEverywhere) {
 	EXPECT_TRUE(equal(n2[X], expected_normal[X]));
 	EXPECT_TRUE(equal(n2[Y], expected_normal[Y]));
 	EXPECT_TRUE(equal(n2[Z], expected_normal[Z]));
-	
+
 	EXPECT_TRUE(equal(n3[X], expected_normal[X]));
 	EXPECT_TRUE(equal(n3[Y], expected_normal[Y]));
 	EXPECT_TRUE(equal(n3[Z], expected_normal[Z]));

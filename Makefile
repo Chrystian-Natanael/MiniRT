@@ -124,6 +124,7 @@ SRCS = $(addprefix $(SRCS_PATH), \
 		11-Parser/Parse_plane.c \
 		11-Parser/Parse_plane_utils.c \
 		11-Parser/Parse_sphere.c \
+		11-Parser/Parse_cylinder.c \
 		11-Parser/Parser_utils.c \
 		11-Parser/Parser.c \
 		11-Parser/Validations.c \

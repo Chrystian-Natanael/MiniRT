@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:03:34 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/21 18:32:13 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:03:29 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	create_t_inter(t_shape *shape, void *lst, t_inter **dest)
 		intersections(((t_sp_inter *)lst)->t2, shape, dest);
 	}
 	if (shape->id == PLANE)
-		intersections(((t_pl_inter *)lst)->t, shape, dest);
+	{
+		if (fabs(((t_pl_inter *)lst)->t) > MAX_DIFF)
+			intersections(((t_pl_inter *)lst)->t, shape, dest);
+	}
 	if (shape->id == CYLINDER)
 	{
 		if (lst && ((t_cl_inter *)lst)->is_y[0])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 10:41:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:13:58 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ bool	parse_line(char *line, t_world *world)
 		return (parse_sphere(line, world));
 	else if (!ft_strncmp(line, "pl", 2))
 		return (parse_plane(line, world));
-	// else if (!ft_strncmp(line, "cy", 2))
-	// 	return (parse_cylinder(line, world));
+	else if (!ft_strncmp(line, "cy", 2))
+		return (parse_cylinder(line, world));
 	return (false);
 }
 

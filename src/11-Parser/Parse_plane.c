@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:38:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 15:19:17 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:55:35 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_matrix	rotate_mtx(double *pos, double *norm, t_obj **obj)
 	radius = 1;
 	if ((t_sp *)(*obj)->shape->id == SPHERE)
 		radius = ((t_sp *)(*obj)->shape->obj)->radius;
-	// else if ((t_cy *)(*obj)->shape->id == CYLINDER)
-	// 	radius = ((t_cy *)(*obs)->shape->obj)->radius;
+	else if ((*obj)->shape->id == CYLINDER)
+		radius = ((t_cl *)(*obj)->shape->obj)->radius;
 	return (get_matrix(translate(pos[0], pos[1], pos[2]),
 			get_rot_matrix(x_angle, z_angle),
 			scale(radius, radius, radius)));

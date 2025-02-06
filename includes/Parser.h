@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 15:43:44 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:55:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int			sign(int number);
 t_matrix	get_rot_matrix(double x, double z);
 void		calculate_rotation_angles(double *norm, double *x, double *z);
 
-// bool		parse_cylinder(char *line, t_world *world);
+bool		parse_cylinder(char *line, t_world *world);
+void		set_cylinder(t_obj **cl, char **info);
 
 bool		parse_color(char *str);
 double		*normalize_rgb_to_double(char *str);

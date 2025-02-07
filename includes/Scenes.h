@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Scenes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 13:36:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:50:50 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,26 @@ typedef struct s_lights
 	struct s_lights	*prev;
 }					t_lights;
 
+typedef struct s_pattern_list
+{
+	t_pattern				pattern;
+	struct s_pattern_list	*next;
+	struct s_pattern_list	*prev;
+}			t_pat_lst;
+
 typedef struct s_scene
 {
-	t_colors	ambient;
-	int			has_ambient;
-	double		*camera_from;
-	double		*camera_to;
-	int			has_camera;
-	t_colors	light;
-	double		*light_pos;
-	int			has_light;
-	bool		save_img;
-	char		*file_name;
+	t_colors		ambient;
+	int				has_ambient;
+	double			*camera_from;
+	double			*camera_to;
+	int				has_camera;
+	t_colors		light;
+	double			*light_pos;
+	int				has_light;
+	bool			save_img;
+	char			*file_name;
+	t_pat_lst		*pat_lst;
 }			t_scene;
 
 typedef struct s_camera

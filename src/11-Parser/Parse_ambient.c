@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 11:22:01 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/07 10:22:21 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 bool	parse_ambient(char *line, t_world *world)
 {
-	double		*norm_col;
-	char		**info;
+	double	*norm_col;
+	char	**info;
 
 	world->scene.has_ambient += 1;
-	if (world->scene.has_ambient > 1)
+	if (world->scene.has_ambient != 1)
 		error("Error\n", "Only one ambient light allowed", "", 1);
 	info = ft_split(line, ' ');
 	if (!check_count(info, 3) || !is_double(info[1])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 16:55:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:49:38 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ void		calculate_rotation_angles(double *norm, double *x, double *z);
 bool		parse_cylinder(char *line, t_world *world);
 void		set_cylinder(t_obj **cl, char **info);
 
+bool		parse_pattern(char *line, t_world *world);
+bool		check_pattern(char *str1, char *str2);
+bool		check_obj_pattern(char *str, t_world *world);
+bool		parse_transformations(char *str1, char *str2, char *str3);
+void		insert_into_pattern_list(t_pat_lst **lst, t_pat_lst *pat);
+t_matrix	get_transf(double *scl, double *rot, double *trns);
+
 bool		parse_color(char *str);
 double		*normalize_rgb_to_double(char *str);
 bool		is_int(char *str);
@@ -65,7 +72,5 @@ bool		in_range_int(char *str);
 
 bool		parse_pos(char *str);
 double		*pos_to_double(char *str);
-
-bool		parse_sphere(char *line, t_world *world);
 
 #endif

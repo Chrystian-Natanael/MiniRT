@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Canvas.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:43:44 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 12:44:09 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:03:09 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "Scenes.h"
 # include "Colors.h"
 
-# define HEIGHT 300
-# define WIDHT 300
+# define HEIGHT 800
+# define WIDHT 800
 
 typedef struct s_paint
 {

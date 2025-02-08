@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 16:59:09 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:46:05 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ t_pool_set	*get_pool(void)
 void	init_pools(t_count_el counts)
 {
 	t_pool_set	*set;
+	size_t		size;
 
 	set = get_pool();
-	set->the_pool = create_pool(100e6 + (100e8 * (counts.sp 
-		+ counts.cy + counts.pl)));
+	size = 100e6;
+	if (counts.cy + counts.pl + counts.sp >= 80)
+		size += 100e8 * (counts.sp + counts.cy + counts.pl);
+	set->the_pool = create_pool(size);
 }

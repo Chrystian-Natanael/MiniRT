@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/07 17:14:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:32:19 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,37 @@ bool	parse_line(char *line, t_world *world)
 		return (parse_plane(line, world));
 	else if (!ft_strncmp(line, "cy", 2))
 		return (parse_cylinder(line, world));
+	else if (!ft_strncmp(line, "p", 1))
+		return (parse_pattern(line, world));
 	return (false);
 }
 
 void	set_ambient(t_world *wld)
 {
-	t_obj		*aux;
+	t_obj		*aux_wld;
+	t_pat_lst	*pat;
+	t_pat_lst	*aux_pat;
 	t_colors	amb;
 
-	aux = wld->obj_lst;
+	aux_wld = wld->obj_lst;
+	pat = wld->scene.pat_lst;
 	amb = wld->scene.ambient;
-	while (aux)
+	while (aux_wld)
 	{
-		aux->shape->material.ambient = hada_col(amb, aux->shape->material.color);
-		aux = aux->next;
+		aux_wld->shape->material.ambient = hada_col(amb, aux_wld->shape->material.color);
+		if (aux_wld->shape->material.pattern.flag == true)
+		{
+			aux_pat = pat;
+			while (aux_pat && (aux_wld->shape->material.pattern.id != aux_pat->pattern.id))
+				aux_pat = aux_pat->next;
+			aux_wld->shape->material.pattern.c1 = aux_pat->pattern.c1;
+			aux_wld->shape->material.pattern.c2 = aux_pat->pattern.c2;
+			aux_wld->shape->material.pattern.flag = true;
+			aux_wld->shape->material.pattern.id = aux_pat->pattern.id;
+			aux_wld->shape->material.pattern.inv = aux_pat->pattern.inv;
+			aux_wld->shape->material.pattern.transf = aux_pat->pattern.transf;
+		}
+		aux_wld = aux_wld->next;
 	}
 }
 

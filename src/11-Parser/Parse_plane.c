@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:38:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/07 13:39:32 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:27:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,20 @@ bool	parse_plane(char *line, t_world *world)
 	t_obj		*pl;
 
 	info = ft_split(line, ' ');
-	if (!check_count(info, 4) || !parse_pos(info[1]) || !parse_dir(info[2])
-		|| !parse_color(info[3]))
+	if ((!check_count(info, 4) && !check_count(info, 5))
+		|| !parse_pos(info[1]) || !parse_dir(info[2]) || !parse_color(info[3]))
 		return (true_or_false(info, false));
 	set = get_pool();
 	pl = (t_obj *)alloc_pool(sizeof(t_obj), set->the_pool);
 	init_shape(PLANE, &pl->shape);
 	set_plane(&pl, info);
 	insert_into_obj_list(&world->obj_lst, pl);
+	if (info[4] && check_obj_pattern(info[4], world, pl))
+	{
+		pl->shape->material.pattern.flag = true;
+		world->scene.pat_lst->pattern.flag = true;
+	}
+	if (info[4] && !check_obj_pattern(info[4], world, pl))
+		return (true_or_false(info, false));
 	return (true_or_false(info, true));
 }

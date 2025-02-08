@@ -273,12 +273,12 @@ tests: $(GTEST_DIR) $(LIBFT) $(GARB)
 	cd tests && cmake -B build && $(MAKE) -C build && ./build/run_tests --gtest_filter=$(TEST)
 
 run:
-	./bin/$(NAME)
-	# ./bin/$(NAME) $(MAP)
+	# ./bin/$(NAME)
+	./bin/$(NAME) $(MAP)
 
-val: re
-	valgrind  --trace-children=yes --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --suppressions=.suppress_mlx_error.sup ./bin/$(NAME)
-	# valgrind  --trace-children=yes --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --suppressions=.suppress_mlx_error.sup ./bin/$(NAME) $(MAP)
+val:
+	# valgrind  --trace-children=yes --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --suppressions=.suppress_mlx_error.sup ./bin/$(NAME)
+	valgrind  --trace-children=yes --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --suppressions=.suppress_mlx_error.sup ./bin/$(NAME) $(MAP)
 
 help:
 	$(call help)

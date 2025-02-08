@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 15:00:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 10:18:56 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,13 @@ t_pool	*alloc_pool(size_t size, t_pool *pool)
 {
 	void	*ptr;
 
-	if (!pool || pool->used + size > pool->size)
+	if (!pool)
+		error("Pool is null", NULL, NULL, 1);
+	else if (!pool->mem)
+		error("Pool memory is null", NULL, NULL, 1);
+	else if (size == 0)
+		error("Requested size is zero", NULL, NULL, 1);
+	else if (!pool || pool->used + size > pool->size)
 		error("Missing space in pool memmory", NULL, NULL, 1);
 	ptr = (char *)pool->mem + pool->used;
 	pool->used += size;
@@ -48,15 +54,16 @@ t_pool_set	*get_pool(void)
 void	init_pools(t_count_el counts)
 {
 	t_pool_set	*set;
+	double		multiply;
 
+	multiply = 10e1;
+	if (counts.cy + counts.pl + counts.sp > 400)
+		multiply = 10e11 * 10;
 	set = get_pool();
 	set->the_pool = create_pool(counts.cy * sizeof(t_obj) * 32
 			+ counts.pl * sizeof(t_obj) * 32
 			+ counts.sp * sizeof(t_obj) * 32
 			+ counts.lights * sizeof(t_lights) * 32
 			+ counts.patterns * sizeof(t_lights) * 32
-			* (WIDHT * HEIGHT * 10e-2) + 10e11);
-
-	// (void)counts;
-	// set->the_pool = create_pool(10e6);
+			* (WIDHT * HEIGHT * 10e-2) + 10e11 + multiply);
 }

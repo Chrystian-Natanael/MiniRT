@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_pattern_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:20:39 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 14:22:40 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:21:22 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,13 @@
 
 bool	check_obj_pattern(char *str, t_world *world, t_obj *obj)
 {
+	(void)world;
 	if (!ft_strncmp(str, "gradient", ft_strlen(str)))
-	{
-		world->scene.pat_lst->pattern.id = GRADIENT;
 		obj->shape->material.pattern.id = GRADIENT;
-	}
 	else if (!ft_strncmp(str, "ring", ft_strlen(str)))
-	{
 		obj->shape->material.pattern.id = RING;
-		world->scene.pat_lst->pattern.id = RING;
-	}
 	else if (!ft_strncmp(str, "checkers", ft_strlen(str)))
-	{
 		obj->shape->material.pattern.id = CHECKER;
-		world->scene.pat_lst->pattern.id = CHECKER;
-	}
 	else
 		return (false);
 	return (true);

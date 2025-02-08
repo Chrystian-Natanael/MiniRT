@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 13:22:59 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:08:51 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void	set_ambient(t_world *wld)
 	while (aux_wld)
 	{
 		aux_wld->shape->material.ambient = amb;
-		aux_pat = pat;
-		if (aux_wld->shape->material.pattern.flag && aux_pat->pattern.flag == true)
+		if (aux_wld->shape->material.pattern.flag == true)
 		{
+			aux_pat = pat;
 			while (aux_pat && (aux_wld->shape->material.pattern.id != aux_pat->pattern.id))
 				aux_pat = aux_pat->next;
 			aux_wld->shape->material.pattern.c1 = aux_pat->pattern.c1;

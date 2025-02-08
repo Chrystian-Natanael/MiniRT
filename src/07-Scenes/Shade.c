@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 13:56:07 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/07 17:25:13 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:33:22 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_colors	shade_hit(t_world *w, t_comp comps)
 	t_pt_pos	pt;
 
 	pt.pos = comps.point;
-	// pt.in_shadow = comps.in_shadow;
 	shade_color = create_color(0, 0, 0);
 	aux = w->lights_lst;
 	while (aux)
@@ -61,7 +60,6 @@ t_colors	color_at(t_world *w, t_ray r)
 	if (nearest_hit)
 	{
 		comps = prepare_computations(nearest_hit, r);
-		// comps->in_shadow = is_shadowed(w, comps->over_point);
 		color_at_hit = shade_hit(w, *comps);
 	}
 	return (color_at_hit);

@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:14:29 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 14:19:05 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:28:23 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
 #include "Objects.h"
-
-// info[0] = name
-// info[1] = position
-// info[2] = direction
-// info[3] = diameter
-// info[4] = height
-// info[5] = colors
 
 void	set_cylinder(t_obj **cl, char **info)
 {
@@ -32,7 +25,8 @@ void	set_cylinder(t_obj **cl, char **info)
 	cy_norm = pos_to_double(info[2]);
 	cy_norm = norm(vector(cy_norm[X], cy_norm[Y], cy_norm[Z]));
 	((t_cl *)(*cl)->shape->obj)->radius = ft_atod(info[3]) / 2;
-	((t_cl *)(*cl)->shape->obj)->max = ft_atod(info[4]) / (ft_atod(info[3]) / 2);
+	((t_cl *)(*cl)->shape->obj)->max = ft_atod(info[4])
+		/ (ft_atod(info[3]) / 2);
 	((t_cl *)(*cl)->shape->obj)->min = 0;
 	((t_cl *)(*cl)->shape->obj)->closed = true;
 	((t_cl *)(*cl)->shape->obj)->src = point(cy_pos[X], cy_pos[Y], cy_pos[Z]);
@@ -61,8 +55,8 @@ bool	parse_cylinder(char *line, t_world *world)
 	insert_into_obj_list(&world->obj_lst, cl);
 	if (info[6] && check_obj_pattern(info[6], world, cl))
 	{
-		cl->shape->material.pattern.flag = true;
-		world->scene.pat_lst->pattern.flag = true;
+		cl->shape->material.pat.flag = true;
+		world->scene.pat_lst->pat.flag = true;
 	}
 	if (info[6] && !check_obj_pattern(info[6], world, cl))
 		return (true_or_false(info, false));

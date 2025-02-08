@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Addition.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:14 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 11:24:37 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:58:54 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ double	*sum(double *tpl1, double *tpl2)
 
 	set = get_pool();
 	if (tpl1[W] == 1 && tpl2[W] == 1)
-		error("Error\n", "Impossible make addition with two points", NULL,
-			ERROR);
+		error("Error\n", "Impossible make addition with two points", "",
+			1);
 	res = (double *)alloc_pool(sizeof(double) * 4, set->the_pool);
 	idx = -1;
 	while (++idx < 4)

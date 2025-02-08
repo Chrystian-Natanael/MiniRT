@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:38:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 14:31:53 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:18:34 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static bool	sphere_patterns_validation(char **info, t_world *world, t_obj *sp)
 {
 	if (info[4] && check_obj_pattern(info[4], world, sp))
 	{
-		sp->shape->material.pattern.flag = true;
-		world->scene.pat_lst->pattern.flag = true;
+		sp->shape->material.pat.flag = true;
+		world->scene.pat_lst->pat.flag = true;
 	}
 	if (info[4] && !check_obj_pattern(info[4], world, sp))
 		return (true_or_false(info, false));

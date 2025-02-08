@@ -150,8 +150,8 @@ SHELL := /bin/bash
 #                                 FLAGS E COMP                                   #
 #* ******************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror -g3
-DFLAGS = -Wall -Wextra -Werror -g3 -O2 -pg
+CFLAGS = -Wall -Wextra -Werror -Ofast
+DFLAGS = -Wall -Wextra -Werror -g3 -pg
 LDLIBS = -ldl -lglfw -pthread -lm
 LDFLAGS = $(LIBFT_DIR)libft.a $(GARB_DIR)garbage_collector.a $(CODAM_DIR)build/libmlx42.a
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:51:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/11/22 09:59:36 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:00:00 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ double	dot_prod(double *vector1, double *vector2)
 {
 	if (!vector1 || !vector2)
 		error("Error\n", "Impossible 'dot product' operation with null vectors",
-			NULL, ERROR);
+			"", 1);
 	return (dot_prod_aux(vector1, vector2));
 }

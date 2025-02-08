@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:18:03 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 14:09:23 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:56:12 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_sp_inter	*intersect_sphere(t_shape *shape, t_ray ray)
 	t_sp_inter	*value;
 
 	if (!shape || !(t_sp *)shape->obj)
-		error("Error\n", "Sphere doesn't exist", NULL, ERROR);
+		error("Error\n", "Sphere doesn't exist", "", 1);
 	coef = calc_coef(ray);
 	value = calc_intersection(coef);
 	value->sp = (t_sp *)shape->obj;

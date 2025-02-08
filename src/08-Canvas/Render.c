@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 17:34:56 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:32:31 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,20 @@ t_colors	color_average(t_colors c1, t_colors c2, t_colors c3, t_colors c4)
 
 t_colors	render_pixel(t_camera cam, t_world *world, int x, int y)
 {
-	t_colors	color1;
-	t_colors	color2;
-	t_colors	color3;
-	t_colors	color4;
+	t_colors	colors[4];
 	t_colors	color_average_result;
-
-	t_ray	ray;
+	t_ray		ray;
 
 	ray = ray_for_pixel(cam, x, y, 0);
-	color1 = color_at(world, ray);
+	colors[0] = color_at(world, ray);
 	ray = ray_for_pixel(cam, x, y, 1);
-	color2 = color_at(world, ray);
+	colors[1] = color_at(world, ray);
 	ray = ray_for_pixel(cam, x, y, 2);
-	color3 = color_at(world, ray);
+	colors[2] = color_at(world, ray);
 	ray = ray_for_pixel(cam, x, y, 3);
-	color4 = color_at(world, ray);
-
-	color_average_result = color_average(color1, color2, color3, color4);
+	colors[3] = color_at(world, ray);
+	color_average_result = color_average(colors[0], colors[1], \
+		colors[2], colors[3]);
 	return (color_average_result);
 }
 
@@ -66,13 +62,12 @@ t_colors	render_pixel(t_camera cam, t_world *world, int x, int y)
  */
 t_paint	render_canva(t_camera cam, t_world *world)
 {
-	int			i[2];
-	t_pool_set	*set;
-	t_paint		canvas;
-	t_colors	color;
+	int					i[2];
+	t_paint				canvas;
+	t_colors			color;
+	const t_pool_set	*set = get_pool();
 
 	i[0] = -1;
-	set = get_pool();
 	canvas.hei = cam.vsize;
 	canvas.wid = cam.hsize;
 	canvas.px = (t_colors *)alloc_pool(sizeof(t_colors) * canvas.hei
@@ -84,8 +79,6 @@ t_paint	render_canva(t_camera cam, t_world *world)
 		while (++i[1] <= (cam.hsize - 1))
 		{
 			color = render_pixel(cam, world, i[1], i[0]);
-			// ray = ray_for_pixel(cam, i[1], i[0]);
-			// color = color_at(world, ray);
 			if (i[1] >= canvas.wid || i[0] >= canvas.hei)
 				continue ;
 			canvas.px[i[0] * canvas.wid + i[1]] = color;

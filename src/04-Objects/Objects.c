@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 12:05:16 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:17:27 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ t_colors	pattern_at_shape(t_shape *obj, double *world_pt)
 	double	*pat_pt;
 
 	obj_pt = multiply_mtx_tp(inv((obj->transf)), world_pt);
-	pat_pt = multiply_mtx_tp(inv(obj->material.pattern.transf), obj_pt);
-	if (obj->material.pattern.id == STRIPES)
-		return (stripe_at(obj->material.pattern, pat_pt));
-	else if (obj->material.pattern.id == GRADIENT)
-		return (gradient_at(obj->material.pattern, pat_pt));
-	else if (obj->material.pattern.id == RING)
-		return (ring_at(obj->material.pattern, pat_pt));
+	pat_pt = multiply_mtx_tp(inv(obj->material.pat.transf), obj_pt);
+	if (obj->material.pat.id == STRIPES)
+		return (stripe_at(obj->material.pat, pat_pt));
+	else if (obj->material.pat.id == GRADIENT)
+		return (gradient_at(obj->material.pat, pat_pt));
+	else if (obj->material.pat.id == RING)
+		return (ring_at(obj->material.pat, pat_pt));
 	else
-		return (checker_at(obj->material.pattern, pat_pt));
+		return (checker_at(obj->material.pat, pat_pt));
 }
 
 void	set_transf(t_shape **s, t_matrix t)
@@ -46,7 +46,7 @@ t_material	material(void)
 	material.diffu = create_color(0.9, 0.9, 0.9);
 	material.spec = create_color(0.9, 0.9, 0.9);
 	material.shininess = 200;
-	material.pattern.flag = false;
+	material.pat.flag = false;
 	return (material);
 }
 

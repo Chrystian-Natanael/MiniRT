@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:08:38 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/11 12:48:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:55:49 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_ray	create_ray(double *src, double *dir)
 	t_ray	ray;
 
 	if (!src || !dir || src[W] != POINT || dir[W] != VECTOR)
-		error("Error\n", "Impossible to create a ray", NULL, ERROR);
+		error("Error\n", "Impossible to create a ray", "", 1);
 	ray.src = src;
 	ray.dir = dir;
 	return (ray);

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:20:39 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 16:21:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:19:16 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ bool	check_obj_pattern(char *str, t_world *world, t_obj *obj)
 {
 	(void)world;
 	if (!ft_strncmp(str, "gradient", ft_strlen(str)))
-		obj->shape->material.pattern.id = GRADIENT;
+		obj->shape->material.pat.id = GRADIENT;
 	else if (!ft_strncmp(str, "ring", ft_strlen(str)))
-		obj->shape->material.pattern.id = RING;
+		obj->shape->material.pat.id = RING;
 	else if (!ft_strncmp(str, "checkers", ft_strlen(str)))
-		obj->shape->material.pattern.id = CHECKER;
+		obj->shape->material.pat.id = CHECKER;
 	else
 		return (false);
 	return (true);

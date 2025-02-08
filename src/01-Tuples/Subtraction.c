@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Subtraction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:20 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 11:25:03 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:00:17 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ double	*sub(double *tpl1, double *tpl2)
 	set = get_pool();
 	if (tpl1[W] == 0 && tpl2[W] == 1)
 		error("Error\n",
-			"impossibel to subtract vector by point", NULL, ERROR);
+			"impossibel to subtract vector by point", "", 1);
 	res = (double *)alloc_pool(sizeof(double) * 4, set->the_pool);
 	idx = -1;
 	while (++idx < 4)

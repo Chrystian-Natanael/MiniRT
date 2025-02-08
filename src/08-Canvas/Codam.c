@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Codam.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:30:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 10:11:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:00:43 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ mlx_image_t	*canva2image(t_paint canvas, mlx_t *mlx)
 
 	im = mlx_new_image(mlx, canvas.wid, canvas.hei);
 	if (!im)
-		error("IMAGE ERROR", NULL, NULL, 1);
+		error("Error\n", "Cannot open image\n", "", 1);
 	y = -1;
 	while (++y < canvas.hei)
 	{

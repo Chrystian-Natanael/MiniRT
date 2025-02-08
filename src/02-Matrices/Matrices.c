@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:43:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/08 15:42:52 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:57:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ t_matrix	create_mtx(int row, int col, double *elements)
 
 	init_mtx(&matrix);
 	if (!elements)
-		error("empty elements", NULL, NULL, 1);
+		error("Error\n", "Empty elements", "", 1);
 	if (row < 1 || col < 1)
-		error("Rows and cols cannot be lesser than one", NULL, NULL, 1);
+		error("Error\n", "Rows and cols cannot be lesser than one", "", 1);
 	ir = -1;
 	matrix.row = row;
 	matrix.col = col;

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:00:27 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/11/22 10:47:28 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:57:38 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ double	det(t_matrix matrix)
 	if (matrix.col == 2 && matrix.row == 2)
 		return (det_2x2(matrix));
 	else if (matrix.col != matrix.row)
-		error("Error\n", "Not a quadratic matrix", NULL, 1);
+		error("Error\n", "Not a quadratic matrix", "", 1);
 	return (det_aux(matrix));
 }

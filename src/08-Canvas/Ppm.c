@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:15:50 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/22 13:40:42 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:54:31 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ void	canva2ppm(t_paint paint, char *filename)
 
 	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (fd < 0)
-	{
-		perror(filename);
-		return ;
-	}
+		error("Error\nCannot open: ", filename, "\n", 1);
 	print_ppm_header(paint.wid, paint.hei, fd);
 	y = -1;
 	while (++y < paint.hei)

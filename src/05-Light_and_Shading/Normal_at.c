@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:51:42 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/21 19:58:56 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:55:36 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ double	*normal_at(t_shape *shape, double *wld_pt)
 	else if (shape->id == CYLINDER)
 		obj_normal = normal_at_cylinder(shape, obj_pt);
 	else
-		error("Error", NULL, NULL, 1);
+		error("Error\n", "Cannot calculate normal this", "", 1);
 	world_normal = multiply_mtx_tp(shape->transp, obj_normal);
 	world_normal[W] = 0;
 	return (norm(world_normal));

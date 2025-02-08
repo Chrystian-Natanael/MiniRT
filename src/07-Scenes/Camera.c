@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 08:51:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 17:34:37 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:32:56 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ double	*set_offset(t_camera cam, double px, double py, int sample)
 {
 	double			*offset;
 	const double	adjustments[4][2] = {
-		{0.25, 0.25},
-		{0.75, 0.25},
-		{0.25, 0.75},
-		{0.75, 0.75}
+	{0.25, 0.25},
+	{0.75, 0.25},
+	{0.25, 0.75},
+	{0.75, 0.75}
 	};
 
 	offset = allocate(2 * sizeof(double));

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 17:31:44 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:15:06 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_lights
 
 typedef struct s_pattern_list
 {
-	t_pattern				pattern;
+	t_pattern				pat;
 	struct s_pattern_list	*next;
 	struct s_pattern_list	*prev;
 }			t_pat_lst;

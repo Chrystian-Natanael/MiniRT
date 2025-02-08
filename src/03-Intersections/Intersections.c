@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 13:01:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:56:01 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	intersections(double pos, t_shape *s, t_inter **dest)
 
 	set = get_pool();
 	if (!s)
-		error("Error\n", "Shape doesn't exist", NULL, ERROR);
+		error("Error\n", "Shape doesn't exist", "", 1);
 	if (!(*dest))
 	{
 		(*dest) = (t_inter *)alloc_pool(sizeof(t_inter), set->the_pool);

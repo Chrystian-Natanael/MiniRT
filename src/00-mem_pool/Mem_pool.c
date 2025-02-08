@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 17:46:05 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:59:21 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ t_pool	*alloc_pool(size_t size, t_pool *pool)
 	void	*ptr;
 
 	if (!pool)
-		error("Pool is null", NULL, NULL, 1);
+		error("Error\n", "Pool is null", "", 1);
 	else if (!pool->mem)
-		error("Pool memory is null", NULL, NULL, 1);
+		error("Error\n", "Pool memory is null", "", 1);
 	else if (size == 0)
-		error("Requested size is zero", NULL, NULL, 1);
+		error("Error\n", "Requested size is zero", "", 1);
 	else if (!pool || pool->used + size > pool->size)
-		error("Missing space in pool memmory", NULL, NULL, 1);
+		error("Error\n", "Missing space in pool memmory", "", 1);
 	ptr = (char *)pool->mem + pool->used;
 	pool->used += size;
 	ft_bzero(ptr, size);

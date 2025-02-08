@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 16:32:19 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:25:03 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,29 @@ bool	parse_line(char *line, t_world *world)
 
 void	set_ambient(t_world *wld)
 {
-	t_obj		*aux_wld;
+	t_obj		*ax_wld;
 	t_pat_lst	*pat;
-	t_pat_lst	*aux_pat;
-	t_colors	amb;
+	t_pat_lst	*ax_pat;
 
-	aux_wld = wld->obj_lst;
 	pat = wld->scene.pat_lst;
-	amb = wld->scene.ambient;
-	while (aux_wld)
+	ax_wld = wld->obj_lst;
+	while (ax_wld)
 	{
-		aux_wld->shape->material.ambient = hada_col(amb, aux_wld->shape->material.color);
-		if (aux_wld->shape->material.pattern.flag == true)
+		ax_wld->shape->material.ambient = hada_col(wld->scene.ambient, \
+			ax_wld->shape->material.color);
+		if (ax_wld->shape->material.pat.flag == true)
 		{
-			aux_pat = pat;
-			while (aux_pat && (aux_wld->shape->material.pattern.id != aux_pat->pattern.id))
-				aux_pat = aux_pat->next;
-			aux_wld->shape->material.pattern.c1 = aux_pat->pattern.c1;
-			aux_wld->shape->material.pattern.c2 = aux_pat->pattern.c2;
-			aux_wld->shape->material.pattern.flag = true;
-			aux_wld->shape->material.pattern.id = aux_pat->pattern.id;
-			aux_wld->shape->material.pattern.inv = aux_pat->pattern.inv;
-			aux_wld->shape->material.pattern.transf = aux_pat->pattern.transf;
+			ax_pat = pat;
+			while (ax_pat && (ax_wld->shape->material.pat.id != ax_pat->pat.id))
+				ax_pat = ax_pat->next;
+			ax_wld->shape->material.pat.c1 = ax_pat->pat.c1;
+			ax_wld->shape->material.pat.c2 = ax_pat->pat.c2;
+			ax_wld->shape->material.pat.flag = true;
+			ax_wld->shape->material.pat.id = ax_pat->pat.id;
+			ax_wld->shape->material.pat.inv = ax_pat->pat.inv;
+			ax_wld->shape->material.pat.transf = ax_pat->pat.transf;
 		}
-		aux_wld = aux_wld->next;
+		ax_wld = ax_wld->next;
 	}
 }
 

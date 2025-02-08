@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Normalization.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:17:30 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 11:23:55 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:00:04 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ double	*norm(double *vector)
 
 	if (!vector || vector[W] == POINT)
 		error("Error\n", "Impossible 'normalization' with null vector or point",
-			NULL, ERROR);
+			"", 1);
 	magnitude = mag(vector);
 	return (norm_aux(vector, magnitude));
 }

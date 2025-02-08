@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_pattern.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:20:39 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/07 14:30:40 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:19:01 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static void	set_pattern(char *str1, char *str2, char *str3, t_world *world)
 	lst = (t_pat_lst *)alloc_pool(sizeof(t_pat_lst),
 			set->the_pool);
 	if (!ft_strncmp(str1, "gradient", ft_strlen(str1)))
-		lst->pattern = gradient_pattern(col1, col2);
+		lst->pat = gradient_pattern(col1, col2);
 	else if (!ft_strncmp(str1, "ring", ft_strlen(str1)))
-		lst->pattern = ring_pattern(col1, col2);
+		lst->pat = ring_pattern(col1, col2);
 	else if (!ft_strncmp(str1, "checkers", ft_strlen(str1)))
-		lst->pattern = checker_pattern(col1, col2);
+		lst->pat = checker_pattern(col1, col2);
 	insert_into_pattern_list(&world->scene.pat_lst, lst);
 }
 
@@ -61,6 +61,6 @@ bool	parse_pattern(char *line, t_world *world)
 	translate = allocate(sizeof(double) * 3);
 	translate = pos_to_double(info[7]);
 	transf = get_transf(scale, rotate, translate);
-	world->scene.pat_lst->pattern.transf = transf;
+	world->scene.pat_lst->pat.transf = transf;
 	return (true_or_false(info, true));
 }

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:38:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 16:27:59 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:18:16 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ bool	parse_plane(char *line, t_world *world)
 	insert_into_obj_list(&world->obj_lst, pl);
 	if (info[4] && check_obj_pattern(info[4], world, pl))
 	{
-		pl->shape->material.pattern.flag = true;
-		world->scene.pat_lst->pattern.flag = true;
+		pl->shape->material.pat.flag = true;
+		world->scene.pat_lst->pat.flag = true;
 	}
 	if (info[4] && !check_obj_pattern(info[4], world, pl))
 		return (true_or_false(info, false));

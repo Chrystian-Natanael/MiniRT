@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:23:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/08 15:18:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:56:49 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ double	*multiply_mtx_tp(t_matrix matrix, double *tuple)
 	double	axis[4];
 
 	if (matrix.col != 4)
-		error("Not possible to multiply", NULL, NULL, 1);
+		error("Error\n", "Not possible to multiply", "", 1);
 	axis[X] = calculate_matrix_tuple(matrix, tuple, 0);
 	axis[Y] = calculate_matrix_tuple(matrix, tuple, 1);
 	axis[Z] = calculate_matrix_tuple(matrix, tuple, 2);
@@ -110,7 +110,7 @@ t_matrix	multiply_mtx(t_matrix matrix_a, t_matrix matrix_b)
 	t_matrix	res;
 
 	if (matrix_a.col != matrix_b.row)
-		error("Error\n", "Not possible to multiply", NULL, 1);
+		error("Error\n", "Not possible to multiply", "", 1);
 	init_mtx(&res);
 	ir = -1;
 	while (++ir < matrix_a.row)

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:28:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 14:32:51 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:43:38 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_argc(int argc)
 		error("Error\n", "Invalid number of arguments", "", 1);
 	else if (WIDHT <= 0 || HEIGHT <= 0)
 		error("Error\n", "Invalid resolution", "", 1);
-	else if (WIDHT > 700 || HEIGHT > 700)
+	else if (WIDHT > 1920 || HEIGHT > 1080)
 		error("Error\n", "This pc doesn't support highest resolutions\
 		... yet", "", 1);
 }

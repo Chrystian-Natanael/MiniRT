@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 15:19:54 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:40:39 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_paint	render_canva(t_camera cam, t_world *world)
 	canvas.wid = cam.hsize;
 	canvas.px = (t_colors *)alloc_pool(sizeof(t_colors) * canvas.hei
 			* canvas.wid, set->the_pool);
+	set->the_pool->saved_point = set->the_pool->used;
 	while (++i[0] <= (cam.vsize - 1))
 	{
 		i[1] = -1;
@@ -57,6 +58,7 @@ t_paint	render_canva(t_camera cam, t_world *world)
 			canvas.px[i[0] * canvas.wid + i[1]] = color;
 		}
 		printf("LINE[%d]\n", i[0]);
+		set->the_pool->used = set->the_pool->saved_point;
 	}
 	return (canvas);
 }

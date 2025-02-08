@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 16:26:35 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:59:09 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_pool	*alloc_pool(size_t size, t_pool *pool)
 		error("Missing space in pool memmory", NULL, NULL, 1);
 	ptr = (char *)pool->mem + pool->used;
 	pool->used += size;
+	ft_bzero(ptr, size);
 	return (ptr);
 }
 
@@ -56,10 +57,6 @@ void	init_pools(t_count_el counts)
 	t_pool_set	*set;
 
 	set = get_pool();
-	set->the_pool = create_pool(counts.cy * sizeof(t_obj) * 32
-			+ counts.pl * sizeof(t_obj) * 32
-			+ counts.sp * sizeof(t_obj) * 32
-			+ counts.lights * sizeof(t_lights) * 32
-			+ counts.patterns * sizeof(t_lights) * 32
-			* (WIDHT * HEIGHT * sizeof(t_colors)) + 10e11);
+	set->the_pool = create_pool(100e6 + (100e8 * (counts.sp 
+		+ counts.cy + counts.pl)));
 }

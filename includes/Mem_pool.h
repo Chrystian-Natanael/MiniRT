@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:25:51 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 12:45:50 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:38:29 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_pool
 {
 	size_t	used;
 	size_t	size;
+	size_t	saved_point;
 	void	*mem;
 }			t_pool;
 

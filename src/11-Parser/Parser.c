@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 16:13:58 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:14:22 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	set_ambient(t_world *wld)
 	amb = wld->scene.ambient;
 	while (aux)
 	{
-		aux->shape->material.ambient = amb;
+		aux->shape->material.ambient = hada_col(amb, aux->shape->material.color);
 		aux = aux->next;
 	}
 }

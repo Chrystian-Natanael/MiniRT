@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 16:55:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:25:42 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool		parse_light(char *line, t_world *world);
 bool		parse_sphere(char *line, t_world *world);
 
 bool		parse_plane(char *line, t_world *world);
-void		set_plane(t_obj **pl, char *pos, char *norm, char *col);
+void		set_plane(t_obj **pl, char **info);
 t_matrix	rotate_mtx(double *pos, double *norm, t_obj **obj);
 t_matrix	get_matrix(t_matrix scale, t_matrix rotate, t_matrix translate);
 

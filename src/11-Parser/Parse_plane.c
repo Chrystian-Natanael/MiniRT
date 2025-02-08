@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:38:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 16:55:35 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:39:32 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_matrix	rotate_mtx(double *pos, double *norm, t_obj **obj)
 			scale(radius, radius, radius)));
 }
 
-void	set_plane(t_obj **pl, char *pos, char *normal, char *col)
+void	set_plane(t_obj **pl, char **info)
 {
 	double	*pl_pos;
 	double	*pl_norm;
@@ -50,18 +50,16 @@ void	set_plane(t_obj **pl, char *pos, char *normal, char *col)
 	double	*norm_point;
 	double	*pl_col;
 
-	pl_pos = allocate(sizeof(double) * 3);
-	pl_pos = pos_to_double(pos);
+	pl_pos = pos_to_double(info[1]);
 	norm_point = point(pl_pos[0], pl_pos[1], pl_pos[2]);
-	pl_norm = allocate(sizeof(double) * 3);
-	pl_norm = pos_to_double(normal);
+	pl_norm = allocate(sizeof(double) * 4);
+	pl_norm = pos_to_double(info[2]);
 	norm_plane = norm(vector(pl_norm[0], pl_norm[1], pl_norm[2]));
 	pl_col = allocate(sizeof(double) * 3);
-	pl_col = normalize_rgb_to_double(col);
-	((t_pl *)(*pl)->shape->obj)->src = pl_pos;
+	pl_col = normalize_rgb_to_double(info[3]);
 	(*pl)->shape->material.color = create_color
 		(pl_col[0], pl_col[1], pl_col[2]);
-	set_transf(&(*pl)->shape, rotate_mtx(pl_pos, norm_plane, pl));
+	set_transf(&(*pl)->shape, rotate_mtx(norm_point, norm_plane, pl));
 }
 
 bool	parse_plane(char *line, t_world *world)
@@ -77,7 +75,7 @@ bool	parse_plane(char *line, t_world *world)
 	set = get_pool();
 	pl = (t_obj *)alloc_pool(sizeof(t_obj), set->the_pool);
 	init_shape(PLANE, &pl->shape);
-	set_plane(&pl, info[1], info[2], info[3]);
+	set_plane(&pl, info);
 	insert_into_obj_list(&world->obj_lst, pl);
 	return (true_or_false(info, true));
 }

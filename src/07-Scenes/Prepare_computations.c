@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Prepare_computations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 11:27:30 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 10:01:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/07 14:05:44 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ t_comp	*prepare_computations(t_inter *intersec, t_ray ray)
 	comps->sig.normal = normal_at(comps->shape, comps->point);
 	comps->over_point = sum(comps->point,
 			multiply(comps->sig.normal, MAX_DIFF));
+	comps->inside = false;
 	if (dot_prod(comps->sig.normal, comps->sig.eye) < 0)
 	{
 		comps->inside = true;
 		comps->sig.normal = multiply(comps->sig.normal, -1);
 	}
-	else
-		comps->inside = false;
 	return (comps);
 }

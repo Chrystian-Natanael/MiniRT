@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Is_shadowed.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:15:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/09 12:14:25 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:30:28 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scenes.h"
 
-bool	is_shadowed(t_world *world, double *pos)
+bool	is_shadowed(t_world *world, double *pos, t_pt_light light)
 {
 	double	dist_pt_to_light;
 	double	*dir;
@@ -21,11 +21,11 @@ bool	is_shadowed(t_world *world, double *pos)
 	t_inter	*hit_pt;
 
 	dist_pt_to_light = mag(sub(world->lights_lst->light_src.pos, pos));
-	dir = norm(sub(world->lights_lst->light_src.pos, pos));
+	dir = norm(sub(light.pos, pos));
 	ray = create_ray(pos, dir);
 	hit_lst = intersect_world(world, ray);
 	hit_pt = hit(hit_lst);
-	if (hit_pt && hit_pt->pos < dist_pt_to_light)
+	if (hit_pt && hit_pt->next && hit_pt->next->pos < dist_pt_to_light)
 		return (true);
 	return (false);
 }

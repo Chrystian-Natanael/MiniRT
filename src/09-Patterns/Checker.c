@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:20:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 11:52:33 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:54:17 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ t_colors	checker_at(t_pattern pattern, double *point)
 	int	sum;
 	int	color_mod;
 
-	sum = ((int)floor(point[0]) + (int)floor(point[1]) + (int)floor(point[2]));
+	sum = ((int)(point[0]) + (int)(point[1]) + (int)(point[2]));
 	if (sum % 2 == 0)
 		color_mod = 0;
 	else
 		color_mod = 1;
 	if (point[Z] < 0)
+		color_mod = !color_mod;
+	if (point[X] < 0)
 		color_mod = !color_mod;
 	if (color_mod)
 		return (pattern.c1);

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:43:44 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 16:59:36 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:51:24 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "Scenes.h"
 # include "Colors.h"
 
-# define HEIGHT 500
-# define WIDHT 500
+# define HEIGHT 100
+# define WIDHT 100
 
 typedef struct s_paint
 {

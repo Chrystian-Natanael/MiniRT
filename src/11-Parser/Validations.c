@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:28:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/05 10:24:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:32:51 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	check_argc(int argc)
 		error("Error\n", "Invalid number of arguments", "", 1);
 	else if (WIDHT <= 0 || HEIGHT <= 0)
 		error("Error\n", "Invalid resolution", "", 1);
-	else if (WIDHT > 1920 || HEIGHT > 1080)
-		error("Error\n", "This pc doesn't support 4k resolution... yet", "", 1);
+	else if (WIDHT > 700 || HEIGHT > 700)
+		error("Error\n", "This pc doesn't support highest resolutions\
+		... yet", "", 1);
 }
 
 void	check_extensions(char **argv)

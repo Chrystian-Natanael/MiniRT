@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 10:18:56 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:24:53 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,12 @@ t_pool_set	*get_pool(void)
 void	init_pools(t_count_el counts)
 {
 	t_pool_set	*set;
-	double		multiply;
 
-	multiply = 10e1;
-	if (counts.cy + counts.pl + counts.sp > 400)
-		multiply = 10e11 * 10;
 	set = get_pool();
 	set->the_pool = create_pool(counts.cy * sizeof(t_obj) * 32
 			+ counts.pl * sizeof(t_obj) * 32
 			+ counts.sp * sizeof(t_obj) * 32
 			+ counts.lights * sizeof(t_lights) * 32
 			+ counts.patterns * sizeof(t_lights) * 32
-			* (WIDHT * HEIGHT * 10e-2) + 10e11 + multiply);
+			* (WIDHT * HEIGHT * sizeof(t_colors)) + 10e11);
 }

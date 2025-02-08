@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Mem_pool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:29:01 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 15:00:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:18:21 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,4 @@ void	init_pools(t_count_el counts)
 			+ counts.lights * sizeof(t_lights) * 32
 			+ counts.patterns * sizeof(t_lights) * 32
 			* (WIDHT * HEIGHT * 10e-2) + 10e11);
-
-	// (void)counts;
-	// set->the_pool = create_pool(10e6);
 }

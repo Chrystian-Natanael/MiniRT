@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:14:29 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/06 16:57:26 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:19:05 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,21 @@ bool	parse_cylinder(char *line, t_world *world)
 	t_obj		*cl;
 
 	info = ft_split(line, ' ');
-	if (!check_count(info, 6) || !parse_pos(info[1]) || !parse_dir(info[2])
-		|| !is_double(info[3]) || !is_double(info[4]) || !parse_color(info[5]))
+	if ((!check_count(info, 6) && !check_count(info, 7)) || !parse_pos(info[1])
+		|| !parse_dir(info[2]) || !is_double(info[3]) || !is_double(info[4])
+		|| !parse_color(info[5]))
 		return (true_or_false(info, false));
 	set = get_pool();
 	cl = (t_obj *)alloc_pool(sizeof(t_obj), set->the_pool);
 	init_shape(CYLINDER, &cl->shape);
 	set_cylinder(&cl, info);
 	insert_into_obj_list(&world->obj_lst, cl);
+	if (info[6] && check_obj_pattern(info[6], world, cl))
+	{
+		cl->shape->material.pattern.flag = true;
+		world->scene.pat_lst->pattern.flag = true;
+	}
+	if (info[6] && !check_obj_pattern(info[6], world, cl))
+		return (true_or_false(info, false));
 	return (true_or_false(info, true));
 }

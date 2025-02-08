@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/07 16:49:38 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 13:27:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		set_cylinder(t_obj **cl, char **info);
 
 bool		parse_pattern(char *line, t_world *world);
 bool		check_pattern(char *str1, char *str2);
-bool		check_obj_pattern(char *str, t_world *world);
+bool		check_obj_pattern(char *str, t_world *world, t_obj *obj);
 bool		parse_transformations(char *str1, char *str2, char *str3);
 void		insert_into_pattern_list(t_pat_lst **lst, t_pat_lst *pat);
 t_matrix	get_transf(double *scl, double *rot, double *trns);

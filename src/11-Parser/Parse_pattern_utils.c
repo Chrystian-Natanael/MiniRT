@@ -6,21 +6,30 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:20:39 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/07 16:55:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:22:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.h"
 #include "Matrices.h"
 
-bool	check_obj_pattern(char *str, t_world *world)
+bool	check_obj_pattern(char *str, t_world *world, t_obj *obj)
 {
 	if (!ft_strncmp(str, "gradient", ft_strlen(str)))
+	{
 		world->scene.pat_lst->pattern.id = GRADIENT;
+		obj->shape->material.pattern.id = GRADIENT;
+	}
 	else if (!ft_strncmp(str, "ring", ft_strlen(str)))
+	{
+		obj->shape->material.pattern.id = RING;
 		world->scene.pat_lst->pattern.id = RING;
+	}
 	else if (!ft_strncmp(str, "checkers", ft_strlen(str)))
+	{
+		obj->shape->material.pattern.id = CHECKER;
 		world->scene.pat_lst->pattern.id = CHECKER;
+	}
 	else
 		return (false);
 	return (true);
@@ -47,6 +56,7 @@ bool	check_pattern(char *str1, char *str2)
 	}
 	return (true);
 }
+
 bool	parse_transformations(char *str1, char *str2, char *str3)
 {
 	if (!parse_pos(str1))
@@ -90,7 +100,8 @@ t_matrix	get_transf(double *scl, double *rot, double *trns)
 
 	scale_mtx = scale(scl[0], scl[1], scl[2]);
 	rotate_mtx = multiply_mtx(multiply_mtx(rotate_x((rot[0] * PI) / 180),
-		rotate_y((rot[1] * PI) / 180)), (rotate_z((rot[2] * PI) / 180)));
+				rotate_y((rot[1] * PI) / 180)),
+			(rotate_z((rot[2] * PI) / 180)));
 	translate_mtx = translate(trns[0], trns[1], trns[2]);
 	transf = (multiply_mtx(multiply_mtx(scale_mtx, rotate_mtx), translate_mtx));
 	return (transf);

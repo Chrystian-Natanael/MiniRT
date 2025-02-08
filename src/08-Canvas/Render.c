@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 16:40:39 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:34:56 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,39 @@
 #include "Light_and_Shading.h"
 #include <fcntl.h>
 #include <stdlib.h>
+
+t_colors	color_average(t_colors c1, t_colors c2, t_colors c3, t_colors c4)
+{
+	t_colors	col_average_result;
+
+	col_average_result.red = (c1.red + c2.red + c3.red + c4.red) / 4;
+	col_average_result.green = (c1.green + c2.green + c3.green + c4.green) / 4;
+	col_average_result.blue = (c1.blue + c2.blue + c3.blue + c4.blue) / 4;
+	return (col_average_result);
+}
+
+t_colors	render_pixel(t_camera cam, t_world *world, int x, int y)
+{
+	t_colors	color1;
+	t_colors	color2;
+	t_colors	color3;
+	t_colors	color4;
+	t_colors	color_average_result;
+
+	t_ray	ray;
+
+	ray = ray_for_pixel(cam, x, y, 0);
+	color1 = color_at(world, ray);
+	ray = ray_for_pixel(cam, x, y, 1);
+	color2 = color_at(world, ray);
+	ray = ray_for_pixel(cam, x, y, 2);
+	color3 = color_at(world, ray);
+	ray = ray_for_pixel(cam, x, y, 3);
+	color4 = color_at(world, ray);
+
+	color_average_result = color_average(color1, color2, color3, color4);
+	return (color_average_result);
+}
 
 /**
  * @brief Renders a canvas for the given camera and world
@@ -34,7 +67,6 @@
 t_paint	render_canva(t_camera cam, t_world *world)
 {
 	int			i[2];
-	t_ray		ray;
 	t_pool_set	*set;
 	t_paint		canvas;
 	t_colors	color;
@@ -51,8 +83,9 @@ t_paint	render_canva(t_camera cam, t_world *world)
 		i[1] = -1;
 		while (++i[1] <= (cam.hsize - 1))
 		{
-			ray = ray_for_pixel(cam, i[1], i[0]);
-			color = color_at(world, ray);
+			color = render_pixel(cam, world, i[1], i[0]);
+			// ray = ray_for_pixel(cam, i[1], i[0]);
+			// color = color_at(world, ray);
 			if (i[1] >= canvas.wid || i[0] >= canvas.hei)
 				continue ;
 			canvas.px[i[0] * canvas.wid + i[1]] = color;

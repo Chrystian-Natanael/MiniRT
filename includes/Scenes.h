@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 08:15:09 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 16:26:11 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:31:44 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,11 @@ t_colors	shade_hit(t_world *w, t_comp comps);
 t_colors	color_at(t_world *w, t_ray r);
 t_matrix	view_transform(double *from, double *to, double *up);
 t_camera	camera(int hsize, int vsize, double field_view);
-t_ray		ray_for_pixel(t_camera cam, double px, double py);
+// t_ray		ray_for_pixel(t_camera cam, double px, double py);
+t_ray		ray_for_pixel(t_camera cam, double px, double py, int sample);
+t_colors	render_pixel(t_camera cam, t_world *world, int x, int y);
+t_colors	color_average(t_colors c1, t_colors c2, t_colors c3, t_colors c4);
+double		*set_offset(t_camera cam, double px, double py, int sample);
 bool		is_shadowed(t_world *world, double *pos, t_pt_light light);
 
 #endif

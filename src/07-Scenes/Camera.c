@@ -3,25 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   Camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 08:51:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/05 10:13:05 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:34:37 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scenes.h"
 
-t_ray	ray_for_pixel(t_camera cam, double px, double py)
+double	*set_offset(t_camera cam, double px, double py, int sample)
 {
-	double	offset[2];
+	double			*offset;
+	const double	adjustments[4][2] = {
+		{0.25, 0.25},
+		{0.75, 0.25},
+		{0.25, 0.75},
+		{0.75, 0.75}
+	};
+
+	offset = allocate(2 * sizeof(double));
+	if (sample >= 0 && sample < 4)
+	{
+		offset[X] = (px + adjustments[sample][0]) * cam.pixel_sz;
+		offset[Y] = (py + adjustments[sample][1]) * cam.pixel_sz;
+	}
+	else
+	{
+		offset[X] = (px + 0.5) * cam.pixel_sz;
+		offset[Y] = (py + 0.5) * cam.pixel_sz;
+	}
+	return (offset);
+}
+
+t_ray	ray_for_pixel(t_camera cam, double px, double py, int sample)
+{
+	double	*offset;
 	double	world[2];
 	double	*pixel;
 	double	*origin;
 	double	*direction;
 
-	offset[X] = (px + 0.5) * cam.pixel_sz;
-	offset[Y] = (py + 0.5) * cam.pixel_sz;
+	offset = set_offset(cam, px, py, sample);
 	world[X] = (cam.half_widht) - offset[X];
 	world[Y] = (cam.half_heigth) - offset[Y];
 	pixel = multiply_mtx_tp(inv(cam.transform), point(world[X], world[Y], -1));

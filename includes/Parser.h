@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:57:54 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 16:25:57 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:50:02 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ void		calculate_rotation_angles(double *norm, double *x, double *z);
 
 bool		parse_cylinder(char *line, t_world *world);
 void		set_cylinder(t_obj **cl, char **info);
+
+bool		parse_cone(char *line, t_world *world);
+void		set_cone(t_obj **cn, char **info);
 
 bool		parse_pattern(char *line, t_world *world);
 bool		check_pattern(char *str1, char *str2);

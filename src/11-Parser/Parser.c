@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 18:25:03 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:46:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ bool	parse_line(char *line, t_world *world)
 		return (parse_plane(line, world));
 	else if (!ft_strncmp(line, "cy", 2))
 		return (parse_cylinder(line, world));
+	else if (!ft_strncmp(line, "cn", 2))
+		return (parse_cone(line, world));
 	else if (!ft_strncmp(line, "p", 1))
 		return (parse_pattern(line, world));
 	return (false);

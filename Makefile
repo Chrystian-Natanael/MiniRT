@@ -88,12 +88,14 @@ SRCS = $(addprefix $(SRCS_PATH), \
 		02-Matrices/Translation.c \
 		03-Intersections/Intersections_objects.c \
 		03-Intersections/Intersections_world.c \
+		03-Intersections/Intersect_cone.c \
 		03-Intersections/Intersections.c \
 		03-Intersections/lst_functions.c \
 		03-Intersections/Ray_and_hit.c \
 		04-Objects/Planes/Planes.c \
 		04-Objects/Sphere/Sphere.c \
 		04-Objects/Cylinders/Cylinders.c \
+		04-Objects/Cone/Cone.c \
 		04-Objects/Objects.c \
 		05-Light_and_Shading/Normal_at.c \
 		05-Light_and_Shading/Reflection.c \

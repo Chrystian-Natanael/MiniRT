@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:14:29 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 18:28:23 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:33:10 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,28 @@ void	set_cylinder(t_obj **cl, char **info)
 	set_transf(&(*cl)->shape, rotate_mtx(cy_pos, cy_norm, cl));
 }
 
+void	set_cone(t_obj **cn, char **info)
+{
+	double	*c_pos;
+	double	*c_norm;
+	double	*c_col;
+
+	c_pos = allocate(sizeof(double) * 3);
+	c_pos = pos_to_double(info[1]);
+	c_norm = allocate(sizeof(double) * 3);
+	c_norm = pos_to_double(info[2]);
+	c_norm = norm(vector(c_norm[X], c_norm[Y], c_norm[Z]));
+	((t_cn *)(*cn)->shape->obj)->radius = ft_atod(info[3]) / 2;
+	((t_cn *)(*cn)->shape->obj)->max = ft_atod(info[4]);
+	((t_cn *)(*cn)->shape->obj)->min = 0;
+	((t_cn *)(*cn)->shape->obj)->closed = true;
+	((t_cn *)(*cn)->shape->obj)->src = point(c_pos[X], c_pos[Y], c_pos[Z]);
+	c_col = allocate(sizeof(double) * 3);
+	c_col = normalize_rgb_to_double(info[5]);
+	(*cn)->shape->material.color = create_color(c_col[0], c_col[1], c_col[2]);
+	set_transf(&(*cn)->shape, rotate_mtx(c_pos, c_norm, cn));
+}
+
 bool	parse_cylinder(char *line, t_world *world)
 {
 	char		**info;
@@ -59,6 +81,32 @@ bool	parse_cylinder(char *line, t_world *world)
 		world->scene.pat_lst->pat.flag = true;
 	}
 	if (info[6] && !check_obj_pattern(info[6], world, cl))
+		return (true_or_false(info, false));
+	return (true_or_false(info, true));
+}
+
+bool	parse_cone(char *line, t_world *world)
+{
+	char		**info;
+	t_pool_set	*set;
+	t_obj		*cn;
+
+	info = ft_split(line, ' ');
+	if ((!check_count(info, 6) && !check_count(info, 7)) || !parse_pos(info[1])
+		|| !parse_dir(info[2]) || !is_double(info[3]) || !is_double(info[4])
+		|| !parse_color(info[5]))
+		return (true_or_false(info, false));
+	set = get_pool();
+	cn = (t_obj *)alloc_pool(sizeof(t_obj), set->the_pool);
+	init_shape(CONE, &cn->shape);
+	set_cone(&cn, info);
+	insert_into_obj_list(&world->obj_lst, cn);
+	if (info[6] && check_obj_pattern(info[6], world, cn))
+	{
+		cn->shape->material.pat.flag = true;
+		world->scene.pat_lst->pat.flag = true;
+	}
+	if (info[6] && !check_obj_pattern(info[6], world, cn))
 		return (true_or_false(info, false));
 	return (true_or_false(info, true));
 }

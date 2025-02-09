@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:06:07 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/06 12:44:42 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:39:31 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ typedef struct s_cl_inter
 	bool	is_t_cap[2];
 }			t_cl_inter;
 
+typedef struct s_cn_inter
+{
+	t_cn	*cn;
+	int		count;
+	double	t1;
+	double	t2;
+	double	y[2];
+	double	t_cap[2];
+	bool	is_y[2];
+	bool	is_t_cap[2];
+}			t_cn_inter;
+
 typedef struct s_coef
 {
 	double	a;
@@ -72,6 +84,7 @@ void		*intersect(t_shape *shape, t_ray ray);
 t_sp_inter	*intersect_sphere(t_shape *shape, t_ray ray);
 t_pl_inter	*intersect_plane(t_shape *shape, t_ray ray);
 t_cl_inter	*intersect_cylinder(t_shape *shape, t_ray ray);
+t_cn_inter	*intersect_cone(t_shape *s, t_ray r);
 
 t_sp_inter	*calc_intersection(t_coef coef);
 t_coef		calc_coef(t_ray ray);

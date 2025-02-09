@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:50:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 18:16:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:13:58 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef enum e_shape_id
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	CONE
 }				t_shape_id;
 
 typedef struct s_shape

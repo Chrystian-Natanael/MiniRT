@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:53:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 18:17:27 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:18:50 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_shape	*new_shape(void)
 	shape->transf = id_mtx();
 	return (shape);
 }
-void	init_shape(t_shape_id id, struct s_shape **shape);
 
 void	init_shape(t_shape_id id, t_shape **shape)
 {
@@ -82,5 +81,10 @@ void	init_shape(t_shape_id id, t_shape **shape)
 	{
 		(*shape)->obj = create_cl();
 		(*shape)->id = CYLINDER;
+	}
+	else if (id == CONE)
+	{
+		(*shape)->obj = create_cn();
+		(*shape)->id = CONE;
 	}
 }

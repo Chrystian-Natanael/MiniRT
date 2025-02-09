@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:04:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/01/13 15:16:07 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:17:58 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,18 @@ typedef struct s_cl
 	bool	closed;
 }			t_cl;
 
+typedef struct s_cn
+{
+	double	*src;
+	double	radius;
+	double	max;
+	double	min;
+	bool	closed;
+}	t_cn;
+
 t_sp	*create_sp(void);
 t_pl	*create_pl(void);
 t_cl	*create_cl(void);
+t_cn	*create_cn(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:16:17 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 18:56:01 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:14:55 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ void	*intersect(t_shape *shape, t_ray ray)
 		return ((void *)intersect_plane(shape, new_ray));
 	if (shape->id == CYLINDER)
 		return ((void *)intersect_cylinder(shape, new_ray));
+	if (shape->id == CONE)
+		return ((void *)intersect_cone(shape, new_ray));
 	return (NULL);
 }

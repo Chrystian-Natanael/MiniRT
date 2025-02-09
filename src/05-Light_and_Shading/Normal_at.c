@@ -6,12 +6,39 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:51:42 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/08 18:55:36 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:19:26 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Light_and_Shading.h"
 #include "Objects.h"
+
+double	*normal_at_cone(t_shape s, double *obj_point)
+{
+	double	y;
+	double	dist;
+	double	max_radius;
+	double	min_radius;
+	double	*normal;
+
+	dist = pow(obj_point[X], 2) + pow(obj_point[Z], 2);
+	max_radius = pow(((t_cn *)(s.obj))->max, 2);
+	min_radius = pow(((t_cn *)(s.obj))->min, 2);
+	if (dist < max_radius
+		&& obj_point[Y] >= ((t_cn *)(s.obj))->max - MAX_DIFF)
+		normal = vector(0, 1, 0);
+	else if (dist < min_radius
+		&& obj_point[Y] <= ((t_cn *)(s.obj))->min + MAX_DIFF)
+		normal = vector(0, -1, 0);
+	else
+	{
+		y = sqrt(dist);
+		if (obj_point[Y] > 0)
+			y = -y;
+		normal = vector(obj_point[X], y, obj_point[Z]);
+	}
+	return (normal);
+}
 
 double	*normal_at_sphere(t_shape *shape, double *obj_pt)
 {
@@ -51,6 +78,8 @@ double	*normal_at(t_shape *shape, double *wld_pt)
 		obj_normal = vector(0, 1, 0);
 	else if (shape->id == CYLINDER)
 		obj_normal = normal_at_cylinder(shape, obj_pt);
+	else if (shape->id == CONE)
+		obj_normal = normal_at_cone(*shape, obj_pt);
 	else
 		error("Error\n", "Cannot calculate normal this", "", 1);
 	world_normal = multiply_mtx_tp(shape->transp, obj_normal);

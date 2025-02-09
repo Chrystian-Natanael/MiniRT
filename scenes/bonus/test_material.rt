@@ -29,4 +29,4 @@ sp  10,0,0          2               255,255,255     checkers
 
 # Cone              normal
 #   position        direction       radius          altura          color           pattern
-# cn  0,0,0           0,1,1           0.5             1.5             0,0,255         gradient
+cn  0,0,0           0,1,1           0.5             1.5             0,0,255         gradient

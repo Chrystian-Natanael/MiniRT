@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:31:54 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/10 07:32:49 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:35:41 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	error(char *m1, char *m2, char *m3, int code);
 bool	equal(double nbr1, double nbr2);
 
 void	clear_term(void);
+void	empty_file(int fd);
 double	ft_atod(const char *nptr);
+char	*free_line(char *line, int fd, int count);
 
 // ! Swap
 void	swap(double *t1, double *t2);

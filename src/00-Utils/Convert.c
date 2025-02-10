@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:22:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/10 07:07:37 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:42:37 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,33 @@ int	dtoi(double value)
 	return ((int)round(value));
 }
 
+char	*free_line(char *line, int fd, int count)
+{
+	char	*tmp;
+
+	tmp = ft_itoa(count);
+	insert(tmp);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (tmp);
+}
+
+void	empty_file(int fd)
+{
+	close(fd);
+	error("Error\n", "Empty file ", "", 1);
+}
+
 void	clear_term(void)
 {
 	int	i;
 
 	i = -1;
-	while (++i < 50)
+	while (++i < 5)
 	{
 		ft_printf("\n");
 	}

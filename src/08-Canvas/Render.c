@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/10 07:07:56 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:38:34 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	print_rendering_progress(int hsize, int vsize, int y)
 	int	progress;
 
 	progress = (((y + 1) * hsize * 100) / (hsize * vsize));
+	clear_term();
 	ft_printf("\033[uProgress: [");
 	i = 0;
 	while (i < 50)

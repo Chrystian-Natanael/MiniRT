@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:58:24 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/10 07:12:26 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:38:24 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int argc, char **argv)
 	mlx_image_t	*image;
 
 	world = parser(argc, argv);
-	clear_term();
 	paint = render_canva(world->camera, world);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx = mlx_init(world->camera.hsize, world->camera.vsize, "miniRT", true);

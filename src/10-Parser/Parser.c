@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:02:40 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/10 07:10:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:33:57 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,22 @@ void	get_line(int fd, t_world *wld)
 {
 	int		count;
 	char	*line;
+	char	*tmp;
 
 	count = 1;
 	line = get_next_line(fd);
+	if (!line)
+		empty_file(fd);
 	while (line)
 	{
 		check_newline(line);
 		if (!check_empty_line(line))
 		{
 			if (!parse_line(line, wld))
-				error("Error\n", "Bad arguments on line ", ft_itoa(count), 1);
+			{
+				tmp = free_line(line, fd, count);
+				error("Error\n", "Bad arguments on line ", tmp, 1);
+			}
 		}
 		free(line);
 		line = get_next_line(fd);

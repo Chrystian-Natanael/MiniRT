@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:38:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/10 07:18:15 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:55:27 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ bool	parse_sphere(char *line, t_world *world)
 	set_sphere(&sp, info[2], norm_col, pos);
 	insert_into_obj_list(&world->obj_lst, sp);
 	if (!sphere_patterns_validation(info, world, sp))
-		return (true_or_false(info, false));
+		return (false);
 	return (true_or_false(info, true));
 }

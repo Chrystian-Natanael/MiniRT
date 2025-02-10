@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:22:05 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/10 09:42:47 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:12:40 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	dtoi(double value)
 char	*free_line(char *line, int fd, int count)
 {
 	char	*tmp;
+	int		id;
 
 	tmp = ft_itoa(count);
 	insert(tmp);
@@ -37,6 +38,9 @@ char	*free_line(char *line, int fd, int count)
 		free(line);
 		line = get_next_line(fd);
 	}
+	id = fd - 1;
+	while (++id < 10)
+		close(id);
 	return (tmp);
 }
 

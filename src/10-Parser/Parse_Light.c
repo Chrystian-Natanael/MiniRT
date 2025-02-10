@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:36:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2025/02/10 07:17:38 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:18:29 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ bool	parse_light(char *line, t_world *world)
 
 	world->scene.has_light += 1;
 	if (world->scene.has_light > 1)
+	{
+		(void)free_line(line, 3, 1);
 		error("Error\n", "Only one light allowed", "", 1);
+	}
 	info = ft_split(line, ' ');
 	if (!check_count(info, 4) || !parse_pos(info[1]) || !is_double(info[2])
 		|| !in_range_double(info[2]) || !parse_color(info[3]))

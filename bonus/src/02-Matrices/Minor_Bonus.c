@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Minor_Bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/18 09:34:30 by tmalheir          #+#    #+#             */
+/*   Updated: 2025/02/10 07:38:39 by cnatanae         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Matrices_Bonus.h"
+
+/**
+ * @brief Calculate the minor of a matrix element
+ *
+ * This function calculates the minor of a matrix element at the specified row
+ * and column. The minor is the determinant of the submatrix that remains after
+ * removing the specified row and column from the srcal matrix.
+ *
+ * @param matrix The srcal matrix
+ * @param sub_r The row index to be removed
+ * @param sub_c The column index to be removed
+ * @return The determinant of the submatrix, which is the minor of the element
+ */
+double	minor(t_matrix matrix, int sub_r, int sub_c)
+{
+	t_matrix	submatrix;
+
+	submatrix = submtx(matrix, sub_r, sub_c);
+	return (det(submatrix));
+}

@@ -6,14 +6,14 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:44:47 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/12/06 11:02:34 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 07:10:53 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TUPLES_H
 # define TUPLES_H
 
-# include "Mem_pool.h"
+# include "Mem_Pool.h"
 # include "Utils.h"
 
 typedef enum e_tuple_type

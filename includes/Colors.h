@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:49:37 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/01/08 09:21:19 by tmalheir         ###   ########.fr       */
+/*   Updated: 2025/02/10 07:10:53 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define COLORS_H
 
 # include "MLX42/MLX42.h"
-# include "Mem_pool.h"
+# include "Mem_Pool.h"
 # include "garbage_collector.h"
 
 typedef struct s_colors

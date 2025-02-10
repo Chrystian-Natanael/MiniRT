@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Intersections_Objects_Bonus.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/11 19:18:03 by cnatanae          #+#    #+#             */
+/*   Updated: 2025/02/10 07:39:32 by cnatanae         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Intersections_Bonus.h"
+
+t_sp_inter	*intersect_sphere(t_shape *shape, t_ray ray)
+{
+	t_coef		coef;
+	t_sp_inter	*value;
+
+	if (!shape || !(t_sp *)shape->obj)
+		error("Error\n", "Sphere doesn't exist", "", 1);
+	coef = calc_coef(ray);
+	value = calc_intersection(coef);
+	value->sp = (t_sp *)shape->obj;
+	return (value);
+}
+
+t_pl_inter	*intersect_plane(t_shape *shape, t_ray ray)
+{
+	t_pl_inter	*value;
+	t_pool_set	*set;
+
+	if (fabs(ray.dir[Y]) < MAX_DIFF)
+		return (NULL);
+	set = get_pool();
+	value = (t_pl_inter *)alloc_pool(sizeof(t_pl_inter), set->the_pool);
+	value->count = 1;
+	value->t = -ray.src[Y] / ray.dir[Y];
+	value->pl = (t_pl *)shape->obj;
+	return (value);
+}

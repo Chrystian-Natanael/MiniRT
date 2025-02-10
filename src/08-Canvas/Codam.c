@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:30:39 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 19:00:43 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 07:55:18 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,6 @@
 #include "Codam.h"
 #include "Colors.h"
 #include "Scenes.h"
-
-/**
- * @brief Initializes the application window with the specified settings
- *
- * This function initializes the application window using the MLX library.
- * The window is created with the dimensions defined by `WIDHT` and `HEIGHT`,
- * and with the title "MiniRT". Additionally, a new image is created and
- * associated with the window, displayed at position (0, 0). MLX settings are
- * adjusted to allow image stretching.
- *
- * @param canvas A pointer to a `t_canvas` structure that holds references
- * to the MLX window
- * and the image to be displayed. The function initializes the `canvas`
- * structure with the
- * appropriate window and image.
- */
-// void	init_window(t_canvas *canvas)
-// {
-// 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-// 	canvas->mlx = mlx_init(WIDHT, HEIGHT, "MiniRT", true);
-// 	canvas->image = mlx_new_image(canvas->mlx, WIDHT, HEIGHT);
-// 	mlx_image_to_window(canvas->mlx, canvas->image, 0, 0);
-// }
-// void	init_window(t_canvas *canvas)
-// {
-// 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-// 	canvas->mlx = mlx_init(WIDHT, HEIGHT, "MiniRT", true);
-// 	canvas->image = mlx_new_image(canvas->mlx, WIDHT, HEIGHT);
-// 	mlx_image_to_window(canvas->mlx, canvas->image, 0, 0);
-// }
 
 /**
  * @brief Converts canvas data to a usable MLX image

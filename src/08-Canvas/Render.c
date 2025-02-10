@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:01:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2025/02/08 18:32:31 by cnatanae         ###   ########.fr       */
+/*   Updated: 2025/02/10 07:07:56 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 #include "Light_and_Shading.h"
 #include <fcntl.h>
 #include <stdlib.h>
+
+static void	print_rendering_progress(int hsize, int vsize, int y)
+{
+	int	i;
+	int	progress;
+
+	progress = (((y + 1) * hsize * 100) / (hsize * vsize));
+	ft_printf("\033[uProgress: [");
+	i = 0;
+	while (i < 50)
+	{
+		if (i < progress / 2)
+			ft_printf("=");
+		else if (abs((progress / 2) - i) < 1)
+			ft_printf(">");
+		else if (i % 5 == 0)
+			ft_printf("o");
+		else
+			ft_printf(" ");
+		i++;
+	}
+	ft_printf("] %d%%", progress);
+}
 
 t_colors	color_average(t_colors c1, t_colors c2, t_colors c3, t_colors c4)
 {
@@ -83,7 +106,7 @@ t_paint	render_canva(t_camera cam, t_world *world)
 				continue ;
 			canvas.px[i[0] * canvas.wid + i[1]] = color;
 		}
-		printf("LINE[%d]\n", i[0]);
+		print_rendering_progress(cam.hsize, cam.vsize, i[0]);
 		set->the_pool->used = set->the_pool->saved_point;
 	}
 	return (canvas);
